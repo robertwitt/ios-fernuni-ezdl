@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1EFC3BA147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
+		E1EFC3BC147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
+		E1EFC3BE147690B600CB7490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */; };
+		E1EFC3C0147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
+		E1EFC3C6147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3C4147690B600CB7490 /* InfoPlist.strings */; };
+		E1EFC3C8147690B600CB7490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3C7147690B600CB7490 /* main.m */; };
+		E1EFC3CC147690B600CB7490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CB147690B600CB7490 /* AppDelegate.m */; };
+		E1EFC3CF147690B600CB7490 /* ezDL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */; };
+		E1EFC3D7147690B600CB7490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */; };
+		E1EFC3D8147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
+		E1EFC3D9147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
+		E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
+		E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3E0147690B600CB7490 /* InfoPlist.strings */; };
+		E1EFC3E5147690B600CB7490 /* ezDLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3E4147690B600CB7490 /* ezDLTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1EFC3DB147690B600CB7490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1EFC3AC147690B600CB7490 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1EFC3B4147690B600CB7490;
+			remoteInfo = ezDL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E1EFC3B5147690B600CB7490 /* ezDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ezDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1EFC3B9147690B600CB7490 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E1EFC3BB147690B600CB7490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E1EFC3BF147690B600CB7490 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */ = {isa = PBXFileReference; path = "ezDL-Info.plist"; sourceTree = "<group>"; };
+		E1EFC3C5147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1EFC3C7147690B600CB7490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */ = {isa = PBXFileReference; path = "ezDL-Prefix.pch"; sourceTree = "<group>"; };
+		E1EFC3CA147690B600CB7490 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		E1EFC3CB147690B600CB7490 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E1EFC3CE147690B600CB7490 /* ezDL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ezDL.xcdatamodel; sourceTree = "<group>"; };
+		E1EFC3D5147690B600CB7490 /* ezDLTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ezDLTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */ = {isa = PBXFileReference; path = "ezDLTests-Info.plist"; sourceTree = "<group>"; };
+		E1EFC3E1147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1EFC3E3147690B600CB7490 /* ezDLTests.h */ = {isa = PBXFileReference; path = ezDLTests.h; sourceTree = "<group>"; };
+		E1EFC3E4147690B600CB7490 /* ezDLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezDLTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1EFC3B2147690B600CB7490 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3BA147690B600CB7490 /* UIKit.framework in Frameworks */,
+				E1EFC3BC147690B600CB7490 /* Foundation.framework in Frameworks */,
+				E1EFC3BE147690B600CB7490 /* CoreGraphics.framework in Frameworks */,
+				E1EFC3C0147690B600CB7490 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1EFC3D1147690B600CB7490 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3D7147690B600CB7490 /* SenTestingKit.framework in Frameworks */,
+				E1EFC3D8147690B600CB7490 /* UIKit.framework in Frameworks */,
+				E1EFC3D9147690B600CB7490 /* Foundation.framework in Frameworks */,
+				E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1EFC3AA147690B600CB7490 = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3C1147690B600CB7490 /* ezDL */,
+				E1EFC3DD147690B600CB7490 /* ezDLTests */,
+				E1EFC3B8147690B600CB7490 /* Frameworks */,
+				E1EFC3B6147690B600CB7490 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1EFC3B6147690B600CB7490 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3B5147690B600CB7490 /* ezDL.app */,
+				E1EFC3D5147690B600CB7490 /* ezDLTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1EFC3B8147690B600CB7490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3B9147690B600CB7490 /* UIKit.framework */,
+				E1EFC3BB147690B600CB7490 /* Foundation.framework */,
+				E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */,
+				E1EFC3BF147690B600CB7490 /* CoreData.framework */,
+				E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1EFC3C1147690B600CB7490 /* ezDL */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
+				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
+				E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */,
+				E1EFC3C2147690B600CB7490 /* Supporting Files */,
+			);
+			path = ezDL;
+			sourceTree = "<group>";
+		};
+		E1EFC3C2147690B600CB7490 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */,
+				E1EFC3C4147690B600CB7490 /* InfoPlist.strings */,
+				E1EFC3C7147690B600CB7490 /* main.m */,
+				E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1EFC3DD147690B600CB7490 /* ezDLTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3E3147690B600CB7490 /* ezDLTests.h */,
+				E1EFC3E4147690B600CB7490 /* ezDLTests.m */,
+				E1EFC3DE147690B600CB7490 /* Supporting Files */,
+			);
+			path = ezDLTests;
+			sourceTree = "<group>";
+		};
+		E1EFC3DE147690B600CB7490 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */,
+				E1EFC3E0147690B600CB7490 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1EFC3B4147690B600CB7490 /* ezDL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1EFC3E8147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDL" */;
+			buildPhases = (
+				E1EFC3B1147690B600CB7490 /* Sources */,
+				E1EFC3B2147690B600CB7490 /* Frameworks */,
+				E1EFC3B3147690B600CB7490 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ezDL;
+			productName = ezDL;
+			productReference = E1EFC3B5147690B600CB7490 /* ezDL.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E1EFC3D4147690B600CB7490 /* ezDLTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1EFC3EB147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDLTests" */;
+			buildPhases = (
+				E1EFC3D0147690B600CB7490 /* Sources */,
+				E1EFC3D1147690B600CB7490 /* Frameworks */,
+				E1EFC3D2147690B600CB7490 /* Resources */,
+				E1EFC3D3147690B600CB7490 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1EFC3DC147690B600CB7490 /* PBXTargetDependency */,
+			);
+			name = ezDLTests;
+			productName = ezDLTests;
+			productReference = E1EFC3D5147690B600CB7490 /* ezDLTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1EFC3AC147690B600CB7490 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = E1EFC3AF147690B600CB7490 /* Build configuration list for PBXProject "ezDL" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E1EFC3AA147690B600CB7490;
+			productRefGroup = E1EFC3B6147690B600CB7490 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1EFC3B4147690B600CB7490 /* ezDL */,
+				E1EFC3D4147690B600CB7490 /* ezDLTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1EFC3B3147690B600CB7490 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3C6147690B600CB7490 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1EFC3D2147690B600CB7490 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1EFC3D3147690B600CB7490 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1EFC3B1147690B600CB7490 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3C8147690B600CB7490 /* main.m in Sources */,
+				E1EFC3CC147690B600CB7490 /* AppDelegate.m in Sources */,
+				E1EFC3CF147690B600CB7490 /* ezDL.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1EFC3D0147690B600CB7490 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EFC3E5147690B600CB7490 /* ezDLTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1EFC3DC147690B600CB7490 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1EFC3B4147690B600CB7490 /* ezDL */;
+			targetProxy = E1EFC3DB147690B600CB7490 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E1EFC3C4147690B600CB7490 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1EFC3C5147690B600CB7490 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1EFC3E0147690B600CB7490 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1EFC3E1147690B600CB7490 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1EFC3E6147690B600CB7490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		E1EFC3E7147690B600CB7490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1EFC3E9147690B600CB7490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
+				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E1EFC3EA147690B600CB7490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
+				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E1EFC3EC147690B600CB7490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ezDL.app/ezDL";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
+				INFOPLIST_FILE = "ezDLTests/ezDLTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E1EFC3ED147690B600CB7490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ezDL.app/ezDL";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
+				INFOPLIST_FILE = "ezDLTests/ezDLTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1EFC3AF147690B600CB7490 /* Build configuration list for PBXProject "ezDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1EFC3E6147690B600CB7490 /* Debug */,
+				E1EFC3E7147690B600CB7490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1EFC3E8147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1EFC3E9147690B600CB7490 /* Debug */,
+				E1EFC3EA147690B600CB7490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1EFC3EB147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDLTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1EFC3EC147690B600CB7490 /* Debug */,
+				E1EFC3ED147690B600CB7490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E1EFC3CE147690B600CB7490 /* ezDL.xcdatamodel */,
+			);
+			currentVersion = E1EFC3CE147690B600CB7490 /* ezDL.xcdatamodel */;
+			path = ezDL.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E1EFC3AC147690B600CB7490 /* Project object */;
+}
