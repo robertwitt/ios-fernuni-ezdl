@@ -1,13 +1,13 @@
 //
-//  AppDelegate.h
+//  BackendService.h
 //  ezDL
 //
 //  Created by Robert Witt on 18.11.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@protocol BackendService <NSObject>
 
-@property (strong, nonatomic) UIWindow *window;
+- (NSArray *)loadLibrariesWithError:(NSError **)error;
 
 @end

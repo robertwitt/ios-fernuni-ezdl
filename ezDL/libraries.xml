@@ -1,0 +1,47 @@
+<libraries>
+    <library>
+        <objectID>acm</objectID>
+        <name>ACM DL</name>
+        <shortText>The digital library of the ACM - Association for Computing Machinery</shortText>
+    </library>
+    <library>
+        <objectID>amazon</objectID>
+        <name>Amazon</name>
+        <shortText>Search in the book section of the online shop Amazon.com</shortText>
+    </library>
+    <library>
+        <objectID>bibdb</objectID>
+        <name>BibDB</name>
+        <shortText>The BibTeX database of the group Information Engineering of the University of Duisburg-Essen</shortText>
+    </library>
+    <library>
+        <objectID>citeseer</objectID>
+        <name>CiteSeerX</name>
+        <shortText>CiteSeerX is a scientific literature digital library and search engine</shortText>
+    </library>
+    <library>
+        <objectID>dblp</objectID>
+        <name>DBLP</name>
+        <shortText>The DBLP Computer Science Bibliography</shortText>
+    </library>
+    <library>
+        <objectID>ieee</objectID>
+        <name>IEEE</name>
+        <shortText>IEEE Xplore is the digital library of the Institute of Electrical and Electronics Engineers</shortText>
+    </library>
+    <library>
+        <objectID>leabib</objectID>
+        <name>LEABIB</name>
+        <shortText>Bibliography of the group for efficient algorithms at the University of Munich</shortText>
+    </library>
+    <library>
+        <objectID>pubmed</objectID>
+        <name>PubMed</name>
+        <shortText>A large and well-known resource for the life sciences including medicine and biology</shortText>
+    </library>
+    <library>
+        <objectID>springer</objectID>
+        <name>Springer</name>
+        <shortText>The digital library of the publisher Springer</shortText>
+    </library>
+</libraries>

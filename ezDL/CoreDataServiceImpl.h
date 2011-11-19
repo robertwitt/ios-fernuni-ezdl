@@ -1,13 +1,13 @@
 //
-//  AppDelegate.h
+//  CoreDataServiceImpl.h
 //  ezDL
 //
 //  Created by Robert Witt on 18.11.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "CoreDataService.h"
 
-@property (strong, nonatomic) UIWindow *window;
+@interface CoreDataServiceImpl : NSObject <CoreDataService>
 
 @end

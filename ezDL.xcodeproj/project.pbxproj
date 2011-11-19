@@ -21,6 +21,30 @@
 		E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
 		E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3E0147690B600CB7490 /* InfoPlist.strings */; };
 		E1EFC3E5147690B600CB7490 /* ezDLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3E4147690B600CB7490 /* ezDLTests.m */; };
+		E1EFC3F21476917D00CB7490 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F11476917D00CB7490 /* CoreDataStack.m */; };
+		E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */; };
+		E1EFC3F9147696BB00CB7490 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F8147696BB00CB7490 /* QueryController.m */; };
+		E1EFC40414769AD600CB7490 /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC40314769AD600CB7490 /* QueryViewController.m */; };
+		E1EFC40814769B0C00CB7490 /* AdvancedQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC40614769B0C00CB7490 /* AdvancedQueryViewController.m */; };
+		E1EFC40914769B0C00CB7490 /* AdvancedQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC40714769B0C00CB7490 /* AdvancedQueryViewController.xib */; };
+		E1EFC40D14769B5200CB7490 /* BasicQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */; };
+		E1EFC40E14769B5200CB7490 /* BasicQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */; };
+		E1EFC4131476C08000CB7490 /* DLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4121476C08000CB7490 /* DLObject.m */; };
+		E1EFC4161476C14100CB7490 /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4151476C14100CB7490 /* Library.m */; };
+		E1EFC41B1476C2EE00CB7490 /* LibraryChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC41A1476C2EE00CB7490 /* LibraryChoiceViewController.m */; };
+		E1EFC4241476CD4400CB7490 /* LibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4231476CD4400CB7490 /* LibraryChoice.m */; };
+		E1EFC4281476D6AC00CB7490 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */; };
+		E1EFC42B1476D6FE00CB7490 /* LibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC42A1476D6FE00CB7490 /* LibraryServiceImpl.m */; };
+		E1EFC4301476DEB700CB7490 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC42F1476DEB700CB7490 /* Localization.strings */; };
+		E1EFC43C1476EACF00CB7490 /* MockupBackendServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */; };
+		E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */; };
+		E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC4411476EB9A00CB7490 /* libraries.xml */; };
+		E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */; };
+		E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */; };
+		E1EFC44D1477200900CB7490 /* LibraryMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44C1477200900CB7490 /* LibraryMO.m */; };
+		E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */; };
+		E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC45314772B5100CB7490 /* ezdl_icon.png */; };
+		E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,19 +63,64 @@
 		E1EFC3BB147690B600CB7490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E1EFC3BF147690B600CB7490 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */ = {isa = PBXFileReference; path = "ezDL-Info.plist"; sourceTree = "<group>"; };
+		E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ezDL-Info.plist"; sourceTree = "<group>"; };
 		E1EFC3C5147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1EFC3C7147690B600CB7490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */ = {isa = PBXFileReference; path = "ezDL-Prefix.pch"; sourceTree = "<group>"; };
-		E1EFC3CA147690B600CB7490 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ezDL-Prefix.pch"; sourceTree = "<group>"; };
+		E1EFC3CA147690B600CB7490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E1EFC3CB147690B600CB7490 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E1EFC3CE147690B600CB7490 /* ezDL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ezDL.xcdatamodel; sourceTree = "<group>"; };
 		E1EFC3D5147690B600CB7490 /* ezDLTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ezDLTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */ = {isa = PBXFileReference; path = "ezDLTests-Info.plist"; sourceTree = "<group>"; };
+		E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ezDLTests-Info.plist"; sourceTree = "<group>"; };
 		E1EFC3E1147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1EFC3E3147690B600CB7490 /* ezDLTests.h */ = {isa = PBXFileReference; path = ezDLTests.h; sourceTree = "<group>"; };
+		E1EFC3E3147690B600CB7490 /* ezDLTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ezDLTests.h; sourceTree = "<group>"; };
 		E1EFC3E4147690B600CB7490 /* ezDLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezDLTests.m; sourceTree = "<group>"; };
+		E1EFC3F01476917D00CB7490 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		E1EFC3F11476917D00CB7490 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E1EFC3F7147696BB00CB7490 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
+		E1EFC3F8147696BB00CB7490 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		E1EFC40214769AD600CB7490 /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
+		E1EFC40314769AD600CB7490 /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
+		E1EFC40514769B0C00CB7490 /* AdvancedQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedQueryViewController.h; sourceTree = "<group>"; };
+		E1EFC40614769B0C00CB7490 /* AdvancedQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedQueryViewController.m; sourceTree = "<group>"; };
+		E1EFC40714769B0C00CB7490 /* AdvancedQueryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedQueryViewController.xib; sourceTree = "<group>"; };
+		E1EFC40A14769B5100CB7490 /* BasicQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicQueryViewController.h; sourceTree = "<group>"; };
+		E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicQueryViewController.m; sourceTree = "<group>"; };
+		E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryViewController.xib; sourceTree = "<group>"; };
+		E1EFC4111476C08000CB7490 /* DLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLObject.h; sourceTree = "<group>"; };
+		E1EFC4121476C08000CB7490 /* DLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLObject.m; sourceTree = "<group>"; };
+		E1EFC4141476C14100CB7490 /* Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
+		E1EFC4151476C14100CB7490 /* Library.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Library.m; sourceTree = "<group>"; };
+		E1EFC4191476C2EE00CB7490 /* LibraryChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryChoiceViewController.h; sourceTree = "<group>"; };
+		E1EFC41A1476C2EE00CB7490 /* LibraryChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryChoiceViewController.m; sourceTree = "<group>"; };
+		E1EFC4221476CD4400CB7490 /* LibraryChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryChoice.h; sourceTree = "<group>"; };
+		E1EFC4231476CD4400CB7490 /* LibraryChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryChoice.m; sourceTree = "<group>"; };
+		E1EFC4251476D62400CB7490 /* LibraryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryService.h; sourceTree = "<group>"; };
+		E1EFC4261476D6AC00CB7490 /* ServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceFactory.h; sourceTree = "<group>"; };
+		E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceFactory.m; sourceTree = "<group>"; };
+		E1EFC4291476D6FE00CB7490 /* LibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryServiceImpl.h; sourceTree = "<group>"; };
+		E1EFC42A1476D6FE00CB7490 /* LibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryServiceImpl.m; sourceTree = "<group>"; };
+		E1EFC42F1476DEB700CB7490 /* Localization.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localization.strings; sourceTree = "<group>"; };
+		E1EFC4381476EA6F00CB7490 /* BackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendService.h; sourceTree = "<group>"; };
+		E1EFC43A1476EACF00CB7490 /* MockupBackendServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupBackendServiceImpl.h; sourceTree = "<group>"; };
+		E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupBackendServiceImpl.m; sourceTree = "<group>"; };
+		E1EFC43D1476EB3000CB7490 /* MockupLibraryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupLibraryBackendService.h; sourceTree = "<group>"; };
+		E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupLibraryBackendService.m; sourceTree = "<group>"; };
+		E1EFC4411476EB9A00CB7490 /* libraries.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = libraries.xml; sourceTree = "<group>"; };
+		E1EFC4431476F31400CB7490 /* CoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
+		E1EFC4441476F3B700CB7490 /* CoreDataServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataServiceImpl.h; sourceTree = "<group>"; };
+		E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataServiceImpl.m; sourceTree = "<group>"; };
+		E1EFC44714770C5800CB7490 /* MutableLibraryChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableLibraryChoice.h; sourceTree = "<group>"; };
+		E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableLibraryChoice.m; sourceTree = "<group>"; };
+		E1EFC44B1477200900CB7490 /* LibraryMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMO.h; sourceTree = "<group>"; };
+		E1EFC44C1477200900CB7490 /* LibraryMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMO.m; sourceTree = "<group>"; };
+		E1EFC44E147720FE00CB7490 /* LibraryCoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCoreDataService.h; sourceTree = "<group>"; };
+		E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCoreDataService.m; sourceTree = "<group>"; };
+		E1EFC45314772B5100CB7490 /* ezdl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ezdl_icon.png; path = ../ezdl_icon.png; sourceTree = "<group>"; };
+		E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewControllerExtension.h"; sourceTree = "<group>"; };
+		E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +183,10 @@
 		E1EFC3C1147690B600CB7490 /* ezDL */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
-				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
-				E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */,
+				E1EFC4391476EAB000CB7490 /* Mockup */,
+				E1EFC3EE1476914F00CB7490 /* Model */,
+				E1EFC3F31476964E00CB7490 /* View */,
+				E1EFC3EF1476915800CB7490 /* Controller */,
 				E1EFC3C2147690B600CB7490 /* Supporting Files */,
 			);
 			path = ezDL;
@@ -129,6 +199,8 @@
 				E1EFC3C4147690B600CB7490 /* InfoPlist.strings */,
 				E1EFC3C7147690B600CB7490 /* main.m */,
 				E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */,
+				E1EFC42F1476DEB700CB7490 /* Localization.strings */,
+				E1EFC45314772B5100CB7490 /* ezdl_icon.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -150,6 +222,160 @@
 				E1EFC3E0147690B600CB7490 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1EFC3EE1476914F00CB7490 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC40F1476C04100CB7490 /* Business Objects */,
+				E1EFC41D1476CC2400CB7490 /* Core Data */,
+				E1EFC41E1476CC4A00CB7490 /* Services */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E1EFC3EF1476915800CB7490 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
+				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
+				E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */,
+				E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */,
+				E1EFC3F61476968200CB7490 /* Query */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E1EFC3F31476964E00CB7490 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E1EFC3F61476968200CB7490 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC3F7147696BB00CB7490 /* QueryController.h */,
+				E1EFC3F8147696BB00CB7490 /* QueryController.m */,
+				E1EFC40214769AD600CB7490 /* QueryViewController.h */,
+				E1EFC40314769AD600CB7490 /* QueryViewController.m */,
+				E1EFC40514769B0C00CB7490 /* AdvancedQueryViewController.h */,
+				E1EFC40614769B0C00CB7490 /* AdvancedQueryViewController.m */,
+				E1EFC40714769B0C00CB7490 /* AdvancedQueryViewController.xib */,
+				E1EFC40A14769B5100CB7490 /* BasicQueryViewController.h */,
+				E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */,
+				E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */,
+				E1EFC4181476C27B00CB7490 /* Library Choice */,
+			);
+			name = Query;
+			sourceTree = "<group>";
+		};
+		E1EFC40F1476C04100CB7490 /* Business Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4101476C04B00CB7490 /* DL Objects */,
+			);
+			name = "Business Objects";
+			sourceTree = "<group>";
+		};
+		E1EFC4101476C04B00CB7490 /* DL Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4111476C08000CB7490 /* DLObject.h */,
+				E1EFC4121476C08000CB7490 /* DLObject.m */,
+				E1EFC4141476C14100CB7490 /* Library.h */,
+				E1EFC4151476C14100CB7490 /* Library.m */,
+			);
+			name = "DL Objects";
+			sourceTree = "<group>";
+		};
+		E1EFC4181476C27B00CB7490 /* Library Choice */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4191476C2EE00CB7490 /* LibraryChoiceViewController.h */,
+				E1EFC41A1476C2EE00CB7490 /* LibraryChoiceViewController.m */,
+			);
+			name = "Library Choice";
+			sourceTree = "<group>";
+		};
+		E1EFC41D1476CC2400CB7490 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC44A14771FEA00CB7490 /* Managed Objects */,
+				E1EFC3F01476917D00CB7490 /* CoreDataStack.h */,
+				E1EFC3F11476917D00CB7490 /* CoreDataStack.m */,
+				E1EFC4431476F31400CB7490 /* CoreDataService.h */,
+				E1EFC4441476F3B700CB7490 /* CoreDataServiceImpl.h */,
+				E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */,
+				E1EFC44E147720FE00CB7490 /* LibraryCoreDataService.h */,
+				E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */,
+				E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		E1EFC41E1476CC4A00CB7490 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4351476EA3700CB7490 /* Library Service */,
+				E1EFC4371476EA4A00CB7490 /* Backend Service */,
+				E1EFC4261476D6AC00CB7490 /* ServiceFactory.h */,
+				E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		E1EFC4351476EA3700CB7490 /* Library Service */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4251476D62400CB7490 /* LibraryService.h */,
+				E1EFC4291476D6FE00CB7490 /* LibraryServiceImpl.h */,
+				E1EFC42A1476D6FE00CB7490 /* LibraryServiceImpl.m */,
+				E1EFC4221476CD4400CB7490 /* LibraryChoice.h */,
+				E1EFC4231476CD4400CB7490 /* LibraryChoice.m */,
+				E1EFC44714770C5800CB7490 /* MutableLibraryChoice.h */,
+				E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */,
+			);
+			name = "Library Service";
+			sourceTree = "<group>";
+		};
+		E1EFC4371476EA4A00CB7490 /* Backend Service */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4381476EA6F00CB7490 /* BackendService.h */,
+			);
+			name = "Backend Service";
+			sourceTree = "<group>";
+		};
+		E1EFC4391476EAB000CB7490 /* Mockup */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC43A1476EACF00CB7490 /* MockupBackendServiceImpl.h */,
+				E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */,
+				E1EFC43D1476EB3000CB7490 /* MockupLibraryBackendService.h */,
+				E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */,
+				E1EFC4401476EB7C00CB7490 /* Mockup Files */,
+			);
+			name = Mockup;
+			sourceTree = "<group>";
+		};
+		E1EFC4401476EB7C00CB7490 /* Mockup Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC4411476EB9A00CB7490 /* libraries.xml */,
+			);
+			name = "Mockup Files";
+			sourceTree = "<group>";
+		};
+		E1EFC44A14771FEA00CB7490 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC44B1477200900CB7490 /* LibraryMO.h */,
+				E1EFC44C1477200900CB7490 /* LibraryMO.m */,
+			);
+			name = "Managed Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +449,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1EFC3C6147690B600CB7490 /* InfoPlist.strings in Resources */,
+				E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */,
+				E1EFC40914769B0C00CB7490 /* AdvancedQueryViewController.xib in Resources */,
+				E1EFC40E14769B5200CB7490 /* BasicQueryViewController.xib in Resources */,
+				E1EFC4301476DEB700CB7490 /* Localization.strings in Resources */,
+				E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */,
+				E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +492,24 @@
 				E1EFC3C8147690B600CB7490 /* main.m in Sources */,
 				E1EFC3CC147690B600CB7490 /* AppDelegate.m in Sources */,
 				E1EFC3CF147690B600CB7490 /* ezDL.xcdatamodeld in Sources */,
+				E1EFC3F21476917D00CB7490 /* CoreDataStack.m in Sources */,
+				E1EFC3F9147696BB00CB7490 /* QueryController.m in Sources */,
+				E1EFC40414769AD600CB7490 /* QueryViewController.m in Sources */,
+				E1EFC40814769B0C00CB7490 /* AdvancedQueryViewController.m in Sources */,
+				E1EFC40D14769B5200CB7490 /* BasicQueryViewController.m in Sources */,
+				E1EFC4131476C08000CB7490 /* DLObject.m in Sources */,
+				E1EFC4161476C14100CB7490 /* Library.m in Sources */,
+				E1EFC41B1476C2EE00CB7490 /* LibraryChoiceViewController.m in Sources */,
+				E1EFC4241476CD4400CB7490 /* LibraryChoice.m in Sources */,
+				E1EFC4281476D6AC00CB7490 /* ServiceFactory.m in Sources */,
+				E1EFC42B1476D6FE00CB7490 /* LibraryServiceImpl.m in Sources */,
+				E1EFC43C1476EACF00CB7490 /* MockupBackendServiceImpl.m in Sources */,
+				E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */,
+				E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */,
+				E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */,
+				E1EFC44D1477200900CB7490 /* LibraryMO.m in Sources */,
+				E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */,
+				E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +673,7 @@
 				E1EFC3EA147690B600CB7490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1EFC3EB147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDLTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +682,7 @@
 				E1EFC3ED147690B600CB7490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
