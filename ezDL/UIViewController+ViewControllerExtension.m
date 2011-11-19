@@ -26,4 +26,15 @@
     application.networkActivityIndicatorVisible = !application.networkActivityIndicatorVisible;
 }
 
+- (void)showSimpleAlertWithTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+    alertView.tag = tag;
+    [alertView show];
+}
+
 @end

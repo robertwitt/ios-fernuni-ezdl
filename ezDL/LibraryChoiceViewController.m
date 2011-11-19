@@ -89,6 +89,11 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.libraryService saveLibraryChoice:self.currentLibraryChoice];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -175,7 +180,9 @@
     
     if (error)
     {
-        // TODO Handle error
+        [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil) 
+                               message:error.localizedDescription
+                                   tag:0];
     }
     
     self.currentLibraryChoice = [[MutableLibraryChoice alloc] initWithLibraryChoice:libraryChoice];

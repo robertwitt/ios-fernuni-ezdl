@@ -43,7 +43,12 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 - (void)saveSelectedLibraries:(NSArray *)libraries
 {
-    [[NSUserDefaults standardUserDefaults] setObject:libraries forKey:UserDefaultsKey];
+    NSMutableArray *libraryObjectIDs = [NSMutableArray array];
+    for (Library *library in libraries)
+    {
+        [libraryObjectIDs addObject:library.objectID];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:libraryObjectIDs forKey:UserDefaultsKey];
 }
 
 @end
@@ -138,6 +143,22 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 {
     [self.userDefaultsService saveSelectedLibraries:libraryChoice.selectedLibraries];
     self.currentLibraryChoice = libraryChoice;
+}
+
+- (Library *)libraryWithObjectID:(NSString *)objectID
+{
+    NSArray *selectedLibraries = [self libraryChoice].selectedLibraries;
+    NSUInteger index = [selectedLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        BOOL passed = NO;
+        if ([[obj objectID] isEqualToString:objectID])
+        {
+            passed = YES;
+            stop = &passed;
+        }
+        return passed;
+    }];
+    
+    return [selectedLibraries objectAtIndex:index];
 }
 
 @end

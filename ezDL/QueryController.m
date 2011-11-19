@@ -18,15 +18,24 @@
 @property (nonatomic, strong, readonly) BasicQueryViewController *basicQueryViewController;
 @property (nonatomic, strong) UIPopoverController *libraryChoicePopover;
 
+- (void)startObservingQueryViewController:(QueryViewController *)viewController;
+- (void)stopObservingQueryViewController:(QueryViewController *)viewController;
+
 @end
 
 
 @implementation QueryController
 
+@synthesize clearButton = _clearButton;
+@synthesize searchButton = _searchButton;
 @synthesize queryViewController = _queryViewController;
 @synthesize advancedQueryViewController = _advancedQueryViewController;
+@synthesize query = _query;
+@synthesize delegate = _delegate;
 @synthesize basicQueryViewController = _basicQueryViewController;
 @synthesize libraryChoicePopover = _libraryChoicePopover;
+
+#pragma mark Implementing this Controller as Container Controller
 
 - (void)setQueryViewController:(QueryViewController *)queryViewController 
 {
@@ -34,10 +43,16 @@
     [_queryViewController.view removeFromSuperview];
     [_queryViewController removeFromParentViewController];
     
+    // Remove self as observer of old view controller
+    [self stopObservingQueryViewController:_queryViewController];
+    
     // Add new view controller as child
     [queryViewController willMoveToParentViewController:self];
     [self addChildViewController:queryViewController];
     [self.view addSubview:queryViewController.view];
+    
+    // Add self as observer of new view controller
+    [self startObservingQueryViewController:queryViewController];
     
     // Set view's frame
     CGRect frame;
@@ -48,6 +63,42 @@
     
     _queryViewController = queryViewController;
     [queryViewController didMoveToParentViewController:self];
+}
+
+- (void)startObservingQueryViewController:(QueryViewController *)viewController
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(queryViewGotFilled)
+                                                 name:QueryViewGotFilledNotification
+                                               object:viewController];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(queryViewGotCleared)
+                                                 name:QueryViewGotClearedNotification
+                                               object:viewController];
+}
+
+- (void)queryViewGotFilled
+{
+    self.clearButton.enabled = YES;
+    self.searchButton.enabled = YES;
+}
+
+- (void)queryViewGotCleared
+{
+    self.clearButton.enabled = NO;
+    self.searchButton.enabled = NO;
+}
+
+- (void)stopObservingQueryViewController:(QueryViewController *)viewController
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:QueryViewGotFilledNotification
+                                                  object:viewController];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:QueryViewGotClearedNotification
+                                                  object:viewController];
 }
 
 - (AdvancedQueryViewController *)advancedQueryViewController
@@ -68,19 +119,6 @@
     return _basicQueryViewController;
 }
 
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-    
-    self.queryViewController = self.advancedQueryViewController;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-	return YES;
-}
-
 - (IBAction)queryTypeChanged:(UISegmentedControl *)sender
 {
     QueryViewController *queryViewController = nil;
@@ -97,6 +135,23 @@
     self.queryViewController = queryViewController;
 }
 
+#pragma mark Managing the View
+
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+    
+    self.navigationController.toolbarHidden = YES;
+    
+    self.queryViewController = self.advancedQueryViewController;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+	return YES;
+}
+
 - (IBAction)libraryChoice:(UIBarButtonItem *)sender
 {
     if (!self.libraryChoicePopover)
@@ -110,6 +165,16 @@
                                       permittedArrowDirections:UIPopoverArrowDirectionAny
                                                       animated:YES];
     self.libraryChoicePopover.passthroughViews = [NSArray array];
+}
+
+- (IBAction)clear
+{
+    [self.queryViewController clearQueryView];
+}
+
+- (IBAction)search
+{
+
 }
 
 @end

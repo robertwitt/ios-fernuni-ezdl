@@ -10,7 +10,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MeK-k5-KAC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dFQ-Ou-7rq" customClass="QueryController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vg1-F9-iUB">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="916"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eh1-gA-ASz">
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="280" y="339" width="208" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vnX-Ue-qHD">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vnX-Ue-qHD">
                                         <rect key="frame" x="20" y="10" width="80" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -36,11 +36,17 @@
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clear" destination="dFQ-Ou-7rq" eventType="touchUpInside" id="9kp-Yl-Ztp"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jI8-hY-mhd">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jI8-hY-mhd">
                                         <rect key="frame" x="108" y="10" width="80" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -48,9 +54,16 @@
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="search" destination="dFQ-Ou-7rq" eventType="touchUpInside" id="gB6-Xm-NTY"/>
+                                            <segue destination="rEG-IE-fL1" kind="push" id="6yW-L2-poc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.83921575550000005" green="0.84705889229999998" blue="0.87058830259999997" alpha="1" colorSpace="deviceRGB"/>
@@ -65,14 +78,47 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="clearButton" destination="vnX-Ue-qHD" id="fIL-Sg-r39"/>
+                        <outlet property="searchButton" destination="jI8-hY-mhd" id="2HO-wY-gDW"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="241" y="-1292"/>
+            <point key="canvasLocation" x="-819" y="-2444"/>
+        </scene>
+        <scene sceneID="ygs-Uw-2Wp">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcq-as-KoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="rEG-IE-fL1" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SBP-SG-9ze">
+                        <rect key="frame" x="0.0" y="64" width="768" height="916"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QueryResultCell" id="yFr-Vk-IxD">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rEG-IE-fL1" id="Qcg-Nx-ud2"/>
+                            <outlet property="delegate" destination="rEG-IE-fL1" id="zSa-MQ-BmC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gFS-NI-3Z3"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="155" y="-2444"/>
         </scene>
         <scene sceneID="KEm-Zx-DPR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7r-GN-rtn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="TZO-dB-5xK" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="TZO-dB-5xK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="qad-16-AK8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8V9-uC-BVG">
@@ -80,12 +126,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nan-i0-RqV">
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="dFQ-Ou-7rq" kind="relationship" relationship="rootViewController" id="fnu-uE-74z"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-738" y="-1292"/>
+            <point key="canvasLocation" x="-1798" y="-2444"/>
         </scene>
         <scene sceneID="EGp-Fu-VuT">
             <objects>
@@ -101,15 +151,19 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-1968" y="-1164"/>
+            <point key="canvasLocation" x="-3028" y="-2316"/>
         </scene>
     </scenes>
     <classes>
         <class className="QueryController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QueryController.h"/>
             <relationships>
+                <relationship kind="action" name="clear"/>
                 <relationship kind="action" name="libraryChoice:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="queryTypeChanged:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="search"/>
+                <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
             </relationships>
         </class>
     </classes>

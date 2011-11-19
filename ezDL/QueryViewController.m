@@ -11,6 +11,7 @@
 @implementation QueryViewController
 
 @synthesize contentSizeForViewInQueryController = _contentSizeForViewInQueryController;
+@synthesize query = _query;
 
 - (void)viewDidLoad
 {
@@ -33,5 +34,9 @@
     
     return size;
 }
+
+- (id<Query>)buildQuery { return nil; }
+
+- (void)clearQueryView {}
 
 @end

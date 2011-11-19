@@ -13,5 +13,6 @@
 - (LibraryChoice *)libraryChoice;
 - (LibraryChoice *)loadLibraryChoiceFromBackend:(BOOL)loadFromBackend withError:(NSError **)error;
 - (void)saveLibraryChoice:(LibraryChoice *)libraryChoice;
+- (Library *)libraryWithObjectID:(NSString *)objectID;
 
 @end

@@ -7,13 +7,15 @@
 //
 
 #import "ServiceFactory.h"
-#import "LibraryServiceImpl.h"
 #import "CoreDataServiceImpl.h"
+#import "LibraryServiceImpl.h"
 #import "MockupBackendServiceImpl.h"
+#import "QueryServiceImpl.h"
 
 @implementation ServiceFactory
 
 static ServiceFactory *Singleton;
+static QueryServiceImpl *QueryServiceImplSingleton;
 static LibraryServiceImpl *LibraryServiceImplSingleton;
 static CoreDataServiceImpl *CoreDataServiceImplSingleton;
 static MockupBackendServiceImpl *MockupBackendServiceImplSingleton;
@@ -22,6 +24,12 @@ static MockupBackendServiceImpl *MockupBackendServiceImplSingleton;
 {
     if (!Singleton) Singleton = [[ServiceFactory alloc] init];
     return Singleton;
+}
+
+- (id<QueryService>)queryService
+{
+    if (!QueryServiceImplSingleton) QueryServiceImplSingleton = [[QueryServiceImpl alloc] init];
+    return QueryServiceImplSingleton;
 }
 
 - (id<LibraryService>)libraryService

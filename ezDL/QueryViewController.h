@@ -6,8 +6,17 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "Query.h"
+
+static NSString *QueryViewGotFilledNotification = @"QueryViewGotFilledNotification";
+static NSString *QueryViewGotClearedNotification = @"QueryViewGotClearedNotification";
+
 @interface QueryViewController : UIViewController
 
 @property (nonatomic, readonly) CGSize contentSizeForViewInQueryController;
+@property (nonatomic, strong) id<Query> query;
+
+- (id<Query>)buildQuery;
+- (void)clearQueryView;
 
 @end

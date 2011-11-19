@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */; };
+		E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */; };
+		E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23171477D5ED000EE7C9 /* QueryResult.m */; };
+		E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */; };
+		E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */; };
+		E1EF232A1477F2C6000EE7C9 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23291477F2C6000EE7C9 /* Author.m */; };
+		E1EF232D1477F419000EE7C9 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232C1477F419000EE7C9 /* Document.m */; };
+		E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */; };
+		E1EF23321477FD2F000EE7C9 /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23311477FD2F000EE7C9 /* query_result.xml */; };
+		E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */; };
 		E1EFC3BA147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
 		E1EFC3BC147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
 		E1EFC3BE147690B600CB7490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */; };
@@ -58,6 +68,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedQueryTextFieldAccessoryView.xib; sourceTree = "<group>"; };
+		E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryTextViewAccessoryView.xib; sourceTree = "<group>"; };
+		E1EF23161477D5ED000EE7C9 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
+		E1EF23171477D5ED000EE7C9 /* QueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResult.m; sourceTree = "<group>"; };
+		E1EF231D1477D81B000EE7C9 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
+		E1EF23211477D8EE000EE7C9 /* MockupQueryImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupQueryImpl.h; sourceTree = "<group>"; };
+		E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupQueryImpl.m; sourceTree = "<group>"; };
+		E1EF23241477DCE3000EE7C9 /* QueryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
+		E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryServiceImpl.h; sourceTree = "<group>"; };
+		E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryServiceImpl.m; sourceTree = "<group>"; };
+		E1EF23281477F2C6000EE7C9 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		E1EF23291477F2C6000EE7C9 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		E1EF232B1477F419000EE7C9 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		E1EF232C1477F419000EE7C9 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultItem.h; sourceTree = "<group>"; };
+		E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultItem.m; sourceTree = "<group>"; };
+		E1EF23311477FD2F000EE7C9 /* query_result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = query_result.xml; path = ../../iEzDL/iEzDL/query_result.xml; sourceTree = "<group>"; };
+		E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupQueryBackendService.h; sourceTree = "<group>"; };
+		E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupQueryBackendService.m; sourceTree = "<group>"; };
 		E1EFC3B5147690B600CB7490 /* ezDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ezDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EFC3B9147690B600CB7490 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1EFC3BB147690B600CB7490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +178,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1EF23151477D5B2000EE7C9 /* QueryService */ = {
+			isa = PBXGroup;
+			children = (
+				E1EF23241477DCE3000EE7C9 /* QueryService.h */,
+				E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */,
+				E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */,
+				E1EF231D1477D81B000EE7C9 /* Query.h */,
+				E1EF23161477D5ED000EE7C9 /* QueryResult.h */,
+				E1EF23171477D5ED000EE7C9 /* QueryResult.m */,
+				E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */,
+				E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */,
+			);
+			name = QueryService;
+			sourceTree = "<group>";
+		};
+		E1EF23191477D60F000EE7C9 /* Query Result */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Query Result";
+			sourceTree = "<group>";
+		};
 		E1EFC3AA147690B600CB7490 = {
 			isa = PBXGroup;
 			children = (
@@ -237,11 +288,12 @@
 		E1EFC3EF1476915800CB7490 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E1EFC3F61476968200CB7490 /* Query */,
+				E1EF23191477D60F000EE7C9 /* Query Result */,
 				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
 				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
 				E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */,
 				E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */,
-				E1EFC3F61476968200CB7490 /* Query */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -250,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */,
+				E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */,
+				E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -287,6 +341,10 @@
 				E1EFC4121476C08000CB7490 /* DLObject.m */,
 				E1EFC4141476C14100CB7490 /* Library.h */,
 				E1EFC4151476C14100CB7490 /* Library.m */,
+				E1EF23281477F2C6000EE7C9 /* Author.h */,
+				E1EF23291477F2C6000EE7C9 /* Author.m */,
+				E1EF232B1477F419000EE7C9 /* Document.h */,
+				E1EF232C1477F419000EE7C9 /* Document.m */,
 			);
 			name = "DL Objects";
 			sourceTree = "<group>";
@@ -319,6 +377,7 @@
 		E1EFC41E1476CC4A00CB7490 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E1EF23151477D5B2000EE7C9 /* QueryService */,
 				E1EFC4351476EA3700CB7490 /* Library Service */,
 				E1EFC4371476EA4A00CB7490 /* Backend Service */,
 				E1EFC4261476D6AC00CB7490 /* ServiceFactory.h */,
@@ -352,8 +411,12 @@
 		E1EFC4391476EAB000CB7490 /* Mockup */ = {
 			isa = PBXGroup;
 			children = (
+				E1EF23211477D8EE000EE7C9 /* MockupQueryImpl.h */,
+				E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */,
 				E1EFC43A1476EACF00CB7490 /* MockupBackendServiceImpl.h */,
 				E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */,
+				E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */,
+				E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */,
 				E1EFC43D1476EB3000CB7490 /* MockupLibraryBackendService.h */,
 				E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */,
 				E1EFC4401476EB7C00CB7490 /* Mockup Files */,
@@ -365,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC4411476EB9A00CB7490 /* libraries.xml */,
+				E1EF23311477FD2F000EE7C9 /* query_result.xml */,
 			);
 			name = "Mockup Files";
 			sourceTree = "<group>";
@@ -455,6 +519,9 @@
 				E1EFC4301476DEB700CB7490 /* Localization.strings in Resources */,
 				E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */,
 				E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */,
+				E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */,
+				E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */,
+				E1EF23321477FD2F000EE7C9 /* query_result.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +577,13 @@
 				E1EFC44D1477200900CB7490 /* LibraryMO.m in Sources */,
 				E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */,
 				E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */,
+				E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */,
+				E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */,
+				E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */,
+				E1EF232A1477F2C6000EE7C9 /* Author.m in Sources */,
+				E1EF232D1477F419000EE7C9 /* Document.m in Sources */,
+				E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */,
+				E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
