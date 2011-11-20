@@ -14,6 +14,6 @@
 - (LibraryChoice *)currentLibraryChoice;
 - (id<Query>)buildQueryFromString:(NSString *)string;
 - (id<Query>)buildQueryFromParameters:(NSDictionary *)parameters;
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *)error;
+- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError **)error;
 
 @end

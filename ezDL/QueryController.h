@@ -7,6 +7,7 @@
 //
 
 #import "QueryViewController.h"
+#import "QueryExecutionViewController.h"
 #import "QueryResult.h"
 
 
@@ -17,12 +18,13 @@
 - (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(id<Query>)query;
 - (void)queryController:(QueryController *)queryController willExecuteQuery:(id<Query>)query;
 - (void)queryController:(QueryController *)queryController didExecuteQueryWithQueryResult:(QueryResult *)queryResult;
-- (void)queryController:(QueryController *)queryController didFailExecutingQuery:(id<Query>)query withError:(NSError **)error;
+- (void)queryController:(QueryController *)queryController didFailExecutingQuery:(id<Query>)query withError:(NSError *)error;
+- (void)queryController:(QueryController *)queryController didCancelExecutingQuery:(id<Query>)query;
 
 @end
 
 
-@interface QueryController : UIViewController
+@interface QueryController : UIViewController <QueryExecutionViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *clearButton;
 @property (nonatomic, weak) IBOutlet UIButton *searchButton;
@@ -33,8 +35,9 @@
 - (IBAction)queryTypeChanged:(UISegmentedControl *)sender;
 - (IBAction)libraryChoice:(UIBarButtonItem *)sender;
 - (IBAction)clear;
-- (IBAction)search;
+- (IBAction)search:(id)sender;
 - (void)queryViewGotFilled;
 - (void)queryViewGotCleared;
+- (void)queryViewSearchKeyPressed;
 
 @end

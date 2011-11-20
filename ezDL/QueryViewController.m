@@ -7,6 +7,8 @@
 //
 
 #import "QueryViewController.h"
+#import "AdvancedQueryViewController.h"
+#import "BasicQueryViewController.h"
 
 @implementation QueryViewController
 
@@ -38,5 +40,21 @@
 - (id<Query>)buildQuery { return nil; }
 
 - (void)clearQueryView {}
+
++ (AdvancedQueryViewController *)advancedQueryViewController
+{
+    AdvancedQueryViewController *viewController = [[AdvancedQueryViewController alloc] initWithNibName:@"AdvancedQueryViewController"
+                                                                                                bundle:nil];
+    return viewController;
+    
+}
+
++ (BasicQueryViewController *)basicQueryViewController
+{
+
+    BasicQueryViewController *viewController = [[BasicQueryViewController alloc] initWithNibName:@"BasicQueryViewController" 
+                                                                                          bundle:nil];
+    return viewController;
+}
 
 @end

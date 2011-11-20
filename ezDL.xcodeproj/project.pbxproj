@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */; };
+		E1E30DE71479147F005DEC6B /* QueryResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE61479147F005DEC6B /* QueryResultViewController.m */; };
 		E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */; };
 		E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */; };
 		E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23171477D5ED000EE7C9 /* QueryResult.m */; };
@@ -68,6 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1E30DE21478DC2D005DEC6B /* QueryExecutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryExecutionViewController.h; sourceTree = "<group>"; };
+		E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryExecutionViewController.m; sourceTree = "<group>"; };
+		E1E30DE51479147F005DEC6B /* QueryResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultViewController.h; sourceTree = "<group>"; };
+		E1E30DE61479147F005DEC6B /* QueryResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultViewController.m; sourceTree = "<group>"; };
 		E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedQueryTextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryTextViewAccessoryView.xib; sourceTree = "<group>"; };
 		E1EF23161477D5ED000EE7C9 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
@@ -178,6 +184,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1E30DE01478DBFC005DEC6B /* Query Execution */ = {
+			isa = PBXGroup;
+			children = (
+				E1E30DE21478DC2D005DEC6B /* QueryExecutionViewController.h */,
+				E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */,
+			);
+			name = "Query Execution";
+			sourceTree = "<group>";
+		};
 		E1EF23151477D5B2000EE7C9 /* QueryService */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +211,8 @@
 		E1EF23191477D60F000EE7C9 /* Query Result */ = {
 			isa = PBXGroup;
 			children = (
+				E1E30DE51479147F005DEC6B /* QueryResultViewController.h */,
+				E1E30DE61479147F005DEC6B /* QueryResultViewController.m */,
 			);
 			name = "Query Result";
 			sourceTree = "<group>";
@@ -322,6 +339,7 @@
 				E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */,
 				E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */,
 				E1EFC4181476C27B00CB7490 /* Library Choice */,
+				E1E30DE01478DBFC005DEC6B /* Query Execution */,
 			);
 			name = Query;
 			sourceTree = "<group>";
@@ -584,6 +602,8 @@
 				E1EF232D1477F419000EE7C9 /* Document.m in Sources */,
 				E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */,
 				E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */,
+				E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */,
+				E1E30DE71479147F005DEC6B /* QueryResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

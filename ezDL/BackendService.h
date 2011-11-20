@@ -11,6 +11,6 @@
 @protocol BackendService <NSObject>
 
 - (NSArray *)loadLibrariesWithError:(NSError **)error;
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *)error;
+- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError **)error;
 
 @end

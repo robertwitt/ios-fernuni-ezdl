@@ -8,6 +8,6 @@
 
 "Deselect all" = "Deselect all";
 "Error Occured" = "Error Occured";
-"Library Choice" = "Library Choice";
+"No Libraries Selected Text" = "The search could not be executed because no digital libraries were selected.";
 "OK" = "OK";
 "Select all" = "Select all";

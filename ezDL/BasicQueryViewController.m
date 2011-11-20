@@ -22,20 +22,31 @@
 @synthesize basicQuery = _basicQuery;
 @synthesize textViewAccessoryView = _textViewAccessoryView;
 
+#pragma mark Managing the View
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    // Load input accessory view from nib
     [[NSBundle mainBundle] loadNibNamed:@"BasicQueryTextViewAccessoryView"
                                   owner:self
                                 options:nil];
     self.basicQuery.inputAccessoryView = self.textViewAccessoryView;
 }
 
+- (void)viewDidUnload
+{
+    self.basicQuery = nil;
+    self.textViewAccessoryView = nil;
+    [super viewDidUnload];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    // Set query string to text view outlet
     self.basicQuery.text = [self.query queryString];
 }
 
@@ -43,11 +54,21 @@
 {
     [super viewWillDisappear:animated];
     
+    // Build query from text view input
     self.query = [self buildQuery];
 }
 
+- (BOOL)resignFirstResponder
+{
+    [self.basicQuery resignFirstResponder];
+    return YES;
+}
+
+#pragma mark Sending Notification that Text has been entered/cleared
+
 - (void)textViewDidChange:(UITextView *)textView
 {
+    // Basic query has been changed. Send notification that text has been entered and cleared respectively.
     if (!textView.text || [textView.text isEqualToString:@""])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotClearedNotification object:self];
@@ -57,6 +78,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotFilledNotification object:self];
     }
 }
+
+#pragma mark Responding to Events on Input Accessory View
 
 - (IBAction)queryTitleSelected
 {
@@ -88,8 +111,11 @@
     self.basicQuery.text = [text stringByAppendingFormat:@" %@ ", operator];
 }
 
+#pragma mark Handling Query
+
 - (id<Query>)buildQuery
 {
+    // Engage query service to build a query from basic query input
     return [[[ServiceFactory sharedFactory] queryService] buildQueryFromString:self.basicQuery.text];
 }
 

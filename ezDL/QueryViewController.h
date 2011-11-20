@@ -10,6 +10,7 @@
 
 static NSString *QueryViewGotFilledNotification = @"QueryViewGotFilledNotification";
 static NSString *QueryViewGotClearedNotification = @"QueryViewGotClearedNotification";
+static NSString *QueryViewSearchRequestedNotification = @"QueryViewSearchRequestedNotification";
 
 @interface QueryViewController : UIViewController
 
@@ -18,5 +19,8 @@ static NSString *QueryViewGotClearedNotification = @"QueryViewGotClearedNotifica
 
 - (id<Query>)buildQuery;
 - (void)clearQueryView;
+
++ (QueryViewController *)advancedQueryViewController;
++ (QueryViewController *)basicQueryViewController;
 
 @end

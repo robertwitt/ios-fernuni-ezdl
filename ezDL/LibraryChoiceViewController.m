@@ -14,7 +14,6 @@
 
 @interface LibraryChoiceViewController ()
 
-@property (nonatomic, strong) UIBarButtonItem *refreshItem;
 @property (nonatomic, strong) UIBarButtonItem *selectAllItem;
 @property (nonatomic, strong) UIBarButtonItem *deselectAllItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *loadingItem;
@@ -54,15 +53,7 @@
 }
 
 - (void)configureNavigationBar
-{
-    self.title = NSLocalizedString(@"Library Choice", nil);
-    
-    // Add a refresh button to the left of the navigation bar
-    self.refreshItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                     target:self
-                                                                     action:@selector(refreshLibraries)];
-    self.navigationItem.leftBarButtonItem = self.refreshItem;
-    
+{    
     // Add buttons to select/deselect all libraries
     self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Select all", nil)
                                                           style:UIBarButtonItemStyleBordered
@@ -145,10 +136,11 @@
 
 #pragma mark Loading Libraries by Model
 
-- (void)refreshLibraries
+- (IBAction)refreshLibraries
 {
     self.navigationItem.leftBarButtonItem = self.loadingItem;
     
+    // Execute operation on separated thread to load libraries from backend
     id __block myself = self;
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         [myself loadLibrariesFromBackend:YES];

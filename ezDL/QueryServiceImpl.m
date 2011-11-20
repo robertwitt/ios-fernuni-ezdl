@@ -33,7 +33,7 @@
     return query;
 }
 
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *)error
+- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *__autoreleasing *)error
 {
     return [[[ServiceFactory sharedFactory] backendService] executeQuery:query withError:error];
 }
