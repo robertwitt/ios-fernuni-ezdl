@@ -8,11 +8,17 @@
 
 #import "QueryResult.h"
 #import "QueryController.h"
+#import "QueryResultSortingViewController.h"
+#import "QueryResultGroupingViewController.h"
 
-@interface QueryResultViewController : UITableViewController <QueryControllerDelegate, QueryExecutionViewControllerDelegate>
+@interface QueryResultViewController : UITableViewController <QueryControllerDelegate, QueryExecutionViewControllerDelegate, QueryResultSortingViewControllerDelegate, QueryResultGroupingViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *sortByItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *groupByItem;
 @property (nonatomic, strong) QueryResult *queryResult;
 
 - (IBAction)editQuery:(UIBarButtonItem *)sender;
+- (IBAction)sortBy:(UIBarButtonItem *)sender;
+- (IBAction)groupByItem:(UIBarButtonItem *)sender;
 
 @end

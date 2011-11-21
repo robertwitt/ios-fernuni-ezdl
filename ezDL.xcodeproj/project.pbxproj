@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */; };
 		E1E30DE71479147F005DEC6B /* QueryResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE61479147F005DEC6B /* QueryResultViewController.m */; };
+		E1E5FDD6147AB1CE00C4785A /* QueryResultSorting.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDD5147AB1CE00C4785A /* QueryResultSorting.m */; };
+		E1E5FDDA147ABB6100C4785A /* QueryResultGrouping.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDD9147ABB6100C4785A /* QueryResultGrouping.m */; };
+		E1E5FDDD147ABE5200C4785A /* QueryResultSortingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDDC147ABE5100C4785A /* QueryResultSortingViewController.m */; };
+		E1E5FDE0147ACFCC00C4785A /* QueryResultGroupingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDDF147ACFCC00C4785A /* QueryResultGroupingViewController.m */; };
+		E1E5FDE6147AD88500C4785A /* QueryResultRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDE5147AD88400C4785A /* QueryResultRow.m */; };
+		E1E5FDE9147AE51A00C4785A /* QueryResultContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDE8147AE51A00C4785A /* QueryResultContent.m */; };
 		E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */; };
 		E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */; };
 		E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23171477D5ED000EE7C9 /* QueryResult.m */; };
@@ -74,6 +80,19 @@
 		E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryExecutionViewController.m; sourceTree = "<group>"; };
 		E1E30DE51479147F005DEC6B /* QueryResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultViewController.h; sourceTree = "<group>"; };
 		E1E30DE61479147F005DEC6B /* QueryResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultViewController.m; sourceTree = "<group>"; };
+		E1E5FDD2147AB0B700C4785A /* QueryResultOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultOption.h; sourceTree = "<group>"; };
+		E1E5FDD4147AB1CE00C4785A /* QueryResultSorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultSorting.h; sourceTree = "<group>"; };
+		E1E5FDD5147AB1CE00C4785A /* QueryResultSorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultSorting.m; sourceTree = "<group>"; };
+		E1E5FDD8147ABB6100C4785A /* QueryResultGrouping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultGrouping.h; sourceTree = "<group>"; };
+		E1E5FDD9147ABB6100C4785A /* QueryResultGrouping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultGrouping.m; sourceTree = "<group>"; };
+		E1E5FDDB147ABE5100C4785A /* QueryResultSortingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultSortingViewController.h; sourceTree = "<group>"; };
+		E1E5FDDC147ABE5100C4785A /* QueryResultSortingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultSortingViewController.m; sourceTree = "<group>"; };
+		E1E5FDDE147ACFCC00C4785A /* QueryResultGroupingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultGroupingViewController.h; sourceTree = "<group>"; };
+		E1E5FDDF147ACFCC00C4785A /* QueryResultGroupingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultGroupingViewController.m; sourceTree = "<group>"; };
+		E1E5FDE4147AD88400C4785A /* QueryResultRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultRow.h; sourceTree = "<group>"; };
+		E1E5FDE5147AD88400C4785A /* QueryResultRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultRow.m; sourceTree = "<group>"; };
+		E1E5FDE7147AE51900C4785A /* QueryResultContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultContent.h; sourceTree = "<group>"; };
+		E1E5FDE8147AE51A00C4785A /* QueryResultContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultContent.m; sourceTree = "<group>"; };
 		E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedQueryTextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryTextViewAccessoryView.xib; sourceTree = "<group>"; };
 		E1EF23161477D5ED000EE7C9 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
@@ -193,7 +212,29 @@
 			name = "Query Execution";
 			sourceTree = "<group>";
 		};
-		E1EF23151477D5B2000EE7C9 /* QueryService */ = {
+		E1E5FDD3147AB1A500C4785A /* Query Result Sorting */ = {
+			isa = PBXGroup;
+			children = (
+				E1E5FDDB147ABE5100C4785A /* QueryResultSortingViewController.h */,
+				E1E5FDDC147ABE5100C4785A /* QueryResultSortingViewController.m */,
+				E1E5FDD4147AB1CE00C4785A /* QueryResultSorting.h */,
+				E1E5FDD5147AB1CE00C4785A /* QueryResultSorting.m */,
+			);
+			name = "Query Result Sorting";
+			sourceTree = "<group>";
+		};
+		E1E5FDD7147ABB4800C4785A /* Query Result Grouping */ = {
+			isa = PBXGroup;
+			children = (
+				E1E5FDDE147ACFCC00C4785A /* QueryResultGroupingViewController.h */,
+				E1E5FDDF147ACFCC00C4785A /* QueryResultGroupingViewController.m */,
+				E1E5FDD8147ABB6100C4785A /* QueryResultGrouping.h */,
+				E1E5FDD9147ABB6100C4785A /* QueryResultGrouping.m */,
+			);
+			name = "Query Result Grouping";
+			sourceTree = "<group>";
+		};
+		E1EF23151477D5B2000EE7C9 /* Query Service */ = {
 			isa = PBXGroup;
 			children = (
 				E1EF23241477DCE3000EE7C9 /* QueryService.h */,
@@ -205,7 +246,7 @@
 				E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */,
 				E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */,
 			);
-			name = QueryService;
+			name = "Query Service";
 			sourceTree = "<group>";
 		};
 		E1EF23191477D60F000EE7C9 /* Query Result */ = {
@@ -213,6 +254,13 @@
 			children = (
 				E1E30DE51479147F005DEC6B /* QueryResultViewController.h */,
 				E1E30DE61479147F005DEC6B /* QueryResultViewController.m */,
+				E1E5FDE7147AE51900C4785A /* QueryResultContent.h */,
+				E1E5FDE8147AE51A00C4785A /* QueryResultContent.m */,
+				E1E5FDE4147AD88400C4785A /* QueryResultRow.h */,
+				E1E5FDE5147AD88400C4785A /* QueryResultRow.m */,
+				E1E5FDD2147AB0B700C4785A /* QueryResultOption.h */,
+				E1E5FDD3147AB1A500C4785A /* Query Result Sorting */,
+				E1E5FDD7147ABB4800C4785A /* Query Result Grouping */,
 			);
 			name = "Query Result";
 			sourceTree = "<group>";
@@ -395,7 +443,7 @@
 		E1EFC41E1476CC4A00CB7490 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E1EF23151477D5B2000EE7C9 /* QueryService */,
+				E1EF23151477D5B2000EE7C9 /* Query Service */,
 				E1EFC4351476EA3700CB7490 /* Library Service */,
 				E1EFC4371476EA4A00CB7490 /* Backend Service */,
 				E1EFC4261476D6AC00CB7490 /* ServiceFactory.h */,
@@ -604,6 +652,12 @@
 				E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */,
 				E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */,
 				E1E30DE71479147F005DEC6B /* QueryResultViewController.m in Sources */,
+				E1E5FDD6147AB1CE00C4785A /* QueryResultSorting.m in Sources */,
+				E1E5FDDA147ABB6100C4785A /* QueryResultGrouping.m in Sources */,
+				E1E5FDDD147ABE5200C4785A /* QueryResultSortingViewController.m in Sources */,
+				E1E5FDE0147ACFCC00C4785A /* QueryResultGroupingViewController.m in Sources */,
+				E1E5FDE6147AD88500C4785A /* QueryResultRow.m in Sources */,
+				E1E5FDE9147AE51A00C4785A /* QueryResultContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
