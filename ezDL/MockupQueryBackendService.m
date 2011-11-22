@@ -118,6 +118,9 @@ static NSString *ElementRelevance = @"relevance";
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:@"  " withString:@""];
+
     if ([self.currentElement isEqualToString:ElementDocumentObjectID]) [self.documentObjectID appendString:string];
     if ([self.currentElement isEqualToString:ElementDocumentTitle]) [self.documentTitle appendString:string];
     if ([self.currentElement isEqualToString:ElementDocumentAuthorFirstName]) [self.documentAuthorFirstName appendString:string];

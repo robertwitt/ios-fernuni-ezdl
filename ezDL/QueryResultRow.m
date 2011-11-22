@@ -84,7 +84,7 @@
     switch (sortingCriterion.criterionType)
     {
         case QueryResultSortingCriterionTypeAuthor:
-            key = @"documentAuthor";
+            key = @"documentAuthors";
             break;
         case QueryResultSortingCriterionTypeRelevance:
             key = @"relevance";

@@ -9,6 +9,7 @@
 #import "MockupBackendServiceImpl.h"
 #import "MockupLibraryBackendService.h"
 #import "MockupQueryBackendService.h"
+#import "MockupDocumentBackendService.h"
 
 @implementation MockupBackendServiceImpl
 
@@ -42,6 +43,16 @@
     sleep(2);
     
     return queryResult;
+}
+
+- (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
+{
+    MockupDocumentBackendService *service = [[MockupDocumentBackendService alloc] init];
+    DocumentDetail *documentDetail = [service documentDetailWithDocumentObjectID:document.objectID];
+    document.detail = documentDetail;
+    
+    // Introduce artificial response time from Backend
+    sleep(1);
 }
 
 @end

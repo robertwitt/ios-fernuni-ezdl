@@ -8,6 +8,7 @@
 
 #import "BackendService.h"
 #import "CoreDataService.h"
+#import "DocumentService.h"
 #import "LibraryService.h"
 #import "QueryService.h"
 
@@ -16,6 +17,7 @@
 + (ServiceFactory *)sharedFactory;
 - (id<QueryService>)queryService;
 - (id<LibraryService>)libraryService;
+- (id<DocumentService>)documentService;
 - (id<CoreDataService>)coreDataService;
 - (id<BackendService>)backendService;
 

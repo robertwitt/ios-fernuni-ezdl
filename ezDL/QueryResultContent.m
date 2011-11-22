@@ -60,8 +60,19 @@
 {
     _filterString = filterString;
     
-    // TODO Do the filtering of allRows first and store result in filteredRows
+    // Do the filtering of allRows first and store result in filteredRows
+    if (filterString.nilOrEmpty)
+    {
+        self.filteredRows = [self.allRows copy];  
+    }
+    else
+    {
+        NSString *predicateString = @"self.documentTitle CONTAINS[cd] %@ OR self.documentAuthors CONTAINS[cd] %@ OR self.documentYear CONTAINS[cd] %@ OR self.libraryName CONTAINS[cd] %@";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, filterString, filterString, filterString, filterString];
+        self.filteredRows = [self.allRows filteredArrayUsingPredicate:predicate];
+    }
     
+    [self.groupedRows removeAllObjects];    
     _sections = nil;
 }
 
@@ -75,9 +86,9 @@
 
 - (void)setSorting:(QueryResultSorting *)sorting
 {
-    _sorting = sorting;
+    [self.groupedRows removeAllObjects];
     
-    [self.groupedRows removeObjectForKey:[QueryResultRow keyOfSortingCriterion:sorting.criterion]];
+    _sorting = sorting;
 }
 
 - (NSArray *)sections
@@ -115,15 +126,17 @@
     if ([section isEqualToString:@""])
     {
         rows = self.filteredRows;
+        rows = [self sortRows:rows];
     }
     else
     {
         // No values in dictionary. Determine the rows and store it in there.
         rows = [self groupedRowsInSection:section];
+        rows = [self sortRows:rows];
         [self.groupedRows setObject:rows forKey:section];
     }
     
-    return [self sortRows:rows];
+    return rows;
 }
 
 - (NSArray *)groupedRowsInSection:(NSString *)section

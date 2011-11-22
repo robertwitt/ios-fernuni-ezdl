@@ -78,6 +78,9 @@ static NSString *ElementLibraryShortDescription = @"shortText";
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:@"  " withString:@""];
+    
     if ([self.currentElement isEqualToString:ElementLibraryObjectID]) [self.libraryObjectID appendString:string];
     if ([self.currentElement isEqualToString:ElementLibraryName]) [self.libraryName appendString:string];
     if ([self.currentElement isEqualToString:ElementLibraryShortDescription]) [self.libraryShortDescription appendString:string];

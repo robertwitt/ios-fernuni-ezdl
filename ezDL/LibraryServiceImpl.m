@@ -147,8 +147,8 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 - (Library *)libraryWithObjectID:(NSString *)objectID
 {
-    NSArray *selectedLibraries = [self libraryChoice].selectedLibraries;
-    NSUInteger index = [selectedLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+    NSArray *allLibraries = [self libraryChoice].allLibraries;
+    NSUInteger index = [allLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BOOL passed = NO;
         if ([[obj objectID] isEqualToString:objectID])
         {
@@ -158,7 +158,7 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
         return passed;
     }];
     
-    return [selectedLibraries objectAtIndex:index];
+    return [allLibraries objectAtIndex:index];
 }
 
 @end

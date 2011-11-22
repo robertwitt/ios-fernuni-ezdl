@@ -94,7 +94,7 @@
     
     QueryResultGrouping *newGrouping = [self.groupings objectAtIndex:indexPath.row];
     
-    if ([self.currentGrouping isEqual:newGrouping])
+    if (![self.currentGrouping isEqual:newGrouping])
     {
         self.currentGrouping = newGrouping;
         [self.tableView reloadData];

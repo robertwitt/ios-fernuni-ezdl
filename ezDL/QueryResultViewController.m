@@ -36,6 +36,7 @@ static NSString *SegueIdentifierQueryExecution = @"QueryExecutionSegue";
 static NSString *SegueIdentifierSortBy = @"SortBySegue";
 static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
+@synthesize queryResultCell = _queryResultCell;
 @synthesize sortByItem = _sortByItem;
 @synthesize groupByItem = _groupByItem;
 @synthesize queryResult = _queryResult;
@@ -54,6 +55,22 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     [super viewDidLoad];
     
     self.navigationController.toolbarHidden = NO;
+}
+
+- (void)viewDidUnload
+{
+    self.queryResultCell = nil;
+    self.sortByItem = nil;
+    self.groupByItem = nil;
+    self.queryResult = nil;
+    self.editQueryPopover = nil;
+    self.sortByPopover = nil;
+    self.groupByPopover = nil;
+    self.editedQuery = nil;
+    self.currentSorting = nil;
+    self.currentGrouping = nil;
+    self.tableContent = nil;
+    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -81,10 +98,22 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     return _currentSorting;
 }
 
+- (void)setCurrentSorting:(QueryResultSorting *)currentSorting
+{
+    _currentSorting = currentSorting;
+    self.tableContent.sorting = currentSorting;
+}
+
 - (QueryResultGrouping *)currentGrouping
 {
     if (!_currentGrouping) _currentGrouping = [QueryResultGrouping nothingGrouping];
     return _currentGrouping;
+}
+
+- (void)setCurrentGrouping:(QueryResultGrouping *)currentGrouping
+{
+    _currentGrouping = currentGrouping;
+    self.tableContent.grouping = currentGrouping;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -106,15 +135,36 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [[NSBundle mainBundle] loadNibNamed:@"QueryResultCell"
+                                      owner:self
+                                    options:nil];
+        cell = self.queryResultCell;
+        self.queryResultCell = nil;
     }
     
     // Configure the cell...
     QueryResultRow *row = [self.tableContent rowAtIndexPath:indexPath];
-    cell.textLabel.text = row.documentTitle;
+    
+    UILabel *label = (UILabel *)[cell viewWithTag:1];
+    label.text = row.documentTitle;
+    
+    label = (UILabel *)[cell viewWithTag:2];
+    label.text = row.documentAuthors;
+    
+    label = (UILabel *)[cell viewWithTag:3];
+    label.text = [NSString stringWithFormat:@"%@ (%@)", row.documentYear, row.libraryName];
+    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:4];
+    progressView.progress = row.relevance;
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 55.0f;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [self.tableContent sectionAtIndex:section];
@@ -223,10 +273,8 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    QueryResultSortingViewController *viewController = segue.destinationViewController;
-    
-    // TODO Assign current sorting
-    
+    QueryResultSortingViewController *viewController = (QueryResultSortingViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+    viewController.currentSorting = self.currentSorting;
     viewController.delegate = self;
     
     self.sortByPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
@@ -234,7 +282,8 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (void)queryResultSortingViewController:(QueryResultSortingViewController *)viewController didSelectSorting:(QueryResultSorting *)sorting
 {
-    // TODO Implementation needed
+    self.currentSorting = sorting;
+    [self.tableView reloadData];
 }
 
 #pragma mark Grouping the Query Result
@@ -253,10 +302,8 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (void)prepareForGroupBySegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    QueryResultGroupingViewController *viewController = segue.destinationViewController;
-    
-    // TODO Assign current grouping
-    
+    QueryResultGroupingViewController *viewController = (QueryResultGroupingViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+    viewController.currentGrouping = self.currentGrouping;
     viewController.delegate = self;
     
     self.groupByPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
@@ -264,7 +311,16 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (void)queryResultGroupingViewController:(QueryResultGroupingViewController *)viewController didSelectGrouping:(QueryResultGrouping *)grouping
 {
-    
+    self.currentGrouping = grouping;
+    [self.tableView reloadData];
+}
+
+#pragma mark Filtering the Query Result
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    self.tableContent.filterString = searchText;
+    [self.tableView reloadData];
 }
 
 @end
