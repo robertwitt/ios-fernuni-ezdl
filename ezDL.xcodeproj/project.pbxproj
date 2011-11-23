@@ -10,23 +10,24 @@
 		E10FC912147C16E7000F41A8 /* QueryResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10FC911147C16E7000F41A8 /* QueryResultCell.xib */; };
 		E10FC921147C4016000F41A8 /* DocumentServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */; };
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
-		E10FC935147C4199000F41A8 /* doc_0815.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC925147C4199000F41A8 /* doc_0815.xml */; };
-		E10FC936147C4199000F41A8 /* doc_1899.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC926147C4199000F41A8 /* doc_1899.xml */; };
-		E10FC937147C4199000F41A8 /* doc_1900.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC927147C4199000F41A8 /* doc_1900.xml */; };
-		E10FC938147C4199000F41A8 /* doc_1901.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC928147C4199000F41A8 /* doc_1901.xml */; };
-		E10FC939147C4199000F41A8 /* doc_1902.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC929147C4199000F41A8 /* doc_1902.xml */; };
-		E10FC93A147C4199000F41A8 /* doc_1903.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92A147C4199000F41A8 /* doc_1903.xml */; };
-		E10FC93B147C4199000F41A8 /* doc_1904.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92B147C4199000F41A8 /* doc_1904.xml */; };
-		E10FC93C147C4199000F41A8 /* doc_1905.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92C147C4199000F41A8 /* doc_1905.xml */; };
-		E10FC93D147C4199000F41A8 /* doc_1906.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92D147C4199000F41A8 /* doc_1906.xml */; };
-		E10FC93E147C4199000F41A8 /* doc_1907.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92E147C4199000F41A8 /* doc_1907.xml */; };
-		E10FC93F147C4199000F41A8 /* doc_1908.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC92F147C4199000F41A8 /* doc_1908.xml */; };
-		E10FC940147C4199000F41A8 /* doc_1909.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC930147C4199000F41A8 /* doc_1909.xml */; };
-		E10FC941147C4199000F41A8 /* doc_4711.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC931147C4199000F41A8 /* doc_4711.xml */; };
-		E10FC942147C4199000F41A8 /* doc_4712.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC932147C4199000F41A8 /* doc_4712.xml */; };
-		E10FC943147C4199000F41A8 /* doc_4811.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC933147C4199000F41A8 /* doc_4811.xml */; };
-		E10FC944147C4199000F41A8 /* doc_9851.xml in Resources */ = {isa = PBXBuildFile; fileRef = E10FC934147C4199000F41A8 /* doc_9851.xml */; };
 		E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */; };
+		E1C45C29147D621D002DB8EC /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C28147D621D002DB8EC /* query_result.xml */; };
+		E1C45C3B147D6236002DB8EC /* doc_0815.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2B147D6236002DB8EC /* doc_0815.xml */; };
+		E1C45C3C147D6236002DB8EC /* doc_1899.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2C147D6236002DB8EC /* doc_1899.xml */; };
+		E1C45C3D147D6236002DB8EC /* doc_1900.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2D147D6236002DB8EC /* doc_1900.xml */; };
+		E1C45C3E147D6236002DB8EC /* doc_1901.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2E147D6236002DB8EC /* doc_1901.xml */; };
+		E1C45C3F147D6236002DB8EC /* doc_1902.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2F147D6236002DB8EC /* doc_1902.xml */; };
+		E1C45C40147D6236002DB8EC /* doc_1903.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C30147D6236002DB8EC /* doc_1903.xml */; };
+		E1C45C41147D6236002DB8EC /* doc_1904.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C31147D6236002DB8EC /* doc_1904.xml */; };
+		E1C45C42147D6236002DB8EC /* doc_1905.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C32147D6236002DB8EC /* doc_1905.xml */; };
+		E1C45C43147D6236002DB8EC /* doc_1906.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C33147D6236002DB8EC /* doc_1906.xml */; };
+		E1C45C44147D6236002DB8EC /* doc_1907.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C34147D6236002DB8EC /* doc_1907.xml */; };
+		E1C45C45147D6236002DB8EC /* doc_1908.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C35147D6236002DB8EC /* doc_1908.xml */; };
+		E1C45C46147D6236002DB8EC /* doc_1909.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C36147D6236002DB8EC /* doc_1909.xml */; };
+		E1C45C47147D6236002DB8EC /* doc_4711.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C37147D6236002DB8EC /* doc_4711.xml */; };
+		E1C45C48147D6236002DB8EC /* doc_4712.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C38147D6236002DB8EC /* doc_4712.xml */; };
+		E1C45C49147D6236002DB8EC /* doc_4811.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C39147D6236002DB8EC /* doc_4811.xml */; };
+		E1C45C4A147D6236002DB8EC /* doc_9851.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C3A147D6236002DB8EC /* doc_9851.xml */; };
 		E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */; };
 		E1E30DE71479147F005DEC6B /* QueryResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E30DE61479147F005DEC6B /* QueryResultViewController.m */; };
 		E1E5FDD6147AB1CE00C4785A /* QueryResultSorting.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FDD5147AB1CE00C4785A /* QueryResultSorting.m */; };
@@ -43,7 +44,6 @@
 		E1EF232A1477F2C6000EE7C9 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23291477F2C6000EE7C9 /* Author.m */; };
 		E1EF232D1477F419000EE7C9 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232C1477F419000EE7C9 /* Document.m */; };
 		E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */; };
-		E1EF23321477FD2F000EE7C9 /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23311477FD2F000EE7C9 /* query_result.xml */; };
 		E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */; };
 		E1EFC3BA147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
 		E1EFC3BC147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
@@ -102,24 +102,25 @@
 		E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentServiceImpl.m; sourceTree = "<group>"; };
 		E10FC922147C412F000F41A8 /* MockupDocumentBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupDocumentBackendService.h; sourceTree = "<group>"; };
 		E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupDocumentBackendService.m; sourceTree = "<group>"; };
-		E10FC925147C4199000F41A8 /* doc_0815.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_0815.xml; path = ../../iEzDL/iEzDL/doc_0815.xml; sourceTree = "<group>"; };
-		E10FC926147C4199000F41A8 /* doc_1899.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1899.xml; path = ../../iEzDL/iEzDL/doc_1899.xml; sourceTree = "<group>"; };
-		E10FC927147C4199000F41A8 /* doc_1900.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1900.xml; path = ../../iEzDL/iEzDL/doc_1900.xml; sourceTree = "<group>"; };
-		E10FC928147C4199000F41A8 /* doc_1901.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1901.xml; path = ../../iEzDL/iEzDL/doc_1901.xml; sourceTree = "<group>"; };
-		E10FC929147C4199000F41A8 /* doc_1902.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1902.xml; path = ../../iEzDL/iEzDL/doc_1902.xml; sourceTree = "<group>"; };
-		E10FC92A147C4199000F41A8 /* doc_1903.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1903.xml; path = ../../iEzDL/iEzDL/doc_1903.xml; sourceTree = "<group>"; };
-		E10FC92B147C4199000F41A8 /* doc_1904.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1904.xml; path = ../../iEzDL/iEzDL/doc_1904.xml; sourceTree = "<group>"; };
-		E10FC92C147C4199000F41A8 /* doc_1905.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1905.xml; path = ../../iEzDL/iEzDL/doc_1905.xml; sourceTree = "<group>"; };
-		E10FC92D147C4199000F41A8 /* doc_1906.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1906.xml; path = ../../iEzDL/iEzDL/doc_1906.xml; sourceTree = "<group>"; };
-		E10FC92E147C4199000F41A8 /* doc_1907.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1907.xml; path = ../../iEzDL/iEzDL/doc_1907.xml; sourceTree = "<group>"; };
-		E10FC92F147C4199000F41A8 /* doc_1908.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1908.xml; path = ../../iEzDL/iEzDL/doc_1908.xml; sourceTree = "<group>"; };
-		E10FC930147C4199000F41A8 /* doc_1909.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_1909.xml; path = ../../iEzDL/iEzDL/doc_1909.xml; sourceTree = "<group>"; };
-		E10FC931147C4199000F41A8 /* doc_4711.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_4711.xml; path = ../../iEzDL/iEzDL/doc_4711.xml; sourceTree = "<group>"; };
-		E10FC932147C4199000F41A8 /* doc_4712.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_4712.xml; path = ../../iEzDL/iEzDL/doc_4712.xml; sourceTree = "<group>"; };
-		E10FC933147C4199000F41A8 /* doc_4811.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_4811.xml; path = ../../iEzDL/iEzDL/doc_4811.xml; sourceTree = "<group>"; };
-		E10FC934147C4199000F41A8 /* doc_9851.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = doc_9851.xml; path = ../../iEzDL/iEzDL/doc_9851.xml; sourceTree = "<group>"; };
 		E10FC945147C4E6B000F41A8 /* NSString+NSStringExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringExtension.h"; sourceTree = "<group>"; };
 		E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringExtension.m"; sourceTree = "<group>"; };
+		E1C45C28147D621D002DB8EC /* query_result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = query_result.xml; sourceTree = "<group>"; };
+		E1C45C2B147D6236002DB8EC /* doc_0815.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_0815.xml; sourceTree = "<group>"; };
+		E1C45C2C147D6236002DB8EC /* doc_1899.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1899.xml; sourceTree = "<group>"; };
+		E1C45C2D147D6236002DB8EC /* doc_1900.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1900.xml; sourceTree = "<group>"; };
+		E1C45C2E147D6236002DB8EC /* doc_1901.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1901.xml; sourceTree = "<group>"; };
+		E1C45C2F147D6236002DB8EC /* doc_1902.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1902.xml; sourceTree = "<group>"; };
+		E1C45C30147D6236002DB8EC /* doc_1903.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1903.xml; sourceTree = "<group>"; };
+		E1C45C31147D6236002DB8EC /* doc_1904.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1904.xml; sourceTree = "<group>"; };
+		E1C45C32147D6236002DB8EC /* doc_1905.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1905.xml; sourceTree = "<group>"; };
+		E1C45C33147D6236002DB8EC /* doc_1906.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1906.xml; sourceTree = "<group>"; };
+		E1C45C34147D6236002DB8EC /* doc_1907.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1907.xml; sourceTree = "<group>"; };
+		E1C45C35147D6236002DB8EC /* doc_1908.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1908.xml; sourceTree = "<group>"; };
+		E1C45C36147D6236002DB8EC /* doc_1909.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1909.xml; sourceTree = "<group>"; };
+		E1C45C37147D6236002DB8EC /* doc_4711.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_4711.xml; sourceTree = "<group>"; };
+		E1C45C38147D6236002DB8EC /* doc_4712.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_4712.xml; sourceTree = "<group>"; };
+		E1C45C39147D6236002DB8EC /* doc_4811.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_4811.xml; sourceTree = "<group>"; };
+		E1C45C3A147D6236002DB8EC /* doc_9851.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_9851.xml; sourceTree = "<group>"; };
 		E1E30DE21478DC2D005DEC6B /* QueryExecutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryExecutionViewController.h; sourceTree = "<group>"; };
 		E1E30DE31478DC2D005DEC6B /* QueryExecutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryExecutionViewController.m; sourceTree = "<group>"; };
 		E1E30DE51479147F005DEC6B /* QueryResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultViewController.h; sourceTree = "<group>"; };
@@ -153,7 +154,6 @@
 		E1EF232C1477F419000EE7C9 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultItem.h; sourceTree = "<group>"; };
 		E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultItem.m; sourceTree = "<group>"; };
-		E1EF23311477FD2F000EE7C9 /* query_result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = query_result.xml; path = ../../iEzDL/iEzDL/query_result.xml; sourceTree = "<group>"; };
 		E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupQueryBackendService.h; sourceTree = "<group>"; };
 		E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupQueryBackendService.m; sourceTree = "<group>"; };
 		E1EFC3B5147690B600CB7490 /* ezDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ezDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,23 +554,23 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC4411476EB9A00CB7490 /* libraries.xml */,
-				E1EF23311477FD2F000EE7C9 /* query_result.xml */,
-				E10FC925147C4199000F41A8 /* doc_0815.xml */,
-				E10FC926147C4199000F41A8 /* doc_1899.xml */,
-				E10FC927147C4199000F41A8 /* doc_1900.xml */,
-				E10FC928147C4199000F41A8 /* doc_1901.xml */,
-				E10FC929147C4199000F41A8 /* doc_1902.xml */,
-				E10FC92A147C4199000F41A8 /* doc_1903.xml */,
-				E10FC92B147C4199000F41A8 /* doc_1904.xml */,
-				E10FC92C147C4199000F41A8 /* doc_1905.xml */,
-				E10FC92D147C4199000F41A8 /* doc_1906.xml */,
-				E10FC92E147C4199000F41A8 /* doc_1907.xml */,
-				E10FC92F147C4199000F41A8 /* doc_1908.xml */,
-				E10FC930147C4199000F41A8 /* doc_1909.xml */,
-				E10FC931147C4199000F41A8 /* doc_4711.xml */,
-				E10FC932147C4199000F41A8 /* doc_4712.xml */,
-				E10FC933147C4199000F41A8 /* doc_4811.xml */,
-				E10FC934147C4199000F41A8 /* doc_9851.xml */,
+				E1C45C28147D621D002DB8EC /* query_result.xml */,
+				E1C45C2B147D6236002DB8EC /* doc_0815.xml */,
+				E1C45C2C147D6236002DB8EC /* doc_1899.xml */,
+				E1C45C2D147D6236002DB8EC /* doc_1900.xml */,
+				E1C45C2E147D6236002DB8EC /* doc_1901.xml */,
+				E1C45C2F147D6236002DB8EC /* doc_1902.xml */,
+				E1C45C30147D6236002DB8EC /* doc_1903.xml */,
+				E1C45C31147D6236002DB8EC /* doc_1904.xml */,
+				E1C45C32147D6236002DB8EC /* doc_1905.xml */,
+				E1C45C33147D6236002DB8EC /* doc_1906.xml */,
+				E1C45C34147D6236002DB8EC /* doc_1907.xml */,
+				E1C45C35147D6236002DB8EC /* doc_1908.xml */,
+				E1C45C36147D6236002DB8EC /* doc_1909.xml */,
+				E1C45C37147D6236002DB8EC /* doc_4711.xml */,
+				E1C45C38147D6236002DB8EC /* doc_4712.xml */,
+				E1C45C39147D6236002DB8EC /* doc_4811.xml */,
+				E1C45C3A147D6236002DB8EC /* doc_9851.xml */,
 			);
 			name = "Mockup Files";
 			sourceTree = "<group>";
@@ -663,24 +663,24 @@
 				E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */,
 				E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */,
 				E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */,
-				E1EF23321477FD2F000EE7C9 /* query_result.xml in Resources */,
 				E10FC912147C16E7000F41A8 /* QueryResultCell.xib in Resources */,
-				E10FC935147C4199000F41A8 /* doc_0815.xml in Resources */,
-				E10FC936147C4199000F41A8 /* doc_1899.xml in Resources */,
-				E10FC937147C4199000F41A8 /* doc_1900.xml in Resources */,
-				E10FC938147C4199000F41A8 /* doc_1901.xml in Resources */,
-				E10FC939147C4199000F41A8 /* doc_1902.xml in Resources */,
-				E10FC93A147C4199000F41A8 /* doc_1903.xml in Resources */,
-				E10FC93B147C4199000F41A8 /* doc_1904.xml in Resources */,
-				E10FC93C147C4199000F41A8 /* doc_1905.xml in Resources */,
-				E10FC93D147C4199000F41A8 /* doc_1906.xml in Resources */,
-				E10FC93E147C4199000F41A8 /* doc_1907.xml in Resources */,
-				E10FC93F147C4199000F41A8 /* doc_1908.xml in Resources */,
-				E10FC940147C4199000F41A8 /* doc_1909.xml in Resources */,
-				E10FC941147C4199000F41A8 /* doc_4711.xml in Resources */,
-				E10FC942147C4199000F41A8 /* doc_4712.xml in Resources */,
-				E10FC943147C4199000F41A8 /* doc_4811.xml in Resources */,
-				E10FC944147C4199000F41A8 /* doc_9851.xml in Resources */,
+				E1C45C29147D621D002DB8EC /* query_result.xml in Resources */,
+				E1C45C3B147D6236002DB8EC /* doc_0815.xml in Resources */,
+				E1C45C3C147D6236002DB8EC /* doc_1899.xml in Resources */,
+				E1C45C3D147D6236002DB8EC /* doc_1900.xml in Resources */,
+				E1C45C3E147D6236002DB8EC /* doc_1901.xml in Resources */,
+				E1C45C3F147D6236002DB8EC /* doc_1902.xml in Resources */,
+				E1C45C40147D6236002DB8EC /* doc_1903.xml in Resources */,
+				E1C45C41147D6236002DB8EC /* doc_1904.xml in Resources */,
+				E1C45C42147D6236002DB8EC /* doc_1905.xml in Resources */,
+				E1C45C43147D6236002DB8EC /* doc_1906.xml in Resources */,
+				E1C45C44147D6236002DB8EC /* doc_1907.xml in Resources */,
+				E1C45C45147D6236002DB8EC /* doc_1908.xml in Resources */,
+				E1C45C46147D6236002DB8EC /* doc_1909.xml in Resources */,
+				E1C45C47147D6236002DB8EC /* doc_4711.xml in Resources */,
+				E1C45C48147D6236002DB8EC /* doc_4712.xml in Resources */,
+				E1C45C49147D6236002DB8EC /* doc_4811.xml in Resources */,
+				E1C45C4A147D6236002DB8EC /* doc_9851.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

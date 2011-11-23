@@ -1,0 +1,6 @@
+<document>
+    <details>
+        <docAbstract>Prior research on search algorithms has shown that knowledge about search domain improves search efficiency. In this paper, we investigate whether this result holds for the Binary and the Interpolation search methods, two well- known domain-independent search algorithms to search sorted arrays. We use the frequency distribution as the repository of knowledge about of data stored in the sorted array. We find that the use of frequency table to conduct the search can improve or degrade the performance, depending on the search algorithm used. While the use of a frequency table improves the efficiency of Interpolation search, it degrades the efficiency of Binary search. Further, we find that the array size and the number of classes in the frequency table affect the extent of reduction (increase) in the efficiency for the Interpolation (Binary) search when the frequency table is used. However, the shape of the data distribution does not have any effect on the search efficiency. Our results suggest that the underlying search algorithm should be analyzed carefully before it is enhanced with additional knowledge.</docAbstract>
+        <docLinks/>
+    </details>
+</document>
