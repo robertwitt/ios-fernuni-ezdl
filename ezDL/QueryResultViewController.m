@@ -21,6 +21,7 @@
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
 @property (nonatomic, strong) QueryResultContent *tableContent;
 
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -31,6 +32,7 @@
 
 @implementation QueryResultViewController
 
+static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
 static NSString *SegueIdentifierEditQuery = @"EditQuerySegue";
 static NSString *SegueIdentifierQueryExecution = @"QueryExecutionSegue";
 static NSString *SegueIdentifierSortBy = @"SortBySegue";
@@ -172,6 +174,11 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail])
+    {
+        [self prepareForDocumentDetailSegue:segue sender:sender];
+    }
+    
     if ([segue.identifier isEqualToString:SegueIdentifierEditQuery])
     {
         [self prepareForEditQuerySegue:segue sender:sender];
@@ -191,6 +198,39 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     {
         [self prepareForGroupBySegue:segue sender:sender];
     }
+}
+
+#pragma mark Showing to Document Detail
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:SegueIdentifierDocumentDetail sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DocumentDetailViewController *viewController = segue.destinationViewController;
+    QueryResultRow *row = [self.tableContent rowAtIndexPath:[self.tableView indexPathForCell:sender]];
+    viewController.displayedDocument = row.document;
+    viewController.delegate = self;
+}
+
+- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController
+{
+    // TODO Implementation needed
+    return 0;
+}
+
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController nextDocumentAfter:(Document *)document
+{
+    // TODO Implementation needed
+    return nil;
+}
+
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController previousDocumentAfter:(Document *)document
+{
+    // TODO Implementation needed
+    return nil;
 }
 
 #pragma mark Editing Query

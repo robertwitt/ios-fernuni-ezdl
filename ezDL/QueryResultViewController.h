@@ -10,8 +10,9 @@
 #import "QueryController.h"
 #import "QueryResultSortingViewController.h"
 #import "QueryResultGroupingViewController.h"
+#import "DocumentDetailViewController.h"
 
-@interface QueryResultViewController : UITableViewController <QueryControllerDelegate, QueryExecutionViewControllerDelegate, QueryResultSortingViewControllerDelegate, QueryResultGroupingViewControllerDelegate, UISearchBarDelegate>
+@interface QueryResultViewController : UITableViewController <QueryControllerDelegate, QueryExecutionViewControllerDelegate, QueryResultSortingViewControllerDelegate, QueryResultGroupingViewControllerDelegate, UISearchBarDelegate, DocumentDetailViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableViewCell *queryResultCell;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sortByItem;

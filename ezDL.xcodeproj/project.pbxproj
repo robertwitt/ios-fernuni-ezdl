@@ -11,6 +11,7 @@
 		E10FC921147C4016000F41A8 /* DocumentServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */; };
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
 		E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */; };
+		E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E183BD60148135C200C65FAA /* DocumentDetailViewController.m */; };
 		E1C45C29147D621D002DB8EC /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C28147D621D002DB8EC /* query_result.xml */; };
 		E1C45C3B147D6236002DB8EC /* doc_0815.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2B147D6236002DB8EC /* doc_0815.xml */; };
 		E1C45C3C147D6236002DB8EC /* doc_1899.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2C147D6236002DB8EC /* doc_1899.xml */; };
@@ -104,6 +105,8 @@
 		E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupDocumentBackendService.m; sourceTree = "<group>"; };
 		E10FC945147C4E6B000F41A8 /* NSString+NSStringExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringExtension.h"; sourceTree = "<group>"; };
 		E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringExtension.m"; sourceTree = "<group>"; };
+		E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
+		E183BD60148135C200C65FAA /* DocumentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentDetailViewController.m; sourceTree = "<group>"; };
 		E1C45C28147D621D002DB8EC /* query_result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = query_result.xml; sourceTree = "<group>"; };
 		E1C45C2B147D6236002DB8EC /* doc_0815.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_0815.xml; sourceTree = "<group>"; };
 		E1C45C2C147D6236002DB8EC /* doc_1899.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1899.xml; sourceTree = "<group>"; };
@@ -255,6 +258,15 @@
 				E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */,
 			);
 			name = "Document Service";
+			sourceTree = "<group>";
+		};
+		E183BD5D1481359600C65FAA /* Document Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */,
+				E183BD60148135C200C65FAA /* DocumentDetailViewController.m */,
+			);
+			name = "Document Detail";
 			sourceTree = "<group>";
 		};
 		E1E30DE01478DBFC005DEC6B /* Query Execution */ = {
@@ -411,6 +423,7 @@
 			children = (
 				E1EFC3F61476968200CB7490 /* Query */,
 				E1EF23191477D60F000EE7C9 /* Query Result */,
+				E183BD5D1481359600C65FAA /* Document Detail */,
 				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
 				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
 				E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */,
@@ -754,6 +767,7 @@
 				E10FC921147C4016000F41A8 /* DocumentServiceImpl.m in Sources */,
 				E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */,
 				E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */,
+				E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +815,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Witt (96VT8B7392)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -816,6 +831,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "2A68D070-4852-4BB1-A05D-D97CEA2537F5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -827,6 +843,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Witt (96VT8B7392)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -836,6 +853,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "2A68D070-4852-4BB1-A05D-D97CEA2537F5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
