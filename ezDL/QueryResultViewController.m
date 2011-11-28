@@ -52,13 +52,6 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.navigationController.toolbarHidden = NO;
-}
-
 - (void)viewDidUnload
 {
     self.queryResultCell = nil;
@@ -73,6 +66,13 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     self.currentGrouping = nil;
     self.tableContent = nil;
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.navigationController.toolbarHidden = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -217,20 +217,17 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 - (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController
 {
-    // TODO Implementation needed
-    return 0;
+    return self.tableContent.allDocuments.count;
 }
 
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController nextDocumentAfter:(Document *)document
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocuments:(Document *)document
 {
-    // TODO Implementation needed
-    return nil;
+    return [self.tableContent.allDocuments indexOfObject:document];
 }
 
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController previousDocumentAfter:(Document *)document
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index
 {
-    // TODO Implementation needed
-    return nil;
+    return [self.tableContent.allDocuments objectAtIndex:index];
 }
 
 #pragma mark Editing Query

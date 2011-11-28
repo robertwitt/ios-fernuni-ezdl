@@ -7,19 +7,20 @@
 //
 
 #import "Document.h"
+#import "DocumentLinkViewController.h"
 
 
 @class DocumentDetailViewController;
 @protocol DocumentDetailViewControllerDelegate <NSObject>
 
 - (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController;
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController nextDocumentAfter:(Document *)document;
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController previousDocumentAfter:(Document *)document;
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocuments:(Document *)document;
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index;
 
 @end
 
 
-@interface DocumentDetailViewController : UITableViewController
+@interface DocumentDetailViewController : UITableViewController <DocumentLinkViewControllerDelegate>
 
 @property (nonatomic, strong) Document *displayedDocument;
 @property (nonatomic, weak) id<DocumentDetailViewControllerDelegate> delegate;

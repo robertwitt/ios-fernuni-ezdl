@@ -50,8 +50,6 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 {
     [super viewDidLoad];
     
-    self.navigationController.toolbarHidden = YES;
-    
     self.queryViewController = self.advancedQueryViewController;
 }
 
@@ -73,6 +71,8 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.navigationController.toolbarHidden = YES;
     
     [self startObservingQueryViewController:self.queryViewController];
 }

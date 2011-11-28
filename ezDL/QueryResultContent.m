@@ -29,6 +29,7 @@
 @synthesize grouping = _grouping;
 @synthesize filterString = _filterString;
 @synthesize sections = _sections;
+@synthesize allDocuments = _allDocuments;
 @synthesize allRows = _allRows;
 @synthesize filteredRows = _filteredRows;
 @synthesize groupedRows = _groupedRows;
@@ -81,6 +82,7 @@
     _grouping = grouping;
     
     _sections = nil;
+    _allDocuments = nil;
     self.groupedRows = [NSMutableDictionary dictionary];
 }
 
@@ -181,6 +183,23 @@
 {
     NSArray *rows = [self rowsInSectionAtIndex:indexPath.section];
     return [rows objectAtIndex:indexPath.row];
+}
+
+- (NSArray *)allDocuments
+{
+    if (!_allDocuments)
+    {
+        NSMutableArray *documents = [NSMutableArray array];
+        for (NSString *section in self.sections)
+        {
+            for (QueryResultRow *row in [self rowsInSection:section])
+            {
+                [documents addObject:row.document];
+            }
+        }
+        _allDocuments = documents;
+    }
+    return _allDocuments;
 }
 
 @end

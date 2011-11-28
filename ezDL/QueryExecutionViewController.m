@@ -52,7 +52,6 @@
     
     if ([self checkQuery])
     {
-        sleep(1);
         [self startExecutionOperation];
     }
     else

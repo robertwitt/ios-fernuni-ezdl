@@ -37,4 +37,9 @@
     [alertView show];
 }
 
+- (void)openURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 @end

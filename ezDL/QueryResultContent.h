@@ -17,6 +17,7 @@
 @property (nonatomic, strong) QueryResultGrouping *grouping;
 @property (nonatomic, strong) NSString *filterString;
 @property (nonatomic, strong, readonly) NSArray *sections;
+@property (nonatomic, strong, readonly) NSArray *allDocuments;
 
 + (QueryResultContent *)queryResultContentWithQueryResult:(QueryResult *)queryResult;
 - (id)initWithQueryResult:(QueryResult *)queryResult;

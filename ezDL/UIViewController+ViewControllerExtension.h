@@ -12,5 +12,6 @@
 - (void)stopNetworkActivity;
 - (void)toggleNetworkActivity;
 - (void)showSimpleAlertWithTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag;
+- (void)openURL:(NSURL *)url;
 
 @end

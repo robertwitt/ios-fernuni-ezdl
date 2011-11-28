@@ -6,14 +6,16 @@
   Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 */
 
-"ascending" = "ascending";
+"Abstract" = "Abstract";
 "Author" = "Author";
 "Authors" = "Authors";
+"ascending" = "ascending";
 "Decade" = "Decade";
 "Deselect all" = "Deselect all";
 "descending" = "descending";
 "Error Occured" = "Error Occured";
 "Library" = "Library";
+"Links" = "Links";
 "No Libraries Selected Text" = "The search could not be executed because no digital libraries were selected.";
 "Nothing" = "Nothing";
 "OK" = "OK";

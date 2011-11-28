@@ -8,6 +8,8 @@
 
 #import "DocumentDetailViewController.h"
 #import "Author.h"
+#import "QueryController.h"
+#import "ServiceFactory.h"
 
 
 @interface DocumentDetailViewController ()
@@ -18,16 +20,28 @@
 @property (nonatomic) NSInteger documentAuthorsSection;
 @property (nonatomic) NSInteger documentAbstractSection;
 @property (nonatomic) NSInteger documentLinksSection;
+@property (nonatomic, strong) NSError *loadingError;
 
+- (void)configureStepper;
 - (UITableViewCell *)basicCell;
 - (UITableViewCell *)documentAuthorCellForRow:(NSInteger)row;
 - (UITableViewCell *)documentAbstractCell;
 - (UITableViewCell *)documentLinkCellForRow:(NSInteger)row;
+- (void)startLoadingOperation;
+- (void)loadDocumentDetails;
+- (void)loadingDocumentDetailsFinished;
+- (void)stepperValueChanged:(UIStepper *)stepper;
+- (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (id<Query>)buildQueryWithAuthor:(Author *)author;
+- (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end
 
 
 @implementation DocumentDetailViewController
+
+static NSString *SegueQueryFromAuthor = @"QueryFromAuthorSegue";
+static NSString *SegueDocumentLink = @"DocumentLinkSegue";
 
 @synthesize displayedDocument = _displayedDocument;
 @synthesize delegate = _delegate;
@@ -37,8 +51,51 @@
 @synthesize documentAuthorsSection = _documentAuthorsSection;
 @synthesize documentAbstractSection = _documentAbstractSection;
 @synthesize documentLinksSection = _documentLinksSection;
+@synthesize loadingError = _loadingError;
 
 #pragma mark Managing the View
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.title = self.displayedDocument.title;
+    
+    // If the iterationDelegate is set, show a stepper in right area of navigation bar to iterate to query result collection
+    if (self.delegate) [self configureStepper];
+}
+
+- (void)configureStepper
+{
+    UIStepper *stepper = [[UIStepper alloc] init];
+    
+    stepper.minimumValue = 0;
+    stepper.maximumValue = [self.delegate documentDetailViewControllerNumberOfDocuments:self] - 1;
+    stepper.value = [self.delegate documentDetailViewController:self indexOfDocuments:self.displayedDocument];
+    
+    [stepper addTarget:self
+                action:@selector(stepperValueChanged:) 
+      forControlEvents:UIControlEventValueChanged];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:stepper];
+}
+
+- (void)viewDidUnload
+{
+    self.displayedDocument = nil;
+    self.delegate = nil;
+    self.loadingError = nil;
+    [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.navigationController.toolbarHidden = NO;
+    
+    [self startLoadingOperation];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -75,16 +132,19 @@
         self.numberOfSections++;
     }
     
-    if (!displayedDocument.detail.abstract.nilOrEmpty)
+    if (displayedDocument.detail)
     {
-        self.documentAbstractSection = self.numberOfSections;
-        self.numberOfSections++;
-    }
-    
-    if (displayedDocument.detail.links && displayedDocument.detail.links.count > 0)
-    {
-        self.documentLinksSection = self.numberOfSections;
-        self.numberOfSections++;
+        if (!displayedDocument.detail.abstract.nilOrEmpty)
+        {
+            self.documentAbstractSection = self.numberOfSections;
+            self.numberOfSections++;
+        }
+        
+        if (displayedDocument.detail.links && displayedDocument.detail.links.count > 0)
+        {
+            self.documentLinksSection = self.numberOfSections;
+            self.numberOfSections++;
+        }
     }
 }
 
@@ -156,6 +216,137 @@
     NSURL *link = [self.displayedDocument.detail.links objectAtIndex:row];
     cell.textLabel.text = link.absoluteString;
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = nil;
+    
+    if (section == self.documentTitleSection) title = NSLocalizedString(@"Title", nil);
+    if (section == self.documentYearSection) title = NSLocalizedString(@"Year", nil);
+    if (section == self.documentAuthorsSection) title = NSLocalizedString(@"Authors", nil);
+    if (section == self.documentAbstractSection) title = NSLocalizedString(@"Abstract", nil);
+    if (section == self.documentLinksSection) title = NSLocalizedString(@"Links", nil);
+    
+    return title;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = 44.0f;
+    if (indexPath.section == self.documentAbstractSection) height = 200.0f;
+    return height;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:SegueQueryFromAuthor])
+    {
+        [self prepareForQueryFromAuthorSegue:segue sender:sender];
+    }
+    
+    if ([segue.identifier isEqualToString:SegueDocumentLink])
+    {
+        [self prepareForDocumentLinkSegue:segue sender:sender];
+    }
+}
+
+#pragma mark Loading Document Details from Backend
+
+- (void)startLoadingOperation
+{
+    if (!self.displayedDocument.detail)
+    {
+        id __block myself = self;
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            [myself startNetworkActivity];
+            [myself loadDocumentDetails];
+        }];
+        
+        [operation setCompletionBlock:^{
+            [myself loadingDocumentDetailsFinished];
+        }];
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue addOperation:operation];
+    }
+}
+
+- (void)loadDocumentDetails
+{    
+    NSError *error = nil;
+    [[[ServiceFactory sharedFactory] documentService] loadDocumentDetailInDocument:self.displayedDocument
+                                                                         withError:&error];
+    self.loadingError = error;
+    self.displayedDocument = self.displayedDocument;
+}
+
+- (void)loadingDocumentDetailsFinished
+{
+    id __block myself = self;
+    NSBlockOperation *finishedOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [[myself tableView] reloadData];
+        [myself stopNetworkActivity];
+        
+        NSError *error = [myself loadingError];
+        if (error)
+        {
+            [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                                   message:error.localizedDescription
+                                       tag:0];
+        }
+    }];
+    
+    [[NSOperationQueue mainQueue] addOperation:finishedOperation];
+}
+
+#pragma mark Switching between Documents
+
+- (void)stepperValueChanged:(UIStepper *)stepper
+{
+    self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:stepper.value];
+    [self.tableView reloadData];
+    [self startLoadingOperation];
+}
+
+#pragma mark Executing Query from Author
+
+- (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+    Author *selectedAuthor = [self.displayedDocument.authors objectAtIndex:indexPath.row];
+    QueryController *queryController = (QueryController *)segue.destinationViewController;
+    queryController.query = [self buildQueryWithAuthor:selectedAuthor];
+}
+
+- (id<Query>)buildQueryWithAuthor:(Author *)author
+{
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:author.fullName forKey:kQueryParameterKeyAuthor];
+    return [[[ServiceFactory sharedFactory] queryService] buildQueryFromParameters:parameters];
+}
+
+#pragma mark Showing Document Link
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == self.documentLinksSection)
+    {
+        [self performSegueWithIdentifier:SegueDocumentLink sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+    }
+}
+
+- (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSURL *selectedLink = [self.displayedDocument.detail.links objectAtIndex:indexPath.row];
+    DocumentLinkViewController *viewController = (DocumentLinkViewController *)segue.destinationViewController;
+    viewController.displayedLink = selectedLink;
+    viewController.delegate = self;
+}
+
+- (void)doneWithdocumentLinkViewController:(DocumentLinkViewController *)viewController
+{
+    [viewController dismissModalViewControllerAnimated:YES];
 }
 
 @end
