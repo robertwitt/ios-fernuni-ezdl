@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *filterString;
 @property (nonatomic, strong, readonly) NSArray *sections;
 @property (nonatomic, strong, readonly) NSArray *allDocuments;
+@property (nonatomic, readonly) NSInteger numberOfResults;
 
 + (QueryResultContent *)queryResultContentWithQueryResult:(QueryResult *)queryResult;
 - (id)initWithQueryResult:(QueryResult *)queryResult;

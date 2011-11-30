@@ -21,6 +21,7 @@
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
 @property (nonatomic, strong) QueryResultContent *tableContent;
 
+- (void)configureNavigationBar;
 - (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -51,6 +52,26 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 @synthesize tableContent = _tableContent;
 
 #pragma mark Managing the View
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self configureNavigationBar];
+}
+
+- (void)configureNavigationBar
+{
+    NSInteger numberOfResults = self.tableContent.numberOfResults;
+    if (numberOfResults == 1) 
+    { 
+        self.title = [NSString stringWithFormat:@"%d %@", numberOfResults, NSLocalizedString(@"Result", nil)];
+    }
+    else
+    {
+        self.title = [NSString stringWithFormat:@"%d %@", numberOfResults, NSLocalizedString(@"Results", nil)];
+    }
+}
 
 - (void)viewDidUnload
 {
@@ -104,6 +125,9 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 {
     _currentSorting = currentSorting;
     self.tableContent.sorting = currentSorting;
+    
+    // Set Sorted by button title
+    self.sortByItem.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Sorted by", nil), currentSorting.criterion.localizedShortText];
 }
 
 - (QueryResultGrouping *)currentGrouping
@@ -116,6 +140,16 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 {
     _currentGrouping = currentGrouping;
     self.tableContent.grouping = currentGrouping;
+    
+    // Set Group by button title
+    if (currentGrouping.groupingType == QueryResultGroupingTypeNothing)
+    {
+        self.groupByItem.title = NSLocalizedString(@"Not grouped", nil);
+    }
+    else
+    {
+        self.groupByItem.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Grouped by", nil), currentGrouping.localizedShortText];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

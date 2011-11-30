@@ -202,4 +202,9 @@
     return _allDocuments;
 }
 
+- (NSInteger)numberOfResults
+{
+    return self.allRows.count;
+}
+
 @end
