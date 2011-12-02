@@ -17,10 +17,12 @@
 @property (nonatomic, weak) IBOutlet UITableViewCell *queryResultCell;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sortByItem;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *groupByItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *optionsItem;
 @property (nonatomic, strong) QueryResult *queryResult;
 
 - (IBAction)editQuery:(UIBarButtonItem *)sender;
 - (IBAction)sortBy:(UIBarButtonItem *)sender;
-- (IBAction)groupByItem:(UIBarButtonItem *)sender;
+- (IBAction)groupBy:(UIBarButtonItem *)sender;
+- (IBAction)openOptions:(UIBarButtonItem *)sender;
 
 @end

@@ -16,6 +16,7 @@
 @property (nonatomic, weak) UIPopoverController *editQueryPopover;
 @property (nonatomic, weak) UIPopoverController *sortByPopover;
 @property (nonatomic, weak) UIPopoverController *groupByPopover;
+@property (nonatomic, weak) UIPopoverController *optionsPopover;
 @property (nonatomic, strong) id<Query> editedQuery;
 @property (nonatomic, strong) QueryResultSorting *currentSorting;
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
@@ -27,6 +28,7 @@
 - (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForGroupBySegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end
 
@@ -38,14 +40,17 @@ static NSString *SegueIdentifierEditQuery = @"EditQuerySegue";
 static NSString *SegueIdentifierQueryExecution = @"QueryExecutionSegue";
 static NSString *SegueIdentifierSortBy = @"SortBySegue";
 static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
+static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
 @synthesize queryResultCell = _queryResultCell;
 @synthesize sortByItem = _sortByItem;
 @synthesize groupByItem = _groupByItem;
+@synthesize optionsItem = _optionsItem;
 @synthesize queryResult = _queryResult;
 @synthesize editQueryPopover = _editQueryPopover;
 @synthesize sortByPopover = _sortByPopover;
 @synthesize groupByPopover = _groupByPopover;
+@synthesize optionsPopover = _optionsPopover;
 @synthesize editedQuery = _editedQuery;
 @synthesize currentSorting = _currentSorting;
 @synthesize currentGrouping = _currentGrouping;
@@ -232,6 +237,11 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
     {
         [self prepareForGroupBySegue:segue sender:sender];
     }
+    
+    if ([segue.identifier isEqualToString:SegueIdentifierOptions])
+    {
+        [self prepareForOptionsSegue:segue sender:sender];
+    }
 }
 
 #pragma mark Showing to Document Detail
@@ -359,7 +369,7 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 
 #pragma mark Grouping the Query Result
 
-- (IBAction)groupByItem:(UIBarButtonItem *)sender
+- (IBAction)groupBy:(UIBarButtonItem *)sender
 {
     if (self.groupByPopover.popoverVisible)
     {
@@ -392,6 +402,25 @@ static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 {
     self.tableContent.filterString = searchText;
     [self.tableView reloadData];
+}
+
+#pragma mark Open Query Result Options
+
+- (IBAction)openOptions:(UIBarButtonItem *)sender
+{
+    if (self.optionsPopover.popoverVisible)
+    {
+        [self.optionsPopover dismissPopoverAnimated:YES];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:SegueIdentifierOptions sender:sender];
+    }
+}
+
+- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    self.optionsPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
 @end

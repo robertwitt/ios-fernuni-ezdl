@@ -34,6 +34,7 @@
 - (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (id<Query>)buildQueryWithAuthor:(Author *)author;
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)prepareForAddReferenceSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end
 
@@ -42,6 +43,7 @@
 
 static NSString *SegueQueryFromAuthor = @"QueryFromAuthorSegue";
 static NSString *SegueDocumentLink = @"DocumentLinkSegue";
+static NSString *SegueAddReference = @"AddReferenceSegue";
 
 @synthesize displayedDocument = _displayedDocument;
 @synthesize delegate = _delegate;
@@ -61,7 +63,7 @@ static NSString *SegueDocumentLink = @"DocumentLinkSegue";
     
     self.title = self.displayedDocument.title;
     
-    // If the iterationDelegate is set, show a stepper in right area of navigation bar to iterate to query result collection
+    // If the delegate is set, show a stepper in right area of navigation bar to iterate to query result collection
     if (self.delegate) [self configureStepper];
 }
 
@@ -249,6 +251,11 @@ static NSString *SegueDocumentLink = @"DocumentLinkSegue";
     {
         [self prepareForDocumentLinkSegue:segue sender:sender];
     }
+    
+    if ([segue.identifier isEqualToString:SegueAddReference])
+    {
+        [self prepareForAddReferenceSegue:segue sender:sender];
+    }
 }
 
 #pragma mark Loading Document Details from Backend
@@ -347,6 +354,31 @@ static NSString *SegueDocumentLink = @"DocumentLinkSegue";
 - (void)doneWithdocumentLinkViewController:(DocumentLinkViewController *)viewController
 {
     [viewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark Adding the Document as Reference to Personal Library
+
+- (void)prepareForAddReferenceSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PersonalLibraryReferenceAddViewController *viewController = (PersonalLibraryReferenceAddViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+    viewController.referenceDocument = self.displayedDocument;
+    viewController.delegate = self;
+}
+
+- (void)didCancelReferenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController
+{
+    [viewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
+{
+    // TODO Implementation needed
+    id __block myself = self;
+    [viewController dismissViewControllerAnimated:YES completion:^{
+        [myself showSimpleAlertWithTitle:@"Document added" 
+                                 message:nil 
+                                     tag:0];
+    }];
 }
 
 @end

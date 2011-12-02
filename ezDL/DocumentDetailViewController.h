@@ -8,6 +8,7 @@
 
 #import "Document.h"
 #import "DocumentLinkViewController.h"
+#import "PersonalLibraryReferenceAddViewController.h"
 
 
 @class DocumentDetailViewController;
@@ -20,7 +21,7 @@
 @end
 
 
-@interface DocumentDetailViewController : UITableViewController <DocumentLinkViewControllerDelegate>
+@interface DocumentDetailViewController : UITableViewController <DocumentLinkViewControllerDelegate, PersonalLibraryReferenceAddViewControllerDelegate>
 
 @property (nonatomic, strong) Document *displayedDocument;
 @property (nonatomic, weak) id<DocumentDetailViewControllerDelegate> delegate;

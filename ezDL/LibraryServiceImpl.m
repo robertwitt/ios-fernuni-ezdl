@@ -49,6 +49,7 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
         [libraryObjectIDs addObject:library.objectID];
     }
     [[NSUserDefaults standardUserDefaults] setObject:libraryObjectIDs forKey:UserDefaultsKey];
+    _selectedLibraryObjectIDs = nil;
 }
 
 @end
