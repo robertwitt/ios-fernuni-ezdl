@@ -12,6 +12,8 @@
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
 		E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */; };
 		E113C3091483FC610016D3EF /* DocumentLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E113C3081483FC610016D3EF /* DocumentLinkViewController.m */; };
+		E135180E148A4DD300B13A68 /* PersonalLibraryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */; };
+		E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */; };
 		E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */; };
 		E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */; };
 		E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */; };
@@ -80,7 +82,7 @@
 		E1EFC4241476CD4400CB7490 /* LibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4231476CD4400CB7490 /* LibraryChoice.m */; };
 		E1EFC4281476D6AC00CB7490 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */; };
 		E1EFC42B1476D6FE00CB7490 /* LibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC42A1476D6FE00CB7490 /* LibraryServiceImpl.m */; };
-		E1EFC4301476DEB700CB7490 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC42F1476DEB700CB7490 /* Localization.strings */; };
+		E1EFC4301476DEB700CB7490 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC42F1476DEB700CB7490 /* Localizable.strings */; };
 		E1EFC43C1476EACF00CB7490 /* MockupBackendServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */; };
 		E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */; };
 		E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC4411476EB9A00CB7490 /* libraries.xml */; };
@@ -113,6 +115,10 @@
 		E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringExtension.m"; sourceTree = "<group>"; };
 		E113C3071483FC610016D3EF /* DocumentLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentLinkViewController.h; sourceTree = "<group>"; };
 		E113C3081483FC610016D3EF /* DocumentLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentLinkViewController.m; sourceTree = "<group>"; };
+		E135180C148A4DD300B13A68 /* PersonalLibraryGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroup.h; sourceTree = "<group>"; };
+		E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroup.m; sourceTree = "<group>"; };
+		E1351810148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupAddViewController.h; sourceTree = "<group>"; };
+		E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupAddViewController.m; sourceTree = "<group>"; };
 		E15D5EDA14893C7E00C78F1D /* PersonalLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryViewController.h; sourceTree = "<group>"; };
 		E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryViewController.m; sourceTree = "<group>"; };
 		E15D5EE014895E6E00C78F1D /* QueryResultOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultOptionsViewController.h; sourceTree = "<group>"; };
@@ -220,7 +226,7 @@
 		E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceFactory.m; sourceTree = "<group>"; };
 		E1EFC4291476D6FE00CB7490 /* LibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryServiceImpl.h; sourceTree = "<group>"; };
 		E1EFC42A1476D6FE00CB7490 /* LibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryServiceImpl.m; sourceTree = "<group>"; };
-		E1EFC42F1476DEB700CB7490 /* Localization.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localization.strings; sourceTree = "<group>"; };
+		E1EFC42F1476DEB700CB7490 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E1EFC4381476EA6F00CB7490 /* BackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendService.h; sourceTree = "<group>"; };
 		E1EFC43A1476EACF00CB7490 /* MockupBackendServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupBackendServiceImpl.h; sourceTree = "<group>"; };
 		E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupBackendServiceImpl.m; sourceTree = "<group>"; };
@@ -293,8 +299,8 @@
 				E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */,
 				E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */,
 				E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */,
-				E15D5EE814897CAC00C78F1D /* PersonalLibraryReference.h */,
-				E15D5EE914897CAC00C78F1D /* PersonalLibraryReference.m */,
+				E1351810148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.h */,
+				E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */,
 			);
 			name = "Personal Library";
 			sourceTree = "<group>";
@@ -443,7 +449,7 @@
 				E1EFC3C4147690B600CB7490 /* InfoPlist.strings */,
 				E1EFC3C7147690B600CB7490 /* main.m */,
 				E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */,
-				E1EFC42F1476DEB700CB7490 /* Localization.strings */,
+				E1EFC42F1476DEB700CB7490 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -541,6 +547,10 @@
 				E1EF23291477F2C6000EE7C9 /* Author.m */,
 				E1EF232B1477F419000EE7C9 /* Document.h */,
 				E1EF232C1477F419000EE7C9 /* Document.m */,
+				E135180C148A4DD300B13A68 /* PersonalLibraryGroup.h */,
+				E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */,
+				E15D5EE814897CAC00C78F1D /* PersonalLibraryReference.h */,
+				E15D5EE914897CAC00C78F1D /* PersonalLibraryReference.m */,
 			);
 			name = "DL Objects";
 			sourceTree = "<group>";
@@ -731,7 +741,7 @@
 				E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */,
 				E1EFC40914769B0C00CB7490 /* AdvancedQueryViewController.xib in Resources */,
 				E1EFC40E14769B5200CB7490 /* BasicQueryViewController.xib in Resources */,
-				E1EFC4301476DEB700CB7490 /* Localization.strings in Resources */,
+				E1EFC4301476DEB700CB7490 /* Localizable.strings in Resources */,
 				E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */,
 				E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */,
 				E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */,
@@ -834,6 +844,8 @@
 				E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */,
 				E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */,
 				E15D5EEA14897CAC00C78F1D /* PersonalLibraryReference.m in Sources */,
+				E135180E148A4DD300B13A68 /* PersonalLibraryGroup.m in Sources */,
+				E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

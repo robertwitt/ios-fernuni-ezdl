@@ -8,8 +8,6 @@
 
 @interface LibraryChoiceViewController : UITableViewController
 
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *refreshItem;
-
 - (IBAction)refreshLibraries;
 - (void)selectAllLibraries;
 - (void)deselectAllLibraries;

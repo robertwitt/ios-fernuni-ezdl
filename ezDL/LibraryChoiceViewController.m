@@ -28,10 +28,8 @@
 
 @implementation LibraryChoiceViewController
 
-@synthesize refreshItem = _refreshItem;
 @synthesize selectAllItem = _selectAllItem;
 @synthesize deselectAllItem = _deselectAllItem;
-@synthesize loadingItem = _loadingItem;
 @synthesize libraryService = _libraryService;
 @synthesize currentLibraryChoice = _currentLibraryChoice;
 
@@ -48,8 +46,6 @@
     [super viewDidLoad];
     
     [self configureNavigationBar];
-    
-    [self loadLibrariesFromBackend:NO];
 }
 
 - (void)configureNavigationBar
@@ -70,18 +66,25 @@
 
 - (void)viewDidUnload
 {
-    self.refreshItem = nil;
     self.selectAllItem = nil;
     self.deselectAllItem = nil;
-    _loadingItem = nil;
     _libraryService = nil;
     self.currentLibraryChoice = nil;
     
     [super viewDidUnload];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self loadLibrariesFromBackend:NO];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     [self.libraryService saveLibraryChoice:self.currentLibraryChoice];
 }
 
@@ -93,14 +96,16 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-    NSInteger numberOfRows = self.currentLibraryChoice.allLibraries.count;
-    if (numberOfRows < 5) numberOfRows = 5;
-    
-    CGSize size;
-    size.width = 680.0f;
-    size.height = numberOfRows * 44.0f + 44.0f;
-    
-    return size;
+    return CGSizeMake(680.0f, 440.0f);
+}
+
+- (void)setCurrentLibraryChoice:(MutableLibraryChoice *)currentLibraryChoice
+{
+    if (_currentLibraryChoice != currentLibraryChoice)
+    {
+        _currentLibraryChoice = currentLibraryChoice;
+        if (self.tableView.window) [self.tableView reloadData];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -137,48 +142,47 @@
 #pragma mark Loading Libraries by Model
 
 - (IBAction)refreshLibraries
-{
-    self.navigationItem.leftBarButtonItem = self.loadingItem;
-    
-    // Execute operation on separated thread to load libraries from backend
-    id __block myself = self;
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        [myself loadLibrariesFromBackend:YES];
-        [[myself navigationItem] setLeftBarButtonItem:[myself refreshItem]];
-    }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
+{    
+    // Execute operation on separate thread to load libraries from backend
+    [self loadLibrariesFromBackend:YES];
 }
 
 - (UIBarButtonItem *)loadingItem
 {
-    if (!_loadingItem)
-    {
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        [activityIndicator startAnimating];
-        _loadingItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    }
-    return _loadingItem;
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    
+    return loadingItem;
 }
 
 - (void)loadLibrariesFromBackend:(BOOL)loadFromBackend
 {
     [self startNetworkActivity];
+    UIBarButtonItem *refreshItem = self.navigationItem.leftBarButtonItem;
+    self.navigationItem.leftBarButtonItem = self.loadingItem;
     
-    NSError *error = nil;
-    LibraryChoice *libraryChoice = [self.libraryService loadLibraryChoiceFromBackend:loadFromBackend
-                                                                           withError:&error];
-    [self stopNetworkActivity];
+    dispatch_queue_t loadingQueue = dispatch_queue_create("de.feu.informatik.mmia.ezdl", NULL);
+    dispatch_async(loadingQueue, ^{
+        NSError *error = nil;
+        LibraryChoice *libraryChoice = [self.libraryService loadLibraryChoiceFromBackend:loadFromBackend
+                                                                               withError:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopNetworkActivity];
+            self.navigationItem.leftBarButtonItem = refreshItem;
+            self.currentLibraryChoice = [[MutableLibraryChoice alloc] initWithLibraryChoice:libraryChoice];
+            
+            if (error)
+            {
+                [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil) 
+                                       message:error.localizedDescription
+                                           tag:0];
+            }
+        });
+    });
     
-    if (error)
-    {
-        [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil) 
-                               message:error.localizedDescription
-                                   tag:0];
-    }
-    
-    self.currentLibraryChoice = [[MutableLibraryChoice alloc] initWithLibraryChoice:libraryChoice];
-    [self.tableView reloadData];
+    dispatch_release(loadingQueue);
 }
 
 #pragma mark Managing (De)selection of Libraries

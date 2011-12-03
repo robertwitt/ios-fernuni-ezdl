@@ -97,9 +97,9 @@
                                                                      object:nil];
     
     // Set completion block that's call when operation finishes or is canceled
-    id __block myself = self;
+    __weak id weakSelf = self;
     [self.executionOperation setCompletionBlock:^{
-        [myself executingQueryCompleted];
+        [weakSelf executingQueryCompleted];
     }];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -129,21 +129,18 @@
 - (void)executingQueryFinished
 {
     // Inform the delegate that query execution has been finished (either with or without error).
-    id __block myself = self;
-    
+
     NSBlockOperation *finishOperation = [NSBlockOperation blockOperationWithBlock:^{
-        NSError *error = [myself executionError];
-        id<QueryExecutionViewControllerDelegate> delegate = [myself delegate];
-        
-        if (error)
+        if (self.executionError)
         {
-            [delegate queryExecutionViewController:myself 
-                             didFailExecutingQuery:[myself queryToExecute] 
-                                         withError:error];
+            [self.delegate queryExecutionViewController:self 
+                                  didFailExecutingQuery:self.queryToExecute
+                                              withError:self.executionError];
         }
         else
         {
-            [delegate queryExecutionViewController:myself didExecuteQueryWithQueryResult:[myself executionQueryResult]];
+            [self.delegate queryExecutionViewController:self 
+                         didExecuteQueryWithQueryResult:self.executionQueryResult];
         }
     }];
     

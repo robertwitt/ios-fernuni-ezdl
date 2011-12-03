@@ -314,9 +314,9 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
         [self.delegate queryController:self didExecuteQueryWithQueryResult:queryResult];
     }
     
-    id __block myself = self;
+    __weak id weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        [myself performSegueWithIdentifier:SegueIdentifierQueryResult sender:[myself searchButton]];
+        [weakSelf performSegueWithIdentifier:SegueIdentifierQueryResult sender:[weakSelf searchButton]];
     }];
 }
 
@@ -324,11 +324,11 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 {
     // Dismiss query execution controller, send message to delegate and display error
     
-    id __block myself = self;
+    __weak id weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        [myself showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
-                                 message:error.localizedDescription
-                                     tag:0];
+        [weakSelf showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                                   message:error.localizedDescription
+                                       tag:0];
     }];
     
     if ([self.delegate respondsToSelector:@selector(queryController:didFailExecutingQuery:withError:)])

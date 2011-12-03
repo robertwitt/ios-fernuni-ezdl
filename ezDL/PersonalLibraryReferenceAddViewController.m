@@ -8,7 +8,17 @@
 
 #import "PersonalLibraryReferenceAddViewController.h"
 
+
+@interface PersonalLibraryReferenceAddViewController ()
+
+- (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
+@end
+
+
 @implementation PersonalLibraryReferenceAddViewController
+
+static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 
 @synthesize keyWordsTextField = _keyWordsTextField;
 @synthesize notesTextView = _notesTextView;
@@ -43,11 +53,32 @@
     [self.delegate didCancelReferenceAddViewController:self];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:SegueIdentifierAddGroup])
+    {
+        [self prepareForAddGroupSegue:segue sender:sender];
+    }
+}
+
 - (IBAction)save
 {
     // TODO Perform saving the document as reference
     PersonalLibraryReference *reference = nil;
     [self.delegate referenceAddViewController:self didSaveReference:reference];
+}
+
+#pragma mark Creating new Groups in Personal Library
+
+- (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PersonalLibraryGroupAddViewController *viewController = segue.destinationViewController;
+    viewController.delegate = self;
+}
+
+- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group
+{
+    // TODO React on saving the group. Adds it to table view controller and marks it automatically. Reload table view animated.
 }
 
 @end

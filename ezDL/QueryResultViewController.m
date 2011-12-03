@@ -330,11 +330,11 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
 - (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(id<Query>)query withError:(NSError *)error
 {    
-    id __block myself = self;
+    __weak id weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        [myself showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
-                                 message:error.localizedDescription
-                                     tag:0];
+        [weakSelf showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                                   message:error.localizedDescription
+                                       tag:0];
     }];
 }
 

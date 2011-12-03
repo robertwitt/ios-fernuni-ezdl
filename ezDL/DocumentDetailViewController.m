@@ -264,14 +264,13 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 {
     if (!self.displayedDocument.detail)
     {
-        id __block myself = self;
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            [myself startNetworkActivity];
-            [myself loadDocumentDetails];
+            [self startNetworkActivity];
+            [self loadDocumentDetails];
         }];
         
         [operation setCompletionBlock:^{
-            [myself loadingDocumentDetailsFinished];
+            [self loadingDocumentDetailsFinished];
         }];
         
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -290,12 +289,11 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 
 - (void)loadingDocumentDetailsFinished
 {
-    id __block myself = self;
     NSBlockOperation *finishedOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [[myself tableView] reloadData];
-        [myself stopNetworkActivity];
+        [self.tableView reloadData];
+        [self stopNetworkActivity];
         
-        NSError *error = [myself loadingError];
+        NSError *error = self.loadingError;
         if (error)
         {
             [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
@@ -373,11 +371,10 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
 {
     // TODO Implementation needed
-    id __block myself = self;
     [viewController dismissViewControllerAnimated:YES completion:^{
-        [myself showSimpleAlertWithTitle:@"Document added" 
-                                 message:nil 
-                                     tag:0];
+        [self showSimpleAlertWithTitle:@"Document added" 
+                               message:nil 
+                                   tag:0];
     }];
 }
 

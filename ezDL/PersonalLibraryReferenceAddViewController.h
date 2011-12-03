@@ -8,6 +8,7 @@
 
 #import "Document.h"
 #import "PersonalLibraryReference.h"
+#import "PersonalLibraryGroupAddViewController.h"
 
 
 @class PersonalLibraryReferenceAddViewController;
@@ -19,7 +20,7 @@
 @end
 
 
-@interface PersonalLibraryReferenceAddViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PersonalLibraryReferenceAddViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PersonalLibraryGroupAddViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *keyWordsTextField;
 @property (nonatomic, weak) IBOutlet UITextView *notesTextView;

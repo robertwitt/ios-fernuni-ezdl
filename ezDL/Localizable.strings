@@ -1,0 +1,31 @@
+/* 
+  Localization.strings
+  ezDL
+
+  Created by Robert Witt on 18.11.11.
+  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+*/
+
+"Abstract" = "Abstract";
+"Author" = "Author";
+"Authors" = "Authors";
+"ascending" = "ascending";
+"Decade" = "Decade";
+"Deselect all" = "Deselect all";
+"descending" = "descending";
+"Error Occured" = "Error Occured";
+"Grouped by" = "Grouped by";
+"Library" = "Library";
+"Links" = "Links";
+"No Libraries Selected Text" = "The search could not be executed because no digital libraries were selected.";
+"Nothing" = "Nothing";
+"Not grouped" = "Not grouped";
+"OK" = "OK";
+"Relevance" = "Relevance";
+"Result" = "Result";
+"Results" = "Results";
+"Select all" = "Select all";
+"Sorted by" = "Sorted by";
+"Title" = "Title";
+"Year" = "Year";
+"Years" = "Years";
