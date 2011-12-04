@@ -368,12 +368,12 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReferenceMO *)reference
 {
     // TODO Implementation needed
     [viewController dismissViewControllerAnimated:YES completion:^{
         [self showSimpleAlertWithTitle:@"Document added" 
-                               message:nil 
+                               message:reference.document.title
                                    tag:0];
     }];
 }

@@ -7,10 +7,35 @@
 //
 
 #import "PersonalLibraryViewController.h"
+#import "ServiceFactory.h"
+
+// TODO Temporary import
+#import "AuthorMO.h"
+
+
+@interface PersonalLibraryViewController ()
+
+@property (nonatomic, weak, readonly) id<PersonalLibraryService> personalLibraryService;
+
+- (PersonalLibraryGroupMO *)groupInSection:(NSInteger)section;
+- (PersonalLibraryReferenceMO *)referenceAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)stringFromAuthors:(NSSet *)authors;
+
+@end
+
 
 @implementation PersonalLibraryViewController
 
+@synthesize personalLibraryService = _personalLibraryService;
+
 #pragma mark Managing the View
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -18,34 +43,61 @@
 	return YES;
 }
 
+- (id<PersonalLibraryService>)personalLibraryService
+{
+    if (!_personalLibraryService) _personalLibraryService = [[ServiceFactory sharedFactory] personalLibraryService];
+    return _personalLibraryService;
+}
+
+- (PersonalLibraryGroupMO *)groupInSection:(NSInteger)section
+{
+    return [[self.personalLibraryService personalLibraryGroups] objectAtIndex:section];
+}
+
+- (PersonalLibraryReferenceMO *)referenceAtIndexPath:(NSIndexPath *)indexPath
+{
+    PersonalLibraryGroupMO *group = [self groupInSection:indexPath.section];
+    NSArray *references = [group.references allObjects];
+    return [references objectAtIndex:indexPath.row];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 5;
+    return [self.personalLibraryService personalLibraryGroups].count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 4;
+    return [self groupInSection:section].references.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ReferenceCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReferenceCell"];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"Document %d - %d", indexPath.section, indexPath.row];
-    cell.detailTextLabel.text = @"Author 1; Author 2; Author 3";
+    PersonalLibraryReferenceMO *reference = [self referenceAtIndexPath:indexPath];
+    cell.textLabel.text = reference.document.title;
+    cell.detailTextLabel.text = [self stringFromAuthors:reference.document.authors];
     
     return cell;
 }
 
+- (NSString *)stringFromAuthors:(NSSet *)authors
+{
+    NSMutableString *string = [NSMutableString string];
+    NSArray *array = [authors allObjects];
+    
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        AuthorMO *author = obj;
+        if (idx == 0) [string appendString:author.fullName];
+        else [string appendFormat:@"; %@", author.fullName];
+    }];
+    return string;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Group %d", section];
+    return [self groupInSection:section].name;
 }
 
 @end

@@ -151,7 +151,8 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     NSArray *allLibraries = [self libraryChoice].allLibraries;
     NSUInteger index = [allLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BOOL passed = NO;
-        if ([[obj objectID] isEqualToString:objectID])
+        Library *library = obj;
+        if ([library.objectID isEqualToString:objectID])
         {
             passed = YES;
             stop = &passed;

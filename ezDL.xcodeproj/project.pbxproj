@@ -92,6 +92,12 @@
 		E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */; };
 		E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC45314772B5100CB7490 /* ezdl_icon.png */; };
 		E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */; };
+		E1F4E246148B9D940003140E /* DLObjectMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E245148B9D940003140E /* DLObjectMO.m */; };
+		E1F4E24A148BA0430003140E /* DocumentMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E249148BA0430003140E /* DocumentMO.m */; };
+		E1F4E253148BA0440003140E /* AuthorMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E252148BA0440003140E /* AuthorMO.m */; };
+		E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */; };
+		E1F4E25E148BCCDD0003140E /* PersonalLibraryReferenceMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */; };
+		E1F4E267148BCD8D0003140E /* PersonalLibraryGroupMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +251,19 @@
 		E1EFC45314772B5100CB7490 /* ezdl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ezdl_icon.png; path = ../ezdl_icon.png; sourceTree = "<group>"; };
 		E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewControllerExtension.h"; sourceTree = "<group>"; };
 		E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerExtension.m"; sourceTree = "<group>"; };
+		E1F4E244148B9D940003140E /* DLObjectMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLObjectMO.h; sourceTree = "<group>"; };
+		E1F4E245148B9D940003140E /* DLObjectMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLObjectMO.m; sourceTree = "<group>"; };
+		E1F4E248148BA0430003140E /* DocumentMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentMO.h; sourceTree = "<group>"; };
+		E1F4E249148BA0430003140E /* DocumentMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentMO.m; sourceTree = "<group>"; };
+		E1F4E251148BA0440003140E /* AuthorMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorMO.h; sourceTree = "<group>"; };
+		E1F4E252148BA0440003140E /* AuthorMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorMO.m; sourceTree = "<group>"; };
+		E1F4E258148BA19B0003140E /* PersonalLibraryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryService.h; sourceTree = "<group>"; };
+		E1F4E259148BA2AB0003140E /* PersonalLibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryServiceImpl.h; sourceTree = "<group>"; };
+		E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryServiceImpl.m; sourceTree = "<group>"; };
+		E1F4E25C148BCCDC0003140E /* PersonalLibraryReferenceMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceMO.h; sourceTree = "<group>"; };
+		E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceMO.m; sourceTree = "<group>"; };
+		E1F4E265148BCD8D0003140E /* PersonalLibraryGroupMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupMO.h; sourceTree = "<group>"; };
+		E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupMO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,6 +605,7 @@
 				E1EF23151477D5B2000EE7C9 /* Query Service */,
 				E1EFC4351476EA3700CB7490 /* Library Service */,
 				E10FC91D147C3F45000F41A8 /* Document Service */,
+				E1F4E254148BA1540003140E /* Personal Library Service */,
 				E1EFC4371476EA4A00CB7490 /* Backend Service */,
 				E1EFC4261476D6AC00CB7490 /* ServiceFactory.h */,
 				E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */,
@@ -663,8 +683,28 @@
 			children = (
 				E1EFC44B1477200900CB7490 /* LibraryMO.h */,
 				E1EFC44C1477200900CB7490 /* LibraryMO.m */,
+				E1F4E244148B9D940003140E /* DLObjectMO.h */,
+				E1F4E245148B9D940003140E /* DLObjectMO.m */,
+				E1F4E251148BA0440003140E /* AuthorMO.h */,
+				E1F4E252148BA0440003140E /* AuthorMO.m */,
+				E1F4E248148BA0430003140E /* DocumentMO.h */,
+				E1F4E249148BA0430003140E /* DocumentMO.m */,
+				E1F4E25C148BCCDC0003140E /* PersonalLibraryReferenceMO.h */,
+				E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */,
+				E1F4E265148BCD8D0003140E /* PersonalLibraryGroupMO.h */,
+				E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */,
 			);
 			name = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		E1F4E254148BA1540003140E /* Personal Library Service */ = {
+			isa = PBXGroup;
+			children = (
+				E1F4E258148BA19B0003140E /* PersonalLibraryService.h */,
+				E1F4E259148BA2AB0003140E /* PersonalLibraryServiceImpl.h */,
+				E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */,
+			);
+			name = "Personal Library Service";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -846,6 +886,12 @@
 				E15D5EEA14897CAC00C78F1D /* PersonalLibraryReference.m in Sources */,
 				E135180E148A4DD300B13A68 /* PersonalLibraryGroup.m in Sources */,
 				E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */,
+				E1F4E246148B9D940003140E /* DLObjectMO.m in Sources */,
+				E1F4E24A148BA0430003140E /* DocumentMO.m in Sources */,
+				E1F4E253148BA0440003140E /* AuthorMO.m in Sources */,
+				E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */,
+				E1F4E25E148BCCDD0003140E /* PersonalLibraryReferenceMO.m in Sources */,
+				E1F4E267148BCD8D0003140E /* PersonalLibraryGroupMO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

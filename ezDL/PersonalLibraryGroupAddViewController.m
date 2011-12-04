@@ -7,6 +7,7 @@
 //
 
 #import "PersonalLibraryGroupAddViewController.h"
+#import "ServiceFactory.h"
 
 @implementation PersonalLibraryGroupAddViewController
 
@@ -22,9 +23,9 @@
 
 - (IBAction)save
 {
-    PersonalLibraryGroup *group = nil;
-    
-    // TODO Call service to create a new group
+    NSString *groupName = self.groupNameTextField.text;
+    PersonalLibraryGroupMO *group = [[[ServiceFactory sharedFactory] personalLibraryService] newGroupWithName:groupName];
+    [[[ServiceFactory sharedFactory] personalLibraryService] saveGroup:group];
     
     [self.navigationController popViewControllerAnimated:YES];
     [self.delegate groupAddViewController:self didSaveGroup:group];

@@ -7,7 +7,7 @@
 //
 
 #import "Document.h"
-#import "PersonalLibraryReference.h"
+#import "PersonalLibraryReferenceMO.h"
 #import "PersonalLibraryGroupAddViewController.h"
 
 
@@ -15,13 +15,14 @@
 @protocol PersonalLibraryReferenceAddViewControllerDelegate <NSObject>
 
 - (void)didCancelReferenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController;
-- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference;
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReferenceMO *)reference;
 
 @end
 
 
 @interface PersonalLibraryReferenceAddViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PersonalLibraryGroupAddViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UITableView *groupTableView;
 @property (nonatomic, weak) IBOutlet UITextField *keyWordsTextField;
 @property (nonatomic, weak) IBOutlet UITextView *notesTextView;
 @property (nonatomic, strong) Document *referenceDocument;

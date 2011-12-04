@@ -10,6 +10,7 @@
 #import "CoreDataService.h"
 #import "DocumentService.h"
 #import "LibraryService.h"
+#import "PersonalLibraryService.h"
 #import "QueryService.h"
 
 @interface ServiceFactory : NSObject
@@ -18,6 +19,7 @@
 - (id<QueryService>)queryService;
 - (id<LibraryService>)libraryService;
 - (id<DocumentService>)documentService;
+- (id<PersonalLibraryService>)personalLibraryService;
 - (id<CoreDataService>)coreDataService;
 - (id<BackendService>)backendService;
 

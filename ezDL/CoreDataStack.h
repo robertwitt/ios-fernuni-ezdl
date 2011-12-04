@@ -6,9 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-
 static NSString *CoreDataEntityLibrary = @"LibraryMO";
+static NSString *CoreDataEntityDocument = @"DocumentMO";
+static NSString *CoreDataEntityAuthor = @"AuthorMO";
+static NSString *CoreDataEntityPersonalLibraryReference = @"PersonalLibraryReferenceMO";
+static NSString *CoreDataEntityPersonalLibraryGroup = @"PersonalLibraryGroupMO";
 
 @interface CoreDataStack : NSObject
 

@@ -6,13 +6,13 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "PersonalLibraryGroup.h"
+#import "PersonalLibraryGroupMO.h"
 
 
 @class PersonalLibraryGroupAddViewController;
 @protocol PersonalLibraryGroupAddViewControllerDelegate <NSObject>
 
-- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group;
+- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroupMO *)group;
 
 @end
 
