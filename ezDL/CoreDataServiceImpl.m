@@ -7,35 +7,53 @@
 //
 
 #import "CoreDataServiceImpl.h"
-#import "LibraryCoreDataService.h"
+#import "CoreDataStack.h"
 
 
 @interface CoreDataServiceImpl ()
 
-@property (nonatomic, strong, readonly) LibraryCoreDataService *libraryCoreDataService;
+@property (nonatomic, weak, readonly) CoreDataStack *coreDataStack;
 
 @end
 
 
 @implementation CoreDataServiceImpl
 
-@synthesize libraryCoreDataService = _libraryCoreDataService;
+@synthesize coreDataStack = _coreDataStack;
 
-- (LibraryCoreDataService *)libraryCoreDataService
+- (CoreDataStack *)coreDataStack
 {
-    if (!_libraryCoreDataService) _libraryCoreDataService = [[LibraryCoreDataService alloc] init];
-    return _libraryCoreDataService;
+    if (!_coreDataStack) _coreDataStack = [CoreDataStack sharedCoreDataStack];
+    return _coreDataStack;
 }
 
-- (NSArray *)loadLibrariesWithError:(NSError *__autoreleasing *)error
+- (NSArray *)fetchLibrariesWithError:(NSError *__autoreleasing *)error
 {
-    return [self.libraryCoreDataService fetchLibrariesWithError:error];
+    // Fetch result from disk. First create a request for library entity.
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:CoreDataEntityLibrary
+                                              inManagedObjectContext:self.coreDataStack.managedObjectContext];
+    request.entity = entity;
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:kLibraryName ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    // Execute the request
+    return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:error];
 }
 
-- (void)saveLibraries:(NSArray *)libraries
+- (NSArray *)saveLibraries
 {
-    [self.libraryCoreDataService deleteAllLibraries];
-    [self.libraryCoreDataService saveLibraries:libraries];
+    [self.coreDataStack saveContext];
+    return [self fetchLibrariesWithError:nil];
+}
+
+- (void)deleteAllLibraries
+{
+    for (Library *library in [self fetchLibrariesWithError:nil])
+    {
+        [self.coreDataStack.managedObjectContext deleteObject:library];
+    }
 }
 
 @end

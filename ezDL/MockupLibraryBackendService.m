@@ -7,7 +7,7 @@
 //
 
 #import "MockupLibraryBackendService.h"
-#import "Library.h"
+#import "EntityFactory.h"
 
 
 @interface MockupLibraryBackendService ()
@@ -68,9 +68,10 @@ static NSString *ElementLibraryShortDescription = @"shortText";
 {
     if ([elementName isEqualToString:ElementLibrary]) 
     {
-        Library *library = [[Library alloc] initWithObjectID:self.libraryObjectID];
+        Library *library = [[EntityFactory sharedFactory] persistentLibrary];
+        library.dlObjectID = self.libraryObjectID;
         library.name = self.libraryName;
-        library.shortDescription = self.libraryShortDescription;
+        library.shortText = self.libraryShortDescription;
         
         [self.foundLibraries addObject:library];
     }

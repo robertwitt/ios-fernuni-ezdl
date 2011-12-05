@@ -6,9 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Document.h"
-#import "Library.h"
-
 @interface QueryResultItem : NSObject
 
 @property (nonatomic, strong, readonly) Document *document;

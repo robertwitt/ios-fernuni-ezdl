@@ -24,7 +24,7 @@
 - (IBAction)save
 {
     NSString *groupName = self.groupNameTextField.text;
-    PersonalLibraryGroupMO *group = [[[ServiceFactory sharedFactory] personalLibraryService] newGroupWithName:groupName];
+    PersonalLibraryGroup *group = [[[ServiceFactory sharedFactory] personalLibraryService] newGroupWithName:groupName];
     [[[ServiceFactory sharedFactory] personalLibraryService] saveGroup:group];
     
     [self.navigationController popViewControllerAnimated:YES];

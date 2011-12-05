@@ -124,7 +124,7 @@
     // Configure the cell and set library name and description
     Library *library = [self.currentLibraryChoice.allLibraries objectAtIndex:indexPath.row];
     cell.textLabel.text = library.name;
-    cell.detailTextLabel.text = library.shortDescription;
+    cell.detailTextLabel.text = library.shortText;
     
     // Ask library choice model if library is already selected
     if ([self.currentLibraryChoice isLibrarySelected:library]) 

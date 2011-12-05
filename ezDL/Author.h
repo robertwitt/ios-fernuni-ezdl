@@ -1,8 +1,8 @@
 //
-//  Author.h
+//  AuthorMO.h
 //  ezDL
 //
-//  Created by Robert Witt on 19.11.11.
+//  Created by Robert Witt on 04.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,9 +12,6 @@
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong, readonly) NSString *fullName;
-
-+ (Author *)authorWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
-- (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
+@property (nonatomic, strong) NSString *fullName;
 
 @end

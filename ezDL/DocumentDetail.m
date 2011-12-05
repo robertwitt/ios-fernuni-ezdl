@@ -1,15 +1,16 @@
 //
-//  DLObject.m
+//  DocumentDetail.m
 //  ezDL
 //
 //  Created by Robert Witt on 05.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "DLObject.h"
+#import "DocumentDetail.h"
 
-@implementation DLObject
+@implementation DocumentDetail
 
-@dynamic dlObjectID;
+@dynamic abstract;
+@dynamic links;
 
 @end

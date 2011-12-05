@@ -7,7 +7,6 @@
 //
 
 #import "QueryResultRow.h"
-#import "Author.h"
 
 
 @interface QueryResultRow ()
@@ -40,7 +39,7 @@
     {
         _document = item.document;
         _documentTitle = item.document.title;
-        _documentAuthors = [self stringFromAuthors:item.document.authors];
+        _documentAuthors = [self stringFromAuthors:item.document.authors.allObjects];
         _documentYear = item.document.year;
         _decade = [self decadeFromYear:item.document.year];
         _libraryName = item.library.name;
@@ -54,7 +53,7 @@
     NSMutableString __block *string = nil;
     
     [authors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Author *author = (Author *)obj;
+        Author *author = obj;
         if (idx == 0) 
         {
             string = [NSMutableString stringWithString:author.fullName];

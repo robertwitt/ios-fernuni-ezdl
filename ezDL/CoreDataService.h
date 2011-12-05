@@ -8,7 +8,8 @@
 
 @protocol CoreDataService <NSObject>
 
-- (NSArray *)loadLibrariesWithError:(NSError **)error;
-- (void)saveLibraries:(NSArray *)libraries;
+- (NSArray *)fetchLibrariesWithError:(NSError **)error;
+- (NSArray *)saveLibraries;
+- (void)deleteAllLibraries;
 
 @end

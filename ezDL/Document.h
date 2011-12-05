@@ -2,26 +2,29 @@
 //  Document.h
 //  ezDL
 //
-//  Created by Robert Witt on 19.11.11.
+//  Created by Robert Witt on 05.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "DLObject.h"
 
 
-@interface DocumentDetail : DLObject
+@class Author, DocumentDetail;
+@interface Document : DLObject
 
-@property (nonatomic, strong) NSString *abstract;
-@property (nonatomic, strong) NSArray *links;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *year;
+@property (nonatomic, strong) NSSet *authors;
+@property (nonatomic, strong) DocumentDetail *detail;
 
 @end
 
 
-@interface Document : DLObject
+@interface Document (CoreDataGeneratedAccessors)
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSArray *authors;
-@property (nonatomic, strong) NSString *year;
-@property (nonatomic, strong) DocumentDetail *detail;
+- (void)addAuthorsObject:(Author *)value;
+- (void)removeAuthorsObject:(Author *)value;
+- (void)addAuthors:(NSSet *)values;
+- (void)removeAuthors:(NSSet *)values;
 
 @end

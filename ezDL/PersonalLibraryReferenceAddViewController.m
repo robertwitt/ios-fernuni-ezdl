@@ -10,18 +10,16 @@
 #import "ServiceFactory.h"
 
 // TODO Temporary imports
-#import "Author.h"
-#import "AuthorMO.h"
 #import "CoreDataStack.h"
 
 
 @interface PersonalLibraryReferenceAddViewController ()
 
 @property (nonatomic, strong, readonly) id<PersonalLibraryService> personalLibraryService;
-@property (nonatomic, weak) PersonalLibraryGroupMO *selectedGroup;
+@property (nonatomic, weak) PersonalLibraryGroup *selectedGroup;
 
 - (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-- (DocumentMO *)convertDocumentToManagedObject;
+- (Document *)convertDocumentToManagedObject;
 
 @end
 
@@ -54,7 +52,7 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
     
-    PersonalLibraryGroupMO *group = [[self.personalLibraryService personalLibraryGroups] objectAtIndex:indexPath.row];
+    PersonalLibraryGroup *group = [[self.personalLibraryService personalLibraryGroups] objectAtIndex:indexPath.row];
     cell.textLabel.text = group.name;
     
     // Showing checkmark for selected group
@@ -94,8 +92,8 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
     // Perform saving the document as reference
     
     // TODO Temporary implementation
-    DocumentMO *document = [self convertDocumentToManagedObject];
-    PersonalLibraryReferenceMO *reference = [self.personalLibraryService newReferenceWithDocument:document];
+    Document *document = [self convertDocumentToManagedObject];
+    PersonalLibraryReference *reference = [self.personalLibraryService newReferenceWithDocument:document];
     reference.group = self.selectedGroup;
     reference.keywordString = self.keyWordsTextField.text;
     reference.note = self.notesTextView.text;
@@ -111,20 +109,20 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
     return _personalLibraryService;
 }
 
-- (DocumentMO *)convertDocumentToManagedObject
+- (Document *)convertDocumentToManagedObject
 {
     NSManagedObjectContext *managedObjectContext = [CoreDataStack sharedCoreDataStack].managedObjectContext;
     NSMutableSet *authors = [NSMutableSet set];
     for (Author *author in self.referenceDocument.authors)
     {
-        AuthorMO *authorMO = (AuthorMO *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityAuthor
+        Author *authorMO = (Author *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityAuthor
                                                                        inManagedObjectContext:managedObjectContext];
         authorMO.firstName = author.firstName;
         authorMO.lastName = author.lastName;
         [authors addObject:authorMO];
     }
     
-    DocumentMO *document = (DocumentMO *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityDocument
+    Document *document = (Document *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityDocument
                                                                        inManagedObjectContext:managedObjectContext];
     document.title = self.referenceDocument.title;
     document.year = self.referenceDocument.year;
@@ -149,7 +147,7 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
     viewController.delegate = self;
 }
 
-- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroupMO *)group
+- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group
 {
     // React on saving the group. Adds it to table view and marks it automatically. Scroll to new row.
     self.selectedGroup = group;

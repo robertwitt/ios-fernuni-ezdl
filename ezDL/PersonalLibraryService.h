@@ -6,17 +6,17 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "PersonalLibraryGroupMO.h"
-#import "PersonalLibraryReferenceMO.h"
-#import "DocumentMO.h"
+#import "PersonalLibraryGroup.h"
+#import "PersonalLibraryReference.h"
+#import "Document.h"
 
 @protocol PersonalLibraryService <NSObject>
 
-- (PersonalLibraryGroupMO *)newGroupWithName:(NSString *)name;
-- (void)saveGroup:(PersonalLibraryGroupMO *)group;
+- (PersonalLibraryGroup *)newGroupWithName:(NSString *)name;
+- (void)saveGroup:(PersonalLibraryGroup *)group;
 - (NSArray *)personalLibraryGroups;
 
-- (PersonalLibraryReferenceMO *)newReferenceWithDocument:(DocumentMO *)document;
-- (void)saveReference:(PersonalLibraryReferenceMO *)reference;
+- (PersonalLibraryReference *)newReferenceWithDocument:(Document *)document;
+- (void)saveReference:(PersonalLibraryReference *)reference;
 
 @end

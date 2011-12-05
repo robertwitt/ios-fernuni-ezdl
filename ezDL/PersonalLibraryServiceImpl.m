@@ -46,15 +46,15 @@
     return result;
 }
 
-- (PersonalLibraryGroupMO *)newGroupWithName:(NSString *)name
+- (PersonalLibraryGroup *)newGroupWithName:(NSString *)name
 {
-    PersonalLibraryGroupMO *group = (PersonalLibraryGroupMO *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryGroup
+    PersonalLibraryGroup *group = (PersonalLibraryGroup *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryGroup
                                                                                             inManagedObjectContext:self.coreDataStack.managedObjectContext];
     group.name = name;
     return group;
 }
 
-- (void)saveGroup:(PersonalLibraryGroupMO *)group
+- (void)saveGroup:(PersonalLibraryGroup *)group
 {
     [self.coreDataStack saveContext];
     [self.groups addObject:group];
@@ -65,15 +65,15 @@
     return self.groups;
 }
 
-- (PersonalLibraryReferenceMO *)newReferenceWithDocument:(DocumentMO *)document
+- (PersonalLibraryReference *)newReferenceWithDocument:(Document *)document
 {
-    PersonalLibraryReferenceMO *reference = (PersonalLibraryReferenceMO *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryReference
+    PersonalLibraryReference *reference = (PersonalLibraryReference *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryReference
                                                                                                         inManagedObjectContext:self.coreDataStack.managedObjectContext];
     reference.document = document;
     return reference;
 }
 
-- (void)saveReference:(PersonalLibraryReferenceMO *)reference
+- (void)saveReference:(PersonalLibraryReference *)reference
 {
     [self.coreDataStack saveContext];
     // TODO Implementation needed

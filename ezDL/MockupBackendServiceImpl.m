@@ -10,6 +10,7 @@
 #import "MockupLibraryBackendService.h"
 #import "MockupQueryBackendService.h"
 #import "MockupDocumentBackendService.h"
+#import "QueryResultItem.h"
 
 @implementation MockupBackendServiceImpl
 
@@ -31,8 +32,9 @@
     
     NSIndexSet *indexes = [queryResultItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BOOL passed = NO;
-        if ([[query selectedLibraries] containsObject:obj]) passed = YES;
-        return YES;
+        Library *library = [obj library];
+        if ([[query selectedLibraries] containsObject:library]) passed = YES;
+        return passed;
     }];
     queryResultItems = [queryResultItems objectsAtIndexes:indexes];
     
@@ -48,7 +50,7 @@
 - (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
 {
     MockupDocumentBackendService *service = [[MockupDocumentBackendService alloc] init];
-    DocumentDetail *documentDetail = [service documentDetailWithDocumentObjectID:document.objectID];
+    DocumentDetail *documentDetail = [service documentDetailWithDocumentObjectID:document.dlObjectID];
     document.detail = documentDetail;
     
     // Introduce artificial response time from Backend

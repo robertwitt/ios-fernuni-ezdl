@@ -1,8 +1,8 @@
 //
-//  Author.m
+//  AuthorMO.m
 //  ezDL
 //
-//  Created by Robert Witt on 19.11.11.
+//  Created by Robert Witt on 04.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,24 +10,9 @@
 
 @implementation Author
 
-@synthesize firstName = _firstName;
-@synthesize lastName = _lastName;
-
-+ (Author *)authorWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
-{
-    return [[Author alloc] initWithFirstName:firstName lastName:lastName];
-}
-
-- (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
-{
-    self = [self initWithObjectID:nil];
-    if (self) 
-    {
-        self.firstName = firstName;
-        self.lastName = lastName;
-    }
-    return self;
-}
+@dynamic firstName;
+@dynamic lastName;
+@dynamic fullName;
 
 - (NSString *)fullName
 {

@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="AuthorMO" representedClassName="AuthorMO" parentEntity="DLObjectMO" syncable="YES">
+    <entity name="Author" representedClassName="Author" parentEntity="DLObject" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="DLObjectMO" representedClassName="DLObjectMO" isAbstract="YES" syncable="YES">
-        <attribute name="objID" optional="YES" attributeType="String" syncable="YES"/>
-        <compoundIndexes>
-            <compoundIndex>
-                <index value="objID"/>
-            </compoundIndex>
-        </compoundIndexes>
+    <entity name="DLObject" representedClassName="DLObject" isAbstract="YES" syncable="YES">
+        <attribute name="dlObjectID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="DocumentMO" representedClassName="DocumentMO" parentEntity="DLObjectMO" syncable="YES">
+    <entity name="Document" representedClassName="Document" parentEntity="DLObject" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="authors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AuthorMO" syncable="YES"/>
+        <relationship name="authors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Author" syncable="YES"/>
+        <relationship name="detail" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DocumentDetail" syncable="YES"/>
     </entity>
-    <entity name="LibraryMO" representedClassName="LibraryMO" syncable="YES">
+    <entity name="DocumentDetail" representedClassName="DocumentDetail" syncable="YES">
+        <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="links" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DocumentLink" syncable="YES"/>
+    </entity>
+    <entity name="DocumentLink" representedClassName="DocumentLink" syncable="YES">
+        <attribute name="url" optional="YES" transient="YES" syncable="YES"/>
+        <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Library" representedClassName="Library" parentEntity="DLObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="objID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="shortDescr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortText" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="PersonalLibraryGroupMO" representedClassName="PersonalLibraryGroupMO" parentEntity="DLObjectMO" syncable="YES">
+    <entity name="PersonalLibraryGroup" representedClassName="PersonalLibraryGroup" parentEntity="DLObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="references" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonalLibraryReferenceMO" inverseName="group" inverseEntity="PersonalLibraryReferenceMO" syncable="YES"/>
+        <relationship name="references" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonalLibraryReference" inverseName="group" inverseEntity="PersonalLibraryReference" syncable="YES"/>
     </entity>
-    <entity name="PersonalLibraryReferenceMO" representedClassName="PersonalLibraryReferenceMO" parentEntity="DLObjectMO" syncable="YES">
+    <entity name="PersonalLibraryReference" representedClassName="PersonalLibraryReference" parentEntity="DLObject" syncable="YES">
         <attribute name="keywordString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="document" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DocumentMO" syncable="YES"/>
-        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalLibraryGroupMO" inverseName="references" inverseEntity="PersonalLibraryGroupMO" syncable="YES"/>
+        <relationship name="document" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalLibraryGroup" inverseName="references" inverseEntity="PersonalLibraryGroup" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LibraryMO" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="DLObjectMO" positionX="144" positionY="-15" width="128" height="60"/>
-        <element name="AuthorMO" positionX="412" positionY="171" width="128" height="90"/>
-        <element name="DocumentMO" positionX="232" positionY="171" width="128" height="90"/>
-        <element name="PersonalLibraryReferenceMO" positionX="54" positionY="171" width="128" height="105"/>
-        <element name="PersonalLibraryGroupMO" positionX="-126" positionY="171" width="128" height="75"/>
+        <element name="Author" positionX="412" positionY="171" width="128" height="90"/>
+        <element name="DLObject" positionX="144" positionY="-15" width="128" height="60"/>
+        <element name="Document" positionX="232" positionY="171" width="128" height="105"/>
+        <element name="DocumentDetail" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="DocumentLink" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Library" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="PersonalLibraryGroup" positionX="-126" positionY="171" width="128" height="75"/>
+        <element name="PersonalLibraryReference" positionX="54" positionY="171" width="128" height="105"/>
     </elements>
 </model>

@@ -12,14 +12,18 @@
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
 		E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */; };
 		E113C3091483FC610016D3EF /* DocumentLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E113C3081483FC610016D3EF /* DocumentLinkViewController.m */; };
-		E135180E148A4DD300B13A68 /* PersonalLibraryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */; };
 		E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */; };
+		E156BE6C148D419E0062230F /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE6B148D419E0062230F /* Document.m */; };
+		E156BE6F148D419F0062230F /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE6E148D419F0062230F /* Library.m */; };
+		E156BE72148D41A00062230F /* DocumentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE71148D41A00062230F /* DocumentDetail.m */; };
+		E156BE78148D41A30062230F /* DLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE77148D41A30062230F /* DLObject.m */; };
+		E156BE7B148D42A00062230F /* DocumentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE7A148D429F0062230F /* DocumentLink.m */; };
 		E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */; };
 		E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */; };
 		E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */; };
 		E15D5EE71489751B00C78F1D /* note.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D5EE61489751B00C78F1D /* note.png */; };
-		E15D5EEA14897CAC00C78F1D /* PersonalLibraryReference.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE914897CAC00C78F1D /* PersonalLibraryReference.m */; };
 		E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E183BD60148135C200C65FAA /* DocumentDetailViewController.m */; };
+		E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AF41EB148D448700B20175 /* EntityFactory.m */; };
 		E1C45C29147D621D002DB8EC /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C28147D621D002DB8EC /* query_result.xml */; };
 		E1C45C3B147D6236002DB8EC /* doc_0815.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2B147D6236002DB8EC /* doc_0815.xml */; };
 		E1C45C3C147D6236002DB8EC /* doc_1899.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C2C147D6236002DB8EC /* doc_1899.xml */; };
@@ -50,8 +54,6 @@
 		E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23171477D5ED000EE7C9 /* QueryResult.m */; };
 		E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */; };
 		E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */; };
-		E1EF232A1477F2C6000EE7C9 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23291477F2C6000EE7C9 /* Author.m */; };
-		E1EF232D1477F419000EE7C9 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232C1477F419000EE7C9 /* Document.m */; };
 		E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */; };
 		E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */; };
 		E1EFC3BA147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
@@ -76,8 +78,6 @@
 		E1EFC40914769B0C00CB7490 /* AdvancedQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC40714769B0C00CB7490 /* AdvancedQueryViewController.xib */; };
 		E1EFC40D14769B5200CB7490 /* BasicQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */; };
 		E1EFC40E14769B5200CB7490 /* BasicQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */; };
-		E1EFC4131476C08000CB7490 /* DLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4121476C08000CB7490 /* DLObject.m */; };
-		E1EFC4161476C14100CB7490 /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4151476C14100CB7490 /* Library.m */; };
 		E1EFC41B1476C2EE00CB7490 /* LibraryChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC41A1476C2EE00CB7490 /* LibraryChoiceViewController.m */; };
 		E1EFC4241476CD4400CB7490 /* LibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4231476CD4400CB7490 /* LibraryChoice.m */; };
 		E1EFC4281476D6AC00CB7490 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4271476D6AC00CB7490 /* ServiceFactory.m */; };
@@ -88,16 +88,12 @@
 		E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC4411476EB9A00CB7490 /* libraries.xml */; };
 		E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */; };
 		E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */; };
-		E1EFC44D1477200900CB7490 /* LibraryMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44C1477200900CB7490 /* LibraryMO.m */; };
-		E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */; };
 		E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC45314772B5100CB7490 /* ezdl_icon.png */; };
 		E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */; };
-		E1F4E246148B9D940003140E /* DLObjectMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E245148B9D940003140E /* DLObjectMO.m */; };
-		E1F4E24A148BA0430003140E /* DocumentMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E249148BA0430003140E /* DocumentMO.m */; };
-		E1F4E253148BA0440003140E /* AuthorMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E252148BA0440003140E /* AuthorMO.m */; };
+		E1F4E253148BA0440003140E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E252148BA0440003140E /* Author.m */; };
 		E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */; };
-		E1F4E25E148BCCDD0003140E /* PersonalLibraryReferenceMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */; };
-		E1F4E267148BCD8D0003140E /* PersonalLibraryGroupMO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */; };
+		E1F4E25E148BCCDD0003140E /* PersonalLibraryReference.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */; };
+		E1F4E267148BCD8D0003140E /* PersonalLibraryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E266148BCD8D0003140E /* PersonalLibraryGroup.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,10 +117,18 @@
 		E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringExtension.m"; sourceTree = "<group>"; };
 		E113C3071483FC610016D3EF /* DocumentLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentLinkViewController.h; sourceTree = "<group>"; };
 		E113C3081483FC610016D3EF /* DocumentLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentLinkViewController.m; sourceTree = "<group>"; };
-		E135180C148A4DD300B13A68 /* PersonalLibraryGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroup.h; sourceTree = "<group>"; };
-		E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroup.m; sourceTree = "<group>"; };
 		E1351810148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupAddViewController.h; sourceTree = "<group>"; };
 		E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupAddViewController.m; sourceTree = "<group>"; };
+		E156BE6A148D419E0062230F /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		E156BE6B148D419E0062230F /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		E156BE6D148D419F0062230F /* Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
+		E156BE6E148D419F0062230F /* Library.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Library.m; sourceTree = "<group>"; };
+		E156BE70148D41A00062230F /* DocumentDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetail.h; sourceTree = "<group>"; };
+		E156BE71148D41A00062230F /* DocumentDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentDetail.m; sourceTree = "<group>"; };
+		E156BE76148D41A20062230F /* DLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLObject.h; sourceTree = "<group>"; };
+		E156BE77148D41A30062230F /* DLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLObject.m; sourceTree = "<group>"; };
+		E156BE79148D429F0062230F /* DocumentLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentLink.h; sourceTree = "<group>"; };
+		E156BE7A148D429F0062230F /* DocumentLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentLink.m; sourceTree = "<group>"; };
 		E15D5EDA14893C7E00C78F1D /* PersonalLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryViewController.h; sourceTree = "<group>"; };
 		E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryViewController.m; sourceTree = "<group>"; };
 		E15D5EE014895E6E00C78F1D /* QueryResultOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultOptionsViewController.h; sourceTree = "<group>"; };
@@ -132,10 +136,11 @@
 		E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceAddViewController.h; sourceTree = "<group>"; };
 		E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceAddViewController.m; sourceTree = "<group>"; };
 		E15D5EE61489751B00C78F1D /* note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note.png; sourceTree = "<group>"; };
-		E15D5EE814897CAC00C78F1D /* PersonalLibraryReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReference.h; sourceTree = "<group>"; };
-		E15D5EE914897CAC00C78F1D /* PersonalLibraryReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReference.m; sourceTree = "<group>"; };
 		E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
 		E183BD60148135C200C65FAA /* DocumentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentDetailViewController.m; sourceTree = "<group>"; };
+		E1AF41EA148D448700B20175 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
+		E1AF41EB148D448700B20175 /* EntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityFactory.m; sourceTree = "<group>"; };
+		E1AF41ED148D4BEB00B20175 /* Entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entities.h; sourceTree = "<group>"; };
 		E1C45C28147D621D002DB8EC /* query_result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = query_result.xml; sourceTree = "<group>"; };
 		E1C45C2B147D6236002DB8EC /* doc_0815.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_0815.xml; sourceTree = "<group>"; };
 		E1C45C2C147D6236002DB8EC /* doc_1899.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc_1899.xml; sourceTree = "<group>"; };
@@ -180,10 +185,6 @@
 		E1EF23241477DCE3000EE7C9 /* QueryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryServiceImpl.h; sourceTree = "<group>"; };
 		E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryServiceImpl.m; sourceTree = "<group>"; };
-		E1EF23281477F2C6000EE7C9 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
-		E1EF23291477F2C6000EE7C9 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
-		E1EF232B1477F419000EE7C9 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		E1EF232C1477F419000EE7C9 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultItem.h; sourceTree = "<group>"; };
 		E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultItem.m; sourceTree = "<group>"; };
 		E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupQueryBackendService.h; sourceTree = "<group>"; };
@@ -219,10 +220,6 @@
 		E1EFC40A14769B5100CB7490 /* BasicQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicQueryViewController.h; sourceTree = "<group>"; };
 		E1EFC40B14769B5200CB7490 /* BasicQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicQueryViewController.m; sourceTree = "<group>"; };
 		E1EFC40C14769B5200CB7490 /* BasicQueryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryViewController.xib; sourceTree = "<group>"; };
-		E1EFC4111476C08000CB7490 /* DLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLObject.h; sourceTree = "<group>"; };
-		E1EFC4121476C08000CB7490 /* DLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLObject.m; sourceTree = "<group>"; };
-		E1EFC4141476C14100CB7490 /* Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
-		E1EFC4151476C14100CB7490 /* Library.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Library.m; sourceTree = "<group>"; };
 		E1EFC4191476C2EE00CB7490 /* LibraryChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryChoiceViewController.h; sourceTree = "<group>"; };
 		E1EFC41A1476C2EE00CB7490 /* LibraryChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryChoiceViewController.m; sourceTree = "<group>"; };
 		E1EFC4221476CD4400CB7490 /* LibraryChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryChoice.h; sourceTree = "<group>"; };
@@ -244,26 +241,18 @@
 		E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataServiceImpl.m; sourceTree = "<group>"; };
 		E1EFC44714770C5800CB7490 /* MutableLibraryChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableLibraryChoice.h; sourceTree = "<group>"; };
 		E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableLibraryChoice.m; sourceTree = "<group>"; };
-		E1EFC44B1477200900CB7490 /* LibraryMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMO.h; sourceTree = "<group>"; };
-		E1EFC44C1477200900CB7490 /* LibraryMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMO.m; sourceTree = "<group>"; };
-		E1EFC44E147720FE00CB7490 /* LibraryCoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCoreDataService.h; sourceTree = "<group>"; };
-		E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCoreDataService.m; sourceTree = "<group>"; };
 		E1EFC45314772B5100CB7490 /* ezdl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ezdl_icon.png; path = ../ezdl_icon.png; sourceTree = "<group>"; };
 		E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewControllerExtension.h"; sourceTree = "<group>"; };
 		E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerExtension.m"; sourceTree = "<group>"; };
-		E1F4E244148B9D940003140E /* DLObjectMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLObjectMO.h; sourceTree = "<group>"; };
-		E1F4E245148B9D940003140E /* DLObjectMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLObjectMO.m; sourceTree = "<group>"; };
-		E1F4E248148BA0430003140E /* DocumentMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentMO.h; sourceTree = "<group>"; };
-		E1F4E249148BA0430003140E /* DocumentMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentMO.m; sourceTree = "<group>"; };
-		E1F4E251148BA0440003140E /* AuthorMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorMO.h; sourceTree = "<group>"; };
-		E1F4E252148BA0440003140E /* AuthorMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorMO.m; sourceTree = "<group>"; };
+		E1F4E251148BA0440003140E /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		E1F4E252148BA0440003140E /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		E1F4E258148BA19B0003140E /* PersonalLibraryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryService.h; sourceTree = "<group>"; };
 		E1F4E259148BA2AB0003140E /* PersonalLibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryServiceImpl.h; sourceTree = "<group>"; };
 		E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryServiceImpl.m; sourceTree = "<group>"; };
-		E1F4E25C148BCCDC0003140E /* PersonalLibraryReferenceMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceMO.h; sourceTree = "<group>"; };
-		E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceMO.m; sourceTree = "<group>"; };
-		E1F4E265148BCD8D0003140E /* PersonalLibraryGroupMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupMO.h; sourceTree = "<group>"; };
-		E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupMO.m; sourceTree = "<group>"; };
+		E1F4E25C148BCCDC0003140E /* PersonalLibraryReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReference.h; sourceTree = "<group>"; };
+		E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReference.m; sourceTree = "<group>"; };
+		E1F4E265148BCD8D0003140E /* PersonalLibraryGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroup.h; sourceTree = "<group>"; };
+		E1F4E266148BCD8D0003140E /* PersonalLibraryGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,28 +539,8 @@
 		E1EFC40F1476C04100CB7490 /* Business Objects */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC4101476C04B00CB7490 /* DL Objects */,
 			);
 			name = "Business Objects";
-			sourceTree = "<group>";
-		};
-		E1EFC4101476C04B00CB7490 /* DL Objects */ = {
-			isa = PBXGroup;
-			children = (
-				E1EFC4111476C08000CB7490 /* DLObject.h */,
-				E1EFC4121476C08000CB7490 /* DLObject.m */,
-				E1EFC4141476C14100CB7490 /* Library.h */,
-				E1EFC4151476C14100CB7490 /* Library.m */,
-				E1EF23281477F2C6000EE7C9 /* Author.h */,
-				E1EF23291477F2C6000EE7C9 /* Author.m */,
-				E1EF232B1477F419000EE7C9 /* Document.h */,
-				E1EF232C1477F419000EE7C9 /* Document.m */,
-				E135180C148A4DD300B13A68 /* PersonalLibraryGroup.h */,
-				E135180D148A4DD300B13A68 /* PersonalLibraryGroup.m */,
-				E15D5EE814897CAC00C78F1D /* PersonalLibraryReference.h */,
-				E15D5EE914897CAC00C78F1D /* PersonalLibraryReference.m */,
-			);
-			name = "DL Objects";
 			sourceTree = "<group>";
 		};
 		E1EFC4181476C27B00CB7490 /* Library Choice */ = {
@@ -586,15 +555,15 @@
 		E1EFC41D1476CC2400CB7490 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC44A14771FEA00CB7490 /* Managed Objects */,
+				E1EFC44A14771FEA00CB7490 /* Entities */,
 				E1EFC3F01476917D00CB7490 /* CoreDataStack.h */,
 				E1EFC3F11476917D00CB7490 /* CoreDataStack.m */,
 				E1EFC4431476F31400CB7490 /* CoreDataService.h */,
 				E1EFC4441476F3B700CB7490 /* CoreDataServiceImpl.h */,
 				E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */,
-				E1EFC44E147720FE00CB7490 /* LibraryCoreDataService.h */,
-				E1EFC44F147720FE00CB7490 /* LibraryCoreDataService.m */,
 				E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */,
+				E1AF41EA148D448700B20175 /* EntityFactory.h */,
+				E1AF41EB148D448700B20175 /* EntityFactory.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -678,23 +647,28 @@
 			name = "Mockup Files";
 			sourceTree = "<group>";
 		};
-		E1EFC44A14771FEA00CB7490 /* Managed Objects */ = {
+		E1EFC44A14771FEA00CB7490 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC44B1477200900CB7490 /* LibraryMO.h */,
-				E1EFC44C1477200900CB7490 /* LibraryMO.m */,
-				E1F4E244148B9D940003140E /* DLObjectMO.h */,
-				E1F4E245148B9D940003140E /* DLObjectMO.m */,
-				E1F4E251148BA0440003140E /* AuthorMO.h */,
-				E1F4E252148BA0440003140E /* AuthorMO.m */,
-				E1F4E248148BA0430003140E /* DocumentMO.h */,
-				E1F4E249148BA0430003140E /* DocumentMO.m */,
-				E1F4E25C148BCCDC0003140E /* PersonalLibraryReferenceMO.h */,
-				E1F4E25D148BCCDD0003140E /* PersonalLibraryReferenceMO.m */,
-				E1F4E265148BCD8D0003140E /* PersonalLibraryGroupMO.h */,
-				E1F4E266148BCD8D0003140E /* PersonalLibraryGroupMO.m */,
+				E1F4E251148BA0440003140E /* Author.h */,
+				E1F4E252148BA0440003140E /* Author.m */,
+				E156BE76148D41A20062230F /* DLObject.h */,
+				E156BE77148D41A30062230F /* DLObject.m */,
+				E156BE6A148D419E0062230F /* Document.h */,
+				E156BE6B148D419E0062230F /* Document.m */,
+				E156BE70148D41A00062230F /* DocumentDetail.h */,
+				E156BE71148D41A00062230F /* DocumentDetail.m */,
+				E156BE79148D429F0062230F /* DocumentLink.h */,
+				E156BE7A148D429F0062230F /* DocumentLink.m */,
+				E156BE6D148D419F0062230F /* Library.h */,
+				E156BE6E148D419F0062230F /* Library.m */,
+				E1F4E265148BCD8D0003140E /* PersonalLibraryGroup.h */,
+				E1F4E266148BCD8D0003140E /* PersonalLibraryGroup.m */,
+				E1F4E25C148BCCDC0003140E /* PersonalLibraryReference.h */,
+				E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */,
+				E1AF41ED148D4BEB00B20175 /* Entities.h */,
 			);
-			name = "Managed Objects";
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		E1F4E254148BA1540003140E /* Personal Library Service */ = {
@@ -847,8 +821,6 @@
 				E1EFC40414769AD600CB7490 /* QueryViewController.m in Sources */,
 				E1EFC40814769B0C00CB7490 /* AdvancedQueryViewController.m in Sources */,
 				E1EFC40D14769B5200CB7490 /* BasicQueryViewController.m in Sources */,
-				E1EFC4131476C08000CB7490 /* DLObject.m in Sources */,
-				E1EFC4161476C14100CB7490 /* Library.m in Sources */,
 				E1EFC41B1476C2EE00CB7490 /* LibraryChoiceViewController.m in Sources */,
 				E1EFC4241476CD4400CB7490 /* LibraryChoice.m in Sources */,
 				E1EFC4281476D6AC00CB7490 /* ServiceFactory.m in Sources */,
@@ -857,14 +829,10 @@
 				E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */,
 				E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */,
 				E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */,
-				E1EFC44D1477200900CB7490 /* LibraryMO.m in Sources */,
-				E1EFC450147720FE00CB7490 /* LibraryCoreDataService.m in Sources */,
 				E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */,
 				E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */,
 				E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */,
 				E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */,
-				E1EF232A1477F2C6000EE7C9 /* Author.m in Sources */,
-				E1EF232D1477F419000EE7C9 /* Document.m in Sources */,
 				E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */,
 				E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */,
 				E1E30DE41478DC2D005DEC6B /* QueryExecutionViewController.m in Sources */,
@@ -883,15 +851,17 @@
 				E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */,
 				E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */,
 				E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */,
-				E15D5EEA14897CAC00C78F1D /* PersonalLibraryReference.m in Sources */,
-				E135180E148A4DD300B13A68 /* PersonalLibraryGroup.m in Sources */,
 				E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */,
-				E1F4E246148B9D940003140E /* DLObjectMO.m in Sources */,
-				E1F4E24A148BA0430003140E /* DocumentMO.m in Sources */,
-				E1F4E253148BA0440003140E /* AuthorMO.m in Sources */,
+				E1F4E253148BA0440003140E /* Author.m in Sources */,
 				E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */,
-				E1F4E25E148BCCDD0003140E /* PersonalLibraryReferenceMO.m in Sources */,
-				E1F4E267148BCD8D0003140E /* PersonalLibraryGroupMO.m in Sources */,
+				E1F4E25E148BCCDD0003140E /* PersonalLibraryReference.m in Sources */,
+				E1F4E267148BCD8D0003140E /* PersonalLibraryGroup.m in Sources */,
+				E156BE6C148D419E0062230F /* Document.m in Sources */,
+				E156BE6F148D419F0062230F /* Library.m in Sources */,
+				E156BE72148D41A00062230F /* DocumentDetail.m in Sources */,
+				E156BE78148D41A30062230F /* DLObject.m in Sources */,
+				E156BE7B148D42A00062230F /* DocumentLink.m in Sources */,
+				E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

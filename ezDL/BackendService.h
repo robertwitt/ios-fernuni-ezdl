@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Document.h"
 #import "QueryResult.h"
 
 @protocol BackendService <NSObject>

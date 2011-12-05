@@ -6,8 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Document.h"
-
 @protocol DocumentService <NSObject>
 
 - (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError **)error;

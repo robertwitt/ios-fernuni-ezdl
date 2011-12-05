@@ -7,13 +7,14 @@
 //
 
 #import "MockupDocumentBackendService.h"
+#import "EntityFactory.h"
 
 
 @interface MockupDocumentBackendService ()
 
 @property (nonatomic, strong) DocumentDetail *documentDetail;
 @property (nonatomic, strong) NSMutableString *documentAbstract;
-@property (nonatomic, strong) NSMutableArray *documentLinks;
+@property (nonatomic, strong) NSMutableSet *documentLinks;
 @property (nonatomic, strong) NSMutableString *documentLink;
 @property (nonatomic, strong) NSString *currentElement;
 
@@ -41,11 +42,11 @@ static NSString *ElementDocumentLink = @"docLink";
     parser.delegate = self;
     
     self.documentAbstract = [NSMutableString string];
-    self.documentLinks = [NSMutableArray array];
+    self.documentLinks = [NSMutableSet set];
     
     [parser parse];
     
-    self.documentDetail = [[DocumentDetail alloc] initWithObjectID:documentObjectID];
+    self.documentDetail = [[EntityFactory sharedFactory] documentDetail];//[[DocumentDetailBO alloc] initWithObjectID:documentObjectID];
     self.documentDetail.abstract = self.documentAbstract;
     self.documentDetail.links = self.documentLinks;
     
@@ -63,8 +64,9 @@ static NSString *ElementDocumentLink = @"docLink";
 {
     if ([elementName isEqualToString:ElementDocumentLink])
     {
-        NSURL *url = [NSURL URLWithString:self.documentLink];
-        [self.documentLinks addObject:url];
+        DocumentLink *link = [[EntityFactory sharedFactory] documentLink];
+        link.urlString = self.documentLink;
+        [self.documentLinks addObject:link];
     }
 }
 

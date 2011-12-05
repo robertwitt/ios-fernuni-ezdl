@@ -2,26 +2,18 @@
 //  Document.m
 //  ezDL
 //
-//  Created by Robert Witt on 19.11.11.
+//  Created by Robert Witt on 05.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "Document.h"
-
-
-@implementation DocumentDetail
-
-@synthesize abstract = _abstract;
-@synthesize links = _links;
-
-@end
-
+#import "Author.h"
 
 @implementation Document
 
-@synthesize title = _title;
-@synthesize authors = _authors;
-@synthesize year = _year;
-@synthesize detail = _detail;
+@dynamic title;
+@dynamic year;
+@dynamic authors;
+@dynamic detail;
 
 @end

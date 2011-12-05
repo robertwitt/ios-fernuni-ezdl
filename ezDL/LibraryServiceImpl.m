@@ -7,6 +7,7 @@
 //
 
 #import "LibraryServiceImpl.h"
+#import "CoreDataStack.h"
 #import "ServiceFactory.h"
 
 
@@ -37,7 +38,7 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 - (BOOL)isLibrarySelected:(Library *)library
 {
     BOOL selected = NO;
-    if ([self.selectedLibraryObjectIDs containsObject:library.objectID]) selected = YES;
+    if ([self.selectedLibraryObjectIDs containsObject:library.dlObjectID]) selected = YES;
     return selected;
 }
 
@@ -46,7 +47,7 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     NSMutableArray *libraryObjectIDs = [NSMutableArray array];
     for (Library *library in libraries)
     {
-        [libraryObjectIDs addObject:library.objectID];
+        [libraryObjectIDs addObject:library.dlObjectID];
     }
     [[NSUserDefaults standardUserDefaults] setObject:libraryObjectIDs forKey:UserDefaultsKey];
     _selectedLibraryObjectIDs = nil;
@@ -93,6 +94,7 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     if (!loadFromBackend)
     {
         libraries = [self loadLibraryFromDiskWithError:error];
+        if (!libraries || libraries.count == 0) libraries = [self loadLibraryFromBackendWithError:error];
     }
     else
     {
@@ -126,16 +128,16 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 - (NSArray *)loadLibraryFromDiskWithError:(NSError *__autoreleasing *)error
 {
-    NSArray *libraries = [[[ServiceFactory sharedFactory] coreDataService] loadLibrariesWithError:error];
-    if (!libraries || libraries.count == 0) libraries = [self loadLibraryFromBackendWithError:error];
-    return libraries;
+    return [[[ServiceFactory sharedFactory] coreDataService] fetchLibrariesWithError:error];
 }
 
 - (NSArray *)loadLibraryFromBackendWithError:(NSError *__autoreleasing *)error
 {
     ServiceFactory *serviceFactory = [ServiceFactory sharedFactory];
+    
+    [[serviceFactory coreDataService] deleteAllLibraries];
     NSArray *libraries = [[serviceFactory backendService] loadLibrariesWithError:error];
-    [[serviceFactory coreDataService] saveLibraries:libraries];
+    libraries = [[[ServiceFactory sharedFactory] coreDataService] saveLibraries];
     
     return libraries;
 }
@@ -152,10 +154,10 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     NSUInteger index = [allLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BOOL passed = NO;
         Library *library = obj;
-        if ([library.objectID isEqualToString:objectID])
+        if ([library.dlObjectID isEqualToString:objectID])
         {
             passed = YES;
-            stop = &passed;
+            *stop = YES;
         }
         return passed;
     }];

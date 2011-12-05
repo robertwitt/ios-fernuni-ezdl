@@ -6,8 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Document.h"
-#import "PersonalLibraryReferenceMO.h"
+#import "PersonalLibraryReference.h"
 #import "PersonalLibraryGroupAddViewController.h"
 
 
@@ -15,7 +14,7 @@
 @protocol PersonalLibraryReferenceAddViewControllerDelegate <NSObject>
 
 - (void)didCancelReferenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController;
-- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReferenceMO *)reference;
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference;
 
 @end
 

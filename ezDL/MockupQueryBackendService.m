@@ -7,7 +7,7 @@
 //
 
 #import "MockupQueryBackendService.h"
-#import "Author.h"
+#import "EntityFactory.h"
 #import "QueryResultItem.h"
 #import "ServiceFactory.h"
 
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *currentElement;
 @property (nonatomic, strong) NSMutableString *documentObjectID;
 @property (nonatomic, strong) NSMutableString *documentTitle;
-@property (nonatomic, strong) NSMutableArray *documentAuthors;
+@property (nonatomic, strong) NSMutableSet *documentAuthors;
 @property (nonatomic, strong) NSMutableString *documentAuthorFirstName;
 @property (nonatomic, strong) NSMutableString *documentAuthorLastName;
 @property (nonatomic, strong) NSMutableString *documentYear;
@@ -76,7 +76,7 @@ static NSString *ElementRelevance = @"relevance";
     {
         self.documentObjectID = [NSMutableString string];
         self.documentTitle = [NSMutableString string];
-        self.documentAuthors = [NSMutableArray array];
+        self.documentAuthors = [NSMutableSet set];
         self.documentYear = [NSMutableString string];
         self.libraryObjectID = [NSMutableString string];
         self.relevance = [NSMutableString string];
@@ -95,14 +95,16 @@ static NSString *ElementRelevance = @"relevance";
 {
     if ([elementName isEqualToString:ElementDocumentAuthor])
     {
-        Author *author = [Author authorWithFirstName:self.documentAuthorFirstName
-                                            lastName:self.documentAuthorLastName];
+        Author *author = [[EntityFactory sharedFactory] author];
+        author.firstName = self.documentAuthorFirstName;
+        author.lastName = self.documentAuthorLastName;
         [self.documentAuthors addObject:author];
     }
     
     if ([elementName isEqualToString:ElementQueryResultItem])
     {
-        Document *document = [[Document alloc] initWithObjectID:self.documentObjectID];
+        Document *document = [[EntityFactory sharedFactory] document];
+        document.dlObjectID = self.documentObjectID;
         document.title = self.documentTitle;
         document.authors = self.documentAuthors;
         document.year = self.documentYear;

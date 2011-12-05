@@ -2,14 +2,12 @@
 //  DLObject.h
 //  ezDL
 //
-//  Created by Robert Witt on 18.11.11.
+//  Created by Robert Witt on 05.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@interface DLObject : NSObject
+@interface DLObject : NSManagedObject
 
-@property (nonatomic, strong, readonly) NSString *objectID;
-
-- (id)initWithObjectID:(NSString *)objectID;
+@property (nonatomic, strong) NSString *dlObjectID;
 
 @end

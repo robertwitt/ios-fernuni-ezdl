@@ -10,15 +10,15 @@
 #import "ServiceFactory.h"
 
 // TODO Temporary import
-#import "AuthorMO.h"
+#import "Author.h"
 
 
 @interface PersonalLibraryViewController ()
 
 @property (nonatomic, weak, readonly) id<PersonalLibraryService> personalLibraryService;
 
-- (PersonalLibraryGroupMO *)groupInSection:(NSInteger)section;
-- (PersonalLibraryReferenceMO *)referenceAtIndexPath:(NSIndexPath *)indexPath;
+- (PersonalLibraryGroup *)groupInSection:(NSInteger)section;
+- (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)stringFromAuthors:(NSSet *)authors;
 
 @end
@@ -49,14 +49,14 @@
     return _personalLibraryService;
 }
 
-- (PersonalLibraryGroupMO *)groupInSection:(NSInteger)section
+- (PersonalLibraryGroup *)groupInSection:(NSInteger)section
 {
     return [[self.personalLibraryService personalLibraryGroups] objectAtIndex:section];
 }
 
-- (PersonalLibraryReferenceMO *)referenceAtIndexPath:(NSIndexPath *)indexPath
+- (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonalLibraryGroupMO *group = [self groupInSection:indexPath.section];
+    PersonalLibraryGroup *group = [self groupInSection:indexPath.section];
     NSArray *references = [group.references allObjects];
     return [references objectAtIndex:indexPath.row];
 }
@@ -75,7 +75,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReferenceCell"];
     
-    PersonalLibraryReferenceMO *reference = [self referenceAtIndexPath:indexPath];
+    PersonalLibraryReference *reference = [self referenceAtIndexPath:indexPath];
     cell.textLabel.text = reference.document.title;
     cell.detailTextLabel.text = [self stringFromAuthors:reference.document.authors];
     
@@ -88,7 +88,7 @@
     NSArray *array = [authors allObjects];
     
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        AuthorMO *author = obj;
+        Author *author = obj;
         if (idx == 0) [string appendString:author.fullName];
         else [string appendFormat:@"; %@", author.fullName];
     }];

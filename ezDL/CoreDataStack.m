@@ -23,6 +23,7 @@ static CoreDataStack *Singleton;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize scratchManagedObjectContext = _scratchManagedObjectContext;
 
 + (CoreDataStack *)sharedCoreDataStack 
 {
@@ -108,10 +109,24 @@ static CoreDataStack *Singleton;
     return _persistentStoreCoordinator;
 }
 
+- (NSManagedObjectContext *)scratchManagedObjectContext
+{
+    if (!_scratchManagedObjectContext) 
+    {
+        NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        if (coordinator) 
+        {
+            _scratchManagedObjectContext = [[NSManagedObjectContext alloc] init];
+            [_scratchManagedObjectContext setPersistentStoreCoordinator:coordinator];
+        }
+    }
+    return _scratchManagedObjectContext;
+}
+
 - (NSURL *)applicationDocumentsDirectory
 {
     // Returns the URL to the application's Documents directory.
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (void)saveContext

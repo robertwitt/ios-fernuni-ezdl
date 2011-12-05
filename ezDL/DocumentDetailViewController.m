@@ -7,7 +7,6 @@
 //
 
 #import "DocumentDetailViewController.h"
-#import "Author.h"
 #import "QueryController.h"
 #import "ServiceFactory.h"
 
@@ -199,7 +198,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (UITableViewCell *)documentAuthorCellForRow:(NSInteger)row
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DocumentAuthorCell"];
-    Author *author = [self.displayedDocument.authors objectAtIndex:row];
+    Author *author = [self.displayedDocument.authors.allObjects objectAtIndex:row];
     cell.textLabel.text = author.fullName;
     return cell;
 }
@@ -215,8 +214,8 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (UITableViewCell *)documentLinkCellForRow:(NSInteger)row
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DocumentLinkCell"];
-    NSURL *link = [self.displayedDocument.detail.links objectAtIndex:row];
-    cell.textLabel.text = link.absoluteString;
+    DocumentLink *link = [self.displayedDocument.detail.links.allObjects objectAtIndex:row];
+    cell.textLabel.text = link.urlString;
     return cell;
 }
 
@@ -319,7 +318,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-    Author *selectedAuthor = [self.displayedDocument.authors objectAtIndex:indexPath.row];
+    Author *selectedAuthor = [self.displayedDocument.authors.allObjects objectAtIndex:indexPath.row];
     QueryController *queryController = (QueryController *)segue.destinationViewController;
     queryController.query = [self buildQueryWithAuthor:selectedAuthor];
 }
@@ -343,7 +342,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSURL *selectedLink = [self.displayedDocument.detail.links objectAtIndex:indexPath.row];
+    NSURL *selectedLink = [self.displayedDocument.detail.links.allObjects objectAtIndex:indexPath.row];
     DocumentLinkViewController *viewController = (DocumentLinkViewController *)segue.destinationViewController;
     viewController.displayedLink = selectedLink;
     viewController.delegate = self;
@@ -368,7 +367,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReferenceMO *)reference
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
 {
     // TODO Implementation needed
     [viewController dismissViewControllerAnimated:YES completion:^{

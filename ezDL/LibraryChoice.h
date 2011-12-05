@@ -6,8 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Library.h"
-
 @interface LibraryChoice : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *selectedLibraries;
