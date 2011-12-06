@@ -13,6 +13,7 @@
 		E10FC947147C4E7A000F41A8 /* NSString+NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */; };
 		E113C3091483FC610016D3EF /* DocumentLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E113C3081483FC610016D3EF /* DocumentLinkViewController.m */; };
 		E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */; };
+		E1404D15148EB2B400E4A1EE /* PersonalLibraryGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1404D14148EB2B200E4A1EE /* PersonalLibraryGroupsViewController.m */; };
 		E156BE6C148D419E0062230F /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE6B148D419E0062230F /* Document.m */; };
 		E156BE6F148D419F0062230F /* Library.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE6E148D419F0062230F /* Library.m */; };
 		E156BE72148D41A00062230F /* DocumentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE71148D41A00062230F /* DocumentDetail.m */; };
@@ -86,7 +87,6 @@
 		E1EFC43C1476EACF00CB7490 /* MockupBackendServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */; };
 		E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */; };
 		E1EFC4421476EB9A00CB7490 /* libraries.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC4411476EB9A00CB7490 /* libraries.xml */; };
-		E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */; };
 		E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */; };
 		E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC45314772B5100CB7490 /* ezdl_icon.png */; };
 		E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */; };
@@ -119,6 +119,8 @@
 		E113C3081483FC610016D3EF /* DocumentLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentLinkViewController.m; sourceTree = "<group>"; };
 		E1351810148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupAddViewController.h; sourceTree = "<group>"; };
 		E1351811148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupAddViewController.m; sourceTree = "<group>"; };
+		E1404D13148EB2B000E4A1EE /* PersonalLibraryGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroupsViewController.h; sourceTree = "<group>"; };
+		E1404D14148EB2B200E4A1EE /* PersonalLibraryGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryGroupsViewController.m; sourceTree = "<group>"; };
 		E156BE6A148D419E0062230F /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		E156BE6B148D419E0062230F /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		E156BE6D148D419F0062230F /* Library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
@@ -236,9 +238,6 @@
 		E1EFC43D1476EB3000CB7490 /* MockupLibraryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupLibraryBackendService.h; sourceTree = "<group>"; };
 		E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupLibraryBackendService.m; sourceTree = "<group>"; };
 		E1EFC4411476EB9A00CB7490 /* libraries.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = libraries.xml; sourceTree = "<group>"; };
-		E1EFC4431476F31400CB7490 /* CoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
-		E1EFC4441476F3B700CB7490 /* CoreDataServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataServiceImpl.h; sourceTree = "<group>"; };
-		E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataServiceImpl.m; sourceTree = "<group>"; };
 		E1EFC44714770C5800CB7490 /* MutableLibraryChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableLibraryChoice.h; sourceTree = "<group>"; };
 		E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableLibraryChoice.m; sourceTree = "<group>"; };
 		E1EFC45314772B5100CB7490 /* ezdl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ezdl_icon.png; path = ../ezdl_icon.png; sourceTree = "<group>"; };
@@ -305,6 +304,8 @@
 			children = (
 				E15D5EDA14893C7E00C78F1D /* PersonalLibraryViewController.h */,
 				E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */,
+				E1404D13148EB2B000E4A1EE /* PersonalLibraryGroupsViewController.h */,
+				E1404D14148EB2B200E4A1EE /* PersonalLibraryGroupsViewController.m */,
 				E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */,
 				E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */,
 				E1351810148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.h */,
@@ -484,7 +485,6 @@
 		E1EFC3EE1476914F00CB7490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC40F1476C04100CB7490 /* Business Objects */,
 				E1EFC41D1476CC2400CB7490 /* Core Data */,
 				E1EFC41E1476CC4A00CB7490 /* Services */,
 			);
@@ -536,13 +536,6 @@
 			name = Query;
 			sourceTree = "<group>";
 		};
-		E1EFC40F1476C04100CB7490 /* Business Objects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Business Objects";
-			sourceTree = "<group>";
-		};
 		E1EFC4181476C27B00CB7490 /* Library Choice */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,12 +551,7 @@
 				E1EFC44A14771FEA00CB7490 /* Entities */,
 				E1EFC3F01476917D00CB7490 /* CoreDataStack.h */,
 				E1EFC3F11476917D00CB7490 /* CoreDataStack.m */,
-				E1EFC4431476F31400CB7490 /* CoreDataService.h */,
-				E1EFC4441476F3B700CB7490 /* CoreDataServiceImpl.h */,
-				E1EFC4451476F3B700CB7490 /* CoreDataServiceImpl.m */,
 				E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */,
-				E1AF41EA148D448700B20175 /* EntityFactory.h */,
-				E1AF41EB148D448700B20175 /* EntityFactory.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -667,6 +655,8 @@
 				E1F4E25C148BCCDC0003140E /* PersonalLibraryReference.h */,
 				E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */,
 				E1AF41ED148D4BEB00B20175 /* Entities.h */,
+				E1AF41EA148D448700B20175 /* EntityFactory.h */,
+				E1AF41EB148D448700B20175 /* EntityFactory.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -827,7 +817,6 @@
 				E1EFC42B1476D6FE00CB7490 /* LibraryServiceImpl.m in Sources */,
 				E1EFC43C1476EACF00CB7490 /* MockupBackendServiceImpl.m in Sources */,
 				E1EFC43F1476EB3000CB7490 /* MockupLibraryBackendService.m in Sources */,
-				E1EFC4461476F3B800CB7490 /* CoreDataServiceImpl.m in Sources */,
 				E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */,
 				E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */,
 				E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */,
@@ -862,6 +851,7 @@
 				E156BE78148D41A30062230F /* DLObject.m in Sources */,
 				E156BE7B148D42A00062230F /* DocumentLink.m in Sources */,
 				E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */,
+				E1404D15148EB2B400E4A1EE /* PersonalLibraryGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,6 @@
 
 @protocol DocumentService <NSObject>
 
-- (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError **)error;
+- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError **)error;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "PersonalLibraryServiceImpl.h"
 #import "CoreDataStack.h"
+#import "EntityFactory.h"
 
 
 @interface PersonalLibraryServiceImpl ()
@@ -48,8 +49,7 @@
 
 - (PersonalLibraryGroup *)newGroupWithName:(NSString *)name
 {
-    PersonalLibraryGroup *group = (PersonalLibraryGroup *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryGroup
-                                                                                            inManagedObjectContext:self.coreDataStack.managedObjectContext];
+    PersonalLibraryGroup *group = [[EntityFactory sharedFactory] persistentPersonalLibraryGroup];
     group.name = name;
     return group;
 }
@@ -60,6 +60,13 @@
     [self.groups addObject:group];
 }
 
+- (void)deleteGroup:(PersonalLibraryGroup *)group
+{
+    [self.groups removeObject:group];
+    [self.coreDataStack.managedObjectContext deleteObject:group];
+    [self.coreDataStack saveContext];
+}
+
 - (NSArray *)personalLibraryGroups
 {
     return self.groups;
@@ -67,16 +74,28 @@
 
 - (PersonalLibraryReference *)newReferenceWithDocument:(Document *)document
 {
-    PersonalLibraryReference *reference = (PersonalLibraryReference *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityPersonalLibraryReference
-                                                                                                        inManagedObjectContext:self.coreDataStack.managedObjectContext];
-    reference.document = document;
+    EntityFactory *factory = [EntityFactory sharedFactory];
+    PersonalLibraryReference *reference = [factory persistentPersonalLibraryReference];
+    reference.document = [factory persistentDocumentWithDocument:document];
     return reference;
 }
 
 - (void)saveReference:(PersonalLibraryReference *)reference
 {
     [self.coreDataStack saveContext];
-    // TODO Implementation needed
+}
+
+- (void)deleteReference:(PersonalLibraryReference *)reference
+{
+    [reference.group removeReferencesObject:reference];
+    [self.coreDataStack.managedObjectContext deleteObject:reference];
+    [self.coreDataStack saveContext];
+}
+
+- (void)moveReference:(PersonalLibraryReference *)reference toGroup:(PersonalLibraryGroup *)group
+{
+    reference.group = group;
+    [self.coreDataStack saveContext];
 }
 
 @end

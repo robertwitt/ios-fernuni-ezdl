@@ -156,7 +156,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger numberOfRows;
+    NSInteger numberOfRows = 0;
     
     if (section == self.documentTitleSection) numberOfRows = 1;
     if (section == self.documentYearSection) numberOfRows = 1;
@@ -369,12 +369,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 
 - (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
 {
-    // TODO Implementation needed
-    [viewController dismissViewControllerAnimated:YES completion:^{
-        [self showSimpleAlertWithTitle:@"Document added" 
-                               message:reference.document.title
-                                   tag:0];
-    }];
+    [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

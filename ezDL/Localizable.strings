@@ -13,10 +13,13 @@
 "Decade" = "Decade";
 "Deselect all" = "Deselect all";
 "descending" = "descending";
+"Empty Group" = "Empty Group";
+"Empty Group Message" = "Group '%@' is empty. Would you like to delete it?";
 "Error Occured" = "Error Occured";
 "Grouped by" = "Grouped by";
 "Library" = "Library";
 "Links" = "Links";
+"No" = "No";
 "No Libraries Selected Text" = "The search could not be executed because no digital libraries were selected.";
 "Nothing" = "Nothing";
 "Not grouped" = "Not grouped";
@@ -29,3 +32,4 @@
 "Title" = "Title";
 "Year" = "Year";
 "Years" = "Years";
+"Yes" = "Yes";

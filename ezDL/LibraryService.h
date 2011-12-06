@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MutableLibraryChoice.h"
+#import "LibraryChoice.h"
 
 @protocol LibraryService <NSObject>
 

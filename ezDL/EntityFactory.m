@@ -25,6 +25,7 @@
 
 @end
 
+
 @implementation EntityFactory
 
 @synthesize coreDataStack = _coreDataStack;

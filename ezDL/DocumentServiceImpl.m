@@ -11,9 +11,10 @@
 
 @implementation DocumentServiceImpl
 
-- (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
+- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
 {
     [[[ServiceFactory sharedFactory] backendService] loadDocumentDetailInDocument:document withError:error];
+    return (error == nil);
 }
 
 @end

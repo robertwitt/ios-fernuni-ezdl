@@ -6,6 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@interface PersonalLibraryViewController : UITableViewController
+#import "PersonalLibraryGroupsViewController.h"
+
+@interface PersonalLibraryViewController : UITableViewController <PersonalLibraryGroupsViewControllerDelegate>
+
+- (IBAction)openGroups:(UIBarButtonItem *)sender;
 
 @end

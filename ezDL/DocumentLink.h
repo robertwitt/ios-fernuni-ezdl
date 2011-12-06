@@ -9,6 +9,6 @@
 @interface DocumentLink : NSManagedObject
 
 @property (nonatomic, strong) NSString  *urlString;
-@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong, readonly) NSURL *url;
 
 @end

@@ -9,9 +9,6 @@
 #import "PersonalLibraryReferenceAddViewController.h"
 #import "ServiceFactory.h"
 
-// TODO Temporary imports
-#import "CoreDataStack.h"
-
 
 @interface PersonalLibraryReferenceAddViewController ()
 
@@ -19,7 +16,6 @@
 @property (nonatomic, weak) PersonalLibraryGroup *selectedGroup;
 
 - (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-- (Document *)convertDocumentToManagedObject;
 
 @end
 
@@ -90,10 +86,7 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 - (IBAction)save
 {
     // Perform saving the document as reference
-    
-    // TODO Temporary implementation
-    Document *document = [self convertDocumentToManagedObject];
-    PersonalLibraryReference *reference = [self.personalLibraryService newReferenceWithDocument:document];
+    PersonalLibraryReference *reference = [self.personalLibraryService newReferenceWithDocument:self.referenceDocument];
     reference.group = self.selectedGroup;
     reference.keywordString = self.keyWordsTextField.text;
     reference.note = self.notesTextView.text;
@@ -107,28 +100,6 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 {
     if (!_personalLibraryService) _personalLibraryService = [[ServiceFactory sharedFactory] personalLibraryService];
     return _personalLibraryService;
-}
-
-- (Document *)convertDocumentToManagedObject
-{
-    NSManagedObjectContext *managedObjectContext = [CoreDataStack sharedCoreDataStack].managedObjectContext;
-    NSMutableSet *authors = [NSMutableSet set];
-    for (Author *author in self.referenceDocument.authors)
-    {
-        Author *authorMO = (Author *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityAuthor
-                                                                       inManagedObjectContext:managedObjectContext];
-        authorMO.firstName = author.firstName;
-        authorMO.lastName = author.lastName;
-        [authors addObject:authorMO];
-    }
-    
-    Document *document = (Document *)[NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityDocument
-                                                                       inManagedObjectContext:managedObjectContext];
-    document.title = self.referenceDocument.title;
-    document.year = self.referenceDocument.year;
-    document.authors = authors;
-    
-    return document;
 }
 
 #pragma mark Putting Reference into Groups in Personal Library

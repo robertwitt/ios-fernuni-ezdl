@@ -7,7 +7,6 @@
 //
 
 #import "BackendService.h"
-#import "CoreDataService.h"
 #import "DocumentService.h"
 #import "LibraryService.h"
 #import "PersonalLibraryService.h"
@@ -20,7 +19,6 @@
 - (id<LibraryService>)libraryService;
 - (id<DocumentService>)documentService;
 - (id<PersonalLibraryService>)personalLibraryService;
-- (id<CoreDataService>)coreDataService;
 - (id<BackendService>)backendService;
 
 @end

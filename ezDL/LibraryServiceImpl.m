@@ -56,12 +56,70 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 @end
 
 
+
+#pragma mark - Library Core Data Service
+
+@interface LibraryCoreDataService : NSObject
+
+@property (nonatomic, weak, readonly) CoreDataStack *coreDataStack;
+
+- (NSArray *)fetchLibrariesWithError:(NSError **)error;
+- (NSArray *)saveLibraries;
+- (void)deleteAllLibraries;
+
+@end
+
+
+@implementation LibraryCoreDataService
+
+@synthesize coreDataStack = _coreDataStack;
+
+- (CoreDataStack *)coreDataStack
+{
+    if (!_coreDataStack) _coreDataStack = [CoreDataStack sharedCoreDataStack];
+    return _coreDataStack;
+}
+
+- (NSArray *)fetchLibrariesWithError:(NSError *__autoreleasing *)error
+{
+    // Fetch result from disk. First create a request for library entity.
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:CoreDataEntityLibrary
+                                              inManagedObjectContext:self.coreDataStack.managedObjectContext];
+    request.entity = entity;
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:kLibraryName ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    // Execute the request
+    return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:error];
+}
+
+- (NSArray *)saveLibraries
+{
+    [self.coreDataStack saveContext];
+    return [self fetchLibrariesWithError:nil];
+}
+
+- (void)deleteAllLibraries
+{
+    for (Library *library in [self fetchLibrariesWithError:nil])
+    {
+        [self.coreDataStack.managedObjectContext deleteObject:library];
+    }
+}
+
+@end
+
+
+
 #pragma mark - Library Service Implementation
 
 @interface LibraryServiceImpl ()
 
 @property (nonatomic, strong) LibraryChoice *currentLibraryChoice;
 @property (nonatomic, strong, readonly) LibraryUserDefaultsService *userDefaultsService;
+@property (nonatomic, strong, readonly) LibraryCoreDataService *coreDataService;
 
 - (NSArray *)loadLibraryFromDiskWithError:(NSError **)error;
 - (NSArray *)loadLibraryFromBackendWithError:(NSError **)error;
@@ -74,11 +132,18 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 @synthesize currentLibraryChoice = _currentLibraryChoice;
 @synthesize userDefaultsService = _userDefaultsService;
+@synthesize coreDataService = _coreDataService;
 
 - (LibraryUserDefaultsService *)userDefaultsService
 {
     if (!_userDefaultsService) _userDefaultsService = [[LibraryUserDefaultsService alloc] init];
     return _userDefaultsService;
+}
+
+- (LibraryCoreDataService *)coreDataService
+{
+    if (!_coreDataService) _coreDataService = [[LibraryCoreDataService alloc] init];
+    return _coreDataService;
 }
 
 - (LibraryChoice *)libraryChoice
@@ -128,16 +193,14 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 - (NSArray *)loadLibraryFromDiskWithError:(NSError *__autoreleasing *)error
 {
-    return [[[ServiceFactory sharedFactory] coreDataService] fetchLibrariesWithError:error];
+    return [self.coreDataService fetchLibrariesWithError:error];
 }
 
 - (NSArray *)loadLibraryFromBackendWithError:(NSError *__autoreleasing *)error
 {
-    ServiceFactory *serviceFactory = [ServiceFactory sharedFactory];
-    
-    [[serviceFactory coreDataService] deleteAllLibraries];
-    NSArray *libraries = [[serviceFactory backendService] loadLibrariesWithError:error];
-    libraries = [[[ServiceFactory sharedFactory] coreDataService] saveLibraries];
+    [self.coreDataService deleteAllLibraries];
+    [[[ServiceFactory sharedFactory] backendService] loadLibrariesWithError:error];
+    NSArray *libraries = [self.coreDataService saveLibraries];
     
     return libraries;
 }

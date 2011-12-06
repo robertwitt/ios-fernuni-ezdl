@@ -47,7 +47,7 @@
     return queryResult;
 }
 
-- (void)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
+- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
 {
     MockupDocumentBackendService *service = [[MockupDocumentBackendService alloc] init];
     DocumentDetail *documentDetail = [service documentDetailWithDocumentObjectID:document.dlObjectID];
@@ -55,6 +55,8 @@
     
     // Introduce artificial response time from Backend
     sleep(1);
+    
+    return (error == nil);
 }
 
 @end
