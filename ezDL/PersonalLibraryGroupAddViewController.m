@@ -12,6 +12,7 @@
 @implementation PersonalLibraryGroupAddViewController
 
 @synthesize groupNameTextField = _groupNameTextField;
+@synthesize saveItem = _saveItem;
 @synthesize delegate = _delegate;
 
 #pragma mark Managing the View
@@ -19,6 +20,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(500.0f, 200.0f);
 }
 
 - (IBAction)save
@@ -31,6 +37,22 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     [self.delegate groupAddViewController:self didSaveGroup:group];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *textAfterChange = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([textAfterChange isNilOrEmpty]) self.saveItem.enabled = NO;
+    else self.saveItem.enabled = YES;
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    self.saveItem.enabled = NO;    
+    return YES;
 }
 
 @end

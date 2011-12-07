@@ -24,6 +24,10 @@
 "Nothing" = "Nothing";
 "Not grouped" = "Not grouped";
 "OK" = "OK";
+"Reference" = "Reference";
+"References" = "References";
+"References Exist" = "References Exist";
+"References Exist Message" = "Group '%@' still got references. Would you like to delete it anyway?";
 "Relevance" = "Relevance";
 "Result" = "Result";
 "Results" = "Results";

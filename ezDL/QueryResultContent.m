@@ -75,6 +75,7 @@
     
     [self.groupedRows removeAllObjects];    
     _sections = nil;
+    _allDocuments = nil;
 }
 
 - (void)setGrouping:(QueryResultGrouping *)grouping

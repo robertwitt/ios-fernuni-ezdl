@@ -54,6 +54,15 @@ static EntityFactory *Singleton;
     return [self entityWithName:CoreDataEntityAuthor inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
 }
 
+- (Author *)authorWithPersistentAuthor:(Author *)persistentAuthor
+{
+    Author *author = [self author];
+    author.dlObjectID = persistentAuthor.dlObjectID;
+    author.firstName = persistentAuthor.firstName;
+    author.lastName = persistentAuthor.lastName;
+    return author;
+}
+
 - (Author *)persistentAuthor
 {
     return [self entityWithName:CoreDataEntityAuthor inManagedObjectContext:self.coreDataStack.managedObjectContext];
@@ -71,6 +80,21 @@ static EntityFactory *Singleton;
 - (Document *)document
 {
     return [self entityWithName:CoreDataEntityDocument inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
+}
+
+- (Document *)documentWithPersistentDocument:(Document *)persistentDocument
+{
+    Document *document = [self document];
+    document.dlObjectID = persistentDocument.dlObjectID;
+    document.title = persistentDocument.title;
+    document.year = persistentDocument.year;
+    
+    for (Author *persistentAuthor in persistentDocument.authors)
+    {
+        Author *author = [self authorWithPersistentAuthor:persistentAuthor];
+        [document addAuthorsObject:author];
+    }
+    return document;
 }
 
 - (Document *)persistentDocument

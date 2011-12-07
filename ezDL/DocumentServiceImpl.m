@@ -13,7 +13,11 @@
 
 - (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
 {
-    [[[ServiceFactory sharedFactory] backendService] loadDocumentDetailInDocument:document withError:error];
+    DocumentDetail *detail = [[[ServiceFactory sharedFactory] backendService] loadDocumentDetailOfDocument:document withError:error];
+    
+    // TODO Handle case when document is persistent. System crashes when attempting to assign transient detail to persisten document.
+    document.detail = detail;
+    
     return (error == nil);
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "PersonalLibraryViewController.h"
+#import "DocumentDetailViewController.h"
 #import "ServiceFactory.h"
 
 
@@ -22,6 +23,7 @@
 - (NSString *)stringFromAuthors:(NSSet *)authors;
 - (void)askToDeleteGroupInSection:(NSInteger)section;
 - (void)prepareForGroupsSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end
 
@@ -29,6 +31,7 @@
 @implementation PersonalLibraryViewController
 
 static NSString *SegueIdentifierGroups = @"GroupsSegue";
+static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
 
 @synthesize groupsPopover = _groupsPopover;
 @synthesize personalLibraryService = _personalLibraryService;
@@ -41,7 +44,7 @@ static NSString *SegueIdentifierGroups = @"GroupsSegue";
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // In self.displayedGroups those groups are collected that shall be displayed
     self.displayedGroups = [NSMutableArray arrayWithArray:[self.personalLibraryService personalLibraryGroups]];
@@ -129,6 +132,11 @@ static NSString *SegueIdentifierGroups = @"GroupsSegue";
     {
         [self prepareForGroupsSegue:segue sender:sender];
     }
+    
+    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail])
+    {
+        [self prepareForDocumentDetailSegue:segue sender:sender];
+    }
 }
 
 #pragma mark Deleting of References and Groups
@@ -200,26 +208,25 @@ static NSString *SegueIdentifierGroups = @"GroupsSegue";
 - (void)prepareForGroupsSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     PersonalLibraryGroupsViewController *viewController = (PersonalLibraryGroupsViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
-    viewController.selectedGroups = self.displayedGroups;
+    viewController.displayedGroups = self.displayedGroups;
     viewController.delegate = self;
     
     self.groupsPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
-}
-
-- (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didAddGroup:(PersonalLibraryGroup *)group
-{
-    // TODO Implementation needed
-}
-
-- (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didDeleteGroup:(PersonalLibraryGroup *)group
-{
-    // TODO Implementation needed
 }
 
 - (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didChangeGroupSelection:(NSArray *)groups
 {
     self.displayedGroups = [NSMutableArray arrayWithArray:groups];
     [self.tableView reloadData];
+}
+
+#pragma mark Displaying the Document in the Reference
+
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DocumentDetailViewController *viewController = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+    viewController.displayedDocument = [self referenceAtIndexPath:indexPath].document;
 }
 
 @end

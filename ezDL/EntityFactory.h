@@ -19,10 +19,12 @@
 + (EntityFactory *)sharedFactory;
 
 - (Author *)author;
+- (Author *)authorWithPersistentAuthor:(Author *)persistentAuthor;
 - (Author *)persistentAuthor;
 - (Author *)persistentAuthorWithAuthor:(Author *)author;
 
 - (Document *)document;
+- (Document *)documentWithPersistentDocument:(Document *)persistentDocument;
 - (Document *)persistentDocument;
 - (Document *)persistentDocumentWithDocument:(Document *)document;
 

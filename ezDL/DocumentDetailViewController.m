@@ -105,7 +105,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 }
 
 - (void)setDisplayedDocument:(Document *)displayedDocument
-{
+{    
     _displayedDocument = displayedDocument;
     
     self.numberOfSections = 0;

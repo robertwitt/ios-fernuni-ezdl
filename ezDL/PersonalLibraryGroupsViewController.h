@@ -6,18 +6,23 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "PersonalLibraryGroupAddViewController.h"
+
+
 @class PersonalLibraryGroupsViewController;
 @protocol PersonalLibraryGroupsViewControllerDelegate <NSObject>
 
+@optional
 - (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didAddGroup:(PersonalLibraryGroup *)group;
 - (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didDeleteGroup:(PersonalLibraryGroup *)group;
 - (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didChangeGroupSelection:(NSArray *)groups;
 
 @end
 
-@interface PersonalLibraryGroupsViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *selectedGroups;
+@interface PersonalLibraryGroupsViewController : UITableViewController <PersonalLibraryGroupAddViewControllerDelegate>
+
+@property (nonatomic, strong) NSArray *displayedGroups;
 @property (nonatomic, weak) id<PersonalLibraryGroupsViewControllerDelegate> delegate;
 
 @end

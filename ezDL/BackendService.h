@@ -12,6 +12,6 @@
 
 - (NSArray *)loadLibrariesWithError:(NSError **)error;
 - (QueryResult *)executeQuery:(id<Query>)query withError:(NSError **)error;
-- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError **)error;
+- (DocumentDetail *)loadDocumentDetailOfDocument:(Document *)document withError:(NSError **)error;
 
 @end
