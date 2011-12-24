@@ -34,6 +34,18 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 
 #pragma mark Managing the View
 
+- (void)viewDidUnload
+{
+    self.groupTableView = nil;
+    self.keyWordsTextField = nil;
+    self.notesTextView = nil;
+    self.referenceDocument = nil;
+    self.delegate = nil;
+    _personalLibraryService = nil;
+    self.selectedGroup = nil;
+    [super viewDidUnload];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;

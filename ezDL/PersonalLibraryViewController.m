@@ -7,7 +7,6 @@
 //
 
 #import "PersonalLibraryViewController.h"
-#import "DocumentDetailViewController.h"
 #import "ServiceFactory.h"
 
 
@@ -17,10 +16,11 @@
 @property (nonatomic, weak, readonly) id<PersonalLibraryService> personalLibraryService;
 @property (nonatomic, strong) NSMutableArray *displayedGroups;
 @property (nonatomic) NSInteger sectionOfGroupToDelete;
+@property (nonatomic, weak, readonly) NSArray *allDocuments;
 
 - (PersonalLibraryGroup *)groupInSection:(NSInteger)section;
 - (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath;
-- (NSString *)stringFromAuthors:(NSSet *)authors;
+- (NSString *)detailTextForReference:(PersonalLibraryReference *)reference;
 - (void)askToDeleteGroupInSection:(NSInteger)section;
 - (void)prepareForGroupsSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -48,6 +48,14 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     
     // In self.displayedGroups those groups are collected that shall be displayed
     self.displayedGroups = [NSMutableArray arrayWithArray:[self.personalLibraryService personalLibraryGroups]];
+}
+
+- (void)viewDidUnload
+{
+    self.groupsPopover = nil;
+    _personalLibraryService = nil;
+    self.displayedGroups = nil;
+    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -103,21 +111,24 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     
     PersonalLibraryReference *reference = [self referenceAtIndexPath:indexPath];
     cell.textLabel.text = reference.document.title;
-    cell.detailTextLabel.text = [self stringFromAuthors:reference.document.authors];
+    cell.detailTextLabel.text = [self detailTextForReference:reference];
     
     return cell;
 }
 
-- (NSString *)stringFromAuthors:(NSSet *)authors
+- (NSString *)detailTextForReference:(PersonalLibraryReference *)reference
 {
     NSMutableString *string = [NSMutableString string];
-    NSArray *array = [authors allObjects];
+    NSArray *array = [reference.document.authors allObjects];
     
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Author *author = obj;
         if (idx == 0) [string appendString:author.fullName];
         else [string appendFormat:@"; %@", author.fullName];
     }];
+    
+    [string appendFormat:@" (%@)", reference.document.year];
+    
     return string;
 }
 
@@ -177,7 +188,9 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     if (buttonIndex == 1)
     {
         // Yes button clicked, delete the group in self.groupToDelete
-        [self.personalLibraryService deleteGroup:[self groupInSection:self.sectionOfGroupToDelete]];
+        PersonalLibraryGroup *group = [self groupInSection:self.sectionOfGroupToDelete];
+        [self.personalLibraryService deleteGroup:group];
+        [self.displayedGroups removeObject:group];
         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:self.sectionOfGroupToDelete]
                       withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -195,6 +208,13 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
         
         [self askToDeleteGroupInSection:sourceIndexPath.section];
     }
+}
+
+#pragma mark Filtering References
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    // TODO Implementation needed
 }
 
 #pragma mark Popover to Control Displayed Groups
@@ -227,6 +247,38 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     DocumentDetailViewController *viewController = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
     viewController.displayedDocument = [self referenceAtIndexPath:indexPath].document;
+    viewController.hideAddReferenceItem = YES;
+    viewController.delegate = self;
+}
+
+- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController
+{
+    return self.allDocuments.count;
+}
+
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document
+{
+    return [self.allDocuments indexOfObject:document];
+}
+
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index
+{
+    return [self.allDocuments objectAtIndex:index];
+}
+
+- (NSArray *)allDocuments
+{
+    NSMutableArray *allDocuments = [NSMutableArray array];
+    
+    [self.displayedGroups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        PersonalLibraryGroup *group = obj;
+        [group.references enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            PersonalLibraryReference *reference = obj;
+            [allDocuments addObject:reference.document];
+        }];
+    }];
+    
+    return allDocuments;
 }
 
 @end

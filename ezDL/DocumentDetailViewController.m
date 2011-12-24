@@ -45,6 +45,7 @@ static NSString *SegueDocumentLink = @"DocumentLinkSegue";
 static NSString *SegueAddReference = @"AddReferenceSegue";
 
 @synthesize displayedDocument = _displayedDocument;
+@synthesize hideAddReferenceItem = _hideAddReferenceItem;
 @synthesize delegate = _delegate;
 @synthesize numberOfSections = _numberOfSections;
 @synthesize documentTitleSection =_documentTitleSection;
@@ -72,7 +73,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     
     stepper.minimumValue = 0;
     stepper.maximumValue = [self.delegate documentDetailViewControllerNumberOfDocuments:self] - 1;
-    stepper.value = [self.delegate documentDetailViewController:self indexOfDocuments:self.displayedDocument];
+    stepper.value = [self.delegate documentDetailViewController:self indexOfDocument:self.displayedDocument];
     
     [stepper addTarget:self
                 action:@selector(stepperValueChanged:) 
@@ -89,11 +90,16 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     [super viewDidUnload];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.toolbarHidden = self.hideAddReferenceItem;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    self.navigationController.toolbarHidden = NO;
     
     [self startLoadingOperation];
 }
@@ -342,9 +348,9 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSURL *selectedLink = [self.displayedDocument.detail.links.allObjects objectAtIndex:indexPath.row];
+    DocumentLink *selectedLink = [self.displayedDocument.detail.links.allObjects objectAtIndex:indexPath.row];
     DocumentLinkViewController *viewController = (DocumentLinkViewController *)segue.destinationViewController;
-    viewController.displayedLink = selectedLink;
+    viewController.displayedLink = selectedLink.url;
     viewController.delegate = self;
 }
 

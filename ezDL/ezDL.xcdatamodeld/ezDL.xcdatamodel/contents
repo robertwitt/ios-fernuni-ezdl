@@ -37,13 +37,13 @@
         <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalLibraryGroup" inverseName="references" inverseEntity="PersonalLibraryGroup" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Author" positionX="412" positionY="171" width="128" height="90"/>
-        <element name="DLObject" positionX="144" positionY="-15" width="128" height="60"/>
-        <element name="Document" positionX="232" positionY="171" width="128" height="105"/>
-        <element name="DocumentDetail" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="DocumentLink" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Library" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="PersonalLibraryGroup" positionX="-126" positionY="171" width="128" height="75"/>
-        <element name="PersonalLibraryReference" positionX="54" positionY="171" width="128" height="105"/>
+        <element name="Author" positionX="306" positionY="135" width="128" height="90"/>
+        <element name="DLObject" positionX="54" positionY="-6" width="128" height="60"/>
+        <element name="Document" positionX="135" positionY="135" width="128" height="105"/>
+        <element name="DocumentDetail" positionX="261" positionY="270" width="128" height="75"/>
+        <element name="DocumentLink" positionX="88" positionY="270" width="128" height="75"/>
+        <element name="Library" positionX="306" positionY="24" width="128" height="75"/>
+        <element name="PersonalLibraryGroup" positionX="-209" positionY="135" width="128" height="75"/>
+        <element name="PersonalLibraryReference" positionX="-38" positionY="135" width="128" height="105"/>
     </elements>
 </model>

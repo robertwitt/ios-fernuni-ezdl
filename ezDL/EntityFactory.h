@@ -29,7 +29,16 @@
 - (Document *)persistentDocumentWithDocument:(Document *)document;
 
 - (DocumentDetail *)documentDetail;
+- (DocumentDetail *)documentDetailWithPersistentDetail:(DocumentDetail *)persistentDetail;
+- (DocumentDetail *)persistentDocumentDetail;
+- (DocumentDetail *)persistentDocumentDetailWithDetail:(DocumentDetail *)detail;
+- (void)addDocumentDetail:(DocumentDetail *)detail toDocument:(Document *)document;
+
 - (DocumentLink *)documentLink;
+- (DocumentLink *)documentLinkWithPersistentLink:(DocumentLink *)persistentLink;
+- (DocumentLink *)persistentDocumentLink;
+- (DocumentLink *)persistentDocumentLinkWithLink:(DocumentLink *)link;
+
 - (Library *)persistentLibrary;
 - (PersonalLibraryGroup *)persistentPersonalLibraryGroup;
 - (PersonalLibraryReference *)persistentPersonalLibraryReference;

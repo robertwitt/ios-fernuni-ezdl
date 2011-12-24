@@ -17,6 +17,14 @@
 
 #pragma mark Managing the View
 
+- (void)viewDidUnload
+{
+    self.groupNameTextField = nil;
+    self.saveItem = nil;
+    self.delegate = nil;
+    [super viewDidUnload];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;

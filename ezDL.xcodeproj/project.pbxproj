@@ -23,6 +23,7 @@
 		E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */; };
 		E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */; };
 		E15D5EE71489751B00C78F1D /* note.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D5EE61489751B00C78F1D /* note.png */; };
+		E16F0C0014913CFB0018D49C /* PersonalLibraryRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E16F0BFF14913CFB0018D49C /* PersonalLibraryRow.m */; };
 		E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E183BD60148135C200C65FAA /* DocumentDetailViewController.m */; };
 		E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AF41EB148D448700B20175 /* EntityFactory.m */; };
 		E1C45C29147D621D002DB8EC /* query_result.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1C45C28147D621D002DB8EC /* query_result.xml */; };
@@ -138,6 +139,8 @@
 		E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceAddViewController.h; sourceTree = "<group>"; };
 		E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceAddViewController.m; sourceTree = "<group>"; };
 		E15D5EE61489751B00C78F1D /* note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note.png; sourceTree = "<group>"; };
+		E16F0BFE14913CFB0018D49C /* PersonalLibraryRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryRow.h; sourceTree = "<group>"; };
+		E16F0BFF14913CFB0018D49C /* PersonalLibraryRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryRow.m; sourceTree = "<group>"; };
 		E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
 		E183BD60148135C200C65FAA /* DocumentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentDetailViewController.m; sourceTree = "<group>"; };
 		E1AF41EA148D448700B20175 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 			children = (
 				E15D5EDA14893C7E00C78F1D /* PersonalLibraryViewController.h */,
 				E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */,
+				E16F0BFE14913CFB0018D49C /* PersonalLibraryRow.h */,
+				E16F0BFF14913CFB0018D49C /* PersonalLibraryRow.m */,
 				E1404D13148EB2B000E4A1EE /* PersonalLibraryGroupsViewController.h */,
 				E1404D14148EB2B200E4A1EE /* PersonalLibraryGroupsViewController.m */,
 				E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */,
@@ -852,6 +857,7 @@
 				E156BE7B148D42A00062230F /* DocumentLink.m in Sources */,
 				E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */,
 				E1404D15148EB2B400E4A1EE /* PersonalLibraryGroupsViewController.m in Sources */,
+				E16F0C0014913CFB0018D49C /* PersonalLibraryRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -264,7 +264,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     return self.tableContent.allDocuments.count;
 }
 
-- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocuments:(Document *)document
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document
 {
     return [self.tableContent.allDocuments indexOfObject:document];
 }

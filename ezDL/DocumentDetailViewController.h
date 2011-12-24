@@ -14,7 +14,7 @@
 @protocol DocumentDetailViewControllerDelegate <NSObject>
 
 - (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController;
-- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocuments:(Document *)document;
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document;
 - (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index;
 
 @end
@@ -23,6 +23,7 @@
 @interface DocumentDetailViewController : UITableViewController <DocumentLinkViewControllerDelegate, PersonalLibraryReferenceAddViewControllerDelegate>
 
 @property (nonatomic, strong) Document *displayedDocument;
+@property (nonatomic) BOOL hideAddReferenceItem;
 @property (nonatomic, weak) id<DocumentDetailViewControllerDelegate> delegate;
 
 @end

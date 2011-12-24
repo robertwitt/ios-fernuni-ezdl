@@ -68,12 +68,13 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<string key="IBUIText">Document title</string>
-								<object class="NSColor" key="IBUITextColor" id="392737490">
+								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">12</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
@@ -100,7 +101,10 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<string key="IBUIText">Library and Year</string>
-								<reference key="IBUITextColor" ref="392737490"/>
+								<object class="NSColor" key="IBUITextColor" id="262703226">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC41MDE5NjA3ODQzIDAuNTAxOTYwNzg0MyAwLjUwMTk2MDc4NDMAA</bytes>
+								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -129,7 +133,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<string key="IBUIText">Authors</string>
-								<reference key="IBUITextColor" ref="392737490"/>
+								<reference key="IBUITextColor" ref="262703226"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -252,7 +256,8 @@
 					<string key="superclassName">UITableViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="editQuery:">UIBarButtonItem</string>
-						<string key="groupByItem:">UIBarButtonItem</string>
+						<string key="groupBy:">UIBarButtonItem</string>
+						<string key="openOptions:">UIBarButtonItem</string>
 						<string key="sortBy:">UIBarButtonItem</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -260,8 +265,12 @@
 							<string key="name">editQuery:</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBActionInfo" key="groupByItem:">
-							<string key="name">groupByItem:</string>
+						<object class="IBActionInfo" key="groupBy:">
+							<string key="name">groupBy:</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBActionInfo" key="openOptions:">
+							<string key="name">openOptions:</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBActionInfo" key="sortBy:">
@@ -271,8 +280,8 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="groupByItem">UIBarButtonItem</string>
+						<string key="optionsItem">UIBarButtonItem</string>
 						<string key="queryResultCell">UITableViewCell</string>
-						<string key="queryResultSectionView">UIView</string>
 						<string key="sortByItem">UIBarButtonItem</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -280,13 +289,13 @@
 							<string key="name">groupByItem</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="optionsItem">
+							<string key="name">optionsItem</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="queryResultCell">
 							<string key="name">queryResultCell</string>
 							<string key="candidateClassName">UITableViewCell</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="queryResultSectionView">
-							<string key="name">queryResultSectionView</string>
-							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="sortByItem">
 							<string key="name">sortByItem</string>

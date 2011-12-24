@@ -71,6 +71,15 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidUnload
+{
+    self.delegate = nil;
+    _personalLibraryService = nil;
+    self.selectedGroups = nil;
+    self.indexPathOfGroupToDelete = nil;
+    [super viewDidUnload];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
