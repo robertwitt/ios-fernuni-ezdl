@@ -7,6 +7,7 @@
 //
 
 #import "LibraryChoice.h"
+#import "QueryGlobals.h"
 #import "QueryResult.h"
 
 @protocol QueryService <NSObject>

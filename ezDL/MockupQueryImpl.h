@@ -10,6 +10,7 @@
 
 @interface MockupQueryImpl : NSObject <Query>
 
+@property (nonatomic, strong) id<QueryExpression> baseExpression;
 @property (nonatomic, strong) NSArray *selectedLibraries;
 @property (nonatomic, strong) NSDate *executedOn;
 

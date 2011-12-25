@@ -8,6 +8,7 @@
 
 #import "QueryServiceImpl.h"
 #import "MockupQueryImpl.h"
+#import "QueryParser.h"
 #import "ServiceFactory.h"
 
 @implementation QueryServiceImpl
@@ -19,16 +20,22 @@
 
 - (id<Query>)buildQueryFromString:(NSString *)string
 {
-    // TODO Implementation needed
-    MockupQueryImpl *query = [[MockupQueryImpl alloc] initWithString:string];
+    MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
+    
+    QueryParser *parser = [[QueryParser alloc] init];
+    query.baseExpression = [parser parsedExpressionFromString:string];
+    
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
     return query;
 }
 
 - (id<Query>)buildQueryFromParameters:(NSDictionary *)parameters
 {
-    // TODO Implementation needed
-    MockupQueryImpl *query = [[MockupQueryImpl alloc] initWithParameters:parameters];
+    MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
+    
+    QueryParser *parser = [[QueryParser alloc] init];
+    query.baseExpression = [parser parsedExpressionFromParameters:parameters];
+    
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
     return query;
 }

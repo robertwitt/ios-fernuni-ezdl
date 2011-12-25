@@ -121,6 +121,9 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
 - (void)setQueryViewController:(QueryViewController *)queryViewController 
 {
+    // Keep the query
+    queryViewController.query = [_queryViewController buildQuery];
+    
     // Remove the old query view controller from its super view controller
     [_queryViewController.view removeFromSuperview];
     [_queryViewController removeFromParentViewController];

@@ -62,7 +62,7 @@
     _filterString = filterString;
     
     // Do the filtering of allRows first and store result in filteredRows
-    if (filterString.nilOrEmpty)
+    if (!filterString.notEmpty)
     {
         self.filteredRows = [self.allRows copy];  
     }

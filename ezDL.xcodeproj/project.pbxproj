@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10136CB14A70B7A0089CC37 /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136CA14A70B7A0089CC37 /* QueryParser.m */; };
+		E10136D114A74C1F0089CC37 /* QueryOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136D014A74C1F0089CC37 /* QueryOperator.m */; };
+		E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CA14A6032F0093FC60 /* QueryParameter.m */; };
+		E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */; };
+		E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */; };
 		E10FC912147C16E7000F41A8 /* QueryResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10FC911147C16E7000F41A8 /* QueryResultCell.xib */; };
 		E10FC921147C4016000F41A8 /* DocumentServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */; };
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
@@ -71,7 +76,7 @@
 		E1EFC3D9147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
 		E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
 		E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3E0147690B600CB7490 /* InfoPlist.strings */; };
-		E1EFC3E5147690B600CB7490 /* ezDLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3E4147690B600CB7490 /* ezDLTests.m */; };
+		E1EFC3E5147690B600CB7490 /* QueryParsingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */; };
 		E1EFC3F21476917D00CB7490 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F11476917D00CB7490 /* CoreDataStack.m */; };
 		E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */; };
 		E1EFC3F9147696BB00CB7490 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F8147696BB00CB7490 /* QueryController.m */; };
@@ -108,6 +113,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E10136C914A70B7A0089CC37 /* QueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParser.h; sourceTree = "<group>"; };
+		E10136CA14A70B7A0089CC37 /* QueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParser.m; sourceTree = "<group>"; };
+		E10136CD14A718AB0089CC37 /* QueryGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryGlobals.h; sourceTree = "<group>"; };
+		E10136CF14A74C1F0089CC37 /* QueryOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryOperator.h; sourceTree = "<group>"; };
+		E10136D014A74C1F0089CC37 /* QueryOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryOperator.m; sourceTree = "<group>"; };
+		E10C27C714A602F70093FC60 /* QueryPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryPart.h; sourceTree = "<group>"; };
+		E10C27C914A6032F0093FC60 /* QueryParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParameter.h; sourceTree = "<group>"; };
+		E10C27CA14A6032F0093FC60 /* QueryParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParameter.m; sourceTree = "<group>"; };
+		E10C27CC14A604140093FC60 /* QueryExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryExpression.h; sourceTree = "<group>"; };
+		E10C27CD14A606190093FC60 /* AtomicQueryExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicQueryExpression.h; sourceTree = "<group>"; };
+		E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicQueryExpression.m; sourceTree = "<group>"; };
+		E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NestedQueryExpression.h; sourceTree = "<group>"; };
+		E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NestedQueryExpression.m; sourceTree = "<group>"; };
 		E10FC911147C16E7000F41A8 /* QueryResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueryResultCell.xib; sourceTree = "<group>"; };
 		E10FC91E147C3FBF000F41A8 /* DocumentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentService.h; sourceTree = "<group>"; };
 		E10FC91F147C4016000F41A8 /* DocumentServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentServiceImpl.h; sourceTree = "<group>"; };
@@ -210,8 +228,8 @@
 		E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ezDLTests-Info.plist"; sourceTree = "<group>"; };
 		E1EFC3E1147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1EFC3E3147690B600CB7490 /* ezDLTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ezDLTests.h; sourceTree = "<group>"; };
-		E1EFC3E4147690B600CB7490 /* ezDLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezDLTests.m; sourceTree = "<group>"; };
+		E1EFC3E3147690B600CB7490 /* QueryParsingTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryParsingTestCase.h; sourceTree = "<group>"; };
+		E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryParsingTestCase.m; sourceTree = "<group>"; };
 		E1EFC3F01476917D00CB7490 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		E1EFC3F11476917D00CB7490 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -283,6 +301,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E10136D214A75D750089CC37 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				E10136CD14A718AB0089CC37 /* QueryGlobals.h */,
+				E10C27C714A602F70093FC60 /* QueryPart.h */,
+				E10136CF14A74C1F0089CC37 /* QueryOperator.h */,
+				E10136D014A74C1F0089CC37 /* QueryOperator.m */,
+				E10C27CC14A604140093FC60 /* QueryExpression.h */,
+				E10C27CD14A606190093FC60 /* AtomicQueryExpression.h */,
+				E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */,
+				E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */,
+				E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */,
+				E10C27C914A6032F0093FC60 /* QueryParameter.h */,
+				E10C27CA14A6032F0093FC60 /* QueryParameter.m */,
+				E1EF231D1477D81B000EE7C9 /* Query.h */,
+			);
+			name = Query;
+			sourceTree = "<group>";
+		};
+		E10136D314A75DFF0089CC37 /* Query Result */ = {
+			isa = PBXGroup;
+			children = (
+				E1EF23161477D5ED000EE7C9 /* QueryResult.h */,
+				E1EF23171477D5ED000EE7C9 /* QueryResult.m */,
+				E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */,
+				E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */,
+			);
+			name = "Query Result";
+			sourceTree = "<group>";
+		};
+		E10C27C514A602D70093FC60 /* Query Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				E10136C914A70B7A0089CC37 /* QueryParser.h */,
+				E10136CA14A70B7A0089CC37 /* QueryParser.m */,
+			);
+			name = "Query Parsing";
+			sourceTree = "<group>";
+		};
 		E10FC91D147C3F45000F41A8 /* Document Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,14 +438,12 @@
 		E1EF23151477D5B2000EE7C9 /* Query Service */ = {
 			isa = PBXGroup;
 			children = (
+				E10136D214A75D750089CC37 /* Query */,
+				E10C27C514A602D70093FC60 /* Query Parsing */,
+				E10136D314A75DFF0089CC37 /* Query Result */,
 				E1EF23241477DCE3000EE7C9 /* QueryService.h */,
 				E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */,
 				E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */,
-				E1EF231D1477D81B000EE7C9 /* Query.h */,
-				E1EF23161477D5ED000EE7C9 /* QueryResult.h */,
-				E1EF23171477D5ED000EE7C9 /* QueryResult.m */,
-				E1EF232E1477F55C000EE7C9 /* QueryResultItem.h */,
-				E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */,
 			);
 			name = "Query Service";
 			sourceTree = "<group>";
@@ -471,8 +526,8 @@
 		E1EFC3DD147690B600CB7490 /* ezDLTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC3E3147690B600CB7490 /* ezDLTests.h */,
-				E1EFC3E4147690B600CB7490 /* ezDLTests.m */,
+				E1EFC3E3147690B600CB7490 /* QueryParsingTestCase.h */,
+				E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */,
 				E1EFC3DE147690B600CB7490 /* Supporting Files */,
 			);
 			path = ezDLTests;
@@ -858,6 +913,11 @@
 				E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */,
 				E1404D15148EB2B400E4A1EE /* PersonalLibraryGroupsViewController.m in Sources */,
 				E16F0C0014913CFB0018D49C /* PersonalLibraryRow.m in Sources */,
+				E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */,
+				E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */,
+				E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */,
+				E10136CB14A70B7A0089CC37 /* QueryParser.m in Sources */,
+				E10136D114A74C1F0089CC37 /* QueryOperator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +925,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1EFC3E5147690B600CB7490 /* ezDLTests.m in Sources */,
+				E1EFC3E5147690B600CB7490 /* QueryParsingTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

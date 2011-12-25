@@ -10,6 +10,7 @@
 
 @implementation MockupQueryImpl
 
+@synthesize baseExpression = _baseExpression;
 @synthesize selectedLibraries = _selectedLibraries;
 @synthesize executedOn = _executedOn;
 
@@ -31,6 +32,16 @@
         // TODO Implementation needed
     }
     return self;
+}
+
+- (id<QueryExpression>)baseExpression
+{
+    return _baseExpression;
+}
+
+- (void)setBaseExpression:(id<QueryExpression>)baseExpression
+{
+    _baseExpression = baseExpression;
 }
 
 - (NSArray *)selectedLibraries
@@ -67,8 +78,16 @@
 
 - (NSString *)queryString
 {
-    // TODO Implementation needed
-    return nil;
+    NSString *string = [self.baseExpression queryString];
+    
+    // If string is surrounded by brackets, remove them
+    if ([string characterAtIndex:0] == '(' && [string characterAtIndex:(string.length - 1)] == ')')
+    {
+        NSRange range = NSMakeRange(1, string.length - 2);
+        string = [string substringWithRange:range];
+    }
+    
+    return string;
 }
 
 @end

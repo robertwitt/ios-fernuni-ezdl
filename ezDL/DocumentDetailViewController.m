@@ -121,13 +121,13 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     self.documentAbstractSection = -1;
     self.documentLinksSection = -1;
     
-    if (!displayedDocument.title.nilOrEmpty)
+    if (displayedDocument.title.notEmpty)
     {
         self.documentTitleSection = self.numberOfSections;
         self.numberOfSections++;
     }
     
-    if (!displayedDocument.year.nilOrEmpty)
+    if (displayedDocument.year.notEmpty)
     {
         self.documentYearSection = self.numberOfSections;
         self.numberOfSections++;
@@ -141,7 +141,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     
     if (displayedDocument.detail)
     {
-        if (!displayedDocument.detail.abstract.nilOrEmpty)
+        if (displayedDocument.detail.abstract.notEmpty)
         {
             self.documentAbstractSection = self.numberOfSections;
             self.numberOfSections++;

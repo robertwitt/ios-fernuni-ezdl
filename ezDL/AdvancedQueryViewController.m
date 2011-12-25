@@ -78,7 +78,7 @@
     [super viewWillDisappear:animated];
     
     // Build query from outlets
-    self.query = [self buildQuery];
+    //self.query = [self buildQuery];
 }
 
 - (BOOL)resignFirstResponder
@@ -281,7 +281,14 @@
 {
     // Ask the query service to build a query out of text field entries in view.
     
-     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:self.queryAuthor.text, kQueryParameterKeyAuthor, self.queryTitle.text, kQueryParameterKeyTitle, self.queryYear.text, kQueryParameterKeyYear, self.queryText.text, kQueryParameterKeyText, nil];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (self.queryAuthor.text.notEmpty) [parameters setObject:self.queryAuthor.text forKey:kQueryParameterKeyAuthor];
+    if (self.queryText.text.notEmpty) [parameters setObject:self.queryText.text forKey:kQueryParameterKeyText];
+    if (self.queryTitle.text.notEmpty) [parameters setObject:self.queryTitle.text forKey:kQueryParameterKeyTitle];
+    if (self.queryYear.text.notEmpty) [parameters setObject:self.queryYear.text forKey:kQueryParameterKeyYear];
+    
+     //NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:self.queryAuthor.text, kQueryParameterKeyAuthor, self.queryTitle.text, kQueryParameterKeyTitle, self.queryYear.text, kQueryParameterKeyYear, self.queryText.text, kQueryParameterKeyText, nil];
     return [[[ServiceFactory sharedFactory] queryService] buildQueryFromParameters:parameters];
 }
 

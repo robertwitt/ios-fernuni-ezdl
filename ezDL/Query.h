@@ -6,13 +6,12 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-static NSString *kQueryParameterKeyAuthor = @"Author";
-static NSString *kQueryParameterKeyText = @"Text";
-static NSString *kQueryParameterKeyTitle = @"Title";
-static NSString *kQueryParameterKeyYear = @"Year";
+#import "QueryExpression.h"
 
 @protocol Query <NSObject>
 
+- (id<QueryExpression>)baseExpression;
+- (void)setBaseExpression:(id<QueryExpression>)baseExpression;
 - (NSArray *)selectedLibraries;
 - (void)setSelectedLibraries:(NSArray *)selectedLibraries;
 - (NSDate *)executedOn;

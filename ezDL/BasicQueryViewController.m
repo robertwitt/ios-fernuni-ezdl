@@ -55,7 +55,7 @@
     [super viewWillDisappear:animated];
     
     // Build query from text view input
-    self.query = [self buildQuery];
+    //self.query = [self buildQuery];
 }
 
 - (BOOL)resignFirstResponder

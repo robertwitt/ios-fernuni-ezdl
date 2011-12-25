@@ -51,7 +51,7 @@
 {
     NSString *textAfterChange = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
-    if ([textAfterChange isNilOrEmpty]) self.saveItem.enabled = NO;
+    if (![textAfterChange isNotEmpty]) self.saveItem.enabled = NO;
     else self.saveItem.enabled = YES;
     
     return YES;
