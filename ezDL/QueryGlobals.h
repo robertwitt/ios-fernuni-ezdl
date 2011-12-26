@@ -14,8 +14,9 @@
 #define kQueryParameterKeyTitle @"Title"
 #define kQueryParameterKeyYear @"Year"
 
-#define kQueryOperatorAnd @"AND"
-#define kQueryOperatorOr @"OR"
+#define kQueryConnectorAnd @"AND"
+#define kQueryConnectorOr @"OR"
+
 #define kQueryOperatorNot @"NOT"
 
 #endif

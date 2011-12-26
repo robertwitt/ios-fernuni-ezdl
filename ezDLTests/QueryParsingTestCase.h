@@ -10,6 +10,7 @@
 
 @interface QueryParsingTestCase : SenTestCase
 
+- (void)testQueryScanning;
 - (void)testQueryParsing;
 
 @end

@@ -13,4 +13,9 @@
 
 @property (nonatomic, strong) QueryParameter *parameter;
 
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value;
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator;
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value;
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator;
+
 @end

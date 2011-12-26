@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E10136CB14A70B7A0089CC37 /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136CA14A70B7A0089CC37 /* QueryParser.m */; };
-		E10136D114A74C1F0089CC37 /* QueryOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136D014A74C1F0089CC37 /* QueryOperator.m */; };
+		E10136CB14A70B7A0089CC37 /* SimpleQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */; };
+		E10136D114A74C1F0089CC37 /* QueryConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136D014A74C1F0089CC37 /* QueryConnector.m */; };
+		E1083C7914A864EA003C5D97 /* QueryScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7814A864EA003C5D97 /* QueryScanner.m */; };
+		E1083C7D14A874A5003C5D97 /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7C14A874A5003C5D97 /* QueryParser.m */; };
+		E1083C8014A87621003C5D97 /* AdvancedQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7F14A87621003C5D97 /* AdvancedQueryParser.m */; };
+		E1083C8314A87FC1003C5D97 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C8214A87FC1003C5D97 /* Stack.m */; };
+		E1083C8614A8C408003C5D97 /* NSArray+NSArrayExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C8514A8C407003C5D97 /* NSArray+NSArrayExtension.m */; };
 		E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CA14A6032F0093FC60 /* QueryParameter.m */; };
 		E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */; };
 		E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */; };
@@ -113,11 +118,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E10136C914A70B7A0089CC37 /* QueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParser.h; sourceTree = "<group>"; };
-		E10136CA14A70B7A0089CC37 /* QueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParser.m; sourceTree = "<group>"; };
+		E10136C914A70B7A0089CC37 /* SimpleQueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleQueryParser.h; sourceTree = "<group>"; };
+		E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleQueryParser.m; sourceTree = "<group>"; };
 		E10136CD14A718AB0089CC37 /* QueryGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryGlobals.h; sourceTree = "<group>"; };
-		E10136CF14A74C1F0089CC37 /* QueryOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryOperator.h; sourceTree = "<group>"; };
-		E10136D014A74C1F0089CC37 /* QueryOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryOperator.m; sourceTree = "<group>"; };
+		E10136CF14A74C1F0089CC37 /* QueryConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryConnector.h; sourceTree = "<group>"; };
+		E10136D014A74C1F0089CC37 /* QueryConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryConnector.m; sourceTree = "<group>"; };
+		E1083C7714A864EA003C5D97 /* QueryScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryScanner.h; sourceTree = "<group>"; };
+		E1083C7814A864EA003C5D97 /* QueryScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryScanner.m; sourceTree = "<group>"; };
+		E1083C7B14A874A5003C5D97 /* QueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParser.h; sourceTree = "<group>"; };
+		E1083C7C14A874A5003C5D97 /* QueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParser.m; sourceTree = "<group>"; };
+		E1083C7E14A87621003C5D97 /* AdvancedQueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedQueryParser.h; sourceTree = "<group>"; };
+		E1083C7F14A87621003C5D97 /* AdvancedQueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedQueryParser.m; sourceTree = "<group>"; };
+		E1083C8114A87FC1003C5D97 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		E1083C8214A87FC1003C5D97 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
+		E1083C8414A8C407003C5D97 /* NSArray+NSArrayExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NSArrayExtension.h"; sourceTree = "<group>"; };
+		E1083C8514A8C407003C5D97 /* NSArray+NSArrayExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NSArrayExtension.m"; sourceTree = "<group>"; };
 		E10C27C714A602F70093FC60 /* QueryPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryPart.h; sourceTree = "<group>"; };
 		E10C27C914A6032F0093FC60 /* QueryParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParameter.h; sourceTree = "<group>"; };
 		E10C27CA14A6032F0093FC60 /* QueryParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParameter.m; sourceTree = "<group>"; };
@@ -306,15 +321,15 @@
 			children = (
 				E10136CD14A718AB0089CC37 /* QueryGlobals.h */,
 				E10C27C714A602F70093FC60 /* QueryPart.h */,
-				E10136CF14A74C1F0089CC37 /* QueryOperator.h */,
-				E10136D014A74C1F0089CC37 /* QueryOperator.m */,
+				E10136CF14A74C1F0089CC37 /* QueryConnector.h */,
+				E10136D014A74C1F0089CC37 /* QueryConnector.m */,
 				E10C27CC14A604140093FC60 /* QueryExpression.h */,
 				E10C27CD14A606190093FC60 /* AtomicQueryExpression.h */,
 				E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */,
-				E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */,
-				E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */,
 				E10C27C914A6032F0093FC60 /* QueryParameter.h */,
 				E10C27CA14A6032F0093FC60 /* QueryParameter.m */,
+				E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */,
+				E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */,
 				E1EF231D1477D81B000EE7C9 /* Query.h */,
 			);
 			name = Query;
@@ -334,8 +349,14 @@
 		E10C27C514A602D70093FC60 /* Query Parsing */ = {
 			isa = PBXGroup;
 			children = (
-				E10136C914A70B7A0089CC37 /* QueryParser.h */,
-				E10136CA14A70B7A0089CC37 /* QueryParser.m */,
+				E10136C914A70B7A0089CC37 /* SimpleQueryParser.h */,
+				E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */,
+				E1083C7714A864EA003C5D97 /* QueryScanner.h */,
+				E1083C7814A864EA003C5D97 /* QueryScanner.m */,
+				E1083C7B14A874A5003C5D97 /* QueryParser.h */,
+				E1083C7C14A874A5003C5D97 /* QueryParser.m */,
+				E1083C7E14A87621003C5D97 /* AdvancedQueryParser.h */,
+				E1083C7F14A87621003C5D97 /* AdvancedQueryParser.m */,
 			);
 			name = "Query Parsing";
 			sourceTree = "<group>";
@@ -499,8 +520,12 @@
 		E1EFC3C1147690B600CB7490 /* ezDL */ = {
 			isa = PBXGroup;
 			children = (
+				E1083C8414A8C407003C5D97 /* NSArray+NSArrayExtension.h */,
+				E1083C8514A8C407003C5D97 /* NSArray+NSArrayExtension.m */,
 				E10FC945147C4E6B000F41A8 /* NSString+NSStringExtension.h */,
 				E10FC946147C4E71000F41A8 /* NSString+NSStringExtension.m */,
+				E1083C8114A87FC1003C5D97 /* Stack.h */,
+				E1083C8214A87FC1003C5D97 /* Stack.m */,
 				E1EFC4391476EAB000CB7490 /* Mockup */,
 				E1EFC3EE1476914F00CB7490 /* Model */,
 				E1EFC3F31476964E00CB7490 /* View */,
@@ -916,8 +941,13 @@
 				E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */,
 				E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */,
 				E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */,
-				E10136CB14A70B7A0089CC37 /* QueryParser.m in Sources */,
-				E10136D114A74C1F0089CC37 /* QueryOperator.m in Sources */,
+				E10136CB14A70B7A0089CC37 /* SimpleQueryParser.m in Sources */,
+				E10136D114A74C1F0089CC37 /* QueryConnector.m in Sources */,
+				E1083C7914A864EA003C5D97 /* QueryScanner.m in Sources */,
+				E1083C7D14A874A5003C5D97 /* QueryParser.m in Sources */,
+				E1083C8014A87621003C5D97 /* AdvancedQueryParser.m in Sources */,
+				E1083C8314A87FC1003C5D97 /* Stack.m in Sources */,
+				E1083C8614A8C408003C5D97 /* NSArray+NSArrayExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

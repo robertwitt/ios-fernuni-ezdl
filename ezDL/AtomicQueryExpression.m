@@ -12,6 +12,33 @@
 
 @synthesize parameter = _parameter;
 
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value
+{
+    return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value];
+}
+
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator
+{
+    return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value operator:operator];
+}
+
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value
+{
+    return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value operator:QueryParameterOperatorEquals];
+}
+
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator
+{
+    self = [self init];
+    if (self)
+    {
+        self.parameter = [QueryParameter parameterWithKey:key 
+                                                    value:value
+                                                 operator:operator];
+    }
+    return self;
+}
+
 - (BOOL)isDeep
 {
     // An atomic query expression is never deep by definition
@@ -20,15 +47,9 @@
 
 - (NSString *)parameterValueForKey:(NSString *)key
 {
-    NSString *value = nil;
+    // TODO Implementation needed
     
-    if ([self.parameter.key isEqualToString:key])
-    {
-        if (self.parameter.isNot) value = @"NOT ";
-        value = [value stringByAppendingString:self.parameter.value];
-    }
-    
-    return value;
+    return nil;
 }
 
 - (NSString *)queryString

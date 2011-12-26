@@ -7,6 +7,7 @@
 //
 
 #import "NestedQueryExpression.h"
+#import "QueryConnector.h"
 
 
 @interface NestedQueryExpression ()
@@ -31,6 +32,13 @@
 
 - (void)addPart:(id<QueryPart>)part
 {
+    Class connectorClass = [QueryConnector class];
+    if (self.mutableParts.notEmpty && ![part isKindOfClass:connectorClass] && ![[self.mutableParts lastObject] isKindOfClass:connectorClass])
+    {
+        // Append AND connector
+        [self.mutableParts addObject:[QueryConnector andConnector]];
+    }
+    
     [self.mutableParts addObject:part];
 }
 

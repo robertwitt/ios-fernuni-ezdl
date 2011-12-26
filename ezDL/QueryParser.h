@@ -2,23 +2,14 @@
 //  QueryParser.h
 //  ezDL
 //
-//  Created by Robert Witt on 25.12.11.
+//  Created by Robert Witt on 26.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "QueryExpression.h"
 
-
 @interface QueryParser : NSObject
 
-- (id<QueryExpression>)parsedExpressionFromString:(NSString *)string;
-- (id<QueryExpression>)parsedExpressionFromParameters:(NSDictionary *)parameters;
+- (id<QueryExpression>)parsedExpressionWithError:(NSError **)error;
 
-@end
-
-
-@interface QueryParserException : NSException
-@end
-
-@interface QueryParserSyntaxException : QueryParserException
 @end

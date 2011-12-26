@@ -7,8 +7,9 @@
 //
 
 #import "QueryServiceImpl.h"
+#import "AdvancedQueryParser.h"
 #import "MockupQueryImpl.h"
-#import "QueryParser.h"
+#import "NestedQueryExpression.h"
 #import "ServiceFactory.h"
 
 @implementation QueryServiceImpl
@@ -22,8 +23,8 @@
 {
     MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
     
-    QueryParser *parser = [[QueryParser alloc] init];
-    query.baseExpression = [parser parsedExpressionFromString:string];
+    //SimpleQueryParser *parser = [[SimpleQueryParser alloc] init];
+    //query.baseExpression = [parser parsedExpressionFromString:string];
     
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
     return query;
@@ -32,9 +33,10 @@
 - (id<Query>)buildQueryFromParameters:(NSDictionary *)parameters
 {
     MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
-    
-    QueryParser *parser = [[QueryParser alloc] init];
-    query.baseExpression = [parser parsedExpressionFromParameters:parameters];
+        
+    query.baseExpression = [AdvancedQueryParser parsedExpressionFromParameters:parameters error:nil];
+    //SimpleQueryParser *parser = [[SimpleQueryParser alloc] init];
+    //query.baseExpression = [parser parsedExpressionFromParameters:parameters];
     
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
     return query;
