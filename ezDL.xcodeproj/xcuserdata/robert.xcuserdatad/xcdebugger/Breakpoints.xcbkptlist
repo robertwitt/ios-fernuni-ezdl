@@ -8,13 +8,41 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "ezDLTests/QueryParsingTestCase.m"
-         timestampString = "346590462.165417"
+         filePath = "ezDL/QuerySyntaxChecker.m"
+         timestampString = "346704768.497287"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
-         landmarkName = "-testQueryParsing"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
+         landmarkName = "-scanner:didFoundQuoteSign:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "ezDL/QuerySyntaxChecker.m"
+         timestampString = "346704776.66279"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-scannerDidEndScanning:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "ezDL/QueryScanner.m"
+         timestampString = "346704853.039834"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "-scan"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

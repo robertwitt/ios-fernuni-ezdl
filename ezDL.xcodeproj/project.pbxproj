@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E10136CB14A70B7A0089CC37 /* SimpleQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */; };
 		E10136D114A74C1F0089CC37 /* QueryConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136D014A74C1F0089CC37 /* QueryConnector.m */; };
 		E1083C7914A864EA003C5D97 /* QueryScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7814A864EA003C5D97 /* QueryScanner.m */; };
 		E1083C7D14A874A5003C5D97 /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7C14A874A5003C5D97 /* QueryParser.m */; };
@@ -32,7 +31,6 @@
 		E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */; };
 		E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */; };
 		E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */; };
-		E15D5EE71489751B00C78F1D /* note.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D5EE61489751B00C78F1D /* note.png */; };
 		E16F0C0014913CFB0018D49C /* PersonalLibraryRow.m in Sources */ = {isa = PBXBuildFile; fileRef = E16F0BFF14913CFB0018D49C /* PersonalLibraryRow.m */; };
 		E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E183BD60148135C200C65FAA /* DocumentDetailViewController.m */; };
 		E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AF41EB148D448700B20175 /* EntityFactory.m */; };
@@ -64,7 +62,6 @@
 		E1EF23111477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23101477A2DD000EE7C9 /* AdvancedQueryTextFieldAccessoryView.xib */; };
 		E1EF23141477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */; };
 		E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23171477D5ED000EE7C9 /* QueryResult.m */; };
-		E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */; };
 		E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */; };
 		E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF232F1477F55D000EE7C9 /* QueryResultItem.m */; };
 		E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */; };
@@ -76,12 +73,6 @@
 		E1EFC3C8147690B600CB7490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3C7147690B600CB7490 /* main.m */; };
 		E1EFC3CC147690B600CB7490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CB147690B600CB7490 /* AppDelegate.m */; };
 		E1EFC3CF147690B600CB7490 /* ezDL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */; };
-		E1EFC3D7147690B600CB7490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */; };
-		E1EFC3D8147690B600CB7490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3B9147690B600CB7490 /* UIKit.framework */; };
-		E1EFC3D9147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
-		E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
-		E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3E0147690B600CB7490 /* InfoPlist.strings */; };
-		E1EFC3E5147690B600CB7490 /* QueryParsingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */; };
 		E1EFC3F21476917D00CB7490 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F11476917D00CB7490 /* CoreDataStack.m */; };
 		E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */; };
 		E1EFC3F9147696BB00CB7490 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3F8147696BB00CB7490 /* QueryController.m */; };
@@ -101,26 +92,16 @@
 		E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC44814770C5900CB7490 /* MutableLibraryChoice.m */; };
 		E1EFC45414772B5100CB7490 /* ezdl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC45314772B5100CB7490 /* ezdl_icon.png */; };
 		E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */; };
+		E1F3A22614A9E66800932DA9 /* BasicQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F3A22514A9E66800932DA9 /* BasicQueryParser.m */; };
+		E1F3A22C14AA20E300932DA9 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F3A22B14AA20E200932DA9 /* Query.m */; };
+		E1F3A22F14AA3E1600932DA9 /* QuerySyntaxChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F3A22E14AA3E1500932DA9 /* QuerySyntaxChecker.m */; };
 		E1F4E253148BA0440003140E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E252148BA0440003140E /* Author.m */; };
 		E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */; };
 		E1F4E25E148BCCDD0003140E /* PersonalLibraryReference.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */; };
 		E1F4E267148BCD8D0003140E /* PersonalLibraryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E266148BCD8D0003140E /* PersonalLibraryGroup.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E1EFC3DB147690B600CB7490 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1EFC3AC147690B600CB7490 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1EFC3B4147690B600CB7490;
-			remoteInfo = ezDL;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		E10136C914A70B7A0089CC37 /* SimpleQueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleQueryParser.h; sourceTree = "<group>"; };
-		E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleQueryParser.m; sourceTree = "<group>"; };
-		E10136CD14A718AB0089CC37 /* QueryGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryGlobals.h; sourceTree = "<group>"; };
 		E10136CF14A74C1F0089CC37 /* QueryConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryConnector.h; sourceTree = "<group>"; };
 		E10136D014A74C1F0089CC37 /* QueryConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryConnector.m; sourceTree = "<group>"; };
 		E1083C7714A864EA003C5D97 /* QueryScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryScanner.h; sourceTree = "<group>"; };
@@ -171,7 +152,6 @@
 		E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultOptionsViewController.m; sourceTree = "<group>"; };
 		E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceAddViewController.h; sourceTree = "<group>"; };
 		E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceAddViewController.m; sourceTree = "<group>"; };
-		E15D5EE61489751B00C78F1D /* note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note.png; sourceTree = "<group>"; };
 		E16F0BFE14913CFB0018D49C /* PersonalLibraryRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryRow.h; sourceTree = "<group>"; };
 		E16F0BFF14913CFB0018D49C /* PersonalLibraryRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryRow.m; sourceTree = "<group>"; };
 		E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
@@ -217,9 +197,6 @@
 		E1EF23131477B10C000EE7C9 /* BasicQueryTextViewAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicQueryTextViewAccessoryView.xib; sourceTree = "<group>"; };
 		E1EF23161477D5ED000EE7C9 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
 		E1EF23171477D5ED000EE7C9 /* QueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResult.m; sourceTree = "<group>"; };
-		E1EF231D1477D81B000EE7C9 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
-		E1EF23211477D8EE000EE7C9 /* MockupQueryImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupQueryImpl.h; sourceTree = "<group>"; };
-		E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupQueryImpl.m; sourceTree = "<group>"; };
 		E1EF23241477DCE3000EE7C9 /* QueryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryServiceImpl.h; sourceTree = "<group>"; };
 		E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryServiceImpl.m; sourceTree = "<group>"; };
@@ -239,12 +216,6 @@
 		E1EFC3CA147690B600CB7490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E1EFC3CB147690B600CB7490 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E1EFC3CE147690B600CB7490 /* ezDL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ezDL.xcdatamodel; sourceTree = "<group>"; };
-		E1EFC3D5147690B600CB7490 /* ezDLTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ezDLTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ezDLTests-Info.plist"; sourceTree = "<group>"; };
-		E1EFC3E1147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1EFC3E3147690B600CB7490 /* QueryParsingTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryParsingTestCase.h; sourceTree = "<group>"; };
-		E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryParsingTestCase.m; sourceTree = "<group>"; };
 		E1EFC3F01476917D00CB7490 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		E1EFC3F11476917D00CB7490 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		E1EFC3F41476966600CB7490 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -279,6 +250,12 @@
 		E1EFC45314772B5100CB7490 /* ezdl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ezdl_icon.png; path = ../ezdl_icon.png; sourceTree = "<group>"; };
 		E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewControllerExtension.h"; sourceTree = "<group>"; };
 		E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerExtension.m"; sourceTree = "<group>"; };
+		E1F3A22414A9E66800932DA9 /* BasicQueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicQueryParser.h; sourceTree = "<group>"; };
+		E1F3A22514A9E66800932DA9 /* BasicQueryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicQueryParser.m; sourceTree = "<group>"; };
+		E1F3A22A14AA20E100932DA9 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
+		E1F3A22B14AA20E200932DA9 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
+		E1F3A22D14AA3E1500932DA9 /* QuerySyntaxChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuerySyntaxChecker.h; sourceTree = "<group>"; };
+		E1F3A22E14AA3E1500932DA9 /* QuerySyntaxChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuerySyntaxChecker.m; sourceTree = "<group>"; };
 		E1F4E251148BA0440003140E /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		E1F4E252148BA0440003140E /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		E1F4E258148BA19B0003140E /* PersonalLibraryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryService.h; sourceTree = "<group>"; };
@@ -302,35 +279,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1EFC3D1147690B600CB7490 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1EFC3D7147690B600CB7490 /* SenTestingKit.framework in Frameworks */,
-				E1EFC3D8147690B600CB7490 /* UIKit.framework in Frameworks */,
-				E1EFC3D9147690B600CB7490 /* Foundation.framework in Frameworks */,
-				E1EFC3DA147690B600CB7490 /* CoreData.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		E10136D214A75D750089CC37 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				E10136CD14A718AB0089CC37 /* QueryGlobals.h */,
 				E10C27C714A602F70093FC60 /* QueryPart.h */,
-				E10136CF14A74C1F0089CC37 /* QueryConnector.h */,
-				E10136D014A74C1F0089CC37 /* QueryConnector.m */,
 				E10C27CC14A604140093FC60 /* QueryExpression.h */,
 				E10C27CD14A606190093FC60 /* AtomicQueryExpression.h */,
 				E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */,
-				E10C27C914A6032F0093FC60 /* QueryParameter.h */,
-				E10C27CA14A6032F0093FC60 /* QueryParameter.m */,
 				E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */,
 				E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */,
-				E1EF231D1477D81B000EE7C9 /* Query.h */,
+				E10136CF14A74C1F0089CC37 /* QueryConnector.h */,
+				E10136D014A74C1F0089CC37 /* QueryConnector.m */,
+				E10C27C914A6032F0093FC60 /* QueryParameter.h */,
+				E10C27CA14A6032F0093FC60 /* QueryParameter.m */,
+				E1F3A22A14AA20E100932DA9 /* Query.h */,
+				E1F3A22B14AA20E200932DA9 /* Query.m */,
 			);
 			name = Query;
 			sourceTree = "<group>";
@@ -349,14 +315,16 @@
 		E10C27C514A602D70093FC60 /* Query Parsing */ = {
 			isa = PBXGroup;
 			children = (
-				E10136C914A70B7A0089CC37 /* SimpleQueryParser.h */,
-				E10136CA14A70B7A0089CC37 /* SimpleQueryParser.m */,
 				E1083C7714A864EA003C5D97 /* QueryScanner.h */,
 				E1083C7814A864EA003C5D97 /* QueryScanner.m */,
+				E1F3A22D14AA3E1500932DA9 /* QuerySyntaxChecker.h */,
+				E1F3A22E14AA3E1500932DA9 /* QuerySyntaxChecker.m */,
 				E1083C7B14A874A5003C5D97 /* QueryParser.h */,
 				E1083C7C14A874A5003C5D97 /* QueryParser.m */,
 				E1083C7E14A87621003C5D97 /* AdvancedQueryParser.h */,
 				E1083C7F14A87621003C5D97 /* AdvancedQueryParser.m */,
+				E1F3A22414A9E66800932DA9 /* BasicQueryParser.h */,
+				E1F3A22514A9E66800932DA9 /* BasicQueryParser.m */,
 			);
 			name = "Query Parsing";
 			sourceTree = "<group>";
@@ -410,7 +378,6 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC45314772B5100CB7490 /* ezdl_icon.png */,
-				E15D5EE61489751B00C78F1D /* note.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -459,12 +426,12 @@
 		E1EF23151477D5B2000EE7C9 /* Query Service */ = {
 			isa = PBXGroup;
 			children = (
-				E10136D214A75D750089CC37 /* Query */,
-				E10C27C514A602D70093FC60 /* Query Parsing */,
-				E10136D314A75DFF0089CC37 /* Query Result */,
 				E1EF23241477DCE3000EE7C9 /* QueryService.h */,
 				E1EF23251477DDA2000EE7C9 /* QueryServiceImpl.h */,
 				E1EF23261477DDA2000EE7C9 /* QueryServiceImpl.m */,
+				E10136D214A75D750089CC37 /* Query */,
+				E10C27C514A602D70093FC60 /* Query Parsing */,
+				E10136D314A75DFF0089CC37 /* Query Result */,
 			);
 			name = "Query Service";
 			sourceTree = "<group>";
@@ -490,7 +457,6 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC3C1147690B600CB7490 /* ezDL */,
-				E1EFC3DD147690B600CB7490 /* ezDLTests */,
 				E1EFC3B8147690B600CB7490 /* Frameworks */,
 				E1EFC3B6147690B600CB7490 /* Products */,
 			);
@@ -500,7 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				E1EFC3B5147690B600CB7490 /* ezDL.app */,
-				E1EFC3D5147690B600CB7490 /* ezDLTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -512,7 +477,6 @@
 				E1EFC3BB147690B600CB7490 /* Foundation.framework */,
 				E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */,
 				E1EFC3BF147690B600CB7490 /* CoreData.framework */,
-				E1EFC3D6147690B600CB7490 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -548,25 +512,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E1EFC3DD147690B600CB7490 /* ezDLTests */ = {
-			isa = PBXGroup;
-			children = (
-				E1EFC3E3147690B600CB7490 /* QueryParsingTestCase.h */,
-				E1EFC3E4147690B600CB7490 /* QueryParsingTestCase.m */,
-				E1EFC3DE147690B600CB7490 /* Supporting Files */,
-			);
-			path = ezDLTests;
-			sourceTree = "<group>";
-		};
-		E1EFC3DE147690B600CB7490 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1EFC3DF147690B600CB7490 /* ezDLTests-Info.plist */,
-				E1EFC3E0147690B600CB7490 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E1EFC3EE1476914F00CB7490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,14 +524,14 @@
 		E1EFC3EF1476915800CB7490 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E1EFC3F61476968200CB7490 /* Query */,
-				E1EF23191477D60F000EE7C9 /* Query Result */,
-				E183BD5D1481359600C65FAA /* Document Detail */,
-				E15D5ED814893C4000C78F1D /* Personal Library */,
 				E1EFC3CA147690B600CB7490 /* AppDelegate.h */,
 				E1EFC3CB147690B600CB7490 /* AppDelegate.m */,
 				E1EFC455147731FD00CB7490 /* UIViewController+ViewControllerExtension.h */,
 				E1EFC456147731FD00CB7490 /* UIViewController+ViewControllerExtension.m */,
+				E1EFC3F61476968200CB7490 /* Query */,
+				E1EF23191477D60F000EE7C9 /* Query Result */,
+				E183BD5D1481359600C65FAA /* Document Detail */,
+				E15D5ED814893C4000C78F1D /* Personal Library */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -680,8 +625,6 @@
 		E1EFC4391476EAB000CB7490 /* Mockup */ = {
 			isa = PBXGroup;
 			children = (
-				E1EF23211477D8EE000EE7C9 /* MockupQueryImpl.h */,
-				E1EF23221477D8EE000EE7C9 /* MockupQueryImpl.m */,
 				E1EFC43A1476EACF00CB7490 /* MockupBackendServiceImpl.h */,
 				E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */,
 				E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */,
@@ -776,25 +719,6 @@
 			productReference = E1EFC3B5147690B600CB7490 /* ezDL.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E1EFC3D4147690B600CB7490 /* ezDLTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1EFC3EB147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDLTests" */;
-			buildPhases = (
-				E1EFC3D0147690B600CB7490 /* Sources */,
-				E1EFC3D1147690B600CB7490 /* Frameworks */,
-				E1EFC3D2147690B600CB7490 /* Resources */,
-				E1EFC3D3147690B600CB7490 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E1EFC3DC147690B600CB7490 /* PBXTargetDependency */,
-			);
-			name = ezDLTests;
-			productName = ezDLTests;
-			productReference = E1EFC3D5147690B600CB7490 /* ezDLTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -816,7 +740,6 @@
 			projectRoot = "";
 			targets = (
 				E1EFC3B4147690B600CB7490 /* ezDL */,
-				E1EFC3D4147690B600CB7490 /* ezDLTests */,
 			);
 		};
 /* End PBXProject section */
@@ -853,35 +776,10 @@
 				E1C45C48147D6236002DB8EC /* doc_4712.xml in Resources */,
 				E1C45C49147D6236002DB8EC /* doc_4811.xml in Resources */,
 				E1C45C4A147D6236002DB8EC /* doc_9851.xml in Resources */,
-				E15D5EE71489751B00C78F1D /* note.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1EFC3D2147690B600CB7490 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1EFC3E2147690B600CB7490 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		E1EFC3D3147690B600CB7490 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E1EFC3B1147690B600CB7490 /* Sources */ = {
@@ -905,7 +803,6 @@
 				E1EFC44914770C5900CB7490 /* MutableLibraryChoice.m in Sources */,
 				E1EFC457147731FE00CB7490 /* UIViewController+ViewControllerExtension.m in Sources */,
 				E1EF23181477D5ED000EE7C9 /* QueryResult.m in Sources */,
-				E1EF23231477D8EE000EE7C9 /* MockupQueryImpl.m in Sources */,
 				E1EF23271477DDA2000EE7C9 /* QueryServiceImpl.m in Sources */,
 				E1EF23301477F55D000EE7C9 /* QueryResultItem.m in Sources */,
 				E1EF23351477FE45000EE7C9 /* MockupQueryBackendService.m in Sources */,
@@ -941,47 +838,25 @@
 				E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */,
 				E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */,
 				E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */,
-				E10136CB14A70B7A0089CC37 /* SimpleQueryParser.m in Sources */,
 				E10136D114A74C1F0089CC37 /* QueryConnector.m in Sources */,
 				E1083C7914A864EA003C5D97 /* QueryScanner.m in Sources */,
 				E1083C7D14A874A5003C5D97 /* QueryParser.m in Sources */,
 				E1083C8014A87621003C5D97 /* AdvancedQueryParser.m in Sources */,
 				E1083C8314A87FC1003C5D97 /* Stack.m in Sources */,
 				E1083C8614A8C408003C5D97 /* NSArray+NSArrayExtension.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1EFC3D0147690B600CB7490 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1EFC3E5147690B600CB7490 /* QueryParsingTestCase.m in Sources */,
+				E1F3A22614A9E66800932DA9 /* BasicQueryParser.m in Sources */,
+				E1F3A22C14AA20E300932DA9 /* Query.m in Sources */,
+				E1F3A22F14AA3E1600932DA9 /* QuerySyntaxChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E1EFC3DC147690B600CB7490 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1EFC3B4147690B600CB7490 /* ezDL */;
-			targetProxy = E1EFC3DB147690B600CB7490 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E1EFC3C4147690B600CB7490 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E1EFC3C5147690B600CB7490 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E1EFC3E0147690B600CB7490 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1EFC3E1147690B600CB7490 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1047,6 +922,7 @@
 				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
 				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"WARNING_CFLAGS[arch=*]" = "-Wno-arc-performSelector-leaks";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1058,41 +934,8 @@
 				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
 				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"WARNING_CFLAGS[arch=*]" = "-Wno-arc-performSelector-leaks";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		E1EFC3EC147690B600CB7490 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ezDL.app/ezDL";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
-				INFOPLIST_FILE = "ezDLTests/ezDLTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		E1EFC3ED147690B600CB7490 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ezDL.app/ezDL";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
-				INFOPLIST_FILE = "ezDLTests/ezDLTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1113,15 +956,6 @@
 			buildConfigurations = (
 				E1EFC3E9147690B600CB7490 /* Debug */,
 				E1EFC3EA147690B600CB7490 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E1EFC3EB147690B600CB7490 /* Build configuration list for PBXNativeTarget "ezDLTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1EFC3EC147690B600CB7490 /* Debug */,
-				E1EFC3ED147690B600CB7490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
