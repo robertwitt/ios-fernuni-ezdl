@@ -10,10 +10,10 @@
 
 @interface QueryResult : NSObject
 
-@property (nonatomic, strong, readonly) id<Query> query;
+@property (nonatomic, strong, readonly) Query *query;
 @property (nonatomic, strong, readonly) NSArray *items;
 
-+ (QueryResult *)queryResultWithQuery:(id<Query>)query items:(NSArray *)items;
-- (id)initWithQuery:(id<Query>)query items:(NSArray *)items;
++ (QueryResult *)queryResultWithQuery:(Query *)query items:(NSArray *)items;
+- (id)initWithQuery:(Query *)query items:(NSArray *)items;
 
 @end

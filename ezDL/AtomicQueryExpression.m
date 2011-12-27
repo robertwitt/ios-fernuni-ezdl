@@ -47,14 +47,14 @@
 
 - (NSString *)parameterValueForKey:(NSString *)key
 {
-    // TODO Implementation needed
-    
-    return nil;
+    NSString *value = @"";
+    if ([self.parameter.key isEqualToString:key]) value = self.parameter.queryStringWithoutKey;
+    return value;
 }
 
 - (NSString *)queryString
 {
-    return [self.parameter queryString];
+    return self.parameter.queryString;
 }
 
 @end

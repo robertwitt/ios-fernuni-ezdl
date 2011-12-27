@@ -31,7 +31,7 @@
 - (void)loadingDocumentDetailsFinished;
 - (void)stepperValueChanged:(UIStepper *)stepper;
 - (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-- (id<Query>)buildQueryWithAuthor:(Author *)author;
+- (Query *)buildQueryWithAuthor:(Author *)author;
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForAddReferenceSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
@@ -329,9 +329,10 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     queryController.query = [self buildQueryWithAuthor:selectedAuthor];
 }
 
-- (id<Query>)buildQueryWithAuthor:(Author *)author
+- (Query *)buildQueryWithAuthor:(Author *)author
 {
-    NSDictionary *parameters = [NSDictionary dictionaryWithObject:author.fullName forKey:kQueryParameterKeyAuthor];
+    NSString *authorName = [NSString stringWithFormat:@"\"%@\"", author.fullName];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:authorName forKey:kQueryParameterKeyAuthor];
     return [[[ServiceFactory sharedFactory] queryService] buildQueryFromParameters:parameters];
 }
 

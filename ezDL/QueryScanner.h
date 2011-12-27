@@ -15,6 +15,7 @@
 - (void)scanner:(QueryScanner *)scanner didFoundWord:(NSString *)word;
 - (void)scanner:(QueryScanner *)scanner didFoundConnector:(NSString *)connector;
 - (void)scanner:(QueryScanner *)scanner didFoundOperator:(NSString *)operator;
+- (void)scanner:(QueryScanner *)scanner didFoundNotOperator:(NSString *)operator;
 - (void)scanner:(QueryScanner *)scanner didFoundQuoteSign:(NSString *)sign;
 - (void)scanner:(QueryScanner *)scanner didFoundOpenBracket:(NSString *)bracket;
 - (void)scanner:(QueryScanner *)scanner didFoundCloseBracket:(NSString *)bracket;

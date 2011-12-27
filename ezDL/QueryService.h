@@ -7,14 +7,15 @@
 //
 
 #import "LibraryChoice.h"
-#import "QueryGlobals.h"
+#import "QueryParameter.h"
 #import "QueryResult.h"
 
 @protocol QueryService <NSObject>
 
 - (LibraryChoice *)currentLibraryChoice;
-- (id<Query>)buildQueryFromString:(NSString *)string;
-- (id<Query>)buildQueryFromParameters:(NSDictionary *)parameters;
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError **)error;
+- (BOOL)checkQuerySyntaxFromString:(NSString *)string;
+- (Query *)buildQueryFromString:(NSString *)string;
+- (Query *)buildQueryFromParameters:(NSDictionary *)parameters;
+- (QueryResult *)executeQuery:(Query *)query withError:(NSError **)error;
 
 @end

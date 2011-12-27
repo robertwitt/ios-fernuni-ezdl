@@ -42,6 +42,7 @@
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+				<int key="IBUIBarStyle">2</int>
 				<array class="NSMutableArray" key="IBUIItems">
 					<object class="IBUIBarButtonItem" id="772874756">
 						<string key="IBUITitle">Previous</string>

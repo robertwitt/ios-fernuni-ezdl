@@ -147,7 +147,7 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
 {
     if ([self.delegate respondsToSelector:selector]) 
     {
-        [self.delegate performSelector:selector 
+        [self.delegate performSelector:selector
                             withObject:self
                             withObject:object];
     }

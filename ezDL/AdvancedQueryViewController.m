@@ -62,25 +62,6 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // Set query parameter values to outlets
-    self.queryText.text = [self.query parameterValueFromKey:kQueryParameterKeyText];
-    self.queryTitle.text = [self.query parameterValueFromKey:kQueryParameterKeyTitle];
-    self.queryAuthor.text = [self.query parameterValueFromKey:kQueryParameterKeyAuthor];
-    self.queryYear.text = [self.query parameterValueFromKey:kQueryParameterKeyYear];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    // Build query from outlets
-    //self.query = [self buildQuery];
-}
-
 - (BOOL)resignFirstResponder
 {
     [self.queryText resignFirstResponder];
@@ -89,6 +70,41 @@
     [self.queryYear resignFirstResponder];
     
     return YES;
+}
+
+- (void)setQuery:(Query *)query
+{
+    [super setQuery:query];
+    
+    // Set query parameter values to outlets
+    self.queryText.text = [self.query parameterValueFromKey:kQueryParameterKeyText];
+    self.queryTitle.text = [self.query parameterValueFromKey:kQueryParameterKeyTitle];
+    self.queryAuthor.text = [self.query parameterValueFromKey:kQueryParameterKeyAuthor];
+    self.queryYear.text = [self.query parameterValueFromKey:kQueryParameterKeyYear];
+}
+
+- (void)setQueryAuthor:(UITextField *)queryAuthor
+{
+    _queryAuthor = queryAuthor;
+    _queryAuthor.text = [self.query parameterValueFromKey:kQueryParameterKeyAuthor];
+}
+
+- (void)setQueryText:(UITextField *)queryText
+{
+    _queryText = queryText;
+    _queryText.text = [self.query parameterValueFromKey:kQueryParameterKeyText];
+}
+
+- (void)setQueryTitle:(UITextField *)queryTitle
+{
+    _queryTitle = queryTitle;
+    _queryTitle.text = [self.query parameterValueFromKey:kQueryParameterKeyTitle];
+}
+
+- (void)setQueryYear:(UITextField *)queryYear
+{
+    _queryYear = queryYear;
+    _queryYear.text = [self.query parameterValueFromKey:kQueryParameterKeyYear];
 }
 
 #pragma mark Sending Notification that Text has been entered/cleared
@@ -277,7 +293,20 @@
 
 #pragma mark Handling Query
 
-- (id<Query>)buildQuery
+- (BOOL)checkQuerySyntax
+{
+    id<QueryService> service = [[ServiceFactory sharedFactory] queryService];
+    
+    BOOL correct = YES;
+    if (![service checkQuerySyntaxFromString:self.queryAuthor.text]) correct = NO;
+    if (![service checkQuerySyntaxFromString:self.queryText.text]) correct = NO;
+    if (![service checkQuerySyntaxFromString:self.queryTitle.text]) correct = NO;
+    if (![service checkQuerySyntaxFromString:self.queryYear.text]) correct = NO;
+    
+    return correct;
+}
+
+- (Query *)buildQuery
 {
     // Ask the query service to build a query out of text field entries in view.
     

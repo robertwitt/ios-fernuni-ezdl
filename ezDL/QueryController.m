@@ -74,6 +74,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     
     self.navigationController.toolbarHidden = YES;
     
+    self.queryViewController.query = self.query;
     [self startObservingQueryViewController:self.queryViewController];
 }
 
@@ -116,6 +117,8 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
         [self prepareForQueryResultSegue:segue sender:sender];
     }
 }
+
+
 
 #pragma mark Implementing this Controller as Container Controller
 
@@ -259,7 +262,17 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
 - (IBAction)search:(id)sender
 {
-    [self performSearch];
+    if ([self.queryViewController checkQuerySyntax])
+    {
+        self.query = [self.queryViewController buildQuery];
+        [self performSearch];
+    }
+    else
+    {
+        [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                               message:NSLocalizedString(@"Syntax Incorrect Message", nil) 
+                                   tag:0];
+    }
 }
 
 - (void)performSearch
@@ -282,7 +295,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 {
     [self.queryViewController resignFirstResponder];
     
-    id<Query> query = [self.queryViewController buildQuery];
+    Query *query = self.query;
     
     QueryExecutionViewController *viewController = segue.destinationViewController;
     viewController.queryToExecute = query;
@@ -295,7 +308,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     }
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(id<Query>)query
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query
 {
     // User canceled query execution. Dismiss the query execution controller and inform delegate.
     [queryExecutionViewController dismissModalViewControllerAnimated:YES];
@@ -323,7 +336,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     }];
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(id<Query>)query withError:(NSError *)error
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error
 {
     // Dismiss query execution controller, send message to delegate and display error
     

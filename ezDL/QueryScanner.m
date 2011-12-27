@@ -7,7 +7,8 @@
 //
 
 #import "QueryScanner.h"
-#import "QueryGlobals.h"
+#import "QueryConnector.h"
+#import "QueryParameter.h"
 
 
 @interface QueryScanner ()
@@ -153,6 +154,7 @@
 - (NSString *)prepareStringToScan
 {
     NSString *string = [self.stringToScan stringByAppendingString:@" "];
+    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     return string;
 }
 
@@ -166,7 +168,7 @@
     }
     else if ([string isEqualToString:kQueryOperatorNot]) 
     {
-        message = @selector(scanner:didFoundOperator:);
+        message = @selector(scanner:didFoundNotOperator:);
     }
     else 
     {

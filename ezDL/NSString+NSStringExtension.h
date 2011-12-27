@@ -10,9 +10,6 @@
 
 @property (nonatomic, readonly, getter=isNotEmpty) BOOL notEmpty;
 
-- (BOOL)containsString:(NSString *)string;
 - (NSString *)trimmedString;
-- (BOOL)isWord;
-- (BOOL)isQuote;
 
 @end

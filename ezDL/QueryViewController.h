@@ -15,9 +15,10 @@ static NSString *QueryViewSearchRequestedNotification = @"QueryViewSearchRequest
 @interface QueryViewController : UIViewController
 
 @property (nonatomic, readonly) CGSize contentSizeForViewInQueryController;
-@property (nonatomic, strong) id<Query> query;
+@property (nonatomic, strong) Query *query;
 
-- (id<Query>)buildQuery;
+- (BOOL)checkQuerySyntax;
+- (Query *)buildQuery;
 - (void)clearQueryView;
 
 + (QueryViewController *)advancedQueryViewController;

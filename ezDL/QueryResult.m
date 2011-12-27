@@ -13,12 +13,12 @@
 @synthesize query = _query;
 @synthesize items = _items;
 
-+ (QueryResult *)queryResultWithQuery:(id<Query>)query items:(NSArray *)items
++ (QueryResult *)queryResultWithQuery:(Query *)query items:(NSArray *)items
 {
     return [[QueryResult alloc] initWithQuery:query items:items];
 }
 
-- (id)initWithQuery:(id<Query>)query items:(NSArray *)items
+- (id)initWithQuery:(Query *)query items:(NSArray *)items
 {
     self = [self init];
     if (self)

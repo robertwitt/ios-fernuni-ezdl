@@ -7,7 +7,6 @@
 //
 
 #import "QueryParameter.h"
-#import "QueryGlobals.h"
 
 
 @implementation QueryParameter
@@ -15,6 +14,7 @@
 @synthesize key = _key;
 @synthesize value = _value;
 @synthesize operator = _operator;
+@synthesize isNot = _isNot;
 
 + (QueryParameter *)parameterWithKey:(NSString *)key value:(NSString *)value
 {
@@ -26,12 +26,22 @@
     return [[QueryParameter alloc] initWithKey:key value:value operator:operator];
 }
 
++ (QueryParameter *)parameterWithKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator isNot:(BOOL)isNot
+{
+    return [[QueryParameter alloc] initWithKey:key value:value operator:operator isNot:isNot];
+}
+
 - (id)initWithKey:(NSString *)key value:(NSString *)value
 {
-    return [[QueryParameter alloc] initWithKey:key value:value operator:QueryParameterOperatorGreaterOrEquals];
+    return [[QueryParameter alloc] initWithKey:key value:value operator:QueryParameterOperatorEquals];
 }
 
 - (id)initWithKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator
+{
+    return [[QueryParameter alloc] initWithKey:key value:value operator:operator isNot:NO];
+}
+
+- (id)initWithKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator isNot:(BOOL)isNot
 {
     self = [self init];
     if (self)
@@ -39,39 +49,40 @@
         self.key = key;
         self.value = value;
         self.operator = operator;
+        self.isNot = isNot;
     }
     return self;
 }
 
 - (NSString *)queryString
 {
-    NSString *string = nil;
+    NSString *string = @"";
     
     if (self.key.notEmpty && ![self.key isEqualToString:kQueryParameterKeyText])
     {
-        if (self.operator == QueryParameterOperatorNotEquals)
-        {
-            string = [NSString stringWithFormat:@"%@ %@%@%@", [QueryParameter operatorString:QueryParameterOperatorNotEquals], self.key, [QueryParameter operatorString:QueryParameterOperatorEquals], self.value];
-        }
-        else
-        {
-            string = [NSString stringWithFormat:@"%@%@%@", self.key, [QueryParameter operatorString:self.operator], self.value];
-        }
+        if (self.isNot) string = [kQueryOperatorNot stringByAppendingString:@" "];
+        string = [string stringByAppendingFormat:@"%@%@%@", self.key, [QueryParameter operatorString:self.operator], self.value];
     }
     else
     {
-        if (self.operator == QueryParameterOperatorNotEquals)
-        {
-            string = [NSString stringWithFormat:@"%@ @", [QueryParameter operatorString:QueryParameterOperatorNotEquals], self.value];
-        }
-        else if (self.operator == QueryParameterOperatorEquals)
-        {
-            string = self.value;
-        }
-        else
-        {
-            string = [NSString stringWithFormat:@"%@%@", [QueryParameter operatorString:self.operator], self.value];
-        }
+        string = self.queryStringWithoutKey;
+    }
+    
+    return string;
+}
+
+- (NSString *)queryStringWithoutKey
+{
+    NSString *string = @"";
+    if (self.isNot) string = [kQueryOperatorNot stringByAppendingString:@" "];
+    
+    if (self.operator == QueryParameterOperatorEquals)
+    {
+        string = [string stringByAppendingString:self.value];
+    }
+    else
+    {
+        string = [string stringByAppendingFormat:@"%@%@", [QueryParameter operatorString:self.operator], self.value];
     }
     
     return string;
@@ -79,12 +90,11 @@
 
 + (enum QueryParameterOperator)operatorFromString:(NSString *)string
 {
-    if ([string isEqualToString:@"="]) return QueryParameterOperatorEquals;
-    else if ([string isEqualToString:@">="]) return QueryParameterOperatorGreaterOrEquals;
+    if ([string isEqualToString:@">="]) return QueryParameterOperatorGreaterOrEquals;
     else if ([string isEqualToString:@">"]) return QueryParameterOperatorGreaterThan;
     else if ([string isEqualToString:@"<="]) return QueryParameterOperatorLessOrEquals;
     else if ([string isEqualToString:@"<"]) return QueryParameterOperatorLessThan;
-    else if ([string isEqualToString:@"NOT"]) return QueryParameterOperatorNotEquals;
+    else return QueryParameterOperatorEquals;
     
     // If we got this far, string doesn't represent a valid operator. Throw excpetion.
     @throw [NSException exceptionWithName:NSInvalidArgumentException
@@ -111,9 +121,6 @@
             break;
         case QueryParameterOperatorLessThan:
             string = @"<";
-            break;
-        case QueryParameterOperatorNotEquals:
-            string = @"NOT";
             break;
     }
     return string;

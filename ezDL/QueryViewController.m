@@ -43,7 +43,9 @@
     return size;
 }
 
-- (id<Query>)buildQuery { return nil; }
+- (BOOL)checkQuerySyntax { return NO; }
+
+- (Query *)buildQuery { return nil; }
 
 - (void)clearQueryView {}
 

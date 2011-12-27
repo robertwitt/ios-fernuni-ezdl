@@ -7,7 +7,6 @@
 //
 
 #import "QueryConnector.h"
-#import "QueryGlobals.h"
 
 @implementation QueryConnector
 
@@ -38,6 +37,16 @@
 - (NSString *)queryString
 {
     return self.identifier;
+}
+
+- (BOOL)isAndConnector
+{
+    return [self.identifier isEqualToString:kQueryConnectorAnd];
+}
+
+- (BOOL)isOrConnector
+{
+    return [self.identifier isEqualToString:kQueryConnectorOr];
 }
 
 @end

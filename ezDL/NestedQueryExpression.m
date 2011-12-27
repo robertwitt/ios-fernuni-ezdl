@@ -42,16 +42,48 @@
     [self.mutableParts addObject:part];
 }
 
+- (void)removePart:(id<QueryPart>)part
+{
+    [self.mutableParts removeObject:part];
+}
+
 - (BOOL)isDeep
 {
-    // TODO Test somehow that the expression is deep
-    return YES;
+    __block BOOL deep = NO;
+    [self.mutableParts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+    {
+        if ([obj isKindOfClass:[NestedQueryExpression class]] || ([obj isKindOfClass:[QueryConnector class]] && ![obj isAndConnector]))
+        {
+            deep = YES;
+            *stop = YES;
+        }
+    }];
+     
+    return deep;
 }
 
 - (NSString *)parameterValueForKey:(NSString *)key
 {
-    // TODO Implementation needed
-    return nil;
+    __block NSString *value = @"";
+    
+    if (![self isDeep])
+    {
+        // Only return values if the expression isn't deep
+        __block NSMutableArray *expressions = [NSMutableArray array];
+        [self.mutableParts enumerateObjectsUsingBlock:^(id<QueryPart> obj, NSUInteger idx, BOOL *stop)
+        {
+            if ([obj conformsToProtocol:NSProtocolFromString(@"QueryExpression")])
+            {
+                // obj is an expression
+                NSString *localValue = [(id<QueryExpression>)obj parameterValueForKey:key];
+                if (localValue.notEmpty) [expressions addObject:localValue];
+            }
+        }];
+        
+        value = [expressions componentsJoinedByString:[NSString stringWithFormat:@" %@ ", kQueryConnectorAnd]];
+    }
+    
+    return value;
 }
 
 - (NSString *)queryString

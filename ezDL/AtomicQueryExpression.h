@@ -12,6 +12,8 @@
 @interface AtomicQueryExpression : NSObject <QueryExpression>
 
 @property (nonatomic, strong) QueryParameter *parameter;
+@property (nonatomic, strong, readonly) NSString *queryString;
+@property (nonatomic, readonly, getter=isDeep) BOOL deep;
 
 + (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value;
 + (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator;

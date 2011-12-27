@@ -15,11 +15,11 @@
 @protocol QueryControllerDelegate <NSObject>
 
 @optional
-- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(id<Query>)query;
-- (void)queryController:(QueryController *)queryController willExecuteQuery:(id<Query>)query;
+- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(Query *)query;
+- (void)queryController:(QueryController *)queryController willExecuteQuery:(Query *)query;
 - (void)queryController:(QueryController *)queryController didExecuteQueryWithQueryResult:(QueryResult *)queryResult;
-- (void)queryController:(QueryController *)queryController didFailExecutingQuery:(id<Query>)query withError:(NSError *)error;
-- (void)queryController:(QueryController *)queryController didCancelExecutingQuery:(id<Query>)query;
+- (void)queryController:(QueryController *)queryController didFailExecutingQuery:(Query *)query withError:(NSError *)error;
+- (void)queryController:(QueryController *)queryController didCancelExecutingQuery:(Query *)query;
 
 @end
 
@@ -29,7 +29,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *clearButton;
 @property (nonatomic, weak) IBOutlet UIButton *searchButton;
 @property (nonatomic, strong) QueryViewController *queryViewController;
-@property (nonatomic, strong) id<Query> query;
+@property (nonatomic, strong) Query *query;
 @property (nonatomic, weak) id<QueryControllerDelegate> delegate;
 
 - (IBAction)queryTypeChanged:(UISegmentedControl *)sender;

@@ -17,7 +17,7 @@
 @property (nonatomic, weak) UIPopoverController *sortByPopover;
 @property (nonatomic, weak) UIPopoverController *groupByPopover;
 @property (nonatomic, weak) UIPopoverController *optionsPopover;
-@property (nonatomic, strong) id<Query> editedQuery;
+@property (nonatomic, strong) Query *editedQuery;
 @property (nonatomic, strong) QueryResultSorting *currentSorting;
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
 @property (nonatomic, strong) QueryResultContent *tableContent;
@@ -297,7 +297,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.editQueryPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
-- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(id<Query>)query
+- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(Query *)query
 {
     [self.editQueryPopover dismissPopoverAnimated:NO];
     
@@ -314,7 +314,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     viewController.delegate = self;
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(id<Query>)query
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query
 {
     [queryExecutionViewController dismissModalViewControllerAnimated:YES];
 }
@@ -328,7 +328,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     }];
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(id<Query>)query withError:(NSError *)error
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error
 {    
     __weak id weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{

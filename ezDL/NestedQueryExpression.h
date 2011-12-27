@@ -11,5 +11,7 @@
 @interface NestedQueryExpression : NSObject <QueryExpression>
 
 @property (nonatomic, strong, readonly) NSArray *parts;
+@property (nonatomic, strong, readonly) NSString *queryString;
+@property (nonatomic, readonly, getter=isDeep) BOOL deep;
 
 @end

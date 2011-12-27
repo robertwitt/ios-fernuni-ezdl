@@ -2,22 +2,19 @@
 //  Query.h
 //  ezDL
 //
-//  Created by Robert Witt on 19.11.11.
+//  Created by Robert Witt on 27.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "QueryExpression.h"
 
-@protocol Query <NSObject>
+@interface Query : NSObject <QueryPart>
 
-- (id<QueryExpression>)baseExpression;
-- (void)setBaseExpression:(id<QueryExpression>)baseExpression;
-- (NSArray *)selectedLibraries;
-- (void)setSelectedLibraries:(NSArray *)selectedLibraries;
-- (NSDate *)executedOn;
-- (void)setExecutedOn:(NSDate *)executedOn;
-- (NSArray *)parameterValues;
+@property (nonatomic, strong) id<QueryExpression> baseExpression;
+@property (nonatomic, strong) NSArray *selectedLibraries;
+@property (nonatomic, strong) NSDate *executedOn;
+@property (nonatomic, strong, readonly) NSString *queryString;
+
 - (NSString *)parameterValueFromKey:(NSString *)key;
-- (NSString *)queryString;
 
 @end

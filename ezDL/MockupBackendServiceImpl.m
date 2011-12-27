@@ -25,7 +25,7 @@
     return libraries;
 }
 
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *__autoreleasing *)error
+- (QueryResult *)executeQuery:(Query *)query withError:(NSError *__autoreleasing *)error
 {
     MockupQueryBackendService *service = [[MockupQueryBackendService alloc] init];
     NSArray *queryResultItems = [service loadQueryResultItems];

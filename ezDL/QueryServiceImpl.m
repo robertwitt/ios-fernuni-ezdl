@@ -8,8 +8,9 @@
 
 #import "QueryServiceImpl.h"
 #import "AdvancedQueryParser.h"
-#import "MockupQueryImpl.h"
+#import "BasicQueryParser.h"
 #import "NestedQueryExpression.h"
+#import "QuerySyntaxChecker.h"
 #import "ServiceFactory.h"
 
 @implementation QueryServiceImpl
@@ -19,30 +20,34 @@
     return [[[ServiceFactory sharedFactory] libraryService] libraryChoice];
 }
 
-- (id<Query>)buildQueryFromString:(NSString *)string
+- (BOOL)checkQuerySyntaxFromString:(NSString *)string
 {
-    MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
+    QuerySyntaxChecker *syntaxChecker = [[QuerySyntaxChecker alloc] init];
+    return [syntaxChecker checkString:string];
+}
+
+- (Query *)buildQueryFromString:(NSString *)string
+{
+    Query *query = [[Query alloc] init];
     
-    //SimpleQueryParser *parser = [[SimpleQueryParser alloc] init];
-    //query.baseExpression = [parser parsedExpressionFromString:string];
+    BasicQueryParser *parser = [BasicQueryParser parserWithString:string];
+    query.baseExpression = [parser parsedExpressionWithError:nil];
     
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
     return query;
 }
 
-- (id<Query>)buildQueryFromParameters:(NSDictionary *)parameters
+- (Query *)buildQueryFromParameters:(NSDictionary *)parameters
 {
-    MockupQueryImpl *query = [[MockupQueryImpl alloc] init];
+    Query *query = [[Query alloc] init];
         
-    query.baseExpression = [AdvancedQueryParser parsedExpressionFromParameters:parameters error:nil];
-    //SimpleQueryParser *parser = [[SimpleQueryParser alloc] init];
-    //query.baseExpression = [parser parsedExpressionFromParameters:parameters];
-    
+    query.baseExpression = [AdvancedQueryParser parsedExpressionFromParameters:parameters error:nil];    
     query.selectedLibraries = [[[ServiceFactory sharedFactory] libraryService] libraryChoice].selectedLibraries;
+    
     return query;
 }
 
-- (QueryResult *)executeQuery:(id<Query>)query withError:(NSError *__autoreleasing *)error
+- (QueryResult *)executeQuery:(Query *)query withError:(NSError *__autoreleasing *)error
 {
     return [[[ServiceFactory sharedFactory] backendService] executeQuery:query withError:error];
 }

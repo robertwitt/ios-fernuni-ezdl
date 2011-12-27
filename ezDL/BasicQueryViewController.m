@@ -42,26 +42,24 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BOOL)resignFirstResponder
 {
-    [super viewWillAppear:animated];
+    [self.basicQuery resignFirstResponder];
+    return YES;
+}
+
+- (void)setQuery:(Query *)query
+{
+    [super setQuery:query];
     
     // Set query string to text view outlet
     self.basicQuery.text = [self.query queryString];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)setBasicQuery:(UITextView *)basicQuery
 {
-    [super viewWillDisappear:animated];
-    
-    // Build query from text view input
-    //self.query = [self buildQuery];
-}
-
-- (BOOL)resignFirstResponder
-{
-    [self.basicQuery resignFirstResponder];
-    return YES;
+    _basicQuery = basicQuery;
+    _basicQuery.text = [self.query queryString];
 }
 
 #pragma mark Sending Notification that Text has been entered/cleared
@@ -69,13 +67,13 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     // Basic query has been changed. Send notification that text has been entered and cleared respectively.
-    if (!textView.text || [textView.text isEqualToString:@""])
+    if (textView.text.notEmpty)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotClearedNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotFilledNotification object:self];
     }
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotFilledNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotClearedNotification object:self];
     }
 }
 
@@ -113,7 +111,12 @@
 
 #pragma mark Handling Query
 
-- (id<Query>)buildQuery
+- (BOOL)checkQuerySyntax
+{
+    return [[[ServiceFactory sharedFactory] queryService] checkQuerySyntaxFromString:self.basicQuery.text];
+}
+
+- (Query *)buildQuery
 {
     // Engage query service to build a query from basic query input
     return [[[ServiceFactory sharedFactory] queryService] buildQueryFromString:self.basicQuery.text];

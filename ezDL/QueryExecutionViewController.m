@@ -28,6 +28,7 @@
 
 @implementation QueryExecutionViewController
 
+@synthesize queryText = _queryText;
 @synthesize queryToExecute = _queryToExecute;
 @synthesize delegate = _delegate;
 @synthesize executionOperation = _executionOperation;
@@ -58,6 +59,18 @@
     {
         [self executingQueryFailedWithErrorDescription:NSLocalizedString(@"No Libraries Selected Text", nil)];
     }
+}
+
+- (void)setQueryText:(UITextView *)queryText
+{
+    _queryText = queryText;
+    _queryText.text = self.queryToExecute.queryString;
+}
+
+- (void)setQueryToExecute:(Query *)queryToExecute
+{
+    _queryToExecute = queryToExecute;
+    self.queryText.text = queryToExecute.queryString;
 }
 
 - (BOOL)checkQuery
