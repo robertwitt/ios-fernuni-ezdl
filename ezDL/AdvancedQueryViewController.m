@@ -16,11 +16,12 @@
 
 - (UITextField *)previousQueryFieldBeforeQueryField:(UITextField *)queryField;
 - (UITextField *)nextQueryFieldAfterQueryField:(UITextField *)queryField;
-- (BOOL)textIsEmpty:(NSString *)text;
 - (void)postQueryViewGotFilledNotification;
 - (void)postQueryViewGotClearedNotification;
 - (BOOL)areQueryFieldsClearExcept:(UITextField *)queryField;
 - (BOOL)areQueryFieldsClear:(NSArray *)queryFields;
+- (void)showQueryTextFieldAsCorrect:(UITextField *)textfield;
+- (void)showQueryTextFieldAsIncorrect:(UITextField *)textField;
 
 @end
 
@@ -120,10 +121,7 @@
     // Send notification the search key in keyboard has been pressed.
     
     BOOL shouldReturn = YES;    
-    if ([self areQueryFieldsClearExcept:textField])
-    {
-        if ([self textIsEmpty:textField.text]) shouldReturn = NO;
-    }
+    if ([self areQueryFieldsClearExcept:textField]) if (!textField.text) shouldReturn = NO;
     
     if (shouldReturn)
     {
@@ -136,16 +134,14 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    // Text has been changed in one of the text fields. Send notifications that text has been entered or cleared in all text fields.
-    BOOL queryViewIsClear = NO;
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
+    // Text has been changed in one of the text fields. Send notifications that text has been entered or cleared in all text fields.
+    BOOL queryViewIsClear = NO;    
     if ([self areQueryFieldsClearExcept:textField])
     {
         // All other text fields in the view except textField don't contain any text.
-        
-        // This methods is actually called before input is set to text field's text. So build the new value here to decide whether or not the text field has been cleared.
-        NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        if ([self textIsEmpty:newText])
+        if (!newText.notEmpty)
         {
             // All text fields are empty. Send the QueryViewGotClearedNotification.
             [self postQueryViewGotClearedNotification];
@@ -156,7 +152,27 @@
     // Otherwise if there is text in the text fields, send the QueryViewGotFilledNotification.
     if (!queryViewIsClear) [self postQueryViewGotFilledNotification];
     
+    // Check syntax of this text field. Mark the text field as incorrect if the syntax is wrong.
+    if ([[[ServiceFactory sharedFactory] queryService] checkQuerySyntaxFromString:newText])
+    {
+        [self showQueryTextFieldAsCorrect:textField];
+    }
+    else
+    {
+        [self showQueryTextFieldAsIncorrect:textField];
+    }
+    
     return YES;
+}
+
+- (void)showQueryTextFieldAsCorrect:(UITextField *)textfield
+{
+    textfield.textColor = [UIColor blackColor];
+}
+
+- (void)showQueryTextFieldAsIncorrect:(UITextField *)textField
+{
+    textField.textColor = [UIColor redColor];
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
@@ -164,11 +180,6 @@
     // Send the QueryViewGotClearedNotification if all fields are empty now.
     if ([self areQueryFieldsClearExcept:textField]) [self postQueryViewGotClearedNotification];
     return YES;
-}
-
-- (BOOL)textIsEmpty:(NSString *)text
-{
-    return (!text || [text isEqualToString:@""]);
 }
 
 - (void)postQueryViewGotFilledNotification
@@ -223,17 +234,11 @@
 - (BOOL)areQueryFieldsClear:(NSArray *)queryFields
 {
     // Returns YES of all text fields in queryFields are empty
-    
-    BOOL clear = YES;
-    
+    BOOL clear = YES;    
     for (UITextField *queryField in queryFields)
     {
-        if (![self textIsEmpty:queryField.text])
-        {
-            clear = NO;
-        }
-    }
-    
+        if (queryField.text.notEmpty) clear = NO;
+    }    
     return clear;
 }
 

@@ -185,7 +185,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
 - (void)queryViewSearchKeyPressed
 {
-    [self performSearch];
+    if ([self.queryViewController checkQuerySyntax]) [self performSearch];
 }
 
 - (void)stopObservingQueryViewController:(QueryViewController *)viewController
@@ -264,7 +264,6 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 {
     if ([self.queryViewController checkQuerySyntax])
     {
-        self.query = [self.queryViewController buildQuery];
         [self performSearch];
     }
     else
@@ -277,12 +276,13 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
 - (void)performSearch
 {
-    BOOL shouldExecuteQuery = YES;
+    self.query = [self.queryViewController buildQuery];
     
+    BOOL shouldExecuteQuery = YES;
     if ([self.delegate respondsToSelector:@selector(queryController:shouldExecuteQuery:)])
     {
         shouldExecuteQuery = [self.delegate queryController:self
-                                         shouldExecuteQuery:[self.queryViewController buildQuery]];
+                                         shouldExecuteQuery:self.query];
     }
     
     if (shouldExecuteQuery)

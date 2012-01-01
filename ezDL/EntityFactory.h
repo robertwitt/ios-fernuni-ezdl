@@ -6,13 +6,13 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@class Author;
-@class Document;
-@class DocumentDetail;
-@class DocumentLink;
-@class Library;
-@class PersonalLibraryGroup;
-@class PersonalLibraryReference;
+#import "Author.h"
+#import "Document.h"
+#import "DocumentDetail.h"
+#import "DocumentLink.h"
+#import "Library.h"
+#import "PersonalLibraryGroup.h"
+#import "PersonalLibraryReference.h"
 
 @interface EntityFactory : NSObject
 

@@ -13,6 +13,8 @@
 @interface BasicQueryViewController ()
 
 - (void)addQueryParameter:(NSString *)parameter;
+- (void)showBasicQueryAsCorrect;
+- (void)showBasicQueryAsIncorrect;
 
 @end
 
@@ -75,6 +77,25 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:QueryViewGotClearedNotification object:self];
     }
+    
+    if ([[[ServiceFactory sharedFactory] queryService] checkQuerySyntaxFromString:textView.text])
+    {
+        [self showBasicQueryAsCorrect];
+    }
+    else
+    {
+        [self showBasicQueryAsIncorrect];
+    }
+}
+
+- (void)showBasicQueryAsCorrect
+{
+    self.basicQuery.textColor = [UIColor blackColor];
+}
+
+- (void)showBasicQueryAsIncorrect
+{
+    self.basicQuery.textColor = [UIColor redColor];
 }
 
 #pragma mark Responding to Events on Input Accessory View
