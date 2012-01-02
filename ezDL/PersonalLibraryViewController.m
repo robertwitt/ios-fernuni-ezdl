@@ -45,9 +45,6 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     [super viewDidLoad];
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    // In self.displayedGroups those groups are collected that shall be displayed
-    self.displayedGroups = [NSMutableArray arrayWithArray:[self.personalLibraryService personalLibraryGroups]];
 }
 
 - (void)viewDidUnload
@@ -62,7 +59,15 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
 {
     [super viewWillAppear:animated];
     
+    // In self.displayedGroups those groups are collected that shall be displayed
+    if (!self.displayedGroups.notEmpty) self.displayedGroups = [NSMutableArray arrayWithArray:[self.personalLibraryService personalLibraryGroups]];
     [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.groupsPopover dismissPopoverAnimated:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

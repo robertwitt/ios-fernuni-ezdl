@@ -34,6 +34,7 @@ static NSString *SegueIdentifierLibraryChoice = @"LibraryChoiceSegue";
 static NSString *SegueIdentifierQueryExecution = @"QueryExecutionSegue";
 static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
+@synthesize queryTypeControl = _queryTypeControl;
 @synthesize clearButton = _clearButton;
 @synthesize searchButton = _searchButton;
 @synthesize queryViewController = _queryViewController;
@@ -45,13 +46,6 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 @synthesize queryResultAfterExecution = _queryResultAfterExecution;
 
 #pragma mark Managing the View
-
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-    
-    self.queryViewController = self.advancedQueryViewController;
-}
 
 - (void)viewDidUnload
 {
@@ -74,8 +68,26 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     
     self.navigationController.toolbarHidden = YES;
     
+    // Decide which query view controller is visible at startup by display compatibility of the query
+    if ([self.advancedQueryViewController canDisplayQuery:self.query])
+    {
+        self.queryViewController = self.advancedQueryViewController;
+        self.queryTypeControl.selectedSegmentIndex = 0;
+    }
+    else
+    {
+        self.queryViewController = self.basicQueryViewController;
+        self.queryTypeControl.selectedSegmentIndex = 1;
+    }
     self.queryViewController.query = self.query;
+    
     [self startObservingQueryViewController:self.queryViewController];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.libraryChoicePopover dismissPopoverAnimated:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -214,9 +226,15 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
         case 1:
             queryViewController = self.basicQueryViewController;
             break;
-    }
-    
+    }    
     self.queryViewController = queryViewController;
+    
+    if (![queryViewController canDisplayQuery:queryViewController.query])
+    {
+        [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                               message:NSLocalizedString(@"Advanced Query Message", nil)
+                                   tag:0];
+    }
 }
 
 - (QueryViewController *)advancedQueryViewController

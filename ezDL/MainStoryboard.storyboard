@@ -83,6 +83,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="clearButton" destination="vnX-Ue-qHD" id="fIL-Sg-r39"/>
+                        <outlet property="queryTypeControl" destination="eh1-gA-ASz" id="s1K-1V-r0U"/>
                         <outlet property="searchButton" destination="jI8-hY-mhd" id="2HO-wY-gDW"/>
                         <segue destination="G4J-rl-1XR" kind="popover" identifier="LibraryChoiceSegue" popoverAnchorBarButtonItem="XnN-Fl-a28" id="Jim-73-Beu">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -216,7 +217,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Sort by Relevance" id="yVh-V2-Ish">
+                        <barButtonItem title="Sorted by Relevance" id="yVh-V2-Ish">
                             <connections>
                                 <action selector="sortBy:" destination="61x-mu-R2E" id="9gm-vc-OaL"/>
                             </connections>
@@ -613,7 +614,9 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="Iga-db-4yV"/>
+                    <navigationItem key="navigationItem" id="Iga-db-4yV">
+                        <barButtonItem key="backBarButtonItem" title="Document Detail" id="8gl-Kt-43d"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1064,6 +1067,7 @@
                 <relationship kind="action" name="queryTypeChanged:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="search:"/>
                 <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="queryTypeControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -1103,9 +1107,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2mi-4t-xXg"/>
-        <segue reference="y5z-9T-Wrt"/>
-        <segue reference="mLl-1Q-GQy"/>
         <segue reference="ibf-kU-lJK"/>
     </inferredMetricsTieBreakers>
 </document>

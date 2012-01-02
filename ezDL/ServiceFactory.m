@@ -10,7 +10,7 @@
 #import "DocumentServiceImpl.h"
 #import "LibraryServiceImpl.h"
 #import "MockupBackendServiceImpl.h"
-#import "PersonalLibraryServiceImpl.h"
+#import "MockupPersonalLibraryServiceImpl.h"
 #import "QueryServiceImpl.h"
 
 @implementation ServiceFactory
@@ -19,7 +19,7 @@ static ServiceFactory *Singleton;
 static QueryServiceImpl *QueryServiceImplSingleton;
 static LibraryServiceImpl *LibraryServiceImplSingleton;
 static DocumentServiceImpl *DocumentServiceImplSingleton;
-static PersonalLibraryServiceImpl *PersonalLibraryServiceImplSingleton;
+static MockupPersonalLibraryServiceImpl *PersonalLibraryServiceImplSingleton;
 static MockupBackendServiceImpl *MockupBackendServiceImplSingleton;
 
 + (ServiceFactory *)sharedFactory
@@ -48,7 +48,8 @@ static MockupBackendServiceImpl *MockupBackendServiceImplSingleton;
 
 - (id<PersonalLibraryService>)personalLibraryService
 {
-    if (!PersonalLibraryServiceImplSingleton) PersonalLibraryServiceImplSingleton = [[PersonalLibraryServiceImpl alloc] init];
+    // MOCKUP After mockup replace this implementation with actual one
+    if (!PersonalLibraryServiceImplSingleton) PersonalLibraryServiceImplSingleton = [[MockupPersonalLibraryServiceImpl alloc] init];
     return PersonalLibraryServiceImplSingleton;
 }
 

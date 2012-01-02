@@ -101,6 +101,16 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.navigationController.toolbarHidden = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.editQueryPopover dismissPopoverAnimated:NO];
+    [self.sortByPopover dismissPopoverAnimated:NO];
+    [self.groupByPopover dismissPopoverAnimated:NO];
+    [self.optionsPopover dismissPopoverAnimated:NO];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

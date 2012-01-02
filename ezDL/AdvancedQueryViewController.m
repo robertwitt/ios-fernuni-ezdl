@@ -12,7 +12,8 @@
 
 @interface AdvancedQueryViewController ()
 
-@property (nonatomic, strong) UITextField *firstResponderQueryField;
+@property (nonatomic, weak) UITextField *firstResponderQueryField;
+@property (nonatomic, strong) id<QueryService> queryService;
 
 - (UITextField *)previousQueryFieldBeforeQueryField:(UITextField *)queryField;
 - (UITextField *)nextQueryFieldAfterQueryField:(UITextField *)queryField;
@@ -34,6 +35,7 @@
 @synthesize queryYear = _queryYear;
 @synthesize textFieldAccessoryView = _textFieldAccessoryView;
 @synthesize firstResponderQueryField = _firstResponderQueryField;
+@synthesize queryService = _queryService;
 
 #pragma mark Managing the View
 
@@ -108,6 +110,12 @@
     _queryYear.text = [self.query parameterValueFromKey:kQueryParameterKeyYear];
 }
 
+- (id<QueryService>)queryService
+{
+    if (!_queryService) _queryService = [[ServiceFactory sharedFactory] queryService];
+    return _queryService;
+}
+
 #pragma mark Sending Notification that Text has been entered/cleared
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -153,7 +161,7 @@
     if (!queryViewIsClear) [self postQueryViewGotFilledNotification];
     
     // Check syntax of this text field. Mark the text field as incorrect if the syntax is wrong.
-    if ([[[ServiceFactory sharedFactory] queryService] checkQuerySyntaxFromString:newText])
+    if ([self.queryService checkQuerySyntaxFromString:newText])
     {
         [self showQueryTextFieldAsCorrect:textField];
     }
@@ -300,13 +308,11 @@
 
 - (BOOL)checkQuerySyntax
 {
-    id<QueryService> service = [[ServiceFactory sharedFactory] queryService];
-    
     BOOL correct = YES;
-    if (![service checkQuerySyntaxFromString:self.queryAuthor.text]) correct = NO;
-    if (![service checkQuerySyntaxFromString:self.queryText.text]) correct = NO;
-    if (![service checkQuerySyntaxFromString:self.queryTitle.text]) correct = NO;
-    if (![service checkQuerySyntaxFromString:self.queryYear.text]) correct = NO;
+    if (![self.queryService checkQuerySyntaxFromString:self.queryAuthor.text]) correct = NO;
+    if (![self.queryService checkQuerySyntaxFromString:self.queryText.text]) correct = NO;
+    if (![self.queryService checkQuerySyntaxFromString:self.queryTitle.text]) correct = NO;
+    if (![self.queryService checkQuerySyntaxFromString:self.queryYear.text]) correct = NO;
     
     return correct;
 }
@@ -322,8 +328,13 @@
     if (self.queryTitle.text.notEmpty) [parameters setObject:self.queryTitle.text forKey:kQueryParameterKeyTitle];
     if (self.queryYear.text.notEmpty) [parameters setObject:self.queryYear.text forKey:kQueryParameterKeyYear];
     
-     //NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:self.queryAuthor.text, kQueryParameterKeyAuthor, self.queryTitle.text, kQueryParameterKeyTitle, self.queryYear.text, kQueryParameterKeyYear, self.queryText.text, kQueryParameterKeyText, nil];
-    return [[[ServiceFactory sharedFactory] queryService] buildQueryFromParameters:parameters];
+    if (parameters.count > 0)
+    {
+        // If at least one input field has been filled, build a new query.
+        self.query = [self.queryService buildQueryFromParameters:parameters];
+    }
+
+    return self.query;
 }
 
 - (void)clearQueryView
@@ -332,6 +343,12 @@
     self.queryTitle.text = nil;
     self.queryAuthor.text = nil;
     self.queryYear.text = nil;
+}
+
+- (BOOL)canDisplayQuery:(Query *)query
+{
+    // A query can be displayed in advanced search if base expression isn't deep.
+    return ![query.baseExpression isDeep];
 }
 
 @end

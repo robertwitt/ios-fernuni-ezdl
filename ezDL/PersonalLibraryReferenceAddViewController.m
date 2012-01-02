@@ -16,6 +16,7 @@
 @property (nonatomic, weak) PersonalLibraryGroup *selectedGroup;
 
 - (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)performSave;
 
 @end
 
@@ -96,6 +97,20 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 }
 
 - (IBAction)save
+{
+    if (self.selectedGroup)
+    {
+        [self performSave];
+    }
+    else
+    {
+        [self showSimpleAlertWithTitle:NSLocalizedString(@"No Group Selected", nil)
+                               message:NSLocalizedString(@"No Group Selected Message", nil)
+                                   tag:0];
+    }
+}
+
+- (void)performSave
 {
     // Perform saving the document as reference
     PersonalLibraryReference *reference = [self.personalLibraryService newReferenceWithDocument:self.referenceDocument];

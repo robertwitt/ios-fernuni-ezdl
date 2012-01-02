@@ -49,6 +49,8 @@
 
 - (void)clearQueryView {}
 
+- (BOOL)canDisplayQuery:(Query *)query { return YES; }
+
 + (AdvancedQueryViewController *)advancedQueryViewController
 {
     AdvancedQueryViewController *viewController = [[AdvancedQueryViewController alloc] initWithNibName:@"AdvancedQueryViewController"

@@ -140,12 +140,19 @@
 - (Query *)buildQuery
 {
     // Engage query service to build a query from basic query input
-    return [[[ServiceFactory sharedFactory] queryService] buildQueryFromString:self.basicQuery.text];
+    self.query = [[[ServiceFactory sharedFactory] queryService] buildQueryFromString:self.basicQuery.text];
+    return self.query;
 }
 
 - (void)clearQueryView
 {
     self.basicQuery.text = nil;
+}
+
+- (BOOL)canDisplayQuery:(Query *)query
+{
+    // Every query can be displayed
+    return YES;
 }
 
 @end

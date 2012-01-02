@@ -7,6 +7,7 @@
 */
 
 "Abstract" = "Abstract";
+"Advanced Query Message" = "The query is not displayable in this query view";
 "Author" = "Author";
 "Authors" = "Authors";
 "ascending" = "ascending";
@@ -20,6 +21,8 @@
 "Library" = "Library";
 "Links" = "Links";
 "No" = "No";
+"No Group Selected" = "No Group Selected";
+"No Group Selected Message" = "Please select a group or create one in case there doesn't exist any.";
 "No Libraries Selected Text" = "The search could not be executed because no digital libraries were selected.";
 "Nothing" = "Nothing";
 "Not grouped" = "Not grouped";

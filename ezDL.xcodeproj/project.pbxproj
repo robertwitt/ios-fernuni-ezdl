@@ -96,7 +96,7 @@
 		E1F3A22C14AA20E300932DA9 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F3A22B14AA20E200932DA9 /* Query.m */; };
 		E1F3A22F14AA3E1600932DA9 /* QuerySyntaxChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F3A22E14AA3E1500932DA9 /* QuerySyntaxChecker.m */; };
 		E1F4E253148BA0440003140E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E252148BA0440003140E /* Author.m */; };
-		E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */; };
+		E1F4E25B148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25A148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.m */; };
 		E1F4E25E148BCCDD0003140E /* PersonalLibraryReference.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */; };
 		E1F4E267148BCD8D0003140E /* PersonalLibraryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E266148BCD8D0003140E /* PersonalLibraryGroup.m */; };
 /* End PBXBuildFile section */
@@ -259,8 +259,8 @@
 		E1F4E251148BA0440003140E /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		E1F4E252148BA0440003140E /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		E1F4E258148BA19B0003140E /* PersonalLibraryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryService.h; sourceTree = "<group>"; };
-		E1F4E259148BA2AB0003140E /* PersonalLibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryServiceImpl.h; sourceTree = "<group>"; };
-		E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryServiceImpl.m; sourceTree = "<group>"; };
+		E1F4E259148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupPersonalLibraryServiceImpl.h; sourceTree = "<group>"; };
+		E1F4E25A148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupPersonalLibraryServiceImpl.m; sourceTree = "<group>"; };
 		E1F4E25C148BCCDC0003140E /* PersonalLibraryReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReference.h; sourceTree = "<group>"; };
 		E1F4E25D148BCCDD0003140E /* PersonalLibraryReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReference.m; sourceTree = "<group>"; };
 		E1F4E265148BCD8D0003140E /* PersonalLibraryGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryGroup.h; sourceTree = "<group>"; };
@@ -633,6 +633,8 @@
 				E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */,
 				E10FC922147C412F000F41A8 /* MockupDocumentBackendService.h */,
 				E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */,
+				E1F4E259148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.h */,
+				E1F4E25A148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.m */,
 				E1EFC4401476EB7C00CB7490 /* Mockup Files */,
 			);
 			name = Mockup;
@@ -693,8 +695,6 @@
 			isa = PBXGroup;
 			children = (
 				E1F4E258148BA19B0003140E /* PersonalLibraryService.h */,
-				E1F4E259148BA2AB0003140E /* PersonalLibraryServiceImpl.h */,
-				E1F4E25A148BA2AB0003140E /* PersonalLibraryServiceImpl.m */,
 			);
 			name = "Personal Library Service";
 			sourceTree = "<group>";
@@ -824,7 +824,7 @@
 				E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */,
 				E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */,
 				E1F4E253148BA0440003140E /* Author.m in Sources */,
-				E1F4E25B148BA2AB0003140E /* PersonalLibraryServiceImpl.m in Sources */,
+				E1F4E25B148BA2AB0003140E /* MockupPersonalLibraryServiceImpl.m in Sources */,
 				E1F4E25E148BCCDD0003140E /* PersonalLibraryReference.m in Sources */,
 				E1F4E267148BCD8D0003140E /* PersonalLibraryGroup.m in Sources */,
 				E156BE6C148D419E0062230F /* Document.m in Sources */,

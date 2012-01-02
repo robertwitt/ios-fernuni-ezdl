@@ -26,6 +26,7 @@
 
 @interface QueryController : UIViewController <QueryExecutionViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl *queryTypeControl;
 @property (nonatomic, weak) IBOutlet UIButton *clearButton;
 @property (nonatomic, weak) IBOutlet UIButton *searchButton;
 @property (nonatomic, strong) QueryViewController *queryViewController;

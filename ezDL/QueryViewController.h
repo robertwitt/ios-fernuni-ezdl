@@ -20,6 +20,7 @@ static NSString *QueryViewSearchRequestedNotification = @"QueryViewSearchRequest
 - (BOOL)checkQuerySyntax;
 - (Query *)buildQuery;
 - (void)clearQueryView;
+- (BOOL)canDisplayQuery:(Query *)query;
 
 + (QueryViewController *)advancedQueryViewController;
 + (QueryViewController *)basicQueryViewController;
