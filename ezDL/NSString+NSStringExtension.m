@@ -10,13 +10,11 @@
 
 @implementation NSString (NSStringExtension)
 
-- (BOOL)isNotEmpty
-{
+- (BOOL)isNotEmpty {
     return (![self isEqualToString:@""]);
 }
 
-- (NSString *)trimmedString
-{
+- (NSString *)trimmedString {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 

@@ -10,8 +10,7 @@
 
 @implementation NSArray (NSArrayExtension)
 
-- (BOOL)isNotEmpty
-{
+- (BOOL)isNotEmpty {
     return (self.count > 0);
 }
 

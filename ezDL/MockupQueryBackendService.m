@@ -12,7 +12,7 @@
 #import "ServiceFactory.h"
 
 
-@interface MockupQueryBackendService ()
+@interface MockupQueryBackendService () <NSXMLParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *queryResultItems;
 @property (nonatomic, strong) NSString *currentElement;
@@ -52,8 +52,7 @@ static NSString *ElementRelevance = @"relevance";
 @synthesize libraryObjectID = _libraryObjectID;
 @synthesize relevance = _relevance;
 
-- (NSArray *)loadQueryResultItems
-{
+- (NSArray *)loadQueryResultItems {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"query_result" ofType:@"xml"];
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
     
@@ -65,15 +64,12 @@ static NSString *ElementRelevance = @"relevance";
     return self.queryResultItems;
 }
 
-- (void)parserDidStartDocument:(NSXMLParser *)parser
-{
+- (void)parserDidStartDocument:(NSXMLParser *)parser {
     self.queryResultItems = [NSMutableArray array];
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if ([elementName isEqualToString:ElementQueryResultItem])
-    {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+    if ([elementName isEqualToString:ElementQueryResultItem]) {
         self.documentObjectID = [NSMutableString string];
         self.documentTitle = [NSMutableString string];
         self.documentAuthors = [NSMutableSet set];
@@ -82,8 +78,7 @@ static NSString *ElementRelevance = @"relevance";
         self.relevance = [NSMutableString string];
     }
     
-    if ([elementName isEqualToString:ElementDocumentAuthor])
-    {
+    if ([elementName isEqualToString:ElementDocumentAuthor]) {
         self.documentAuthorFirstName = [NSMutableString string];
         self.documentAuthorLastName = [NSMutableString string];
     }
@@ -91,18 +86,15 @@ static NSString *ElementRelevance = @"relevance";
     self.currentElement = elementName;
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:ElementDocumentAuthor])
-    {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    if ([elementName isEqualToString:ElementDocumentAuthor]) {
         Author *author = [[EntityFactory sharedFactory] author];
         author.firstName = self.documentAuthorFirstName;
         author.lastName = self.documentAuthorLastName;
         [self.documentAuthors addObject:author];
     }
     
-    if ([elementName isEqualToString:ElementQueryResultItem])
-    {
+    if ([elementName isEqualToString:ElementQueryResultItem]) {
         Document *document = [[EntityFactory sharedFactory] document];
         document.dlObjectID = self.documentObjectID;
         document.title = self.documentTitle;
@@ -118,10 +110,8 @@ static NSString *ElementRelevance = @"relevance";
     }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    string = [string stringByReplacingOccurrencesOfString:@"  " withString:@""];
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if ([self.currentElement isEqualToString:ElementDocumentObjectID]) [self.documentObjectID appendString:string];
     if ([self.currentElement isEqualToString:ElementDocumentTitle]) [self.documentTitle appendString:string];

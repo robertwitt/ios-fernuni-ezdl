@@ -10,7 +10,7 @@
 #import "EntityFactory.h"
 
 
-@interface MockupLibraryBackendService ()
+@interface MockupLibraryBackendService () <NSXMLParserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *foundLibraries;
 @property (nonatomic, strong) NSString *currentElement;
@@ -34,8 +34,7 @@ static NSString *ElementLibraryShortDescription = @"shortText";
 @synthesize libraryName = _libraryName;
 @synthesize libraryShortDescription = _libraryShortDescription;
 
-- (NSArray *)loadLibraries
-{
+- (NSArray *)loadLibraries {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"libraries" ofType:@"xml"];
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
     
@@ -47,15 +46,12 @@ static NSString *ElementLibraryShortDescription = @"shortText";
     return self.foundLibraries;
 }
 
-- (void)parserDidStartDocument:(NSXMLParser *)parser
-{
+- (void)parserDidStartDocument:(NSXMLParser *)parser {
     self.foundLibraries = [NSMutableArray array];
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if ([elementName isEqualToString:ElementLibrary]) 
-    {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+    if ([elementName isEqualToString:ElementLibrary]) {
         self.libraryObjectID = [NSMutableString string];
         self.libraryName = [NSMutableString string];
         self.libraryShortDescription = [NSMutableString string];
@@ -64,10 +60,8 @@ static NSString *ElementLibraryShortDescription = @"shortText";
     self.currentElement = elementName;
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:ElementLibrary]) 
-    {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    if ([elementName isEqualToString:ElementLibrary]) {
         Library *library = [[EntityFactory sharedFactory] persistentLibrary];
         library.dlObjectID = self.libraryObjectID;
         library.name = self.libraryName;
@@ -77,10 +71,8 @@ static NSString *ElementLibraryShortDescription = @"shortText";
     }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    string = [string stringByReplacingOccurrencesOfString:@"  " withString:@""];
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([self.currentElement isEqualToString:ElementLibraryObjectID]) [self.libraryObjectID appendString:string];
     if ([self.currentElement isEqualToString:ElementLibraryName]) [self.libraryName appendString:string];

@@ -9,7 +9,7 @@
 @interface Stack : NSObject
 
 @property (nonatomic, readonly) NSInteger size;
-@property (nonatomic, readonly, getter = isEmpty) BOOL empty;
+@property (nonatomic, readonly, getter=isEmpty) BOOL empty;
 
 - (void)push:(id)object;
 - (id)pop;

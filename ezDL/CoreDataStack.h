@@ -14,6 +14,7 @@ static NSString *CoreDataEntityLibrary = @"Library";
 static NSString *CoreDataEntityPersonalLibraryReference = @"PersonalLibraryReference";
 static NSString *CoreDataEntityPersonalLibraryGroup = @"PersonalLibraryGroup";
 
+
 @interface CoreDataStack : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;

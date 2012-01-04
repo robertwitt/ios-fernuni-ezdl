@@ -14,8 +14,7 @@
 @dynamic lastName;
 @dynamic fullName;
 
-- (NSString *)fullName
-{
+- (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 

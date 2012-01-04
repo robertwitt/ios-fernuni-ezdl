@@ -32,8 +32,7 @@ static NSString *ElementDocumentLink = @"docLink";
 @synthesize documentLink = _documentLink;
 @synthesize currentElement = _currentElement;
 
-- (DocumentDetail *)documentDetailWithDocumentObjectID:(NSString *)documentObjectID
-{
+- (DocumentDetail *)documentDetailWithDocumentObjectID:(NSString *)documentObjectID {
     NSString *fileName = [NSString stringWithFormat:@"doc_%@", documentObjectID];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
@@ -46,34 +45,29 @@ static NSString *ElementDocumentLink = @"docLink";
     
     [parser parse];
     
-    self.documentDetail = [[EntityFactory sharedFactory] documentDetail];//[[DocumentDetailBO alloc] initWithObjectID:documentObjectID];
+    self.documentDetail = [[EntityFactory sharedFactory] documentDetail];
     self.documentDetail.abstract = self.documentAbstract;
     self.documentDetail.links = self.documentLinks;
     
     return self.documentDetail;
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     if ([elementName isEqualToString:ElementDocumentLink]) self.documentLink = [NSMutableString string];
     
     self.currentElement = elementName;
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:ElementDocumentLink])
-    {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    if ([elementName isEqualToString:ElementDocumentLink]) {
         DocumentLink *link = [[EntityFactory sharedFactory] documentLink];
         link.urlString = self.documentLink;
         [self.documentLinks addObject:link];
     }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    string = [string stringByReplacingOccurrencesOfString:@"  " withString:@""];
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([self.currentElement isEqualToString:ElementDocumentAbstract]) [self.documentAbstract appendString:string];
     if ([self.currentElement isEqualToString:ElementDocumentLink]) [self.documentLink appendString:string];

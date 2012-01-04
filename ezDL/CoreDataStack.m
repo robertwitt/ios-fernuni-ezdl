@@ -25,23 +25,18 @@ static CoreDataStack *Singleton;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize scratchManagedObjectContext = _scratchManagedObjectContext;
 
-+ (CoreDataStack *)sharedCoreDataStack 
-{
++ (CoreDataStack *)sharedCoreDataStack  {
     if (!Singleton) Singleton = [[CoreDataStack alloc] init];
     return Singleton;
 }
 
-
-- (NSManagedObjectContext *)managedObjectContext 
-{
+- (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application.
     // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
     
-    if (!_managedObjectContext) 
-    {
+    if (!_managedObjectContext) {
         NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-        if (coordinator) 
-        {
+        if (coordinator) {
             _managedObjectContext = [[NSManagedObjectContext alloc] init];
             [_managedObjectContext setPersistentStoreCoordinator:coordinator];
         }
@@ -49,26 +44,22 @@ static CoreDataStack *Singleton;
     return _managedObjectContext;
 }
 
-- (NSManagedObjectModel *)managedObjectModel
-{
+- (NSManagedObjectModel *)managedObjectModel {
     // Returns the managed object model for the application.
     // If the model doesn't already exist, it is created from the application's model.
     
-    if (!_managedObjectModel)
-    {
+    if (!_managedObjectModel) {
         NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ezDL" withExtension:@"momd"];
         _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
     return _managedObjectModel;
 }
 
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // Returns the persistent store coordinator for the application.
     // If the coordinator doesn't already exist, it is created and the application's store added to it.
     
-    if (!_persistentStoreCoordinator)
-    {
+    if (!_persistentStoreCoordinator) {
         NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ezDL.sqlite"];
         NSError *error = nil;
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
@@ -78,8 +69,7 @@ static CoreDataStack *Singleton;
                                                                                              options:nil
                                                                                                error:&error];
         
-        if (!persistentStore)
-        {
+        if (!persistentStore) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -109,13 +99,10 @@ static CoreDataStack *Singleton;
     return _persistentStoreCoordinator;
 }
 
-- (NSManagedObjectContext *)scratchManagedObjectContext
-{
-    if (!_scratchManagedObjectContext) 
-    {
+- (NSManagedObjectContext *)scratchManagedObjectContext {
+    if (!_scratchManagedObjectContext) {
         NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        if (coordinator) 
-        {
+        if (coordinator) {
             _scratchManagedObjectContext = [[NSManagedObjectContext alloc] init];
             [_scratchManagedObjectContext setPersistentStoreCoordinator:coordinator];
         }
@@ -123,24 +110,19 @@ static CoreDataStack *Singleton;
     return _scratchManagedObjectContext;
 }
 
-- (NSURL *)applicationDocumentsDirectory
-{
+- (NSURL *)applicationDocumentsDirectory {
     // Returns the URL to the application's Documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)saveContext
-{
+- (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext)
-    {
-        if ([managedObjectContext hasChanges])
-        {
+    if (managedObjectContext) {
+        if ([managedObjectContext hasChanges]) {
             NSError *error = nil;
             BOOL saved = [managedObjectContext save:&error];
             
-            if (!saved)
-            {
+            if (!saved) {
                 /*
                  Replace this implementation with code to handle the error appropriately.
                  

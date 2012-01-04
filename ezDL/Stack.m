@@ -18,41 +18,34 @@
 
 @synthesize buffer = _buffer;
 
-- (NSMutableArray *)buffer
-{
+- (NSMutableArray *)buffer {
     if (!_buffer) _buffer = [NSMutableArray array];
     return _buffer;
 }
 
-- (NSInteger)size
-{
+- (NSInteger)size {
     return self.buffer.count;
 }
 
-- (BOOL)isEmpty
-{
+- (BOOL)isEmpty {
     return (self.size == 0);
 }
 
-- (void)push:(id)object
-{
+- (void)push:(id)object {
     [self.buffer addObject:object];
 }
 
-- (id)pop
-{
+- (id)pop {
     id object = [self top];
     [self.buffer removeLastObject];
     return object;
 }
 
-- (id)top
-{
+- (id)top {
     return [self.buffer lastObject];
 }
 
-- (void)clear
-{
+- (void)clear {
     [self.buffer removeAllObjects];
 }
 

@@ -22,7 +22,6 @@
 @property (nonatomic, strong, readonly) CoreDataStack *coreDataStack;
 
 - (id)entityWithName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-- (NSManagedObjectContext *)managedObjectContextOfObject:(NSManagedObject *)managedObject;
 
 @end
 
@@ -35,45 +34,29 @@
 
 static EntityFactory *Singleton;
 
-+ (EntityFactory *)sharedFactory
-{
++ (EntityFactory *)sharedFactory {
     if (!Singleton) Singleton = [[EntityFactory alloc] init];
     return Singleton;
 }
 
-- (CoreDataStack *)coreDataStack
-{
+- (CoreDataStack *)coreDataStack {
     if (!_coreDataStack) _coreDataStack = [CoreDataStack sharedCoreDataStack];
     return _coreDataStack;
 }
 
 #pragma mark Auxiliary Methods
 
-- (id)entityWithName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
+- (id)entityWithName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
-}
-
-- (NSManagedObjectContext *)managedObjectContextOfObject:(NSManagedObject *)managedObject
-{
-    NSManagedObjectContext *context = 0;
-    
-    if ([self.coreDataStack.managedObjectContext objectRegisteredForID:managedObject.objectID]) context = self.coreDataStack.managedObjectContext;
-    
-    if ([self.coreDataStack.scratchManagedObjectContext objectRegisteredForID:managedObject.objectID]) context = self.coreDataStack.scratchManagedObjectContext;
-    
-    return context;
 }
 
 #pragma mark Factory Methods for Authors
 
-- (Author *)author
-{
+- (Author *)author {
     return [self entityWithName:CoreDataEntityAuthor inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
 }
 
-- (Author *)authorWithPersistentAuthor:(Author *)persistentAuthor
-{
+- (Author *)authorWithPersistentAuthor:(Author *)persistentAuthor {
     Author *author = [self author];
     author.dlObjectID = persistentAuthor.dlObjectID;
     author.firstName = persistentAuthor.firstName;
@@ -81,13 +64,11 @@ static EntityFactory *Singleton;
     return author;
 }
 
-- (Author *)persistentAuthor
-{
+- (Author *)persistentAuthor {
     return [self entityWithName:CoreDataEntityAuthor inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
-- (Author *)persistentAuthorWithAuthor:(Author *)author
-{
+- (Author *)persistentAuthorWithAuthor:(Author *)author {
     Author *persistentAuthor = [self persistentAuthor];
     persistentAuthor.dlObjectID = author.dlObjectID;
     persistentAuthor.firstName = author.firstName;
@@ -97,40 +78,34 @@ static EntityFactory *Singleton;
 
 #pragma mark Factory Methods for Documents
 
-- (Document *)document
-{
+- (Document *)document {
     return [self entityWithName:CoreDataEntityDocument inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
 }
 
-- (Document *)documentWithPersistentDocument:(Document *)persistentDocument
-{
+- (Document *)documentWithPersistentDocument:(Document *)persistentDocument {
     Document *document = [self document];
     document.dlObjectID = persistentDocument.dlObjectID;
     document.title = persistentDocument.title;
     document.year = persistentDocument.year;
     
-    for (Author *persistentAuthor in persistentDocument.authors)
-    {
+    for (Author *persistentAuthor in persistentDocument.authors) {
         Author *author = [self authorWithPersistentAuthor:persistentAuthor];
         [document addAuthorsObject:author];
     }
     return document;
 }
 
-- (Document *)persistentDocument
-{
+- (Document *)persistentDocument {
     return [self entityWithName:CoreDataEntityDocument inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
-- (Document *)persistentDocumentWithDocument:(Document *)document
-{
+- (Document *)persistentDocumentWithDocument:(Document *)document {
     Document *persistentDocument = [self persistentDocument];
     persistentDocument.dlObjectID = document.dlObjectID;
     persistentDocument.title = document.title;
     persistentDocument.year = document.year;
     
-    for (Author *author in document.authors)
-    {
+    for (Author *author in document.authors) {
         Author *persistentAuthor = [self persistentAuthorWithAuthor:author];
         [persistentDocument addAuthorsObject:persistentAuthor];
     }
@@ -139,36 +114,30 @@ static EntityFactory *Singleton;
 
 #pragma mark Factory Methods for Document Detail
 
-- (DocumentDetail *)documentDetail
-{
+- (DocumentDetail *)documentDetail {
     return [self entityWithName:CoreDataEntityDocumentDetail inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
 }
 
-- (DocumentDetail *)documentDetailWithPersistentDetail:(DocumentDetail *)persistentDetail
-{
+- (DocumentDetail *)documentDetailWithPersistentDetail:(DocumentDetail *)persistentDetail {
     DocumentDetail *detail = [self documentDetail];
     detail.abstract = persistentDetail.abstract;
     
-    for (DocumentLink *persistentLink in persistentDetail.links)
-    {
+    for (DocumentLink *persistentLink in persistentDetail.links) {
         DocumentLink *link = [self documentLinkWithPersistentLink:persistentLink];
         [detail addLinksObject:link];
     }
     return detail;
 }
 
-- (DocumentDetail *)persistentDocumentDetail
-{
+- (DocumentDetail *)persistentDocumentDetail {
     return [self entityWithName:CoreDataEntityDocumentDetail inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
-- (DocumentDetail *)persistentDocumentDetailWithDetail:(DocumentDetail *)detail
-{
+- (DocumentDetail *)persistentDocumentDetailWithDetail:(DocumentDetail *)detail {
     DocumentDetail *persistentDetail = [self persistentDocumentDetail];
     persistentDetail.abstract = detail.abstract;
     
-    for (DocumentLink *link in detail.links)
-    {
+    for (DocumentLink *link in detail.links) {
         DocumentLink *persistentLink = [self persistentDocumentLinkWithLink:link];
         [persistentDetail addLinksObject:persistentLink];
     }
@@ -179,21 +148,17 @@ static EntityFactory *Singleton;
 {
     // This method is a little bad design. Reason is the Document Detail View Controller is used in both Query and Personal Library. Since those tools work with different object types (transient vs. persistent objects), loading the document details and assigning them to the document object needs a copy to the correct context first. Since only the Entity Factory knows about the managed object context, we have this method here.
     
-    NSManagedObjectContext *documentContext = [self managedObjectContextOfObject:document];
-    NSManagedObjectContext *detailContext = [self managedObjectContextOfObject:detail];
+    NSManagedObjectContext *documentContext = document.managedObjectContext;
+    NSManagedObjectContext *detailContext = detail.managedObjectContext;
     
-    if (documentContext == detailContext)
-    {
+    if (documentContext == detailContext) {
         document.detail = detail;
     }
-    else
-    {
-        if (documentContext == self.coreDataStack.managedObjectContext)
-        {
+    else {
+        if (documentContext == self.coreDataStack.managedObjectContext) {
             document.detail = [self persistentDocumentDetailWithDetail:detail];
         }
-        else
-        {
+        else {
             document.detail = [self documentDetailWithPersistentDetail:detail];
         }
     }
@@ -201,25 +166,21 @@ static EntityFactory *Singleton;
 
 #pragma mark Factory Methods for Document Link
 
-- (DocumentLink *)documentLink
-{
+- (DocumentLink *)documentLink {
     return [self entityWithName:CoreDataEntityDocumentLink inManagedObjectContext:self.coreDataStack.scratchManagedObjectContext];
 }
 
-- (DocumentLink *)documentLinkWithPersistentLink:(DocumentLink *)persistentLink
-{
+- (DocumentLink *)documentLinkWithPersistentLink:(DocumentLink *)persistentLink {
     DocumentLink *link = [self documentLink];
     link.urlString = persistentLink.urlString;
     return link;
 }
 
-- (DocumentLink *)persistentDocumentLink
-{
+- (DocumentLink *)persistentDocumentLink {
     return [self entityWithName:CoreDataEntityDocumentLink inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
-- (DocumentLink *)persistentDocumentLinkWithLink:(DocumentLink *)link
-{
+- (DocumentLink *)persistentDocumentLinkWithLink:(DocumentLink *)link {
     DocumentLink *persistentLink = [self persistentDocumentLink];
     persistentLink.urlString = link.urlString;
     return persistentLink;
@@ -227,22 +188,19 @@ static EntityFactory *Singleton;
 
 #pragma mark Factory Methods for Libraries
 
-- (Library *)persistentLibrary
-{
+- (Library *)persistentLibrary {
     return [self entityWithName:CoreDataEntityLibrary inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
 #pragma mark Factory Methods for Personal Library Groups
 
-- (PersonalLibraryGroup *)persistentPersonalLibraryGroup
-{
+- (PersonalLibraryGroup *)persistentPersonalLibraryGroup {
     return [self entityWithName:CoreDataEntityPersonalLibraryGroup inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 
 #pragma mark Factory Methods for Personal Library References
 
-- (PersonalLibraryReference *)persistentPersonalLibraryReference
-{
+- (PersonalLibraryReference *)persistentPersonalLibraryReference {
     return [self entityWithName:CoreDataEntityPersonalLibraryReference inManagedObjectContext:self.coreDataStack.managedObjectContext];
 }
 

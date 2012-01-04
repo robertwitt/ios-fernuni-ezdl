@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-@interface MockupWebQueryBackendService : NSObject <NSXMLParserDelegate>
+@interface MockupWebQueryBackendService : NSObject
 
-- (NSArray *)loadQueryResultItems;
+- (NSArray *)loadQueryResultItemsWithError:(NSError **)error;
 
 @end

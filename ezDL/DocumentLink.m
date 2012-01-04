@@ -14,8 +14,7 @@
 @dynamic urlString;
 @dynamic url;
 
-- (NSURL *)url
-{
+- (NSURL *)url {
     return [NSURL URLWithString:self.urlString];
 }
 
