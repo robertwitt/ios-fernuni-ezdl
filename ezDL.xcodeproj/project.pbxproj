@@ -16,6 +16,7 @@
 		E10C27CB14A6032F0093FC60 /* QueryParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CA14A6032F0093FC60 /* QueryParameter.m */; };
 		E10C27CF14A606190093FC60 /* AtomicQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */; };
 		E10C27D214A6078E0093FC60 /* NestedQueryExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */; };
+		E10CB53814B4ACCE0041548E /* MockupWebQueryBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10CB53714B4ACCE0041548E /* MockupWebQueryBackendService.m */; };
 		E10FC912147C16E7000F41A8 /* QueryResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10FC911147C16E7000F41A8 /* QueryResultCell.xib */; };
 		E10FC921147C4016000F41A8 /* DocumentServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC920147C4016000F41A8 /* DocumentServiceImpl.m */; };
 		E10FC924147C412F000F41A8 /* MockupDocumentBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = E10FC923147C412F000F41A8 /* MockupDocumentBackendService.m */; };
@@ -122,6 +123,8 @@
 		E10C27CE14A606190093FC60 /* AtomicQueryExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicQueryExpression.m; sourceTree = "<group>"; };
 		E10C27D014A6078E0093FC60 /* NestedQueryExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NestedQueryExpression.h; sourceTree = "<group>"; };
 		E10C27D114A6078E0093FC60 /* NestedQueryExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NestedQueryExpression.m; sourceTree = "<group>"; };
+		E10CB53614B4ACCE0041548E /* MockupWebQueryBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockupWebQueryBackendService.h; sourceTree = "<group>"; };
+		E10CB53714B4ACCE0041548E /* MockupWebQueryBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockupWebQueryBackendService.m; sourceTree = "<group>"; };
 		E10FC911147C16E7000F41A8 /* QueryResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueryResultCell.xib; sourceTree = "<group>"; };
 		E10FC91E147C3FBF000F41A8 /* DocumentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentService.h; sourceTree = "<group>"; };
 		E10FC91F147C4016000F41A8 /* DocumentServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentServiceImpl.h; sourceTree = "<group>"; };
@@ -629,6 +632,8 @@
 				E1EFC43B1476EACF00CB7490 /* MockupBackendServiceImpl.m */,
 				E1EF23331477FE44000EE7C9 /* MockupQueryBackendService.h */,
 				E1EF23341477FE45000EE7C9 /* MockupQueryBackendService.m */,
+				E10CB53614B4ACCE0041548E /* MockupWebQueryBackendService.h */,
+				E10CB53714B4ACCE0041548E /* MockupWebQueryBackendService.m */,
 				E1EFC43D1476EB3000CB7490 /* MockupLibraryBackendService.h */,
 				E1EFC43E1476EB3000CB7490 /* MockupLibraryBackendService.m */,
 				E10FC922147C412F000F41A8 /* MockupDocumentBackendService.h */,
@@ -847,6 +852,7 @@
 				E1F3A22614A9E66800932DA9 /* BasicQueryParser.m in Sources */,
 				E1F3A22C14AA20E300932DA9 /* Query.m in Sources */,
 				E1F3A22F14AA3E1600932DA9 /* QuerySyntaxChecker.m in Sources */,
+				E10CB53814B4ACCE0041548E /* MockupWebQueryBackendService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

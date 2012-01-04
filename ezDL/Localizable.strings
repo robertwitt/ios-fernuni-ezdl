@@ -20,6 +20,7 @@
 "Grouped by" = "Grouped by";
 "Library" = "Library";
 "Links" = "Links";
+"Next" = "Next";
 "No" = "No";
 "No Group Selected" = "No Group Selected";
 "No Group Selected Message" = "Please select a group or create one in case there doesn't exist any.";
@@ -27,6 +28,7 @@
 "Nothing" = "Nothing";
 "Not grouped" = "Not grouped";
 "OK" = "OK";
+"Previous" = "Previous";
 "Reference" = "Reference";
 "References" = "References";
 "References Exist" = "References Exist";

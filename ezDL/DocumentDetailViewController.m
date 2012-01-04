@@ -13,6 +13,10 @@
 
 @interface DocumentDetailViewController ()
 
+@property (nonatomic, strong) UIBarButtonItem *previousItem;
+@property (nonatomic, strong) UIBarButtonItem *nextItem;
+@property (nonatomic) NSInteger numberOfDocuments;
+@property (nonatomic) NSInteger documentIndex;
 @property (nonatomic) NSInteger numberOfSections;
 @property (nonatomic) NSInteger documentTitleSection;
 @property (nonatomic) NSInteger documentYearSection;
@@ -21,7 +25,9 @@
 @property (nonatomic) NSInteger documentLinksSection;
 @property (nonatomic, strong) NSError *loadingError;
 
-- (void)configureStepper;
+//- (void)configureStepper;
+- (void)configureNavigationBar;
+- (void)didChangeDocument;
 - (UITableViewCell *)basicCell;
 - (UITableViewCell *)documentAuthorCellForRow:(NSInteger)row;
 - (UITableViewCell *)documentAbstractCell;
@@ -29,7 +35,9 @@
 - (void)startLoadingOperation;
 - (void)loadDocumentDetails;
 - (void)loadingDocumentDetailsFinished;
-- (void)stepperValueChanged:(UIStepper *)stepper;
+- (void)previousDocument;
+- (void)nextDocument;
+//- (void)stepperValueChanged:(UIStepper *)stepper;
 - (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (Query *)buildQueryWithAuthor:(Author *)author;
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -44,6 +52,10 @@ static NSString *SegueQueryFromAuthor = @"QueryFromAuthorSegue";
 static NSString *SegueDocumentLink = @"DocumentLinkSegue";
 static NSString *SegueAddReference = @"AddReferenceSegue";
 
+@synthesize previousItem = _previousItem;
+@synthesize nextItem = _nextItem;
+@synthesize numberOfDocuments = _numberOfDocuments;
+@synthesize documentIndex = _documentIndex;
 @synthesize displayedDocument = _displayedDocument;
 @synthesize hideAddReferenceItem = _hideAddReferenceItem;
 @synthesize delegate = _delegate;
@@ -61,13 +73,56 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 {
     [super viewDidLoad];
     
-    self.title = self.displayedDocument.title;
+    //self.title = self.displayedDocument.title;
     
     // If the delegate is set, show a stepper in right area of navigation bar to iterate to query result collection
-    if (self.delegate) [self configureStepper];
+    if (self.delegate) [self configureNavigationBar]; //[self configureStepper];
 }
 
-- (void)configureStepper
+- (void)configureNavigationBar
+{
+    self.previousItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Previous", nil)
+                                                         style:UIBarButtonItemStyleBordered
+                                                        target:self
+                                                        action:@selector(previousDocument)];
+    self.nextItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Next", nil)
+                                                     style:UIBarButtonItemStyleBordered
+                                                    target:self 
+                                                    action:@selector(nextDocument)];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nextItem, self.previousItem, nil];
+    
+    self.numberOfDocuments = [self.delegate documentDetailViewControllerNumberOfDocuments:self];
+    self.documentIndex = [self.delegate documentDetailViewController:self indexOfDocument:self.displayedDocument];
+}
+
+- (void)setDocumentIndex:(NSInteger)documentIndex
+{
+    _documentIndex = documentIndex;
+    
+    self.previousItem.enabled = (documentIndex != 0);
+    self.nextItem.enabled = (documentIndex != (self.numberOfDocuments - 1));
+}
+
+- (void)previousDocument
+{
+    self.documentIndex--;
+    [self didChangeDocument];
+}
+
+- (void)nextDocument
+{
+    self.documentIndex++;
+    [self didChangeDocument];
+}
+
+- (void)didChangeDocument
+{
+    self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:self.documentIndex];
+    [self.tableView reloadData];
+    [self startLoadingOperation];
+}
+
+/*- (void)configureStepper
 {
     UIStepper *stepper = [[UIStepper alloc] init];
     
@@ -80,7 +135,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
       forControlEvents:UIControlEventValueChanged];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:stepper];
-}
+}*/
 
 - (void)viewDidUnload
 {
@@ -113,6 +168,8 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 - (void)setDisplayedDocument:(Document *)displayedDocument
 {    
     _displayedDocument = displayedDocument;
+    
+    self.title = displayedDocument.title;
     
     self.numberOfSections = 0;
     self.documentTitleSection = -1;
@@ -311,13 +368,13 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 }
 
 #pragma mark Switching between Documents
-
+/*
 - (void)stepperValueChanged:(UIStepper *)stepper
 {
     self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:stepper.value];
     [self.tableView reloadData];
     [self startLoadingOperation];
-}
+}*/
 
 #pragma mark Executing Query from Author
 
