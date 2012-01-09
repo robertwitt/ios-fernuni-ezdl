@@ -14,19 +14,9 @@
 @end
 
 
-@interface DocumentLinkViewController : UIViewController <UIWebViewDelegate>
+@interface DocumentLinkViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *backItem;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *forwardItem;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *safariItem;
-@property (nonatomic, weak) IBOutlet UITextField *linkTextField;
-@property (nonatomic, weak) IBOutlet UIWebView *linkWebView;
 @property (nonatomic, strong) NSURL *displayedLink;
 @property (nonatomic, weak) id<DocumentLinkViewControllerDelegate> delegate;
-
-- (IBAction)goBack;
-- (IBAction)goForward;
-- (IBAction)openInSafari;
-- (IBAction)done;
 
 @end

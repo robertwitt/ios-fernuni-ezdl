@@ -12,40 +12,33 @@
 
 @synthesize identifier = _identifier;
 
-+ (QueryConnector *)andConnector
-{
++ (QueryConnector *)andConnector {
     return [[QueryConnector alloc] initWithIdentifier:kQueryConnectorAnd];
 }
 
-+ (QueryConnector *)orConnector
-{
++ (QueryConnector *)orConnector {
     return [[QueryConnector alloc] initWithIdentifier:kQueryConnectorOr];
 }
 
-+ (QueryConnector *)connectorWithIdentifier:(NSString *)identifier
-{
++ (QueryConnector *)connectorWithIdentifier:(NSString *)identifier {
     return [[QueryConnector alloc] initWithIdentifier:identifier];
 }
 
-- (id)initWithIdentifier:(NSString *)identifier
-{
+- (id)initWithIdentifier:(NSString *)identifier {
     self = [self init];
     if (self) _identifier= identifier;
     return self;
 }
 
-- (NSString *)queryString
-{
+- (NSString *)queryString {
     return self.identifier;
 }
 
-- (BOOL)isAndConnector
-{
+- (BOOL)isAndConnector {
     return [self.identifier isEqualToString:kQueryConnectorAnd];
 }
 
-- (BOOL)isOrConnector
-{
+- (BOOL)isOrConnector {
     return [self.identifier isEqualToString:kQueryConnectorOr];
 }
 

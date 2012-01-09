@@ -11,7 +11,7 @@
 #import "ServiceFactory.h"
 
 
-@interface DocumentDetailViewController ()
+@interface DocumentDetailViewController () <DocumentLinkViewControllerDelegate, PersonalLibraryReferenceAddViewControllerDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *previousItem;
 @property (nonatomic, strong) UIBarButtonItem *nextItem;
@@ -25,7 +25,6 @@
 @property (nonatomic) NSInteger documentLinksSection;
 @property (nonatomic, strong) NSError *loadingError;
 
-//- (void)configureStepper;
 - (void)configureNavigationBar;
 - (void)didChangeDocument;
 - (UITableViewCell *)basicCell;
@@ -37,7 +36,6 @@
 - (void)loadingDocumentDetailsFinished;
 - (void)previousDocument;
 - (void)nextDocument;
-//- (void)stepperValueChanged:(UIStepper *)stepper;
 - (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (Query *)buildQueryWithAuthor:(Author *)author;
 - (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -69,18 +67,14 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.title = self.displayedDocument.title;
-    
     // If the delegate is set, show a stepper in right area of navigation bar to iterate to query result collection
-    if (self.delegate) [self configureNavigationBar]; //[self configureStepper];
+    if (self.delegate) [self configureNavigationBar];
 }
 
-- (void)configureNavigationBar
-{
+- (void)configureNavigationBar {
     self.previousItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Previous", nil)
                                                          style:UIBarButtonItemStyleBordered
                                                         target:self
@@ -95,78 +89,28 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     self.documentIndex = [self.delegate documentDetailViewController:self indexOfDocument:self.displayedDocument];
 }
 
-- (void)setDocumentIndex:(NSInteger)documentIndex
-{
-    _documentIndex = documentIndex;
-    
-    self.previousItem.enabled = (documentIndex != 0);
-    self.nextItem.enabled = (documentIndex != (self.numberOfDocuments - 1));
-}
-
-- (void)previousDocument
-{
-    self.documentIndex--;
-    [self didChangeDocument];
-}
-
-- (void)nextDocument
-{
-    self.documentIndex++;
-    [self didChangeDocument];
-}
-
-- (void)didChangeDocument
-{
-    self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:self.documentIndex];
-    [self.tableView reloadData];
-    [self startLoadingOperation];
-}
-
-/*- (void)configureStepper
-{
-    UIStepper *stepper = [[UIStepper alloc] init];
-    
-    stepper.minimumValue = 0;
-    stepper.maximumValue = [self.delegate documentDetailViewControllerNumberOfDocuments:self] - 1;
-    stepper.value = [self.delegate documentDetailViewController:self indexOfDocument:self.displayedDocument];
-    
-    [stepper addTarget:self
-                action:@selector(stepperValueChanged:) 
-      forControlEvents:UIControlEventValueChanged];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:stepper];
-}*/
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.displayedDocument = nil;
     self.delegate = nil;
     self.loadingError = nil;
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     self.navigationController.toolbarHidden = self.hideAddReferenceItem;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     [self startLoadingOperation];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (void)setDisplayedDocument:(Document *)displayedDocument
-{    
+- (void)setDisplayedDocument:(Document *)displayedDocument {    
     _displayedDocument = displayedDocument;
     
     self.title = displayedDocument.title;
@@ -178,47 +122,39 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     self.documentAbstractSection = -1;
     self.documentLinksSection = -1;
     
-    if (displayedDocument.title.notEmpty)
-    {
+    if (displayedDocument.title.notEmpty) {
         self.documentTitleSection = self.numberOfSections;
         self.numberOfSections++;
     }
     
-    if (displayedDocument.year.notEmpty)
-    {
+    if (displayedDocument.year.notEmpty) {
         self.documentYearSection = self.numberOfSections;
         self.numberOfSections++;
     }
     
-    if (displayedDocument.authors && displayedDocument.authors.count > 0)
-    {
+    if (displayedDocument.authors && displayedDocument.authors.count > 0) {
         self.documentAuthorsSection = self.numberOfSections;
         self.numberOfSections++;
     }
     
-    if (displayedDocument.detail)
-    {
-        if (displayedDocument.detail.abstract.notEmpty)
-        {
+    if (displayedDocument.detail) {
+        if (displayedDocument.detail.abstract.notEmpty) {
             self.documentAbstractSection = self.numberOfSections;
             self.numberOfSections++;
         }
         
-        if (displayedDocument.detail.links && displayedDocument.detail.links.count > 0)
-        {
+        if (displayedDocument.detail.links && displayedDocument.detail.links.count > 0) {
             self.documentLinksSection = self.numberOfSections;
             self.numberOfSections++;
         }
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.numberOfSections;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger numberOfRows = 0;
     
     if (section == self.documentTitleSection) numberOfRows = 1;
@@ -230,18 +166,15 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     return numberOfRows;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     
-    if (indexPath.section == self.documentTitleSection)
-    {
+    if (indexPath.section == self.documentTitleSection) {
         cell = [self basicCell];
         cell.textLabel.text = self.displayedDocument.title;
     }
     
-    if (indexPath.section == self.documentYearSection)
-    {
+    if (indexPath.section == self.documentYearSection) {
         cell = [self basicCell];
         cell.textLabel.text = self.displayedDocument.year;
     }
@@ -253,37 +186,32 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     return cell;
 }
 
-- (UITableViewCell *)basicCell
-{
+- (UITableViewCell *)basicCell {
     return [self.tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
 }
 
-- (UITableViewCell *)documentAuthorCellForRow:(NSInteger)row
-{
+- (UITableViewCell *)documentAuthorCellForRow:(NSInteger)row {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DocumentAuthorCell"];
     Author *author = [self.displayedDocument.authors.allObjects objectAtIndex:row];
     cell.textLabel.text = author.fullName;
     return cell;
 }
 
-- (UITableViewCell *)documentAbstractCell
-{
+- (UITableViewCell *)documentAbstractCell {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DocumentAbstractCell"];
     UITextView *abstractView = (UITextView *)[cell viewWithTag:1];
     abstractView.text = self.displayedDocument.detail.abstract;
     return cell;
 }
 
-- (UITableViewCell *)documentLinkCellForRow:(NSInteger)row
-{
+- (UITableViewCell *)documentLinkCellForRow:(NSInteger)row {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DocumentLinkCell"];
     DocumentLink *link = [self.displayedDocument.detail.links.allObjects objectAtIndex:row];
     cell.textLabel.text = link.urlString;
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *title = nil;
     
     if (section == self.documentTitleSection) title = NSLocalizedString(@"Title", nil);
@@ -295,37 +223,30 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     return title;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height = 44.0f;
     if (indexPath.section == self.documentAbstractSection) height = 200.0f;
     return height;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueQueryFromAuthor])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueQueryFromAuthor]) {
         [self prepareForQueryFromAuthorSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueDocumentLink])
-    {
+    if ([segue.identifier isEqualToString:SegueDocumentLink]) {
         [self prepareForDocumentLinkSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueAddReference])
-    {
+    if ([segue.identifier isEqualToString:SegueAddReference]) {
         [self prepareForAddReferenceSegue:segue sender:sender];
     }
 }
 
 #pragma mark Loading Document Details from Backend
 
-- (void)startLoadingOperation
-{
-    if (!self.displayedDocument.detail)
-    {
+- (void)startLoadingOperation {
+    if (!self.displayedDocument.detail) {
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             [self startNetworkActivity];
             [self loadDocumentDetails];
@@ -340,8 +261,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     }
 }
 
-- (void)loadDocumentDetails
-{    
+- (void)loadDocumentDetails {
     NSError *error = nil;
     [[[ServiceFactory sharedFactory] documentService] loadDocumentDetailInDocument:self.displayedDocument
                                                                          withError:&error];
@@ -349,8 +269,7 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     self.displayedDocument = self.displayedDocument;
 }
 
-- (void)loadingDocumentDetailsFinished
-{
+- (void)loadingDocumentDetailsFinished {
     NSBlockOperation *finishedOperation = [NSBlockOperation blockOperationWithBlock:^{
         [self.tableView reloadData];
         [self stopNetworkActivity];
@@ -368,26 +287,40 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 }
 
 #pragma mark Switching between Documents
-/*
-- (void)stepperValueChanged:(UIStepper *)stepper
-{
-    self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:stepper.value];
+
+- (void)setDocumentIndex:(NSInteger)documentIndex {
+    _documentIndex = documentIndex;
+    
+    self.previousItem.enabled = (documentIndex != 0);
+    self.nextItem.enabled = (documentIndex != (self.numberOfDocuments - 1));
+}
+
+- (void)previousDocument {
+    self.documentIndex--;
+    [self didChangeDocument];
+}
+
+- (void)nextDocument {
+    self.documentIndex++;
+    [self didChangeDocument];
+}
+
+- (void)didChangeDocument {
+    self.displayedDocument = [self.delegate documentDetailViewController:self documentAtIndex:self.documentIndex];
     [self.tableView reloadData];
     [self startLoadingOperation];
-}*/
+}
 
 #pragma mark Executing Query from Author
 
-- (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForQueryFromAuthorSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
     Author *selectedAuthor = [self.displayedDocument.authors.allObjects objectAtIndex:indexPath.row];
     QueryController *queryController = (QueryController *)segue.destinationViewController;
     queryController.query = [self buildQueryWithAuthor:selectedAuthor];
 }
 
-- (Query *)buildQueryWithAuthor:(Author *)author
-{
+- (Query *)buildQueryWithAuthor:(Author *)author {
     NSString *authorName = [NSString stringWithFormat:@"\"%@\"", author.fullName];
     NSDictionary *parameters = [NSDictionary dictionaryWithObject:authorName forKey:kQueryParameterKeyAuthor];
     return [[[ServiceFactory sharedFactory] queryService] buildQueryFromParameters:parameters];
@@ -395,16 +328,13 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
 
 #pragma mark Showing Document Link
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == self.documentLinksSection)
-    {
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == self.documentLinksSection) {
         [self performSegueWithIdentifier:SegueDocumentLink sender:[self.tableView cellForRowAtIndexPath:indexPath]];
     }
 }
 
-- (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForDocumentLinkSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     DocumentLink *selectedLink = [self.displayedDocument.detail.links.allObjects objectAtIndex:indexPath.row];
     DocumentLinkViewController *viewController = (DocumentLinkViewController *)segue.destinationViewController;
@@ -412,27 +342,23 @@ static NSString *SegueAddReference = @"AddReferenceSegue";
     viewController.delegate = self;
 }
 
-- (void)doneWithdocumentLinkViewController:(DocumentLinkViewController *)viewController
-{
+- (void)doneWithdocumentLinkViewController:(DocumentLinkViewController *)viewController {
     [viewController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark Adding the Document as Reference to Personal Library
 
-- (void)prepareForAddReferenceSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForAddReferenceSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PersonalLibraryReferenceAddViewController *viewController = (PersonalLibraryReferenceAddViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
     viewController.referenceDocument = self.displayedDocument;
     viewController.delegate = self;
 }
 
-- (void)didCancelReferenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController
-{
+- (void)didCancelReferenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController {
     [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference
-{
+- (void)referenceAddViewController:(PersonalLibraryReferenceAddViewController *)viewController didSaveReference:(PersonalLibraryReference *)reference {
     [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 

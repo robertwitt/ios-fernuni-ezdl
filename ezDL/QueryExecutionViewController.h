@@ -21,10 +21,7 @@
 
 @interface QueryExecutionViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UITextView *queryText;
 @property (nonatomic, strong) Query *queryToExecute;
 @property (nonatomic, weak) id<QueryExecutionViewControllerDelegate> delegate;
-
-- (IBAction)cancel;
 
 @end

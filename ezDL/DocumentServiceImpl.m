@@ -12,12 +12,9 @@
 
 @implementation DocumentServiceImpl
 
-- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error
-{
+- (BOOL)loadDocumentDetailInDocument:(Document *)document withError:(NSError *__autoreleasing *)error {
     DocumentDetail *detail = [[[ServiceFactory sharedFactory] backendService] loadDocumentDetailOfDocument:document withError:error];
     
-    // TODO Handle case when document is persistent. System crashes when attempting to assign transient detail to persisten document.
-    //document.detail = detail;
     [[EntityFactory sharedFactory] addDocumentDetail:detail toDocument:document];
     
     return (error == nil);

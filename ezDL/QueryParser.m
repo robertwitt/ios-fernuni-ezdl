@@ -10,8 +10,7 @@
 
 @implementation QueryParser
 
-- (id<QueryExpression>)parsedExpressionWithError:(NSError *__autoreleasing *)error
-{
+- (id<QueryExpression>)parsedExpressionWithError:(NSError *__autoreleasing *)error {
     return nil;
 }
 

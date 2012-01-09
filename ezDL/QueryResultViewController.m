@@ -11,8 +11,12 @@
 #import "QueryResultContent.h"
 
 
-@interface QueryResultViewController ()
+@interface QueryResultViewController () <QueryControllerDelegate, QueryExecutionViewControllerDelegate, QueryResultSortingViewControllerDelegate, QueryResultGroupingViewControllerDelegate, UISearchBarDelegate, DocumentDetailViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UITableViewCell *queryResultCell;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *sortByItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *groupByItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *optionsItem;
 @property (nonatomic, weak) UIPopoverController *editQueryPopover;
 @property (nonatomic, weak) UIPopoverController *sortByPopover;
 @property (nonatomic, weak) UIPopoverController *groupByPopover;
@@ -22,6 +26,10 @@
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
 @property (nonatomic, strong) QueryResultContent *tableContent;
 
+- (IBAction)editQuery:(UIBarButtonItem *)sender;
+- (IBAction)sortBy:(UIBarButtonItem *)sender;
+- (IBAction)groupBy:(UIBarButtonItem *)sender;
+- (IBAction)openOptions:(UIBarButtonItem *)sender;
 - (void)configureNavigationBar;
 - (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -42,11 +50,11 @@ static NSString *SegueIdentifierSortBy = @"SortBySegue";
 static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
 static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
+@synthesize queryResult = _queryResult;
 @synthesize queryResultCell = _queryResultCell;
 @synthesize sortByItem = _sortByItem;
 @synthesize groupByItem = _groupByItem;
 @synthesize optionsItem = _optionsItem;
-@synthesize queryResult = _queryResult;
 @synthesize editQueryPopover = _editQueryPopover;
 @synthesize sortByPopover = _sortByPopover;
 @synthesize groupByPopover = _groupByPopover;
@@ -58,35 +66,30 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self configureNavigationBar];
 }
 
-- (void)configureNavigationBar
-{
+- (void)configureNavigationBar {
     NSInteger numberOfResults = self.tableContent.numberOfResults;
-    if (numberOfResults == 1) 
-    { 
+    if (numberOfResults == 1)  { 
         self.title = [NSString stringWithFormat:@"%d %@", numberOfResults, NSLocalizedString(@"Result", nil)];
-    }
-    else
-    {
+    } else {
         self.title = [NSString stringWithFormat:@"%d %@", numberOfResults, NSLocalizedString(@"Results", nil)];
     }
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
+    self.queryResult = nil;
     self.queryResultCell = nil;
     self.sortByItem = nil;
     self.groupByItem = nil;
-    self.queryResult = nil;
+    self.optionsItem = nil;
     self.editQueryPopover = nil;
     self.sortByPopover = nil;
     self.groupByPopover = nil;
+    self.optionsPopover = nil;
     self.editedQuery = nil;
     self.currentSorting = nil;
     self.currentGrouping = nil;
@@ -94,15 +97,12 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     self.navigationController.toolbarHidden = NO;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [self.editQueryPopover dismissPopoverAnimated:NO];
@@ -111,14 +111,11 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     [self.optionsPopover dismissPopoverAnimated:NO];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (void)setQueryResult:(QueryResult *)queryResult
-{
+- (void)setQueryResult:(QueryResult *)queryResult {
     _queryResult = queryResult;
     
     self.tableContent = [QueryResultContent queryResultContentWithQueryResult:queryResult];
@@ -126,18 +123,15 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.tableContent.grouping = self.currentGrouping;
 }
 
-- (QueryResultSorting *)currentSorting
-{
-    if (!_currentSorting)
-    {
+- (QueryResultSorting *)currentSorting {
+    if (!_currentSorting) {
         _currentSorting = [QueryResultSorting queryResultSortingWithCriterionType:QueryResultSortingCriterionTypeRelevance
                                                                     directionType:QueryResultSortingDirectionTypeDescending];
     }
     return _currentSorting;
 }
 
-- (void)setCurrentSorting:(QueryResultSorting *)currentSorting
-{
+- (void)setCurrentSorting:(QueryResultSorting *)currentSorting {
     _currentSorting = currentSorting;
     self.tableContent.sorting = currentSorting;
     
@@ -145,37 +139,28 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.sortByItem.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Sorted by", nil), currentSorting.criterion.localizedShortText];
 }
 
-- (QueryResultGrouping *)currentGrouping
-{
+- (QueryResultGrouping *)currentGrouping {
     if (!_currentGrouping) _currentGrouping = [QueryResultGrouping nothingGrouping];
     return _currentGrouping;
 }
 
-- (void)setCurrentGrouping:(QueryResultGrouping *)currentGrouping
-{
+- (void)setCurrentGrouping:(QueryResultGrouping *)currentGrouping {
     _currentGrouping = currentGrouping;
     self.tableContent.grouping = currentGrouping;
     
     // Set Group by button title
-    if (currentGrouping.groupingType == QueryResultGroupingTypeNothing)
-    {
+    if (currentGrouping.groupingType == QueryResultGroupingTypeNothing) {
         self.groupByItem.title = NSLocalizedString(@"Not grouped", nil);
-    }
-    else
-    {
+    } else {
         self.groupByItem.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Grouped by", nil), currentGrouping.localizedShortText];
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.tableContent.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tableContent rowsInSectionAtIndex:section].count;
 }
 
@@ -184,8 +169,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     static NSString *CellIdentifier = @"QueryResultCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
+    if (!cell) {
         [[NSBundle mainBundle] loadNibNamed:@"QueryResultCell"
                                       owner:self
                                     options:nil];
@@ -211,95 +195,76 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 55.0f;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.tableContent sectionAtIndex:section];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail]) {
         [self prepareForDocumentDetailSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierEditQuery])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierEditQuery]) {
         [self prepareForEditQuerySegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierQueryExecution])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierQueryExecution]) {
         [self prepareForQueryExecutionSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierSortBy])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierSortBy]) {
         [self prepareForSortBySegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierGroupBy])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierGroupBy]) {
         [self prepareForGroupBySegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierOptions])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierOptions]) {
         [self prepareForOptionsSegue:segue sender:sender];
     }
 }
 
 #pragma mark Showing to Document Detail
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:SegueIdentifierDocumentDetail sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
-- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DocumentDetailViewController *viewController = segue.destinationViewController;
     QueryResultRow *row = [self.tableContent rowAtIndexPath:[self.tableView indexPathForCell:sender]];
     viewController.displayedDocument = row.document;
     viewController.delegate = self;
 }
 
-- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController
-{
+- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController {
     return self.tableContent.allDocuments.count;
 }
 
-- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document
-{
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document {
     return [self.tableContent.allDocuments indexOfObject:document];
 }
 
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index
-{
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index {
     return [self.tableContent.allDocuments objectAtIndex:index];
 }
 
 #pragma mark Editing Query
 
-- (IBAction)editQuery:(UIBarButtonItem *)sender
-{
-    if (self.editQueryPopover.popoverVisible)
-    {
+- (IBAction)editQuery:(UIBarButtonItem *)sender {
+    if (self.editQueryPopover.popoverVisible) {
         [self.editQueryPopover dismissPopoverAnimated:YES];
-    }
-    else
-    {
+    } else {
         [self performSegueWithIdentifier:SegueIdentifierEditQuery sender:sender];
     }
 }
 
-- (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+- (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QueryController *queryController = segue.destinationViewController;
     queryController.query = self.queryResult.query;
     queryController.delegate = self;
@@ -307,8 +272,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.editQueryPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
-- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(Query *)query
-{
+- (BOOL)queryController:(QueryController *)queryController shouldExecuteQuery:(Query *)query {
     [self.editQueryPopover dismissPopoverAnimated:NO];
     
     self.editedQuery = query;
@@ -317,20 +281,17 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     return NO;
 }
 
-- (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QueryExecutionViewController *viewController = segue.destinationViewController;
     viewController.queryToExecute = self.editedQuery;
     viewController.delegate = self;
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query
-{
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query {
     [queryExecutionViewController dismissModalViewControllerAnimated:YES];
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didExecuteQueryWithQueryResult:(QueryResult *)queryResult
-{
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didExecuteQueryWithQueryResult:(QueryResult *)queryResult {
     self.queryResult = queryResult;
     
     [queryExecutionViewController dismissViewControllerAnimated:YES completion:^{
@@ -338,8 +299,7 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     }];
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error
-{    
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error {
     __weak id weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
         [weakSelf showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
@@ -350,20 +310,16 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
 #pragma mark Sorting the Query Result
 
-- (IBAction)sortBy:(UIBarButtonItem *)sender
-{
-    if (self.sortByPopover.popoverVisible)
-    {
+- (IBAction)sortBy:(UIBarButtonItem *)sender {
+    if (self.sortByPopover.popoverVisible) {
         [self.sortByPopover dismissPopoverAnimated:YES];
     }
-    else
-    {
+    else {
         [self performSegueWithIdentifier:SegueIdentifierSortBy sender:sender];
     }
 }
 
-- (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QueryResultSortingViewController *viewController = (QueryResultSortingViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
     viewController.currentSorting = self.currentSorting;
     viewController.delegate = self;
@@ -371,28 +327,22 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.sortByPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
-- (void)queryResultSortingViewController:(QueryResultSortingViewController *)viewController didSelectSorting:(QueryResultSorting *)sorting
-{
+- (void)queryResultSortingViewController:(QueryResultSortingViewController *)viewController didSelectSorting:(QueryResultSorting *)sorting {
     self.currentSorting = sorting;
     [self.tableView reloadData];
 }
 
 #pragma mark Grouping the Query Result
 
-- (IBAction)groupBy:(UIBarButtonItem *)sender
-{
-    if (self.groupByPopover.popoverVisible)
-    {
+- (IBAction)groupBy:(UIBarButtonItem *)sender {
+    if (self.groupByPopover.popoverVisible) {
         [self.groupByPopover dismissPopoverAnimated:YES];
-    }
-    else
-    {
+    } else {
         [self performSegueWithIdentifier:SegueIdentifierGroupBy sender:sender];
     }
 }
 
-- (void)prepareForGroupBySegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForGroupBySegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QueryResultGroupingViewController *viewController = (QueryResultGroupingViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
     viewController.currentGrouping = self.currentGrouping;
     viewController.delegate = self;
@@ -400,36 +350,29 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.groupByPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
-- (void)queryResultGroupingViewController:(QueryResultGroupingViewController *)viewController didSelectGrouping:(QueryResultGrouping *)grouping
-{
+- (void)queryResultGroupingViewController:(QueryResultGroupingViewController *)viewController didSelectGrouping:(QueryResultGrouping *)grouping {
     self.currentGrouping = grouping;
     [self.tableView reloadData];
 }
 
 #pragma mark Filtering the Query Result
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.tableContent.filterString = searchText;
     [self.tableView reloadData];
 }
 
 #pragma mark Open Query Result Options
 
-- (IBAction)openOptions:(UIBarButtonItem *)sender
-{
-    if (self.optionsPopover.popoverVisible)
-    {
+- (IBAction)openOptions:(UIBarButtonItem *)sender {
+    if (self.optionsPopover.popoverVisible) {
         [self.optionsPopover dismissPopoverAnimated:YES];
-    }
-    else
-    {
+    } else {
         [self performSegueWithIdentifier:SegueIdentifierOptions sender:sender];
     }
 }
 
-- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     self.optionsPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 

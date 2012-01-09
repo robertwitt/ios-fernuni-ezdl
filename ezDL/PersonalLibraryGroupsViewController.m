@@ -10,7 +10,7 @@
 #import "ServiceFactory.h"
 
 
-@interface PersonalLibraryGroupsViewController ()
+@interface PersonalLibraryGroupsViewController () <PersonalLibraryGroupAddViewControllerDelegate>
 
 @property (nonatomic, strong, readonly) id<PersonalLibraryService> personalLibraryService;
 @property (nonatomic, strong, readonly) NSArray *groups;
@@ -37,42 +37,34 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
 
 #pragma mark Managing the View
 
-- (id<PersonalLibraryService>)personalLibraryService
-{
+- (id<PersonalLibraryService>)personalLibraryService {
     if (!_personalLibraryService) _personalLibraryService = [[ServiceFactory sharedFactory] personalLibraryService];
     return _personalLibraryService;
 }
 
-- (NSArray *)displayedGroups
-{
+- (NSArray *)displayedGroups {
     return self.selectedGroups;
 }
 
-- (void)setDisplayedGroups:(NSArray *)displayedGroups
-{
+- (void)setDisplayedGroups:(NSArray *)displayedGroups {
     self.selectedGroups = [NSMutableArray arrayWithArray:displayedGroups];
 }
 
-- (NSArray *)groups
-{
+- (NSArray *)groups {
     return [self.personalLibraryService personalLibraryGroups];
 }
 
-- (NSMutableArray *)selectedGroups
-{
+- (NSMutableArray *)selectedGroups {
     if (!_selectedGroups) _selectedGroups = [NSMutableArray array];
     return _selectedGroups;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.delegate = nil;
     _personalLibraryService = nil;
     self.selectedGroups = nil;
@@ -80,13 +72,11 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInPopover
-{
+- (CGSize)contentSizeForViewInPopover {
     NSInteger number = self.groups.count + 1;
     if (number < 5) number = 5;
     
@@ -94,59 +84,46 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
     return CGSizeMake(500.0f, height);
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.groups.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
     
     PersonalLibraryGroup *group = [self.groups objectAtIndex:indexPath.row];
     cell.textLabel.text = group.name;
     cell.detailTextLabel.text = [self cellDetailTitleForGroup:group];
     
-    if ([self.selectedGroups containsObject:group])
-    {
+    if ([self.selectedGroups containsObject:group]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
 }
 
-- (NSString *)cellDetailTitleForGroup:(PersonalLibraryGroup *)group
-{
+- (NSString *)cellDetailTitleForGroup:(PersonalLibraryGroup *)group {
     NSString *title = nil;
     
     NSInteger numberOfReferences = group.references.count;
-    if (numberOfReferences == 1) 
-    {
+    if (numberOfReferences == 1) {
         title = [NSString stringWithFormat:@"%d %@", numberOfReferences, NSLocalizedString(@"Reference", nil)];
-    }
-    else
-    {
+    } else {
         title = [NSString stringWithFormat:@"%d %@", numberOfReferences, NSLocalizedString(@"References", nil)];
     }
     return title;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueIdentifierGroupAdd])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIdentifierGroupAdd]) {
         [self prepareForGroupAddSegue:segue sender:sender];
     }
 }
 
-- (void)informDelegateWithSelector:(SEL)selector object:(id)object
-{
-    if ([self.delegate respondsToSelector:selector]) 
-    {
+- (void)informDelegateWithSelector:(SEL)selector object:(id)object {
+    if ([self.delegate respondsToSelector:selector]) {
         [self.delegate performSelector:selector
                             withObject:self
                             withObject:object];
@@ -155,20 +132,16 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
 
 #pragma mark Selecting the Groups
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     PersonalLibraryGroup *selectedGroup = [self.groups objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([self.selectedGroups containsObject:selectedGroup])
-    {
+    if ([self.selectedGroups containsObject:selectedGroup]) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [self.selectedGroups removeObject:selectedGroup];
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.selectedGroups addObject:selectedGroup];
     }
@@ -179,25 +152,19 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
 
 #pragma mark Editing the Groups
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {        
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
         PersonalLibraryGroup *group = [self.groups objectAtIndex:indexPath.row];
-        if (group.references.count > 0)
-        {
+        if (group.references.count > 0) {
             // Group has still reference. Ask the user if he really wants to delete the group.
             [self askToDeleteGroupAtIndexPath:indexPath];
-        }
-        else
-        {
+        } else {
             [self deleteGroupAtIndexPath:indexPath];
         }
     }
 }
 
-- (void)deleteGroupAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)deleteGroupAtIndexPath:(NSIndexPath *)indexPath {
     PersonalLibraryGroup *group = [self.groups objectAtIndex:indexPath.row];
     
     BOOL groupWasSelected = NO;        
@@ -214,15 +181,13 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
     [self informDelegateWithSelector:@selector(groupsViewController:didDeleteGroup:)
                               object:group];
     
-    if (groupWasSelected)
-    {
+    if (groupWasSelected) {
         [self informDelegateWithSelector:@selector(groupsViewController:didChangeGroupSelection:) 
                                   object:self.selectedGroups];
     }
 }
 
-- (void)askToDeleteGroupAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)askToDeleteGroupAtIndexPath:(NSIndexPath *)indexPath {
     PersonalLibraryGroup *group = [self.groups objectAtIndex:indexPath.row];
     self.indexPathOfGroupToDelete = indexPath;
     
@@ -235,10 +200,8 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
     [alertView show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
         case 0:
             // Don't delete group
             [self.tableView setEditing:NO animated:YES];
@@ -254,14 +217,12 @@ static NSString *SegueIdentifierGroupAdd = @"GroupAddSegue";
 
 #pragma mark Adding a new Group to the Personal Library
 
-- (void)prepareForGroupAddSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForGroupAddSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PersonalLibraryGroupAddViewController *viewController = segue.destinationViewController;
     viewController.delegate = self;
 }
 
-- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group
-{
+- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group {
     // New group has been created. Add new group to selected groups and reload the table view.
     self.displayedGroups = [self.displayedGroups arrayByAddingObject:group];
     [self.tableView reloadData];

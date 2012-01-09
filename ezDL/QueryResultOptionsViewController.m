@@ -12,14 +12,11 @@
 
 #pragma mark Managing the View
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInPopover
-{
+- (CGSize)contentSizeForViewInPopover {
     return CGSizeMake(400.0f, 64.0f);
 }
 

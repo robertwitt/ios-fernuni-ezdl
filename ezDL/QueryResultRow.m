@@ -27,16 +27,13 @@
 @synthesize libraryName = _libraryName;
 @synthesize relevance = _relevance;
 
-+ (QueryResultRow *)queryResultRowWithItem:(QueryResultItem *)item
-{
++ (QueryResultRow *)queryResultRowWithItem:(QueryResultItem *)item {
     return [[QueryResultRow alloc] initWithItem:item];
 }
 
-- (id)initWithItem:(QueryResultItem *)item
-{
+- (id)initWithItem:(QueryResultItem *)item {
     self = [self init];
-    if (self)
-    {
+    if (self) {
         _document = item.document;
         _documentTitle = item.document.title;
         _documentAuthors = [self stringFromAuthors:item.document.authors.allObjects];
@@ -48,17 +45,14 @@
     return self;
 }
 
-- (NSString *)stringFromAuthors:(NSArray *)authors
-{
+- (NSString *)stringFromAuthors:(NSArray *)authors {
     NSMutableString __block *string = nil;
     
     [authors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Author *author = obj;
-        if (idx == 0) 
-        {
+        if (idx == 0) {
             string = [NSMutableString stringWithString:author.fullName];
-        } else 
-        {
+        } else {
             [string appendFormat:@"; %@", author.fullName];
         }
     }];
@@ -66,22 +60,18 @@
     return string;
 }
 
-- (NSString *)decadeFromYear:(NSString *)year
-{
+- (NSString *)decadeFromYear:(NSString *)year {
     NSString *decade = nil;
-    if (year.length == 4) 
-    {
+    if (year.length == 4) {
         NSString *substring = [year substringToIndex:3];
         decade = [NSString stringWithFormat:@"%@ %@0 - %@9", NSLocalizedString(@"Years", nil), substring, substring];
     }
     return decade;
 }
 
-+ (NSString *)keyOfSortingCriterion:(QueryResultSortingCriterion *)sortingCriterion
-{
++ (NSString *)keyOfSortingCriterion:(QueryResultSortingCriterion *)sortingCriterion {
     NSString *key = nil;
-    switch (sortingCriterion.criterionType)
-    {
+    switch (sortingCriterion.criterionType) {
         case QueryResultSortingCriterionTypeAuthor:
             key = @"documentAuthors";
             break;
@@ -98,8 +88,7 @@
     return key;
 }
 
-+ (NSString *)keyOfGrouping:(QueryResultGrouping *)grouping
-{
++ (NSString *)keyOfGrouping:(QueryResultGrouping *)grouping {
     NSString *key = nil;
     switch (grouping.groupingType) {
         case QueryResultGroupingTypeAuthors:

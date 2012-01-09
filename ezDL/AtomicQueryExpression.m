@@ -12,26 +12,21 @@
 
 @synthesize parameter = _parameter;
 
-+ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value
-{
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value {
     return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value];
 }
 
-+ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator
-{
++ (AtomicQueryExpression *)atomicExpressionWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator {
     return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value operator:operator];
 }
 
-- (id)initWithParameterKey:(NSString *)key value:(NSString *)value
-{
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value {
     return [[AtomicQueryExpression alloc] initWithParameterKey:key value:value operator:QueryParameterOperatorEquals];
 }
 
-- (id)initWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator
-{
+- (id)initWithParameterKey:(NSString *)key value:(NSString *)value operator:(enum QueryParameterOperator)operator {
     self = [self init];
-    if (self)
-    {
+    if (self) {
         self.parameter = [QueryParameter parameterWithKey:key 
                                                     value:value
                                                  operator:operator];
@@ -39,21 +34,18 @@
     return self;
 }
 
-- (BOOL)isDeep
-{
+- (BOOL)isDeep {
     // An atomic query expression is never deep by definition
     return NO;
 }
 
-- (NSString *)parameterValueForKey:(NSString *)key
-{
+- (NSString *)parameterValueForKey:(NSString *)key {
     NSString *value = @"";
     if ([self.parameter.key isEqualToString:key]) value = self.parameter.queryStringWithoutKey;
     return value;
 }
 
-- (NSString *)queryString
-{
+- (NSString *)queryString {
     return self.parameter.queryString;
 }
 

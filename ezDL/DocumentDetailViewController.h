@@ -20,7 +20,7 @@
 @end
 
 
-@interface DocumentDetailViewController : UITableViewController <DocumentLinkViewControllerDelegate, PersonalLibraryReferenceAddViewControllerDelegate>
+@interface DocumentDetailViewController : UITableViewController
 
 @property (nonatomic, strong) Document *displayedDocument;
 @property (nonatomic) BOOL hideAddReferenceItem;

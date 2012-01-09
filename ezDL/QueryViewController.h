@@ -8,14 +8,13 @@
 
 #import "Query.h"
 
-static NSString *QueryViewGotFilledNotification = @"QueryViewGotFilledNotification";
-static NSString *QueryViewGotClearedNotification = @"QueryViewGotClearedNotification";
-static NSString *QueryViewSearchRequestedNotification = @"QueryViewSearchRequestedNotification";
+static NSString *QueryViewControllerReturnKeyNotification = @"QueryViewControllerReturnKeyNotification";
 
 @interface QueryViewController : UIViewController
 
 @property (nonatomic, readonly) CGSize contentSizeForViewInQueryController;
 @property (nonatomic, strong) Query *query;
+@property (nonatomic, readonly) BOOL viewIsEmpty;
 
 - (BOOL)checkQuerySyntax;
 - (Query *)buildQuery;

@@ -20,6 +20,9 @@
 @property (nonatomic, strong, readonly) id<LibraryService> libraryService;
 @property (nonatomic, strong) MutableLibraryChoice *currentLibraryChoice;
 
+- (IBAction)refreshLibraries;
+- (void)selectAllLibraries;
+- (void)deselectAllLibraries;
 - (void)configureNavigationBar;
 - (void)loadLibrariesFromBackend:(BOOL)loadFromBackend;
 
@@ -33,23 +36,14 @@
 @synthesize libraryService = _libraryService;
 @synthesize currentLibraryChoice = _currentLibraryChoice;
 
-- (id<LibraryService>)libraryService
-{
-    if (!_libraryService) _libraryService = [[ServiceFactory sharedFactory] libraryService];
-    return _libraryService;
-}
-
 #pragma mark Managing the View
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self configureNavigationBar];
 }
 
-- (void)configureNavigationBar
-{    
+- (void)configureNavigationBar {    
     // Add buttons to select/deselect all libraries
     self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Select all", nil)
                                                           style:UIBarButtonItemStyleBordered
@@ -64,62 +58,47 @@
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.deselectAllItem, self.selectAllItem, nil];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.selectAllItem = nil;
     self.deselectAllItem = nil;
     _libraryService = nil;
     self.currentLibraryChoice = nil;
-    
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     [self loadLibrariesFromBackend:NO];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
     [self.libraryService saveLibraryChoice:self.currentLibraryChoice];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInPopover
-{
+- (CGSize)contentSizeForViewInPopover {
     return CGSizeMake(680.0f, 440.0f);
 }
 
-- (void)setCurrentLibraryChoice:(MutableLibraryChoice *)currentLibraryChoice
-{
-    if (_currentLibraryChoice != currentLibraryChoice)
-    {
+- (void)setCurrentLibraryChoice:(MutableLibraryChoice *)currentLibraryChoice {
+    if (_currentLibraryChoice != currentLibraryChoice) {
         _currentLibraryChoice = currentLibraryChoice;
         if (self.tableView.window) [self.tableView reloadData];
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentLibraryChoice.allLibraries.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"LibrarySelectionCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     // Configure the cell and set library name and description
     Library *library = [self.currentLibraryChoice.allLibraries objectAtIndex:indexPath.row];
@@ -127,12 +106,9 @@
     cell.detailTextLabel.text = library.shortText;
     
     // Ask library choice model if library is already selected
-    if ([self.currentLibraryChoice isLibrarySelected:library]) 
-    {
+    if ([self.currentLibraryChoice isLibrarySelected:library]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
@@ -141,14 +117,17 @@
 
 #pragma mark Loading Libraries by Model
 
-- (IBAction)refreshLibraries
-{    
+- (id<LibraryService>)libraryService {
+    if (!_libraryService) _libraryService = [[ServiceFactory sharedFactory] libraryService];
+    return _libraryService;
+}
+
+- (IBAction)refreshLibraries {    
     // Execute operation on separate thread to load libraries from backend
     [self loadLibrariesFromBackend:YES];
 }
 
-- (UIBarButtonItem *)loadingItem
-{
+- (UIBarButtonItem *)loadingItem {
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [activityIndicator startAnimating];
     UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
@@ -187,8 +166,7 @@
 
 #pragma mark Managing (De)selection of Libraries
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Library *library = [self.currentLibraryChoice.allLibraries objectAtIndex:indexPath.row];
@@ -212,14 +190,12 @@
     }
 }
 
-- (void)selectAllLibraries
-{
+- (void)selectAllLibraries {
     [self.currentLibraryChoice selectAllLibraries];
     [self.tableView reloadData];
 }
 
-- (void)deselectAllLibraries
-{
+- (void)deselectAllLibraries {
     [self.currentLibraryChoice deselectAllLibraries];
     [self.tableView reloadData];
 }

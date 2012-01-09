@@ -9,6 +9,17 @@
 #import "PersonalLibraryGroupAddViewController.h"
 #import "ServiceFactory.h"
 
+
+@interface PersonalLibraryGroupAddViewController () <UITextFieldDelegate>
+
+@property (nonatomic, weak) IBOutlet UITextField *groupNameTextField;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *saveItem;
+
+- (IBAction)save;
+
+@end
+
+
 @implementation PersonalLibraryGroupAddViewController
 
 @synthesize groupNameTextField = _groupNameTextField;
@@ -17,16 +28,14 @@
 
 #pragma mark Managing the View
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.groupNameTextField = nil;
     self.saveItem = nil;
     self.delegate = nil;
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
@@ -35,8 +44,7 @@
     return CGSizeMake(500.0f, 200.0f);
 }
 
-- (IBAction)save
-{
+- (IBAction)save {
     id<PersonalLibraryService> service = [[ServiceFactory sharedFactory] personalLibraryService];
     
     NSString *groupName = self.groupNameTextField.text;
@@ -47,18 +55,14 @@
     [self.delegate groupAddViewController:self didSaveGroup:group];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *textAfterChange = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    if (![textAfterChange isNotEmpty]) self.saveItem.enabled = NO;
-    else self.saveItem.enabled = YES;
+    self.saveItem.enabled = textAfterChange.notEmpty;
     
     return YES;
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField
-{
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
     self.saveItem.enabled = NO;    
     return YES;
 }

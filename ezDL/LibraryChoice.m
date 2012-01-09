@@ -23,8 +23,7 @@
     return self;
 }
 
-- (NSArray *)allLibraries
-{
+- (NSArray *)allLibraries {
     NSMutableArray *allLibraries = [NSMutableArray arrayWithArray:self.selectedLibraries];
     [allLibraries addObjectsFromArray:self.unselectedLibraries];
     
@@ -35,13 +34,11 @@
     return allLibraries;
 }
 
-- (BOOL)isLibrarySelected:(Library *)library
-{
+- (BOOL)isLibrarySelected:(Library *)library {
     return [self.selectedLibraries containsObject:library];
 }
 
-- (BOOL)areAllLibrariesSelected
-{
+- (BOOL)areAllLibrariesSelected {
     return (self.selectedLibraries.count == self.allLibraries.count);
 }
 

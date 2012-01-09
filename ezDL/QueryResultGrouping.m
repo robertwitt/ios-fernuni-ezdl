@@ -12,43 +12,35 @@
 
 @synthesize groupingType = _groupingType;
 
-+ (QueryResultGrouping *)authorsGrouping
-{
++ (QueryResultGrouping *)authorsGrouping {
     return [QueryResultGrouping queryResultGroupingWithGroupingType:QueryResultGroupingTypeAuthors];
 }
 
-+ (QueryResultGrouping *)decadeGrouping
-{
++ (QueryResultGrouping *)decadeGrouping {
     return [QueryResultGrouping queryResultGroupingWithGroupingType:QueryResultGroupingTypeDecade];
 }
 
-+ (QueryResultGrouping *)libraryGrouping
-{
++ (QueryResultGrouping *)libraryGrouping {
     return [QueryResultGrouping queryResultGroupingWithGroupingType:QueryResultGroupingTypeLibrary];
 }
 
-+ (QueryResultGrouping *)nothingGrouping
-{
++ (QueryResultGrouping *)nothingGrouping {
     return [QueryResultGrouping queryResultGroupingWithGroupingType:QueryResultGroupingTypeNothing];
 }
 
-+ (QueryResultGrouping *)queryResultGroupingWithGroupingType:(enum QueryResultGroupingType)groupingType
-{
++ (QueryResultGrouping *)queryResultGroupingWithGroupingType:(enum QueryResultGroupingType)groupingType {
     return [[QueryResultGrouping alloc] initWithGroupingType:groupingType];
 }
 
-- (id)initWithGroupingType:(enum QueryResultGroupingType)groupingType
-{
+- (id)initWithGroupingType:(enum QueryResultGroupingType)groupingType {
     self = [self init];
     if (self) _groupingType = groupingType;
     return self;
 }
 
-- (NSString *)localizedShortText
-{
+- (NSString *)localizedShortText {
     NSString *shortText = nil;
-    switch (self.groupingType)
-    {
+    switch (self.groupingType) {
         case QueryResultGroupingTypeAuthors:
             shortText = NSLocalizedString(@"Authors", nil);
             break;
@@ -65,12 +57,9 @@
     return shortText;
 }
 
-- (BOOL)isEqual:(id)object
-{
-    BOOL isEqual = NO;
+- (BOOL)isEqual:(id)object {
     QueryResultGrouping *other = object;
-    if (self.groupingType == other.groupingType) isEqual = YES;
-    return isEqual;
+    return self.groupingType == other.groupingType;
 }
 
 @end

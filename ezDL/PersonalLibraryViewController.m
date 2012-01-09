@@ -10,7 +10,7 @@
 #import "ServiceFactory.h"
 
 
-@interface PersonalLibraryViewController ()
+@interface PersonalLibraryViewController () <PersonalLibraryGroupsViewControllerDelegate, DocumentDetailViewControllerDelegate>
 
 @property (nonatomic, strong) UIPopoverController *groupsPopover;
 @property (nonatomic, weak, readonly) id<PersonalLibraryService> personalLibraryService;
@@ -18,6 +18,7 @@
 @property (nonatomic) NSInteger sectionOfGroupToDelete;
 @property (nonatomic, weak, readonly) NSArray *allDocuments;
 
+- (IBAction)openGroups:(UIBarButtonItem *)sender;
 - (PersonalLibraryGroup *)groupInSection:(NSInteger)section;
 - (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)detailTextForReference:(PersonalLibraryReference *)reference;
@@ -40,23 +41,19 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.groupsPopover = nil;
     _personalLibraryService = nil;
     self.displayedGroups = nil;
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     // In self.displayedGroups those groups are collected that shall be displayed
@@ -64,54 +61,44 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     [self.tableView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.groupsPopover dismissPopoverAnimated:NO];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (id<PersonalLibraryService>)personalLibraryService
-{
+- (id<PersonalLibraryService>)personalLibraryService {
     if (!_personalLibraryService) _personalLibraryService = [[ServiceFactory sharedFactory] personalLibraryService];
     return _personalLibraryService;
 }
 
-- (NSMutableArray *)displayedGroups
-{
+- (NSMutableArray *)displayedGroups {
     if (!_displayedGroups) _displayedGroups = [NSMutableArray array];
     return _displayedGroups;
 }
 
-- (PersonalLibraryGroup *)groupInSection:(NSInteger)section
-{
+- (PersonalLibraryGroup *)groupInSection:(NSInteger)section {
     return [self.displayedGroups objectAtIndex:section];
 }
 
-- (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath
-{
+- (PersonalLibraryReference *)referenceAtIndexPath:(NSIndexPath *)indexPath {
     PersonalLibraryGroup *group = [self groupInSection:indexPath.section];
     NSArray *references = [group.references allObjects];
     return [references objectAtIndex:indexPath.row];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.displayedGroups.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self groupInSection:section].references.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReferenceCell"];
     
     PersonalLibraryReference *reference = [self referenceAtIndexPath:indexPath];
@@ -121,8 +108,7 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     return cell;
 }
 
-- (NSString *)detailTextForReference:(PersonalLibraryReference *)reference
-{
+- (NSString *)detailTextForReference:(PersonalLibraryReference *)reference {
     NSMutableString *string = [NSMutableString string];
     NSArray *array = [reference.document.authors allObjects];
     
@@ -137,30 +123,24 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     return string;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self groupInSection:section].name;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueIdentifierGroups])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIdentifierGroups]) {
         [self prepareForGroupsSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierDocumentDetail]) {
         [self prepareForDocumentDetailSegue:segue sender:sender];
     }
 }
 
 #pragma mark Deleting of References and Groups
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.personalLibraryService deleteReference:[self referenceAtIndexPath:indexPath]];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -169,11 +149,9 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     }
 }
 
-- (void)askToDeleteGroupInSection:(NSInteger)section
-{
+- (void)askToDeleteGroupInSection:(NSInteger)section {
     PersonalLibraryGroup *group = [self groupInSection:section];
-    if (group.references.count == 0)
-    {
+    if (group.references.count == 0) {
         // All references have been removed from the group. Ask the user whether or not he wants to delete the entire group.
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Empty Group Message", nil), group.name];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Empty Group", nil)
@@ -188,10 +166,8 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
         // Yes button clicked, delete the group in self.groupToDelete
         PersonalLibraryGroup *group = [self groupInSection:self.sectionOfGroupToDelete];
         [self.personalLibraryService deleteGroup:group];
@@ -203,10 +179,8 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
 
 #pragma mark Move References to other Groups
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    if (sourceIndexPath.section != destinationIndexPath.section)
-    {
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    if (sourceIndexPath.section != destinationIndexPath.section) {
         // Moved reference to new group
         [self.personalLibraryService moveReference:[self referenceAtIndexPath:sourceIndexPath]
                                            toGroup:[self groupInSection:destinationIndexPath.section]];
@@ -215,23 +189,14 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     }
 }
 
-#pragma mark Filtering References
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    // TODO Implementation needed
-}
-
 #pragma mark Popover to Control Displayed Groups
 
-- (IBAction)openGroups:(UIBarButtonItem *)sender
-{
+- (IBAction)openGroups:(UIBarButtonItem *)sender {
     if (self.groupsPopover.popoverVisible) [self.groupsPopover dismissPopoverAnimated:YES];
     else [self performSegueWithIdentifier:SegueIdentifierGroups sender:sender];
 }
 
-- (void)prepareForGroupsSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForGroupsSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PersonalLibraryGroupsViewController *viewController = (PersonalLibraryGroupsViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
     viewController.displayedGroups = self.displayedGroups;
     viewController.delegate = self;
@@ -239,16 +204,14 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     self.groupsPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
-- (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didChangeGroupSelection:(NSArray *)groups
-{
+- (void)groupsViewController:(PersonalLibraryGroupsViewController *)viewController didChangeGroupSelection:(NSArray *)groups {
     self.displayedGroups = [NSMutableArray arrayWithArray:groups];
     [self.tableView reloadData];
 }
 
 #pragma mark Displaying the Document in the Reference
 
-- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DocumentDetailViewController *viewController = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
     viewController.displayedDocument = [self referenceAtIndexPath:indexPath].document;
@@ -256,23 +219,19 @@ static NSString *SegueIdentifierDocumentDetail = @"DocumentDetailSegue";
     viewController.delegate = self;
 }
 
-- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController
-{
+- (NSInteger)documentDetailViewControllerNumberOfDocuments:(DocumentDetailViewController *)viewController {
     return self.allDocuments.count;
 }
 
-- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document
-{
+- (NSInteger)documentDetailViewController:(DocumentDetailViewController *)viewController indexOfDocument:(Document *)document {
     return [self.allDocuments indexOfObject:document];
 }
 
-- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index
-{
+- (Document *)documentDetailViewController:(DocumentDetailViewController *)viewController documentAtIndex:(NSInteger)index {
     return [self.allDocuments objectAtIndex:index];
 }
 
-- (NSArray *)allDocuments
-{
+- (NSArray *)allDocuments {
     NSMutableArray *allDocuments = [NSMutableArray array];
     
     [self.displayedGroups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

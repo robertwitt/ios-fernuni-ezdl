@@ -8,8 +8,4 @@
 
 @interface LibraryChoiceViewController : UITableViewController
 
-- (IBAction)refreshLibraries;
-- (void)selectAllLibraries;
-- (void)deselectAllLibraries;
-
 @end

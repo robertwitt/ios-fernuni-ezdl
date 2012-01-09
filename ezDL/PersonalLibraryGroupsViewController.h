@@ -20,7 +20,7 @@
 @end
 
 
-@interface PersonalLibraryGroupsViewController : UITableViewController <PersonalLibraryGroupAddViewControllerDelegate>
+@interface PersonalLibraryGroupsViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *displayedGroups;
 @property (nonatomic, weak) id<PersonalLibraryGroupsViewControllerDelegate> delegate;

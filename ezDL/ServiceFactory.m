@@ -22,39 +22,33 @@ static DocumentServiceImpl *DocumentServiceImplSingleton;
 static MockupPersonalLibraryServiceImpl *PersonalLibraryServiceImplSingleton;
 static MockupBackendServiceImpl *MockupBackendServiceImplSingleton;
 
-+ (ServiceFactory *)sharedFactory
-{
++ (ServiceFactory *)sharedFactory {
     if (!Singleton) Singleton = [[ServiceFactory alloc] init];
     return Singleton;
 }
 
-- (id<QueryService>)queryService
-{
+- (id<QueryService>)queryService {
     if (!QueryServiceImplSingleton) QueryServiceImplSingleton = [[QueryServiceImpl alloc] init];
     return QueryServiceImplSingleton;
 }
 
-- (id<LibraryService>)libraryService
-{
+- (id<LibraryService>)libraryService {
     if (!LibraryServiceImplSingleton) LibraryServiceImplSingleton = [[LibraryServiceImpl alloc] init];
     return LibraryServiceImplSingleton;
 }
 
-- (id<DocumentService>)documentService
-{
+- (id<DocumentService>)documentService {
     if (!DocumentServiceImplSingleton) DocumentServiceImplSingleton = [[DocumentServiceImpl alloc] init];
     return DocumentServiceImplSingleton;
 }
 
-- (id<PersonalLibraryService>)personalLibraryService
-{
+- (id<PersonalLibraryService>)personalLibraryService {
     // MOCKUP After mockup replace this implementation with actual one
     if (!PersonalLibraryServiceImplSingleton) PersonalLibraryServiceImplSingleton = [[MockupPersonalLibraryServiceImpl alloc] init];
     return PersonalLibraryServiceImplSingleton;
 }
 
-- (id<BackendService>)backendService
-{
+- (id<BackendService>)backendService {
     // MOCKUP After mockup replace this implementation with actual one
     if (!MockupBackendServiceImplSingleton) MockupBackendServiceImplSingleton = [[MockupBackendServiceImpl alloc] init];
     return MockupBackendServiceImplSingleton;

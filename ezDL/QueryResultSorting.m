@@ -13,43 +13,35 @@
 
 @synthesize criterionType = _criterionType;
 
-+ (QueryResultSortingCriterion *)authorSortingCriterion
-{
++ (QueryResultSortingCriterion *)authorSortingCriterion {
     return [QueryResultSortingCriterion queryResultSortingCriterionWithCriterionType:QueryResultSortingCriterionTypeAuthor];
 }
 
-+ (QueryResultSortingCriterion *)relevanceSortingCriterion
-{
++ (QueryResultSortingCriterion *)relevanceSortingCriterion {
     return [QueryResultSortingCriterion queryResultSortingCriterionWithCriterionType:QueryResultSortingCriterionTypeRelevance];
 }
 
-+ (QueryResultSortingCriterion *)titleSortingCriterion
-{
++ (QueryResultSortingCriterion *)titleSortingCriterion {
     return [QueryResultSortingCriterion queryResultSortingCriterionWithCriterionType:QueryResultSortingCriterionTypeTitle];
 }
 
-+ (QueryResultSortingCriterion *)yearSortingCriterion
-{
++ (QueryResultSortingCriterion *)yearSortingCriterion {
     return [QueryResultSortingCriterion queryResultSortingCriterionWithCriterionType:QueryResultSortingCriterionTypeYear];
 }
 
-+ (QueryResultSortingCriterion *)queryResultSortingCriterionWithCriterionType:(enum QueryResultSortingCriterionType)criterionType
-{
++ (QueryResultSortingCriterion *)queryResultSortingCriterionWithCriterionType:(enum QueryResultSortingCriterionType)criterionType {
     return [[QueryResultSortingCriterion alloc] initWithCriterionType:criterionType];
 }
 
-- (id)initWithCriterionType:(enum QueryResultSortingCriterionType)criterionType
-{
+- (id)initWithCriterionType:(enum QueryResultSortingCriterionType)criterionType {
     self = [self init];
     if (self) _criterionType = criterionType;
     return self;
 }
 
-- (NSString *)localizedShortText
-{
+- (NSString *)localizedShortText {
     NSString *shortText = nil;    
-    switch (self.criterionType)
-    {
+    switch (self.criterionType) {
         case QueryResultSortingCriterionTypeAuthor:
             shortText = NSLocalizedString(@"Author", nil);
             break;
@@ -66,8 +58,7 @@
     return shortText;
 }
 
-- (BOOL)isEqual:(id)object
-{
+- (BOOL)isEqual:(id)object {
     BOOL isEqual = NO;
     QueryResultSortingCriterion *other = object;
     if (self.criterionType == other.criterionType) isEqual = YES;
@@ -81,33 +72,27 @@
 
 @synthesize directionType = _directionType;
 
-+ (QueryResultSortingDirection *)ascendingSortingDirection
-{
++ (QueryResultSortingDirection *)ascendingSortingDirection {
     return [QueryResultSortingDirection queryResultSortingDirectionWithDirectionType:QueryResultSortingDirectionTypeAscending];
 }
 
-+ (QueryResultSortingDirection *)descendingSortingDirection
-{
++ (QueryResultSortingDirection *)descendingSortingDirection {
     return [QueryResultSortingDirection queryResultSortingDirectionWithDirectionType:QueryResultSortingDirectionTypeDescending];
 }
 
-+ (QueryResultSortingDirection *)queryResultSortingDirectionWithDirectionType:(enum QueryResultSortingDirectionType)directionType
-{
++ (QueryResultSortingDirection *)queryResultSortingDirectionWithDirectionType:(enum QueryResultSortingDirectionType)directionType {
     return [[QueryResultSortingDirection alloc] initWithDirectionType:directionType];
 }
 
-- (id)initWithDirectionType:(enum QueryResultSortingDirectionType)directionType
-{
+- (id)initWithDirectionType:(enum QueryResultSortingDirectionType)directionType {
     self = [self init];
     if (self) _directionType = directionType;
     return self;
 }
 
-- (NSString *)localizedShortText
-{
+- (NSString *)localizedShortText {
     NSString *shortText = nil;
-    switch (self.directionType)
-    {
+    switch (self.directionType) {
         case QueryResultSortingDirectionTypeAscending:
             shortText = NSLocalizedString(@"ascending", nil);
             break;
@@ -118,8 +103,7 @@
     return shortText;
 }
 
-- (BOOL)isEqual:(id)object
-{
+- (BOOL)isEqual:(id)object {
     BOOL isEqual = NO;
     QueryResultSortingDirection *other = object;
     if (self.directionType == other.directionType) isEqual = YES;
@@ -134,49 +118,36 @@
 @synthesize criterion = _criterion;
 @synthesize direction = _direction;
 
-+ (QueryResultSorting *)queryResultSortingWithCriterion:(QueryResultSortingCriterion *)criterion direction:(QueryResultSortingDirection *)direction
-{
++ (QueryResultSorting *)queryResultSortingWithCriterion:(QueryResultSortingCriterion *)criterion direction:(QueryResultSortingDirection *)direction {
     return [[QueryResultSorting alloc] initWithCriterion:criterion direction:direction];
 }
 
-+ (QueryResultSorting *)queryResultSortingWithCriterionType:(enum QueryResultSortingCriterionType)criterionType directionType:(enum QueryResultSortingDirectionType)directionType
-{
++ (QueryResultSorting *)queryResultSortingWithCriterionType:(enum QueryResultSortingCriterionType)criterionType directionType:(enum QueryResultSortingDirectionType)directionType {
     return [[QueryResultSorting alloc] initWithCriterionType:criterionType directionType:directionType];
 }
 
-- (id)initWithCriterion:(QueryResultSortingCriterion *)criterion direction:(QueryResultSortingDirection *)direction
-{
+- (id)initWithCriterion:(QueryResultSortingCriterion *)criterion direction:(QueryResultSortingDirection *)direction {
     self = [self init];
-    if (self)
-    {
+    if (self) {
         _criterion = criterion;
         _direction = direction;
     }
     return self;
 }
 
-- (id)initWithCriterionType:(enum QueryResultSortingCriterionType)criterionType directionType:(enum QueryResultSortingDirectionType)directionType
-{
+- (id)initWithCriterionType:(enum QueryResultSortingCriterionType)criterionType directionType:(enum QueryResultSortingDirectionType)directionType {
     QueryResultSorting *sorting = [[QueryResultSorting alloc] initWithCriterion:[QueryResultSortingCriterion queryResultSortingCriterionWithCriterionType:criterionType]
                                                                       direction:[QueryResultSortingDirection queryResultSortingDirectionWithDirectionType:directionType]];
     return sorting;
 }
 
-- (NSString *)localizedShortText
-{
+- (NSString *)localizedShortText {
     return [NSString stringWithFormat:@"%@, %@", self.criterion.localizedShortText, self.direction.localizedShortText];
 }
 
-- (BOOL)isEqual:(id)object
-{
-    BOOL isEqual = NO;
+- (BOOL)isEqual:(id)object {
     QueryResultSorting *other = object;
-    
-    if ([self.criterion isEqual:other.criterion] && [self.direction isEqual:other.direction])
-    {
-        isEqual = YES;
-    }
-    return isEqual;
+    return ([self.criterion isEqual:other.criterion] && [self.direction isEqual:other.direction]);
 }
 
 @end

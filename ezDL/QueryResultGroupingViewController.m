@@ -24,62 +24,43 @@
 
 #pragma mark Managing the View
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.currentGrouping = nil;
     self.delegate = nil;
     _groupings = nil;
     [self viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInPopover
-{
-    CGSize size;
-    size.width = 240.0f;
-    size.height = 195.0f;
-    return size;
+- (CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(240.0f, 195.0f);
 }
 
 - (NSArray *)groupings
 {
-    if (!_groupings)
-    {
+    if (!_groupings) {
         _groupings = [NSArray arrayWithObjects:[QueryResultGrouping nothingGrouping], [QueryResultGrouping decadeGrouping], [QueryResultGrouping libraryGrouping], [QueryResultGrouping authorsGrouping], nil];
     }
     return _groupings;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.groupings.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"GroupByCell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) 
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     
     QueryResultGrouping *grouping = [self.groupings objectAtIndex:indexPath.row];
     cell.textLabel.text = grouping.localizedShortText;
     
-    if ([grouping isEqual:self.currentGrouping])
-    {
+    if ([grouping isEqual:self.currentGrouping]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
@@ -94,8 +75,7 @@
     
     QueryResultGrouping *newGrouping = [self.groupings objectAtIndex:indexPath.row];
     
-    if (![self.currentGrouping isEqual:newGrouping])
-    {
+    if (![self.currentGrouping isEqual:newGrouping]) {
         self.currentGrouping = newGrouping;
         [self.tableView reloadData];
         

@@ -13,9 +13,9 @@
 @property (nonatomic, strong) NSString *parameterKey;
 @property (nonatomic, strong) NSString *parameterValue;
 
-+ (id<QueryExpression>)parsedExpressionFromParameters:(NSDictionary *)parameters error:(NSError **)error;
-
 + (AdvancedQueryParser *)parserWithValue:(NSString *)value key:(NSString *)key;
 - (id)initWithParameterValue:(NSString *)value key:(NSString *)key;
+
++ (id<QueryExpression>)parsedExpressionFromParameters:(NSDictionary *)parameters error:(NSError **)error;
 
 @end

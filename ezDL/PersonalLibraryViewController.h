@@ -9,8 +9,6 @@
 #import "PersonalLibraryGroupsViewController.h"
 #import "DocumentDetailViewController.h"
 
-@interface PersonalLibraryViewController : UITableViewController <UISearchBarDelegate, PersonalLibraryGroupsViewControllerDelegate, DocumentDetailViewControllerDelegate>
-
-- (IBAction)openGroups:(UIBarButtonItem *)sender;
+@interface PersonalLibraryViewController : UITableViewController
 
 @end

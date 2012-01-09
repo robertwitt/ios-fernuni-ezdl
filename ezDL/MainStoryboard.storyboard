@@ -28,7 +28,7 @@
                                 <rect key="frame" x="280" y="339" width="208" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vnX-Ue-qHD">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vnX-Ue-qHD">
                                         <rect key="frame" x="20" y="10" width="80" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -46,7 +46,7 @@
                                             <action selector="clear" destination="dFQ-Ou-7rq" eventType="touchUpInside" id="9kp-Yl-Ztp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jI8-hY-mhd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jI8-hY-mhd">
                                         <rect key="frame" x="108" y="10" width="80" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -747,7 +747,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5M1-00-3Rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ort-EL-SQ1" customClass="DocumentLinkViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dTn-xP-cvS">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="KC6-dd-V2a">

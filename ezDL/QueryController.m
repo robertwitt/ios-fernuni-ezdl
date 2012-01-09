@@ -11,18 +11,28 @@
 #import "QueryResultViewController.h"
 
 
-@interface QueryController ()
+@interface QueryController () <QueryExecutionViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl *queryTypeControl;
+@property (nonatomic, weak) IBOutlet UIButton *clearButton;
+@property (nonatomic, weak) IBOutlet UIButton *searchButton;
 @property (nonatomic, strong, readonly) QueryViewController *advancedQueryViewController;
 @property (nonatomic, strong, readonly) QueryViewController *basicQueryViewController;
 @property (nonatomic, strong) UIPopoverController *libraryChoicePopover;
 @property (nonatomic, strong) QueryResult *queryResultAfterExecution;
 
+- (IBAction)queryTypeChanged:(UISegmentedControl *)sender;
+- (IBAction)libraryChoice:(UIBarButtonItem *)sender;
+- (IBAction)clear;
+- (IBAction)search:(id)sender;
+- (void)queryViewSearchKeyPressed;
+- (void)displayQueryViewControllerInitially;
 - (void)startObservingQueryViewController:(QueryViewController *)viewController;
 - (void)stopObservingQueryViewController:(QueryViewController *)viewController;
 - (void)prepareForLibraryChoiceSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForQueryResultSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (BOOL)shouldPerformSearch;
 - (void)performSearch;
 
 @end
@@ -47,8 +57,8 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
+    self.queryTypeControl = nil;
     self.clearButton = nil;
     self.searchButton = nil;
     self.queryViewController = nil;
@@ -62,80 +72,55 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    
+    [super viewWillAppear:animated];
     self.navigationController.toolbarHidden = YES;
-    
+    [self displayQueryViewControllerInitially];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self stopObservingQueryViewController:self.queryViewController];
+}
+
+- (void)displayQueryViewControllerInitially {
     // Decide which query view controller is visible at startup by display compatibility of the query
-    if ([self.advancedQueryViewController canDisplayQuery:self.query])
-    {
+    if ([self.advancedQueryViewController canDisplayQuery:self.query]) {
         self.queryViewController = self.advancedQueryViewController;
         self.queryTypeControl.selectedSegmentIndex = 0;
-    }
-    else
-    {
+    } else {
         self.queryViewController = self.basicQueryViewController;
         self.queryTypeControl.selectedSegmentIndex = 1;
     }
     self.queryViewController.query = self.query;
-    
-    [self startObservingQueryViewController:self.queryViewController];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.libraryChoicePopover dismissPopoverAnimated:NO];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-    [self stopObservingQueryViewController:self.queryViewController];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInPopover
-{
-    CGSize size;
-    size.width = 600.0f;
-    size.height = 400.0f;
-    
-    return size;
+- (CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(600.0f, 400.0f);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueIdentifierLibraryChoice])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIdentifierLibraryChoice]) {
         [self prepareForLibraryChoiceSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierQueryExecution])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierQueryExecution]) {
         [self prepareForQueryExecutionSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:SegueIdentifierQueryResult])
-    {
+    if ([segue.identifier isEqualToString:SegueIdentifierQueryResult]) {
         [self prepareForQueryResultSegue:segue sender:sender];
     }
 }
 
-
-
 #pragma mark Implementing this Controller as Container Controller
 
-- (void)setQueryViewController:(QueryViewController *)queryViewController 
-{
+- (void)setQueryViewController:(QueryViewController *)queryViewController  {
     // Keep the query
     queryViewController.query = [_queryViewController buildQuery];
     
@@ -143,16 +128,12 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     [_queryViewController.view removeFromSuperview];
     [_queryViewController removeFromParentViewController];
     
-    // Remove self as observer of old view controller
     [self stopObservingQueryViewController:_queryViewController];
     
     // Add new view controller as child
     [queryViewController willMoveToParentViewController:self];
     [self addChildViewController:queryViewController];
     [self.view addSubview:queryViewController.view];
-    
-    // Add self as observer of new view controller
-    [self startObservingQueryViewController:queryViewController];
     
     // Set view's frame
     CGRect frame;
@@ -161,62 +142,28 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     frame.size = queryViewController.contentSizeForViewInQueryController;
     queryViewController.view.frame = frame;
     
+    [self startObservingQueryViewController:queryViewController]; 
+    
     _queryViewController = queryViewController;
     [queryViewController didMoveToParentViewController:self];
 }
 
-- (void)startObservingQueryViewController:(QueryViewController *)viewController
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(queryViewGotFilled)
-                                                 name:QueryViewGotFilledNotification
-                                               object:viewController];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(queryViewGotCleared)
-                                                 name:QueryViewGotClearedNotification
-                                               object:viewController];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(queryViewSearchKeyPressed) 
-                                                 name:QueryViewSearchRequestedNotification
-                                               object:viewController];
+- (void)startObservingQueryViewController:(QueryViewController *)viewController {
+    [self startObservingObject:viewController
+              notificationName:QueryViewControllerReturnKeyNotification
+                      selector:@selector(queryViewSearchKeyPressed)];
 }
 
-- (void)queryViewGotFilled
-{
-    self.clearButton.enabled = YES;
-    self.searchButton.enabled = YES;
+- (void)stopObservingQueryViewController:(QueryViewController *)viewController {
+    [self stopObservingObject:viewController 
+             notificationName:QueryViewControllerReturnKeyNotification];
 }
 
-- (void)queryViewGotCleared
-{
-    self.clearButton.enabled = NO;
-    self.searchButton.enabled = NO;
+- (void)queryViewSearchKeyPressed {
+    if ([self shouldPerformSearch]) [self performSearch];
 }
 
-- (void)queryViewSearchKeyPressed
-{
-    if ([self.queryViewController checkQuerySyntax]) [self performSearch];
-}
-
-- (void)stopObservingQueryViewController:(QueryViewController *)viewController
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:QueryViewGotFilledNotification
-                                                  object:viewController];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:QueryViewGotClearedNotification
-                                                  object:viewController];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:QueryViewSearchRequestedNotification 
-                                                  object:viewController];
-}
-
-- (IBAction)queryTypeChanged:(UISegmentedControl *)sender
-{
+- (IBAction)queryTypeChanged:(UISegmentedControl *)sender {
     QueryViewController *queryViewController = nil;
     
     switch (sender.selectedSegmentIndex) {
@@ -229,88 +176,78 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     }    
     self.queryViewController = queryViewController;
     
-    if (![queryViewController canDisplayQuery:queryViewController.query])
-    {
+    if (![queryViewController canDisplayQuery:queryViewController.query]) {
         [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
                                message:NSLocalizedString(@"Advanced Query Message", nil)
                                    tag:0];
     }
 }
 
-- (QueryViewController *)advancedQueryViewController
-{
+- (QueryViewController *)advancedQueryViewController {
     if (!_advancedQueryViewController) _advancedQueryViewController = [QueryViewController advancedQueryViewController];
     return _advancedQueryViewController;
 }
 
-- (QueryViewController *)basicQueryViewController
-{
+- (QueryViewController *)basicQueryViewController {
     if (!_basicQueryViewController) _basicQueryViewController = [QueryViewController basicQueryViewController];
     return _basicQueryViewController;
 }
 
 #pragma mark Clearing the Query View
 
-- (IBAction)clear
-{
+- (IBAction)clear {
     [self.queryViewController clearQueryView];
 }
 
 #pragma mark Showing and Library Choice as Popover
 
-- (IBAction)libraryChoice:(UIBarButtonItem *)sender
-{
-    if (self.libraryChoicePopover.popoverVisible)
-    {
+- (IBAction)libraryChoice:(UIBarButtonItem *)sender {
+    if (self.libraryChoicePopover.popoverVisible) {
         [self.libraryChoicePopover dismissPopoverAnimated:YES];
-    }
-    else
-    {
+    } else {
         [self performSegueWithIdentifier:SegueIdentifierLibraryChoice sender:sender];
     }
 }
 
-- (void)prepareForLibraryChoiceSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForLibraryChoiceSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     self.libraryChoicePopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
     self.libraryChoicePopover.passthroughViews = nil;
 }
 
 #pragma mark Executing the Query
 
-- (IBAction)search:(id)sender
-{
-    if ([self.queryViewController checkQuerySyntax])
-    {
-        [self performSearch];
-    }
-    else
-    {
-        [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
-                               message:NSLocalizedString(@"Syntax Incorrect Message", nil) 
-                                   tag:0];
-    }
+- (IBAction)search:(id)sender {
+    if ([self shouldPerformSearch]) [self performSearch];
 }
 
-- (void)performSearch
-{
+- (BOOL)shouldPerformSearch {
+    BOOL should = NO;
+    if (![self.queryViewController viewIsEmpty]) {
+        should = [self.queryViewController checkQuerySyntax];
+        if (!should) {
+            [self showSimpleAlertWithTitle:NSLocalizedString(@"Error Occured", nil)
+                                   message:NSLocalizedString(@"Syntax Incorrect Message", nil) 
+                                       tag:0];
+        }
+    }
+    return should;
+}
+
+- (void)performSearch {
     self.query = [self.queryViewController buildQuery];
     
     BOOL shouldExecuteQuery = YES;
-    if ([self.delegate respondsToSelector:@selector(queryController:shouldExecuteQuery:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(queryController:shouldExecuteQuery:)]) {
         shouldExecuteQuery = [self.delegate queryController:self
                                          shouldExecuteQuery:self.query];
     }
     
-    if (shouldExecuteQuery)
-    {
+    if (shouldExecuteQuery) {
         [self performSegueWithIdentifier:SegueIdentifierQueryExecution sender:nil];
     }
 }
 
-- (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.queryViewController resignFirstResponder];
     
     Query *query = self.query;
@@ -320,31 +257,26 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     viewController.delegate = self;
     
     // Inform delegate that query is about to be executed
-    if ([self.delegate respondsToSelector:@selector(queryController:willExecuteQuery:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(queryController:willExecuteQuery:)]) {
         [self.delegate queryController:self willExecuteQuery:query];
     }
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query
-{
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didCancelExecutingQuery:(Query *)query {
     // User canceled query execution. Dismiss the query execution controller and inform delegate.
     [queryExecutionViewController dismissModalViewControllerAnimated:YES];
     
-    if ([self.delegate respondsToSelector:@selector(queryController:didCancelExecutingQuery:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(queryController:didCancelExecutingQuery:)]) {
         [self.delegate queryController:self didCancelExecutingQuery:query];
     }
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didExecuteQueryWithQueryResult:(QueryResult *)queryResult
-{
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didExecuteQueryWithQueryResult:(QueryResult *)queryResult {
     // Query execution finished with success. Dismiss query execution controller and navigation to query result if hidesQueryResultAfterSearch property is NO.
     
     self.queryResultAfterExecution = queryResult;
     
-    if ([self.delegate respondsToSelector:@selector(queryController:didExecuteQueryWithQueryResult:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(queryController:didExecuteQueryWithQueryResult:)]) {
         [self.delegate queryController:self didExecuteQueryWithQueryResult:queryResult];
     }
     
@@ -354,8 +286,7 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
     }];
 }
 
-- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error
-{
+- (void)queryExecutionViewController:(QueryExecutionViewController *)queryExecutionViewController didFailExecutingQuery:(Query *)query withError:(NSError *)error {
     // Dismiss query execution controller, send message to delegate and display error
     
     __weak id weakSelf = self;
@@ -365,16 +296,14 @@ static NSString *SegueIdentifierQueryResult = @"QueryResultSegue";
                                        tag:0];
     }];
     
-    if ([self.delegate respondsToSelector:@selector(queryController:didFailExecutingQuery:withError:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(queryController:didFailExecutingQuery:withError:)]) {
         [self.delegate queryController:self didFailExecutingQuery:query withError:error];
     }
 }
 
 #pragma mark Navigating to Query Result View Controller
 
-- (void)prepareForQueryResultSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForQueryResultSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QueryResultViewController *viewController = segue.destinationViewController;
     viewController.queryResult = self.queryResultAfterExecution;
 }

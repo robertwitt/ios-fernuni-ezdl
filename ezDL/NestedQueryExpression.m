@@ -11,7 +11,9 @@
 
 
 @interface NestedQueryExpression ()
+
 @property (nonatomic, strong) NSMutableArray *mutableParts;
+
 @end
 
 
@@ -19,22 +21,18 @@
 
 @synthesize mutableParts = _mutableParts;
 
-- (NSMutableArray *)mutableParts
-{
+- (NSMutableArray *)mutableParts {
     if (!_mutableParts) _mutableParts = [NSMutableArray array];
     return _mutableParts;
 }
 
-- (NSArray *)parts
-{
+- (NSArray *)parts {
     return self.mutableParts;
 }
 
-- (void)addPart:(id<QueryPart>)part
-{
+- (void)addPart:(id<QueryPart>)part {
     Class connectorClass = [QueryConnector class];
-    if (self.mutableParts.notEmpty && ![part isKindOfClass:connectorClass] && ![[self.mutableParts lastObject] isKindOfClass:connectorClass])
-    {
+    if (self.mutableParts.notEmpty && ![part isKindOfClass:connectorClass] && ![[self.mutableParts lastObject] isKindOfClass:connectorClass]) {
         // Append AND connector
         [self.mutableParts addObject:[QueryConnector andConnector]];
     }
@@ -42,18 +40,15 @@
     [self.mutableParts addObject:part];
 }
 
-- (void)removePart:(id<QueryPart>)part
-{
+- (void)removePart:(id<QueryPart>)part {
     [self.mutableParts removeObject:part];
 }
 
-- (BOOL)isDeep
-{
+- (BOOL)isDeep {
     __block BOOL deep = NO;
-    [self.mutableParts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-    {
-        if ([obj isKindOfClass:[NestedQueryExpression class]] || ([obj isKindOfClass:[QueryConnector class]] && ![obj isAndConnector]))
-        {
+    [self.parts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[NestedQueryExpression class]] || ([obj isKindOfClass:[QueryConnector class]] && ![obj isAndConnector])) {
+            // obj is either a nested expression or it is a connector different than AND. Then this nested expression is defined as deep.
             deep = YES;
             *stop = YES;
         }
@@ -64,33 +59,30 @@
 
 - (NSString *)parameterValueForKey:(NSString *)key
 {
-    __block NSString *value = @"";
+    NSString *value = @"";
     
-    if (![self isDeep])
-    {
+    if (![self isDeep]) {
         // Only return values if the expression isn't deep
-        __block NSMutableArray *expressions = [NSMutableArray array];
-        [self.mutableParts enumerateObjectsUsingBlock:^(id<QueryPart> obj, NSUInteger idx, BOOL *stop)
-        {
-            if ([obj conformsToProtocol:NSProtocolFromString(@"QueryExpression")])
-            {
+        NSMutableArray *expressions = [NSMutableArray array];
+        [self.parts enumerateObjectsUsingBlock:^(id<QueryPart> obj, NSUInteger idx, BOOL *stop) {
+            if ([obj conformsToProtocol:NSProtocolFromString(@"QueryExpression")]) {
                 // obj is an expression
                 NSString *localValue = [(id<QueryExpression>)obj parameterValueForKey:key];
                 if (localValue.notEmpty) [expressions addObject:localValue];
             }
         }];
         
+        // Concatenate all expressions by AND
         value = [expressions componentsJoinedByString:[NSString stringWithFormat:@" %@ ", kQueryConnectorAnd]];
     }
     
     return value;
 }
 
-- (NSString *)queryString
-{
+- (NSString *)queryString {
     NSMutableString *string = [NSMutableString stringWithString:@"("];
     
-    [self.parts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [self.parts enumerateObjectsUsingBlock:^(id<QueryPart> obj, NSUInteger idx, BOOL *stop) {
         if (idx != 0) [string appendString:@" "];
         [string appendString:[obj queryString]];
     }];

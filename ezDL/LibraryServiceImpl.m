@@ -29,24 +29,20 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 @synthesize selectedLibraryObjectIDs = _selectedLibraryObjectIDs;
 
-- (NSArray *)selectedLibraryObjectIDs
-{
+- (NSArray *)selectedLibraryObjectIDs {
     if (!_selectedLibraryObjectIDs) _selectedLibraryObjectIDs = [[NSUserDefaults standardUserDefaults] arrayForKey:UserDefaultsKey];
     return _selectedLibraryObjectIDs;
 }
 
-- (BOOL)isLibrarySelected:(Library *)library
-{
+- (BOOL)isLibrarySelected:(Library *)library {
     BOOL selected = NO;
     if ([self.selectedLibraryObjectIDs containsObject:library.dlObjectID]) selected = YES;
     return selected;
 }
 
-- (void)saveSelectedLibraries:(NSArray *)libraries
-{
+- (void)saveSelectedLibraries:(NSArray *)libraries {
     NSMutableArray *libraryObjectIDs = [NSMutableArray array];
-    for (Library *library in libraries)
-    {
+    for (Library *library in libraries) {
         [libraryObjectIDs addObject:library.dlObjectID];
     }
     [[NSUserDefaults standardUserDefaults] setObject:libraryObjectIDs forKey:UserDefaultsKey];
@@ -74,14 +70,12 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 
 @synthesize coreDataStack = _coreDataStack;
 
-- (CoreDataStack *)coreDataStack
-{
+- (CoreDataStack *)coreDataStack {
     if (!_coreDataStack) _coreDataStack = [CoreDataStack sharedCoreDataStack];
     return _coreDataStack;
 }
 
-- (NSArray *)fetchLibrariesWithError:(NSError *__autoreleasing *)error
-{
+- (NSArray *)fetchLibrariesWithError:(NSError *__autoreleasing *)error {
     // Fetch result from disk. First create a request for library entity.
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:CoreDataEntityLibrary
@@ -95,16 +89,13 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:error];
 }
 
-- (NSArray *)saveLibraries
-{
+- (NSArray *)saveLibraries {
     [self.coreDataStack saveContext];
     return [self fetchLibrariesWithError:nil];
 }
 
-- (void)deleteAllLibraries
-{
-    for (Library *library in [self fetchLibrariesWithError:nil])
-    {
+- (void)deleteAllLibraries {
+    for (Library *library in [self fetchLibrariesWithError:nil]) {
         [self.coreDataStack.managedObjectContext deleteObject:library];
     }
 }
@@ -134,35 +125,28 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
 @synthesize userDefaultsService = _userDefaultsService;
 @synthesize coreDataService = _coreDataService;
 
-- (LibraryUserDefaultsService *)userDefaultsService
-{
+- (LibraryUserDefaultsService *)userDefaultsService {
     if (!_userDefaultsService) _userDefaultsService = [[LibraryUserDefaultsService alloc] init];
     return _userDefaultsService;
 }
 
-- (LibraryCoreDataService *)coreDataService
-{
+- (LibraryCoreDataService *)coreDataService {
     if (!_coreDataService) _coreDataService = [[LibraryCoreDataService alloc] init];
     return _coreDataService;
 }
 
-- (LibraryChoice *)libraryChoice
-{
+- (LibraryChoice *)libraryChoice {
     LibraryChoice *libraryChoice = self.currentLibraryChoice;
     if (!libraryChoice) libraryChoice = [self loadLibraryChoiceFromBackend:NO withError:nil];
     return libraryChoice;
 }
 
-- (LibraryChoice *)loadLibraryChoiceFromBackend:(BOOL)loadFromBackend withError:(NSError *__autoreleasing *)error
-{
+- (LibraryChoice *)loadLibraryChoiceFromBackend:(BOOL)loadFromBackend withError:(NSError *__autoreleasing *)error {
     NSArray *libraries = nil;
-    if (!loadFromBackend)
-    {
+    if (!loadFromBackend) {
         libraries = [self loadLibraryFromDiskWithError:error];
         if (!libraries || libraries.count == 0) libraries = [self loadLibraryFromBackendWithError:error];
-    }
-    else
-    {
+    } else {
         libraries = [self loadLibraryFromBackendWithError:error];
     }
     
@@ -174,14 +158,10 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     NSMutableArray *selectedLibraries = [NSMutableArray array];
     NSMutableArray *unselectedLibraries = [NSMutableArray array];
     
-    for (Library *library in libraries)
-    {
-        if ([self.userDefaultsService isLibrarySelected:library])
-        {
+    for (Library *library in libraries) {
+        if ([self.userDefaultsService isLibrarySelected:library]) {
             [selectedLibraries addObject:library];
-        }
-        else
-        {
+        } else {
             [unselectedLibraries addObject:library];
         }
     }
@@ -191,13 +171,11 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     return libraryChoice;
 }
 
-- (NSArray *)loadLibraryFromDiskWithError:(NSError *__autoreleasing *)error
-{
+- (NSArray *)loadLibraryFromDiskWithError:(NSError *__autoreleasing *)error {
     return [self.coreDataService fetchLibrariesWithError:error];
 }
 
-- (NSArray *)loadLibraryFromBackendWithError:(NSError *__autoreleasing *)error
-{
+- (NSArray *)loadLibraryFromBackendWithError:(NSError *__autoreleasing *)error {
     [self.coreDataService deleteAllLibraries];
     [[[ServiceFactory sharedFactory] backendService] loadLibrariesWithError:error];
     NSArray *libraries = [self.coreDataService saveLibraries];
@@ -205,20 +183,17 @@ static NSString *UserDefaultsKey = @"ezDL_selectedLibraries";
     return libraries;
 }
 
-- (void)saveLibraryChoice:(LibraryChoice *)libraryChoice
-{
+- (void)saveLibraryChoice:(LibraryChoice *)libraryChoice {
     [self.userDefaultsService saveSelectedLibraries:libraryChoice.selectedLibraries];
     self.currentLibraryChoice = libraryChoice;
 }
 
-- (Library *)libraryWithObjectID:(NSString *)objectID
-{
+- (Library *)libraryWithObjectID:(NSString *)objectID {
     NSArray *allLibraries = [self libraryChoice].allLibraries;
     NSUInteger index = [allLibraries indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BOOL passed = NO;
         Library *library = obj;
-        if ([library.dlObjectID isEqualToString:objectID])
-        {
+        if ([library.dlObjectID isEqualToString:objectID]) {
             passed = YES;
             *stop = YES;
         }

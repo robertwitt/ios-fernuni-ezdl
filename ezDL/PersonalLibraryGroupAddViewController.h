@@ -14,12 +14,8 @@
 @end
 
 
-@interface PersonalLibraryGroupAddViewController : UIViewController <UITextFieldDelegate>
+@interface PersonalLibraryGroupAddViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UITextField *groupNameTextField;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *saveItem;
 @property (nonatomic, weak) id<PersonalLibraryGroupAddViewControllerDelegate> delegate;
-
-- (IBAction)save;
 
 @end

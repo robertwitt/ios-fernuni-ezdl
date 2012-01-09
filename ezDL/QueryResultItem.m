@@ -14,19 +14,16 @@
 @synthesize library = _library;
 @synthesize relevance = _relevance;
 
-+ (QueryResultItem *)queryResultItemWithDocument:(Document *)document library:(Library *)library relevance:(float)relevance
-{
++ (QueryResultItem *)queryResultItemWithDocument:(Document *)document library:(Library *)library relevance:(float)relevance {
     QueryResultItem *item = [[QueryResultItem alloc] initWithDocument:document
                                                               library:library
                                                             relevance:relevance];
     return item;
 }
 
-- (id)initWithDocument:(Document *)document library:(Library *)library relevance:(float)relevance
-{
+- (id)initWithDocument:(Document *)document library:(Library *)library relevance:(float)relevance {
     self = [self init];
-    if (self)
-    {
+    if (self) {
         _document = document;
         _library = library;
         _relevance = relevance;

@@ -18,15 +18,9 @@
 @end
 
 
-@interface PersonalLibraryReferenceAddViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PersonalLibraryGroupAddViewControllerDelegate>
+@interface PersonalLibraryReferenceAddViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UITableView *groupTableView;
-@property (nonatomic, weak) IBOutlet UITextField *keyWordsTextField;
-@property (nonatomic, weak) IBOutlet UITextView *notesTextView;
 @property (nonatomic, strong) Document *referenceDocument;
 @property (nonatomic, weak) id<PersonalLibraryReferenceAddViewControllerDelegate> delegate;
-
-- (IBAction)cancel;
-- (IBAction)save;
 
 @end

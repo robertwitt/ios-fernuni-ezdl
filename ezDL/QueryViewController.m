@@ -15,52 +15,51 @@
 @synthesize contentSizeForViewInQueryController = _contentSizeForViewInQueryController;
 @synthesize query = _query;
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (void)viewDidLoad {
+    [super viewDidLoad];    
     self.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleWidth;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.query = nil;
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (CGSize)contentSizeForViewInQueryController
-{
-    CGSize size;
-    size.width = self.view.superview.frame.size.width - 40.0f;
-    size.height = 260.0f;
-    
-    return size;
+- (CGSize)contentSizeForViewInQueryController {
+    return CGSizeMake(self.view.superview.frame.size.width - 40.0f, 260.0f);
 }
 
-- (BOOL)checkQuerySyntax { return NO; }
+- (BOOL)viewIsEmpty {
+    return NO;
+}
 
-- (Query *)buildQuery { return nil; }
+- (BOOL)checkQuerySyntax { 
+    return NO;
+}
 
-- (void)clearQueryView {}
+- (Query *)buildQuery { 
+    return nil;
+}
 
-- (BOOL)canDisplayQuery:(Query *)query { return YES; }
+- (void)clearQueryView {
+}
 
-+ (AdvancedQueryViewController *)advancedQueryViewController
-{
+- (BOOL)canDisplayQuery:(Query *)query { 
+    return YES;
+}
+
++ (AdvancedQueryViewController *)advancedQueryViewController {
     AdvancedQueryViewController *viewController = [[AdvancedQueryViewController alloc] initWithNibName:@"AdvancedQueryViewController"
                                                                                                 bundle:nil];
     return viewController;
     
 }
 
-+ (BasicQueryViewController *)basicQueryViewController
-{
++ (BasicQueryViewController *)basicQueryViewController {
 
     BasicQueryViewController *viewController = [[BasicQueryViewController alloc] initWithNibName:@"BasicQueryViewController" 
                                                                                           bundle:nil];

@@ -24,21 +24,10 @@
 @end
 
 
-@interface QueryController : UIViewController <QueryExecutionViewControllerDelegate>
+@interface QueryController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UISegmentedControl *queryTypeControl;
-@property (nonatomic, weak) IBOutlet UIButton *clearButton;
-@property (nonatomic, weak) IBOutlet UIButton *searchButton;
 @property (nonatomic, strong) QueryViewController *queryViewController;
 @property (nonatomic, strong) Query *query;
 @property (nonatomic, weak) id<QueryControllerDelegate> delegate;
-
-- (IBAction)queryTypeChanged:(UISegmentedControl *)sender;
-- (IBAction)libraryChoice:(UIBarButtonItem *)sender;
-- (IBAction)clear;
-- (IBAction)search:(id)sender;
-- (void)queryViewGotFilled;
-- (void)queryViewGotCleared;
-- (void)queryViewSearchKeyPressed;
 
 @end

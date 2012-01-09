@@ -25,8 +25,7 @@
 @synthesize numberOfBrackets = _numberOfBrackets;
 @synthesize result = _result;
 
-- (BOOL)checkString:(NSString *)string
-{
+- (BOOL)checkString:(NSString *)string {
     QueryScanner *scanner = [QueryScanner scannerWithString:string];
     scanner.delegate = self;
     
@@ -35,51 +34,26 @@
     return self.result;
 }
 
-- (void)scannerDidBeginScanning:(QueryScanner *)scanner
-{
+- (void)scannerDidBeginScanning:(QueryScanner *)scanner {
     self.quoteSignsArePaired = YES;
     self.result = YES;
     self.numberOfBrackets = 0;
 }
 
-- (void)scannerDidEndScanning:(QueryScanner *)scanner
-{
+- (void)scannerDidEndScanning:(QueryScanner *)scanner {
     if (!self.quoteSignsArePaired) self.result = NO;
     if (self.numberOfBrackets != 0) self.result = NO;
 }
 
-- (void)scanner:(QueryScanner *)scanner didFoundWord:(NSString *)word
-{
-    
-}
-
-- (void)scanner:(QueryScanner *)scanner didFoundQuoteSign:(NSString *)sign
-{
+- (void)scanner:(QueryScanner *)scanner didFoundQuoteSign:(NSString *)sign {
     self.quoteSignsArePaired = !self.quoteSignsArePaired;
 }
 
-- (void)scanner:(QueryScanner *)scanner didFoundOperator:(NSString *)operator
-{
-    
-}
-
-- (void)scanner:(QueryScanner *)scanner didFoundNotOperator:(NSString *)operator
-{
-    
-}
-
-- (void)scanner:(QueryScanner *)scanner didFoundConnector:(NSString *)connector
-{
-    
-}
-
-- (void)scanner:(QueryScanner *)scanner didFoundOpenBracket:(NSString *)bracket
-{
+- (void)scanner:(QueryScanner *)scanner didFoundOpenBracket:(NSString *)bracket {
     self.numberOfBrackets++;
 }
 
-- (void)scanner:(QueryScanner *)scanner didFoundCloseBracket:(NSString *)bracket
-{
+- (void)scanner:(QueryScanner *)scanner didFoundCloseBracket:(NSString *)bracket {
     self.numberOfBrackets--;
 }
 

@@ -10,11 +10,16 @@
 #import "ServiceFactory.h"
 
 
-@interface PersonalLibraryReferenceAddViewController ()
+@interface PersonalLibraryReferenceAddViewController () <UITableViewDataSource, UITableViewDelegate, PersonalLibraryGroupAddViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UITableView *groupTableView;
+@property (nonatomic, weak) IBOutlet UITextField *keyWordsTextField;
+@property (nonatomic, weak) IBOutlet UITextView *notesTextView;
 @property (nonatomic, strong, readonly) id<PersonalLibraryService> personalLibraryService;
 @property (nonatomic, weak) PersonalLibraryGroup *selectedGroup;
 
+- (IBAction)cancel;
+- (IBAction)save;
 - (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)performSave;
 
@@ -35,8 +40,7 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
 
 #pragma mark Managing the View
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     self.groupTableView = nil;
     self.keyWordsTextField = nil;
     self.notesTextView = nil;
@@ -47,71 +51,55 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.personalLibraryService personalLibraryGroups].count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
     
     PersonalLibraryGroup *group = [[self.personalLibraryService personalLibraryGroups] objectAtIndex:indexPath.row];
     cell.textLabel.text = group.name;
     
     // Showing checkmark for selected group
-    if (!self.selectedGroup && indexPath.row == 0)
-    {
+    if (!self.selectedGroup && indexPath.row == 0) {
         // Mark first row as selected
         self.selectedGroup = group;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else if (self.selectedGroup == group)
-    {
+    } else if (self.selectedGroup == group) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
 }
 
-- (IBAction)cancel
-{
+- (IBAction)cancel {
     [self.delegate didCancelReferenceAddViewController:self];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:SegueIdentifierAddGroup])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIdentifierAddGroup]) {
         [self prepareForAddGroupSegue:segue sender:sender];
     }
 }
 
-- (IBAction)save
-{
-    if (self.selectedGroup)
-    {
+- (IBAction)save {
+    if (self.selectedGroup) {
         [self performSave];
-    }
-    else
-    {
+    } else {
         [self showSimpleAlertWithTitle:NSLocalizedString(@"No Group Selected", nil)
                                message:NSLocalizedString(@"No Group Selected Message", nil)
                                    tag:0];
     }
 }
 
-- (void)performSave
-{
+- (void)performSave {
     // Perform saving the document as reference
     PersonalLibraryReference *reference = [self.personalLibraryService newReferenceWithDocument:self.referenceDocument];
     reference.group = self.selectedGroup;
@@ -123,30 +111,26 @@ static NSString *SegueIdentifierAddGroup = @"AddGroupSegue";
     [self.delegate referenceAddViewController:self didSaveReference:reference];
 }
 
-- (id<PersonalLibraryService>)personalLibraryService
-{
+- (id<PersonalLibraryService>)personalLibraryService {
     if (!_personalLibraryService) _personalLibraryService = [[ServiceFactory sharedFactory] personalLibraryService];
     return _personalLibraryService;
 }
 
 #pragma mark Putting Reference into Groups in Personal Library
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.selectedGroup = [[self.personalLibraryService personalLibraryGroups] objectAtIndex:indexPath.row];
     [tableView reloadData];
 }
 
-- (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForAddGroupSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PersonalLibraryGroupAddViewController *viewController = segue.destinationViewController;
     viewController.delegate = self;
 }
 
-- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group
-{
+- (void)groupAddViewController:(PersonalLibraryGroupAddViewController *)viewController didSaveGroup:(PersonalLibraryGroup *)group {
     // React on saving the group. Adds it to table view and marks it automatically. Scroll to new row.
     self.selectedGroup = group;
     NSInteger index = [[self.personalLibraryService personalLibraryGroups] indexOfObject:group];

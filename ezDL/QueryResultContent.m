@@ -34,40 +34,32 @@
 @synthesize filteredRows = _filteredRows;
 @synthesize groupedRows = _groupedRows;
 
-+ (QueryResultContent *)queryResultContentWithQueryResult:(QueryResult *)queryResult
-{
++ (QueryResultContent *)queryResultContentWithQueryResult:(QueryResult *)queryResult {
     return [[QueryResultContent alloc] initWithQueryResult:queryResult];
 }
 
-- (id)initWithQueryResult:(QueryResult *)queryResult
-{
+- (id)initWithQueryResult:(QueryResult *)queryResult {
     self = [self init];
     if (self) [self flattenQueryResult:queryResult];
     return self;
 }
 
-- (void)flattenQueryResult:(QueryResult *)queryResult
-{
+- (void)flattenQueryResult:(QueryResult *)queryResult {
     NSMutableArray *rows = [NSMutableArray array];
-    for (QueryResultItem *item in queryResult.items)
-    {
+    for (QueryResultItem *item in queryResult.items) {
         [rows addObject:[QueryResultRow queryResultRowWithItem:item]];
     }
     _allRows = rows;
     self.filteredRows = [self.allRows copy];    
 }
 
-- (void)setFilterString:(NSString *)filterString
-{
+- (void)setFilterString:(NSString *)filterString {
     _filterString = filterString;
     
     // Do the filtering of allRows first and store result in filteredRows
-    if (!filterString.notEmpty)
-    {
+    if (!filterString.notEmpty) {
         self.filteredRows = [self.allRows copy];  
-    }
-    else
-    {
+    } else {
         NSString *predicateString = @"self.documentTitle CONTAINS[cd] %@ OR self.documentAuthors CONTAINS[cd] %@ OR self.documentYear CONTAINS[cd] %@ OR self.libraryName CONTAINS[cd] %@";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, filterString, filterString, filterString, filterString];
         self.filteredRows = [self.allRows filteredArrayUsingPredicate:predicate];
@@ -78,8 +70,7 @@
     _allDocuments = nil;
 }
 
-- (void)setGrouping:(QueryResultGrouping *)grouping
-{
+- (void)setGrouping:(QueryResultGrouping *)grouping {
     _grouping = grouping;
     
     _sections = nil;
@@ -87,28 +78,23 @@
     self.groupedRows = [NSMutableDictionary dictionary];
 }
 
-- (void)setSorting:(QueryResultSorting *)sorting
-{
+- (void)setSorting:(QueryResultSorting *)sorting {
     [self.groupedRows removeAllObjects];
-    
     _sorting = sorting;
 }
 
-- (NSArray *)sections
-{
+- (NSArray *)sections {
     if (!_sections) _sections = [self sectionsInFilteredRows];
     return _sections;
 }
 
-- (NSArray *)sectionsInFilteredRows
-{
+- (NSArray *)sectionsInFilteredRows {
     if (self.grouping.groupingType == QueryResultGroupingTypeNothing) return [NSArray arrayWithObject:[NSString string]];
     
     NSString *key = [QueryResultRow keyOfGrouping:self.grouping];
     NSMutableSet *sections = [NSMutableSet set];
     
-    for (QueryResultRow *row in self.filteredRows)
-    {
+    for (QueryResultRow *row in self.filteredRows) {
         id section = [row valueForKey:key];
         [sections addObject:section];
     }
@@ -116,23 +102,18 @@
     return [sections.allObjects sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
-- (NSString *)sectionAtIndex:(NSInteger)index
-{
+- (NSString *)sectionAtIndex:(NSInteger)index {
     return [self.sections objectAtIndex:index];
 }
 
-- (NSArray *)rowsInSection:(NSString *)section
-{
+- (NSArray *)rowsInSection:(NSString *)section {
     NSArray *rows = [self.groupedRows objectForKey:section];
     if (rows) return rows;
     
-    if ([section isEqualToString:@""])
-    {
+    if ([section isEqualToString:@""]) {
         rows = self.filteredRows;
         rows = [self sortRows:rows];
-    }
-    else
-    {
+    } else {
         // No values in dictionary. Determine the rows and store it in there.
         rows = [self groupedRowsInSection:section];
         rows = [self sortRows:rows];
@@ -142,11 +123,9 @@
     return rows;
 }
 
-- (NSArray *)groupedRowsInSection:(NSString *)section
-{
+- (NSArray *)groupedRowsInSection:(NSString *)section {
     NSMutableArray *rows = [NSMutableArray array];
-    for (QueryResultRow *row in self.filteredRows)
-    {
+    for (QueryResultRow *row in self.filteredRows) {
         NSString *key = [QueryResultRow keyOfGrouping:self.grouping];
         NSString *rowValue = [row valueForKey:key];
         if ([rowValue isEqualToString:section]) [rows addObject:row];
@@ -155,13 +134,11 @@
     return rows;
 }
 
-- (NSArray *)sortRows:(NSArray *)rows
-{
+- (NSArray *)sortRows:(NSArray *)rows {
     NSString *key = [QueryResultRow keyOfSortingCriterion:self.sorting.criterion];
     
     BOOL ascending;
-    switch (self.sorting.direction.directionType)
-    {
+    switch (self.sorting.direction.directionType) {
         case QueryResultSortingDirectionTypeAscending:
             ascending = YES;
             break;
@@ -174,27 +151,21 @@
     return [rows sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
 
-- (NSArray *)rowsInSectionAtIndex:(NSInteger)index
-{
+- (NSArray *)rowsInSectionAtIndex:(NSInteger)index {
     NSString *section = [self sectionAtIndex:index];
     return [self rowsInSection:section];
 }
 
-- (QueryResultRow *)rowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (QueryResultRow *)rowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *rows = [self rowsInSectionAtIndex:indexPath.section];
     return [rows objectAtIndex:indexPath.row];
 }
 
-- (NSArray *)allDocuments
-{
-    if (!_allDocuments)
-    {
+- (NSArray *)allDocuments {
+    if (!_allDocuments) {
         NSMutableArray *documents = [NSMutableArray array];
-        for (NSString *section in self.sections)
-        {
-            for (QueryResultRow *row in [self rowsInSection:section])
-            {
+        for (NSString *section in self.sections) {
+            for (QueryResultRow *row in [self rowsInSection:section]) {
                 [documents addObject:row.document];
             }
         }
@@ -203,8 +174,7 @@
     return _allDocuments;
 }
 
-- (NSInteger)numberOfResults
-{
+- (NSInteger)numberOfResults {
     return self.allRows.count;
 }
 
