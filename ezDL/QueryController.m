@@ -8,6 +8,7 @@
 
 #import "QueryController.h"
 #import "LibraryChoiceViewController.h"
+#import "QueryExecutionViewController.h"
 #import "QueryResultViewController.h"
 
 

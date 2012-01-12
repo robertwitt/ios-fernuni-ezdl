@@ -8,7 +8,11 @@
 
 #import "QueryResultViewController.h"
 #import "QueryController.h"
+#import "QueryExecutionViewController.h"
 #import "QueryResultContent.h"
+#import "QueryResultSortingViewController.h"
+#import "QueryResultGroupingViewController.h"
+#import "DocumentDetailViewController.h"
 
 
 @interface QueryResultViewController () <QueryControllerDelegate, QueryExecutionViewControllerDelegate, QueryResultSortingViewControllerDelegate, QueryResultGroupingViewControllerDelegate, UISearchBarDelegate, DocumentDetailViewControllerDelegate>
