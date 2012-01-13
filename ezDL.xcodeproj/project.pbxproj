@@ -36,7 +36,6 @@
 		E156BE78148D41A30062230F /* DLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE77148D41A30062230F /* DLObject.m */; };
 		E156BE7B148D42A00062230F /* DocumentLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E156BE7A148D429F0062230F /* DocumentLink.m */; };
 		E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */; };
-		E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */; };
 		E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */; };
 		E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E183BD60148135C200C65FAA /* DocumentDetailViewController.m */; };
 		E1AF41EC148D448700B20175 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AF41EB148D448700B20175 /* EntityFactory.m */; };
@@ -200,8 +199,6 @@
 		E156BE7A148D429F0062230F /* DocumentLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentLink.m; sourceTree = "<group>"; };
 		E15D5EDA14893C7E00C78F1D /* PersonalLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryViewController.h; sourceTree = "<group>"; };
 		E15D5EDB14893C7E00C78F1D /* PersonalLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryViewController.m; sourceTree = "<group>"; };
-		E15D5EE014895E6E00C78F1D /* QueryResultOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResultOptionsViewController.h; sourceTree = "<group>"; };
-		E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResultOptionsViewController.m; sourceTree = "<group>"; };
 		E15D5EE31489660900C78F1D /* PersonalLibraryReferenceAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLibraryReferenceAddViewController.h; sourceTree = "<group>"; };
 		E15D5EE41489660900C78F1D /* PersonalLibraryReferenceAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLibraryReferenceAddViewController.m; sourceTree = "<group>"; };
 		E183BD5F148135C200C65FAA /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
@@ -443,15 +440,6 @@
 			name = "Personal Library";
 			sourceTree = "<group>";
 		};
-		E15D5EDF14895E4200C78F1D /* Query Result Options */ = {
-			isa = PBXGroup;
-			children = (
-				E15D5EE014895E6E00C78F1D /* QueryResultOptionsViewController.h */,
-				E15D5EE114895E6E00C78F1D /* QueryResultOptionsViewController.m */,
-			);
-			name = "Query Result Options";
-			sourceTree = "<group>";
-		};
 		E15D5EEB1489819F00C78F1D /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,7 +514,6 @@
 				E1E5FDD2147AB0B700C4785A /* QueryResultOption.h */,
 				E1E5FDD3147AB1A500C4785A /* Query Result Sorting */,
 				E1E5FDD7147ABB4800C4785A /* Query Result Grouping */,
-				E15D5EDF14895E4200C78F1D /* Query Result Options */,
 			);
 			name = "Query Result";
 			sourceTree = "<group>";
@@ -939,7 +926,6 @@
 				E183BD61148135C200C65FAA /* DocumentDetailViewController.m in Sources */,
 				E113C3091483FC610016D3EF /* DocumentLinkViewController.m in Sources */,
 				E15D5EDC14893C7E00C78F1D /* PersonalLibraryViewController.m in Sources */,
-				E15D5EE214895E6E00C78F1D /* QueryResultOptionsViewController.m in Sources */,
 				E15D5EE51489660900C78F1D /* PersonalLibraryReferenceAddViewController.m in Sources */,
 				E1351812148A5AD200B13A68 /* PersonalLibraryGroupAddViewController.m in Sources */,
 				E1F4E253148BA0440003140E /* Author.m in Sources */,

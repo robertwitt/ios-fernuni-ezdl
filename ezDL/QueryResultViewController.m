@@ -20,11 +20,9 @@
 @property (nonatomic, weak) IBOutlet UITableViewCell *queryResultCell;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sortByItem;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *groupByItem;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *optionsItem;
 @property (nonatomic, weak) UIPopoverController *editQueryPopover;
 @property (nonatomic, weak) UIPopoverController *sortByPopover;
 @property (nonatomic, weak) UIPopoverController *groupByPopover;
-@property (nonatomic, weak) UIPopoverController *optionsPopover;
 @property (nonatomic, strong) Query *editedQuery;
 @property (nonatomic, strong) QueryResultSorting *currentSorting;
 @property (nonatomic, strong) QueryResultGrouping *currentGrouping;
@@ -33,14 +31,12 @@
 - (IBAction)editQuery:(UIBarButtonItem *)sender;
 - (IBAction)sortBy:(UIBarButtonItem *)sender;
 - (IBAction)groupBy:(UIBarButtonItem *)sender;
-- (IBAction)openOptions:(UIBarButtonItem *)sender;
 - (void)configureNavigationBar;
 - (void)prepareForDocumentDetailSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForEditQuerySegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForQueryExecutionSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForSortBySegue:(UIStoryboardSegue *)segue sender:(id)sender;
 - (void)prepareForGroupBySegue:(UIStoryboardSegue *)segue sender:(id)sender;
-- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end
 
@@ -52,17 +48,14 @@ static NSString *SegueIdentifierEditQuery = @"EditQuerySegue";
 static NSString *SegueIdentifierQueryExecution = @"QueryExecutionSegue";
 static NSString *SegueIdentifierSortBy = @"SortBySegue";
 static NSString *SegueIdentifierGroupBy = @"GroupBySegue";
-static NSString *SegueIdentifierOptions = @"OptionsSegue";
 
 @synthesize queryResult = _queryResult;
 @synthesize queryResultCell = _queryResultCell;
 @synthesize sortByItem = _sortByItem;
 @synthesize groupByItem = _groupByItem;
-@synthesize optionsItem = _optionsItem;
 @synthesize editQueryPopover = _editQueryPopover;
 @synthesize sortByPopover = _sortByPopover;
 @synthesize groupByPopover = _groupByPopover;
-@synthesize optionsPopover = _optionsPopover;
 @synthesize editedQuery = _editedQuery;
 @synthesize currentSorting = _currentSorting;
 @synthesize currentGrouping = _currentGrouping;
@@ -89,11 +82,9 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     self.queryResultCell = nil;
     self.sortByItem = nil;
     self.groupByItem = nil;
-    self.optionsItem = nil;
     self.editQueryPopover = nil;
     self.sortByPopover = nil;
     self.groupByPopover = nil;
-    self.optionsPopover = nil;
     self.editedQuery = nil;
     self.currentSorting = nil;
     self.currentGrouping = nil;
@@ -112,7 +103,6 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     [self.editQueryPopover dismissPopoverAnimated:NO];
     [self.sortByPopover dismissPopoverAnimated:NO];
     [self.groupByPopover dismissPopoverAnimated:NO];
-    [self.optionsPopover dismissPopoverAnimated:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -226,10 +216,6 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
     
     if ([segue.identifier isEqualToString:SegueIdentifierGroupBy]) {
         [self prepareForGroupBySegue:segue sender:sender];
-    }
-    
-    if ([segue.identifier isEqualToString:SegueIdentifierOptions]) {
-        [self prepareForOptionsSegue:segue sender:sender];
     }
 }
 
@@ -364,20 +350,6 @@ static NSString *SegueIdentifierOptions = @"OptionsSegue";
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.tableContent.filterString = searchText;
     [self.tableView reloadData];
-}
-
-#pragma mark Open Query Result Options
-
-- (IBAction)openOptions:(UIBarButtonItem *)sender {
-    if (self.optionsPopover.popoverVisible) {
-        [self.optionsPopover dismissPopoverAnimated:YES];
-    } else {
-        [self performSegueWithIdentifier:SegueIdentifierOptions sender:sender];
-    }
-}
-
-- (void)prepareForOptionsSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    self.optionsPopover = ((UIStoryboardPopoverSegue *)segue).popoverController;
 }
 
 @end

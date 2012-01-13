@@ -9,6 +9,7 @@
 #import "MockupBackendServiceImpl.h"
 #import "MockupDocumentBackendService.h"
 #import "MockupLibraryBackendService.h"
+#import "MockupQueryBackendService.h"
 #import "MockupWebQueryBackendService.h"
 #import "QueryResultItem.h"
 
@@ -25,8 +26,12 @@
 }
 
 - (QueryResult *)executeQuery:(Query *)query withError:(NSError *__autoreleasing *)error {
-    MockupWebQueryBackendService *service = [[MockupWebQueryBackendService alloc] init];
-    NSArray *queryResultItems = [service loadQueryResultItemsWithError:error];
+    //MockupWebQueryBackendService *service = [[MockupWebQueryBackendService alloc] init];
+    //NSArray *queryResultItems = [service loadQueryResultItemsWithError:error];
+    
+    MockupQueryBackendService *service = [[MockupQueryBackendService alloc] init];
+    NSArray *queryResultItems = [service loadQueryResultItems];
+    sleep(2);
     
     if (!error) query.executedOn = [NSDate date];
     
