@@ -8,6 +8,10 @@
 
 #import "QueryService.h"
 
+/*!
+ @class QueryServiceImpl
+ @abstract Implementation of the QueryService
+ */
 @interface QueryServiceImpl : NSObject <QueryService>
 
 @end

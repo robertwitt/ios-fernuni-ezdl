@@ -8,6 +8,10 @@
 
 #import "LibraryService.h"
 
+/*!
+ @class LibraryServiceImpl
+ @abstract Implementation of the LibraryService
+ */
 @interface LibraryServiceImpl : NSObject <LibraryService>
 
 @end

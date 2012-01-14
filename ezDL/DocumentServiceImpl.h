@@ -8,6 +8,10 @@
 
 #import "DocumentService.h"
 
+/*!
+ @class DocumentServiceImpl
+ @abstract Implementation of the DocumentService
+ */
 @interface DocumentServiceImpl : NSObject <DocumentService>
 
 @end
