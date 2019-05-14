@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E10136D114A74C1F0089CC37 /* QueryConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = E10136D014A74C1F0089CC37 /* QueryConnector.m */; };
+		E103C77D14C200F600A8C999 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E103C77C14C200F600A8C999 /* InfoPlist.strings */; };
 		E1083C7914A864EA003C5D97 /* QueryScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7814A864EA003C5D97 /* QueryScanner.m */; };
 		E1083C7D14A874A5003C5D97 /* QueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7C14A874A5003C5D97 /* QueryParser.m */; };
 		E1083C8014A87621003C5D97 /* AdvancedQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1083C7F14A87621003C5D97 /* AdvancedQueryParser.m */; };
@@ -74,7 +75,6 @@
 		E1EFC3BC147690B600CB7490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BB147690B600CB7490 /* Foundation.framework */; };
 		E1EFC3BE147690B600CB7490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */; };
 		E1EFC3C0147690B600CB7490 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFC3BF147690B600CB7490 /* CoreData.framework */; };
-		E1EFC3C6147690B600CB7490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC3C4147690B600CB7490 /* InfoPlist.strings */; };
 		E1EFC3C8147690B600CB7490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3C7147690B600CB7490 /* main.m */; };
 		E1EFC3CC147690B600CB7490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CB147690B600CB7490 /* AppDelegate.m */; };
 		E1EFC3CF147690B600CB7490 /* ezDL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC3CD147690B600CB7490 /* ezDL.xcdatamodeld */; };
@@ -147,6 +147,7 @@
 /* Begin PBXFileReference section */
 		E10136CF14A74C1F0089CC37 /* QueryConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryConnector.h; sourceTree = "<group>"; };
 		E10136D014A74C1F0089CC37 /* QueryConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryConnector.m; sourceTree = "<group>"; };
+		E103C77C14C200F600A8C999 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E1083C7714A864EA003C5D97 /* QueryScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryScanner.h; sourceTree = "<group>"; };
 		E1083C7814A864EA003C5D97 /* QueryScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryScanner.m; sourceTree = "<group>"; };
 		E1083C7B14A874A5003C5D97 /* QueryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryParser.h; sourceTree = "<group>"; };
@@ -257,7 +258,6 @@
 		E1EFC3BD147690B600CB7490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E1EFC3BF147690B600CB7490 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ezDL-Info.plist"; sourceTree = "<group>"; };
-		E1EFC3C5147690B600CB7490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1EFC3C7147690B600CB7490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ezDL-Prefix.pch"; sourceTree = "<group>"; };
 		E1EFC3CA147690B600CB7490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -570,7 +570,7 @@
 			children = (
 				E15D5EEB1489819F00C78F1D /* Images */,
 				E1EFC3C3147690B600CB7490 /* ezDL-Info.plist */,
-				E1EFC3C4147690B600CB7490 /* InfoPlist.strings */,
+				E103C77C14C200F600A8C999 /* InfoPlist.strings */,
 				E1EFC3C7147690B600CB7490 /* main.m */,
 				E1EFC3C9147690B600CB7490 /* ezDL-Prefix.pch */,
 				E1EFC42F1476DEB700CB7490 /* Localizable.strings */,
@@ -855,7 +855,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1EFC3C6147690B600CB7490 /* InfoPlist.strings in Resources */,
 				E1EFC3F51476966600CB7490 /* MainStoryboard.storyboard in Resources */,
 				E1EFC40914769B0C00CB7490 /* AdvancedQueryViewController.xib in Resources */,
 				E1EFC40E14769B5200CB7490 /* BasicQueryViewController.xib in Resources */,
@@ -882,6 +881,7 @@
 				E1C45C48147D6236002DB8EC /* doc_4712.xml in Resources */,
 				E1C45C49147D6236002DB8EC /* doc_4811.xml in Resources */,
 				E1C45C4A147D6236002DB8EC /* doc_9851.xml in Resources */,
+				E103C77D14C200F600A8C999 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,17 +965,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		E1EFC3C4147690B600CB7490 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1EFC3C5147690B600CB7490 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		E1EFC3E6147690B600CB7490 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1031,15 +1020,20 @@
 		E1EFC3E9147690B600CB7490 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Witt (96VT8B7392)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Witt (96VT8B7392)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
 				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BFD5854B-5DE3-454C-BE4A-2301B3DBDBE9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFD5854B-5DE3-454C-BE4A-2301B3DBDBE9";
 				"WARNING_CFLAGS[arch=*]" = "-Wno-arc-performSelector-leaks";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1048,15 +1042,20 @@
 		E1EFC3EA147690B600CB7490 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Witt (96VT8B7392)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Witt (96VT8B7392)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ezDL/ezDL-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build\"";
 				INFOPLIST_FILE = "ezDL/ezDL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BFD5854B-5DE3-454C-BE4A-2301B3DBDBE9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFD5854B-5DE3-454C-BE4A-2301B3DBDBE9";
 				"WARNING_CFLAGS[arch=*]" = "-Wno-arc-performSelector-leaks";
 				WRAPPER_EXTENSION = app;
 			};

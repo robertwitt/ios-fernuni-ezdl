@@ -31,7 +31,7 @@
     
     MockupQueryBackendService *service = [[MockupQueryBackendService alloc] init];
     NSArray *queryResultItems = [service loadQueryResultItems];
-    sleep(2);
+    //sleep(2);
     
     if (!error) query.executedOn = [NSDate date];
     
